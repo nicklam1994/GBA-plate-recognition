@@ -92,20 +92,29 @@ def render_one(args):
                 from synthetic_data.plate_specs import generate_zm_plate
                 text, spec = generate_zm_plate()
             else:
-                # 優先使用 plate.hk 真實車牌號：模型學到的是真實分佈
+                # 用 plate.hk 真實車牌號：模型學到真實分佈（含純數字/純字母/個性化）
                 db = load_hk_plates()
                 if db:
-                    import re as _re
                     import synthetic_data.plate_specs as _ps
                     plate = random.choice(db)
-                    m = _re.match(r"^([A-Z]{1,2})(\d{1,4})$", plate)
-                    if m:
-                        text = f"{m.group(1)} {m.group(2)}"
-                    else:
-                        letters = "".join(c for c in plate if c.isalpha())
-                        digits = "".join(c for c in plate if c.isdigit())
+                    letters = "".join(c for c in plate if c.isalpha())
+                    digits = "".join(c for c in plate if c.isdigit())
+                    if digits and letters:
                         text = f"{letters} {digits}"
-                    spec = random.choice([_ps.HK_FRONT, _ps.HK_REAR])
+                        spec = random.choice([_ps.HK_FRONT, _ps.HK_REAR])
+                        # 12% 兩行方牌：字母在上、數字在下
+                        if random.random() < 0.12:
+                            is_rear = spec.name == "hk_rear"
+                            text = f"{letters}\n{digits}"
+                            spec = _ps.HK_REAR_DOUBLE if is_rear else _ps.HK_FRONT_DOUBLE
+                    elif letters:
+                        # 純字母個性化車牌（如 ASTRA）
+                        text, spec = letters, random.choice([_ps.HK_FRONT, _ps.HK_REAR])
+                    elif digits:
+                        # 純數字早期車牌（如 1314）
+                        text, spec = digits, random.choice([_ps.HK_FRONT, _ps.HK_REAR])
+                    else:
+                        text, spec = generate_hk_plate()
                 else:
                     text, spec = generate_hk_plate()
         elif kind == "mo":

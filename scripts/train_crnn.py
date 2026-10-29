@@ -31,9 +31,31 @@ import sys
 sys.path.insert(0, str(ROOT))
 
 from plate_recognition.plateNet import myNet_ocr_color  # noqa: E402
+from gba_plate.preprocess.double_line import (  # noqa: E402
+    looks_double_line,
+    split_merge_double,
+)
 
-INPUT_W, INPUT_H = 168, 48
+INPUT_W, INPUT_H = 256, 48   # 寬度上限提高以容納 4.73:1 的香港長牌（等比縮放 + padding）
+PAD_VALUE = 128
 MEAN_VALUE, STD_VALUE = 0.588, 0.193
+
+
+def fit_aspect(img, out_h=INPUT_H, out_w=INPUT_W, pad=PAD_VALUE):
+    """等比縮放到固定高度，寬度不足處灰階填充（左對齊），避免車牌變形。"""
+    if img is None or img.size == 0:
+        return np.full((out_h, out_w, 3), pad, dtype=np.uint8)
+    h, w = img.shape[:2]
+    if h == 0 or w == 0:
+        return np.full((out_h, out_w, 3), pad, dtype=np.uint8)
+    scale = out_h / float(h)
+    new_w = max(1, min(int(round(w * scale)), out_w))
+    resized = cv2.resize(img, (new_w, out_h), interpolation=cv2.INTER_LINEAR)
+    if new_w == out_w:
+        return resized
+    canvas = np.full((out_h, out_w, 3), pad, dtype=np.uint8)
+    canvas[:, :new_w] = resized
+    return canvas
 
 #: cfg 選項
 CFG_SMALL = [8, 8, 16, 16, 'M', 32, 32, 'M', 48, 48, 'M', 64, 128]
@@ -112,6 +134,11 @@ class PlateDataset(Dataset):
 
         color = detect_color(img)
 
+        # 與推理端 alpr.py 一致：雙行牌先拼成單行再送 OCR
+        # （否則模型學的是「兩行擠在一張圖」，實際用的是「拼好的寬圖」）
+        if looks_double_line(img):
+            img = split_merge_double(img)
+
         # 輕度增強（車牌文字不能翻轉、不能大幅扭曲）
         if self.train:
             if random.random() < 0.3:
@@ -120,7 +147,7 @@ class PlateDataset(Dataset):
             if random.random() < 0.2:
                 img = cv2.GaussianBlur(img, (3, 3), random.uniform(0, 1.0))
 
-        img = cv2.resize(img, (INPUT_W, INPUT_H))
+        img = fit_aspect(img, INPUT_H, INPUT_W)
         img = np.reshape(img, (INPUT_H, INPUT_W, 3)).astype(np.float32)
         img = (img / 255.0 - MEAN_VALUE) / STD_VALUE
         img = img.transpose(2, 0, 1)

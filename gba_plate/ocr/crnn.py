@@ -20,11 +20,40 @@ import torch
 from gba_plate.base import BaseOCR, OcrResult, PlateColor
 from gba_plate.ocr.vocab import BASE_VOCAB_V78, VOCAB_V79
 
-#: 識別輸入尺寸（寬, 高）。168/48 = 3.5:1，略扁於車牌實際 3.14:1，但權重已適應此比例。
-INPUT_SIZE = (168, 48)
+#: 識別輸入尺寸。固定高度、寬度上限 —— 保持寬高比，避免長牌壓扁／方牌拉長。
+#: 香港長牌 520×110 (4.73:1)、方牌 330×170 (1.94:1)、內地 440×140 (3.14:1)，
+#: 最寬的長牌在 H=48 下需 227px，故上限取 256（CNN stride 4 → 64 時間步，
+#: CTC 對 8 字符標籤需 ≥17 步，餘裕充足）。
+INPUT_W, INPUT_H = 256, 48
+INPUT_SIZE = (INPUT_W, INPUT_H)
+#: padding 填充值（與車牌平均底色接近的灰）
+PAD_VALUE = 128
 #: 正規化參數（原項目實測值，勿改）
 MEAN_VALUE = 0.588
 STD_VALUE = 0.193
+
+
+def fit_aspect(img: np.ndarray, out_h: int = INPUT_H, out_w: int = INPUT_W,
+               pad: int = PAD_VALUE) -> np.ndarray:
+    """
+    等比縮放到固定高度，寬度不足處以灰階填充（左對齊）。
+
+    取代直接 cv2.resize 到固定尺寸 —— 後者會把 4.73:1 的香港長牌壓扁、
+    把 1.94:1 的方牌拉長 80%，字符形狀失真直接損害識別率。
+    """
+    if img is None or img.size == 0:
+        return np.full((out_h, out_w, 3), pad, dtype=np.uint8)
+    h, w = img.shape[:2]
+    if h == 0 or w == 0:
+        return np.full((out_h, out_w, 3), pad, dtype=np.uint8)
+    scale = out_h / float(h)
+    new_w = max(1, min(int(round(w * scale)), out_w))
+    resized = cv2.resize(img, (new_w, out_h), interpolation=cv2.INTER_LINEAR)
+    if new_w == out_w:
+        return resized
+    canvas = np.full((out_h, out_w, 3), pad, dtype=np.uint8)
+    canvas[:, :new_w] = resized
+    return canvas
 
 #: 顏色索引 → PlateColor（順序與權重的顏色頭一致）
 _COLOR_MAP = [
@@ -156,8 +185,8 @@ class CRNNPlateOCR(BaseOCR):
         return model
 
     def _preprocess(self, plate_crop: np.ndarray) -> torch.Tensor:
-        img = cv2.resize(plate_crop, INPUT_SIZE)
-        img = np.reshape(img, (INPUT_SIZE[1], INPUT_SIZE[0], 3)).astype(np.float32)
+        img = fit_aspect(plate_crop, INPUT_H, INPUT_W)
+        img = img.astype(np.float32)
         img = (img / 255.0 - MEAN_VALUE) / STD_VALUE
         img = img.transpose(2, 0, 1)                  # HWC → CHW
         tensor = torch.from_numpy(np.ascontiguousarray(img)).to(self.device)

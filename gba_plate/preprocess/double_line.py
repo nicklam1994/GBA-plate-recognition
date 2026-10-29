@@ -15,9 +15,10 @@ import cv2
 import numpy as np
 
 #: 上層結束位置（佔總高度比例）
-UPPER_END_RATIO = 5 / 12
+#: 上層結束位置（佔總高度比例）。兩行各半，略留重疊容錯。
+UPPER_END_RATIO = 0.52
 #: 下層起始位置（佔總高度比例）
-LOWER_START_RATIO = 1 / 3
+LOWER_START_RATIO = 0.48
 #: 拼接填充色（與原項目 letterbox 填充值一致）
 PAD_VALUE = 114
 
@@ -54,12 +55,38 @@ def split_merge_double(plate_img: np.ndarray) -> np.ndarray:
 
 def looks_double_line(plate_img: np.ndarray) -> bool:
     """
-    啟發式判斷是否為雙行車牌（無類別標籤時的 fallback）。
+    啟發式判斷是否為雙行車牌。
 
-    依據：方形或豎長（寬高比 < 1.6）且有明顯水平分割特徵。
-    香港/澳門的雙行牌通常是接近方形（220×260）。
+    僅靠寬高比不夠：香港大方牌 330×170 = 1.94，舊閾值 1.6 判不出，
+    導致雙行牌被當單行送進 OCR（字符被壓成兩半）。
+    改為寬高比粗篩 + 水平投影找行間空白帶。
+
+    典型寬高比：香港長牌 4.73 / 內地 3.14 → 單行；
+                香港方牌 1.94 / 澳門方形 1.9 → 雙行。
     """
     h, w = plate_img.shape[:2]
-    if h == 0 or w == 0:
+    if h < 16 or w < 16:
         return False
-    return (w / h) < 1.6
+    ratio = w / float(h)
+
+    if ratio >= 2.4:
+        return False          # 明顯是長條單行牌
+    if ratio < 1.3:
+        return True           # 接近方形或豎長，必然是雙行
+
+    # 中間地帶（1.3 ~ 2.4）：用水平投影找兩行之間的空白帶
+    try:
+        gray = cv2.cvtColor(plate_img, cv2.COLOR_BGR2GRAY)
+        _, bw = cv2.threshold(gray, 0, 255,
+                              cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+        row_ink = bw.sum(axis=1) / 255.0
+        band = row_ink[int(h * 0.35):int(h * 0.65)]
+        if band.size == 0:
+            return False
+        mean_ink = row_ink.mean()
+        if mean_ink <= 0:
+            return False
+        # 中間有明顯低谷 → 兩行之間的分隔帶
+        return float(band.min()) < 0.25 * mean_ink
+    except Exception:
+        return False

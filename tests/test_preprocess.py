@@ -81,9 +81,15 @@ class TestCropByBbox:
 
 class TestDoubleLine:
     def test_ratios_match_cross_project_consensus(self):
-        """5/12 + 1/3 是 zhahoi-ncnn 與 pcb9382 一致的比例"""
-        assert abs(UPPER_END_RATIO - 5 / 12) < 1e-9
-        assert abs(LOWER_START_RATIO - 1 / 3) < 1e-9
+        """
+        切分比例 0.52 / 0.48（兩行各半，略留重疊）。
+
+        原值 5/12 + 1/3 是為 220×260 的方形牌設計的；但香港法定方牌是
+        330×170（兩行各 85mm = 50%），用舊比例會把上排底部切掉 14mm、
+        又把上排底部帶入下排。改為各半以符合實際規格。
+        """
+        assert abs(UPPER_END_RATIO - 0.52) < 1e-9
+        assert abs(LOWER_START_RATIO - 0.48) < 1e-9
         # 兩者刻意重疊，避免字符被切斷
         assert UPPER_END_RATIO > LOWER_START_RATIO
 
@@ -92,12 +98,13 @@ class TestDoubleLine:
         img = np.zeros((260, 220, 3), dtype=np.uint8)
         out = split_merge_double(img)
         assert out.shape[1] == pytest.approx(440, abs=2)
-        assert out.shape[0] == pytest.approx(173, abs=2)
+        # 輸出高度 = 下層高度 = h - int(LOWER_START_RATIO * h)
+        assert out.shape[0] == pytest.approx(260 - int(0.48 * 260), abs=2)
 
     def test_merge_preserves_height_of_lower(self):
         img = np.zeros((120, 100, 3), dtype=np.uint8)
         out = split_merge_double(img)
-        expected_h = 120 - int(1 / 3 * 120)   # 下層高度
+        expected_h = 120 - int(LOWER_START_RATIO * 120)   # 下層高度
         assert out.shape[0] == expected_h
 
     def test_tiny_image_passthrough(self):
