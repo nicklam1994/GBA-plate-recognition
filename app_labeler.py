@@ -354,7 +354,8 @@ def build_items() -> list[dict]:
     for src, group in by_src.items():
         sibs = [{"file": g["file"], "bbox": g["bbox"],
                  "text": g["text"], "region": g["region_final"],
-                 "verified": g["verified"]} for g in group]
+                 "verified": g["verified"], "action": g["action"]}
+                for g in group]
         for g in group:
             g["siblings"] = sibs
 
@@ -387,6 +388,8 @@ def stats() -> dict:
     ok = sum(1 for i in items if i["format_ok"])
     corrected = sum(1 for i in items
                     if i["verified"] and i["action"] == "correct")
+    not_plate = sum(1 for i in items if i["action"] == "not_plate")
+    unusable = sum(1 for i in items if i["action"] == "unusable")
     blurry = sum(1 for i in items if i["clarity"] < CLARITY_BLUR)
     usable = total
     return {
@@ -396,6 +399,8 @@ def stats() -> dict:
         "format_ok": ok,
         "format_bad": total - ok,
         "corrected": corrected,
+        "not_plate": not_plate,
+        "unusable": unusable,
         "blurry": blurry,
         "usable": usable,
         "usable_remaining": usable - verified,
@@ -426,6 +431,8 @@ def api_items():
         items = [i for i in items if i["clarity"] >= CLARITY_OK]
     elif only == "blurry":
         items = [i for i in items if i["clarity"] < CLARITY_BLUR]
+    elif only == "notplate":
+        items = [i for i in items if i["action"] == "not_plate"]
     return jsonify({"items": items, "stats": stats()})
 
 
@@ -436,7 +443,7 @@ def api_stats():
 
 @app.post("/api/verify")
 def api_verify():
-    """action: pass（原樣通過） / correct（改為 text） / skip / unusable"""
+    """action: pass / correct / skip / unusable（看不清）/ not_plate（根本不是車牌）"""
     body = request.get_json(force=True) or {}
     f = body.get("file")
     action = body.get("action", "pass")
@@ -451,7 +458,10 @@ def api_verify():
         # 用當前顯示的 OCR 文字作為最終值
         cur = next((i for i in build_items() if i["file"] == f), None)
         text = (cur or {}).get("text", text)
-    elif action == "unusable":
+    elif action in ("unusable", "not_plate"):
+        # unusable = 是車牌但糊到看不清；not_plate = 檢測框錯了，畫面裡沒車牌
+        # 兩者都清空 text，但分開記錄 —— not_plate 是 detector 的負樣本，
+        # 可用來降低誤檢，不能跟「看不清」混在一起。
         text = ""
 
     region = (body.get("region") or "").strip() or None
@@ -739,6 +749,7 @@ PAGE = r"""<!DOCTYPE html>
   <div class="stat">已核 <b id="s-done">0</b>/<b id="s-usable">0</b>
     · 待核 <b id="s-left">0</b>
     · 已改 <b id="s-fix">0</b>
+    · 非車牌 <b id="s-np" style="color:#e0b44e">0</b>
     · 廢圖 <b id="s-blur">0</b></div>
 </header>
 
@@ -748,6 +759,7 @@ PAGE = r"""<!DOCTYPE html>
     <button data-only="bad">未通過校驗</button>
     <button data-only="clear">全部清晰</button>
     <button data-only="blurry">模糊廢圖</button>
+    <button data-only="notplate">不是車牌</button>
     <button data-only="all">全部</button>
     <button id="btn-eval" style="margin-left:auto;border-color:#2f4a80;color:#8fb8f0">📊 檢驗準確率</button>
   </div>
@@ -771,6 +783,7 @@ function stats(s) {
   $('s-left').textContent = s.usable_remaining;
   $('s-fix').textContent = s.corrected;
   $('s-blur').textContent = s.blurry;
+  if ($('s-np')) $('s-np').textContent = s.not_plate || 0;
   $('pbar').style.width = s.progress + '%';
 }
 
@@ -797,8 +810,11 @@ function render() {
     : '<span class="tag t-bad">格式不符</span>';
   const dblTag = it.double_line
     ? '<span class="tag t-warn">雙行已拼接</span>' : '';
+  const ACTION_ZH = { pass: '正確', correct: '已改', skip: '跳過',
+                      unusable: '看不清', not_plate: '非車牌' };
   const verTag = it.verified
-    ? '<span class="tag t-ok">已核 ' + esc(it.action) + '</span>' : '';
+    ? '<span class="tag ' + (it.action === 'not_plate' ? 't-warn' : 't-ok') + '">'
+      + esc(ACTION_ZH[it.action] || it.action) + '</span>' : '';
 
   v.innerHTML = `
     <div class="card">
@@ -835,6 +851,7 @@ function render() {
       </div>
 
       ${it.clarity < 40 ? '<div style="margin-top:10px;padding:8px 12px;background:#3d2024;border-radius:6px;font-size:12px;color:#ef7a86">⚠️ 此圖極度模糊（清晰度 ' + (it.clarity||0).toFixed(0) + '），可能無法辨識，建議按「無法辨識」跳過</div>' : ''}
+      ${it.action === 'not_plate' ? '<div style="margin-top:10px;padding:8px 12px;background:#3b3420;border-radius:6px;font-size:12px;color:#e0b44e">已標記為「不是車牌」—— 此框屬檢測誤報，將作為負樣本，不進入 OCR 訓練集</div>' : ''}
 
       <label>車牌號碼（可直接編輯）</label>
       <input type="text" id="txt" value="${esc(it.text)}" spellcheck="false" autocomplete="off">
@@ -844,10 +861,12 @@ function render() {
         ${it.format_ok ? '✅ 正確，下一張' : '⚠️ 格式不符，仍提交'} <kbd>Enter</kbd></button>
         <button id="btn-save">✏️ 提交修正 <kbd>Ctrl+Enter</kbd></button>
         <button class="ghost" id="btn-skip">⏭ 跳過</button>
+        <button class="ghost" id="btn-np">❌ 不是車牌</button>
         <button class="warn" id="btn-bad">🚫 無法辨識</button>
       </div>
       <div class="hint">提示：直接打字修正後按 <kbd>Ctrl+Enter</kbd> 提交；
-        <kbd>Enter</kbd> 表示 OCR 已正確；<kbd>←</kbd> 上一張</div>
+        <kbd>Enter</kbd> 表示 OCR 已正確；<kbd>←</kbd> 上一張；
+        <kbd>Alt+X</kbd> 標記「不是車牌」（框錯了，畫面裡沒有車牌）</div>
 
       <div class="regrow">
         <span style="font-size:12px;color:#9aa3b2">地區</span>
@@ -889,7 +908,8 @@ function render() {
         box.style.width = Math.max(2, (x2 - x1) * sx) + 'px';
         box.style.height = Math.max(2, (y2 - y1) * sy) + 'px';
         box.dataset.label = (isCur ? '▶ ' : '')
-          + (s.text || '(空)') + ' · ' + (s.region || '?');
+          + (s.action === 'not_plate' ? '✕ 非車牌'
+             : (s.text || '(空)') + ' · ' + (s.region || '?'));
         if (!isCur) {
           box.style.pointerEvents = 'auto';
           box.style.cursor = 'pointer';
@@ -966,6 +986,7 @@ function render() {
   $('btn-save').onclick = () => submit('correct');
   $('btn-skip').onclick = () => { IDX++; render(); };
   $('btn-bad').onclick = () => submit('unusable');
+  if ($('btn-np')) $('btn-np').onclick = () => submit('not_plate');
 
   // 左右切換照片（不改變核對狀態，純瀏覽）
   const bp = $('btn-prev'), bn = $('btn-next');
@@ -1106,6 +1127,8 @@ document.addEventListener('keydown', e => {
     e.preventDefault(); IDX = (IDX + 1) % ITEMS.length; render();
   } else if (e.key === 'Escape') {
     $('btn-skip') && $('btn-skip').click();
+  } else if (e.altKey && (e.key === 'x' || e.key === 'X')) {
+    e.preventDefault(); submit('not_plate');
   }
 });
 
