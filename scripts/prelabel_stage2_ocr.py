@@ -75,6 +75,53 @@ def prep_for_ocr(path: Path):
     return img
 
 
+def find_split_line(img) -> int:
+    """
+    用水平投影找雙行牌兩行之間的分界線（該處筆劃最少）。
+
+    固定用 50% 切會切歪 —— 實測上排 XM 與下排 2969 的分界在 60% 左右，
+    按 52% 切會把下排頂部留在上排圖裡。
+    """
+    h = img.shape[0]
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    _, bw = cv2.threshold(gray, 0, 255,
+                          cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+    row_ink = bw.sum(axis=1) / 255.0
+    lo, hi = int(h * 0.30), int(h * 0.72)
+    if hi <= lo + 2:
+        return h // 2
+    band = row_ink[lo:hi]
+    return lo + int(band.argmin())
+
+
+def ocr_lines(img, ocr) -> tuple[list[str], list[float]]:
+    """
+    雙行牌：按投影分界切成上下兩半，各自 OCR 後按「上→下」合併。
+
+    比拼接成一張圖可靠，因為 PaddleOCR 對單行文字最擅長；
+    拼接會引入殘留，且縮圖後上排字母容易整個丟失。
+    """
+    split = find_split_line(img)
+    parts = [img[:split + 2], img[max(0, split - 2):]]
+    texts: list[str] = []
+    scores: list[float] = []
+    for part in parts:
+        if part.size == 0 or part.shape[0] < 6:
+            continue
+        try:
+            r = ocr.predict(part)[0]
+            d = r["res"] if isinstance(r, dict) and "res" in r else r
+            if not isinstance(d, dict):
+                continue
+            ts = d.get("rec_texts") or []
+            ss = d.get("rec_scores") or []
+            texts.extend(ts)
+            scores.extend(float(x) for x in ss)
+        except Exception:
+            continue
+    return texts, scores
+
+
 #: 常見車標／車身文字，PaddleOCR 常與車牌一起框到
 _CAR_TEXT = frozenset({
     "TOYOTA", "HONDA", "NISSAN", "BENZ", "BMW", "LEXUS", "BENTLEY",
@@ -181,20 +228,23 @@ def main():
             small = prep_for_ocr(f)
             texts, scores = [], []
             if small is not None:
-                r = ocr.predict(small)[0]
-                d = r["res"] if isinstance(r, dict) and "res" in r else r
-                if isinstance(d, dict):
-                    texts = d.get("rec_texts") or []
-                    scores = d.get("rec_scores") or []
-                    # 雙行牌要先讀上排再讀下排，PaddleOCR 原始順序不可靠
-                    # （實測 XM2969 被輸出成 2969XM）
-                    polys = d.get("rec_polys") or d.get("dt_polys") or []
-                    if len(polys) == len(texts) and len(texts) > 1:
-                        order = sorted(
-                            range(len(texts)),
-                            key=lambda i: float(np.array(polys[i])[:, 1].mean()))
-                        texts = [texts[i] for i in order]
-                        scores = [scores[i] for i in order] if len(scores) == len(order) else scores
+                if meta.get("double_line_merged"):
+                    # 雙行牌：投影分界後分行 OCR，上排結果在前
+                    texts, scores = ocr_lines(small, ocr)
+                else:
+                    r = ocr.predict(small)[0]
+                    d = r["res"] if isinstance(r, dict) and "res" in r else r
+                    if isinstance(d, dict):
+                        texts = d.get("rec_texts") or []
+                        scores = d.get("rec_scores") or []
+                        # 多塊文字按 y 排序，PaddleOCR 原始順序不可靠
+                        polys = d.get("rec_polys") or d.get("dt_polys") or []
+                        if len(polys) == len(texts) and len(texts) > 1:
+                            order = sorted(
+                                range(len(texts)),
+                                key=lambda k: float(np.array(polys[k])[:, 1].mean()))
+                            texts = [texts[k] for k in order]
+                            scores = [scores[k] for k in order] if len(scores) == len(order) else scores
         except Exception as e:
             texts, scores = [], []
             print(f"  ! {f.name}: {e}")

@@ -126,10 +126,11 @@ def main():
                        max(0, x1 - pd):min(W, x2 + pd)]
             if crop.size == 0:
                 continue
-            # 雙行方牌先拼成單行，否則 OCR 只會讀到其中一行
+            # 只標記是否雙行，**不做拼接**。
+            # 拼接會把兩行殘留混在一起（實測 XM 下方拖著 2969 的頂部，
+            # 因為切分點固定取 52% 而實際分界不在那裡）。
+            # 改由 stage2 用投影找精確分界，分行 OCR 後再按序合併。
             merged = looks_double_line(crop)
-            if merged:
-                crop = split_merge_double(crop)
 
             # 不強制放大：原圖 bbox 可能只有 80px 寬，放大到 560 等於 7 倍，
             # 只會更糊（實測清晰度中位數從 92 掉到 15）。

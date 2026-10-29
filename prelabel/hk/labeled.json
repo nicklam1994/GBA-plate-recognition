@@ -69,20 +69,21 @@
    2228
   ],
   "crop_wh": [
-   562,
-   90
+   281,
+   173
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "RU8534"
+   "RU",
+   "8534"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.996,
+  "paddle_mean_conf": 0.998,
   "text_clean": "RU8534",
   "valid": true,
   "format": "HK",
-  "lines": 1
+  "lines": 2
  },
  {
   "file": "IMG-20260731-WA0245__0__mo.jpg",
@@ -126,20 +127,21 @@
    2682
   ],
   "crop_wh": [
-   728,
-   108
+   364,
+   207
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "TK7687"
+   "CTK",
+   "7687"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
-  "paddle_mean_conf": 0.999,
-  "text_clean": "TK7687",
-  "valid": true,
-  "format": "HK",
-  "lines": 1
+  "paddle_confidence": 0.767,
+  "paddle_mean_conf": 0.883,
+  "text_clean": "CTK7687",
+  "valid": false,
+  "format": "",
+  "lines": 2
  },
  {
   "file": "IMG-20260801-WA0015__0__hk.jpg",
@@ -183,20 +185,21 @@
    2664
   ],
   "crop_wh": [
-   750,
-   114
+   375,
+   218
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "TK7687"
+   "TK",
+   "7687"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.998,
+  "paddle_mean_conf": 0.999,
   "text_clean": "TK7687",
   "valid": true,
   "format": "HK",
-  "lines": 1
+  "lines": 2
  },
  {
   "file": "IMG-20260802-WA0017__0__hk.jpg",
@@ -298,20 +301,21 @@
    2593
   ],
   "crop_wh": [
-   756,
-   115
+   378,
+   220
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "TK19770"
+   "CTK",
+   "9770"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.949,
-  "paddle_mean_conf": 0.949,
-  "text_clean": "TK19770",
+  "paddle_confidence": 0.797,
+  "paddle_mean_conf": 0.898,
+  "text_clean": "CTK9770",
   "valid": false,
   "format": "",
-  "lines": 1
+  "lines": 2
  },
  {
   "file": "IMG-20260821-WA0050__0__hk.jpg",
@@ -326,20 +330,21 @@
    2684
   ],
   "crop_wh": [
-   758,
-   121
+   379,
+   231
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "YR7164"
+   "YR",
+   "7164"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.953,
-  "paddle_mean_conf": 0.953,
+  "paddle_confidence": 0.957,
+  "paddle_mean_conf": 0.978,
   "text_clean": "YR7164",
   "valid": true,
   "format": "HK",
-  "lines": 1
+  "lines": 2
  },
  {
   "file": "IMG-20260824-WA0032__0__hk.jpg",
@@ -470,20 +475,20 @@
    1057
   ],
   "crop_wh": [
-   428,
-   101
+   214,
+   194
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "8696",
-   "YS"
+   "YS",
+   "8696"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.993,
-  "paddle_mean_conf": 0.997,
-  "text_clean": "8696YS",
-  "valid": false,
-  "format": "",
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -499,20 +504,20 @@
    1383
   ],
   "crop_wh": [
-   566,
-   81
+   283,
+   155
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "8696",
-   "YS"
+   "YS",
+   "8696"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "8696YS",
-  "valid": false,
-  "format": "",
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -528,20 +533,20 @@
    1384
   ],
   "crop_wh": [
-   566,
-   82
+   283,
+   156
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "8696",
-   "YS"
+   "YS",
+   "8696"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "8696YS",
-  "valid": false,
-  "format": "",
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -591,20 +596,20 @@
    837
   ],
   "crop_wh": [
-   406,
-   60
+   203,
+   115
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "8696",
-   "YS"
+   "YS",
+   "8696"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "8696YS",
-  "valid": false,
-  "format": "",
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -620,20 +625,20 @@
    2717
   ],
   "crop_wh": [
-   706,
-   116
+   353,
+   222
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "8696",
-   "YS"
+   "YS",
+   "8696"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "8696YS",
-  "valid": false,
-  "format": "",
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -765,20 +770,20 @@
    1232
   ],
   "crop_wh": [
-   398,
-   61
+   199,
+   117
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "8421",
-   "WC"
+   "WC",
+   "8421"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.986,
-  "paddle_mean_conf": 0.993,
-  "text_clean": "8421WC",
-  "valid": false,
-  "format": "",
+  "paddle_confidence": 0.968,
+  "paddle_mean_conf": 0.984,
+  "text_clean": "WC8421",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -881,20 +886,21 @@
    1094
   ],
   "crop_wh": [
-   396,
-   61
+   198,
+   116
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "FU·8306"
+   "AFUA",
+   "8306"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
-  "paddle_mean_conf": 0.999,
-  "text_clean": "FU8306",
-  "valid": true,
-  "format": "HK-FV",
-  "lines": 1
+  "paddle_confidence": 0.735,
+  "paddle_mean_conf": 0.868,
+  "text_clean": "AFUA8306",
+  "valid": false,
+  "format": "",
+  "lines": 2
  },
  {
   "file": "IMG-20260928-WA0173__0__hk.jpg",
@@ -1108,20 +1114,21 @@
    1262
   ],
   "crop_wh": [
-   164,
-   36
+   160,
+   132
   ],
   "double_line_merged": true,
   "paddle_raw": [
+   "WN",
    "4958"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
-  "text_clean": "4958",
-  "valid": false,
-  "format": "",
-  "lines": 1
+  "paddle_confidence": 0.998,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "WN4958",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
  },
  {
   "file": "IMG-20260930-WA0214__0__hk.jpg",
@@ -1191,22 +1198,23 @@
    1672
   ],
   "crop_wh": [
-   520,
-   124
+   260,
+   238
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "2969",
    "XM",
-   ""
+   "d1OYOTA"
   ],
-  "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.667,
-  "text_clean": "2969XM",
+  "paddle_dropped": [
+   "d1OYOTA"
+  ],
+  "paddle_confidence": 0.766,
+  "paddle_mean_conf": 0.883,
+  "text_clean": "XM",
   "valid": false,
   "format": "",
-  "lines": 3
+  "lines": 2
  },
  {
   "file": "IMG-20261001-WA0216__0__hk.jpg",
@@ -1280,20 +1288,23 @@
    535
   ],
   "crop_wh": [
-   144,
-   32
+   72,
+   60
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   ""
+   "R",
+   "站"
   ],
-  "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.0,
-  "text_clean": "",
+  "paddle_dropped": [
+   "站"
+  ],
+  "paddle_confidence": 0.271,
+  "paddle_mean_conf": 0.34,
+  "text_clean": "R",
   "valid": false,
   "format": "",
-  "lines": 1
+  "lines": 2
  },
  {
   "file": "IMG-20261001-WA0422__1__hk.jpg",
@@ -1395,12 +1406,13 @@
    2513
   ],
   "crop_wh": [
-   512,
-   82
+   256,
+   156
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "YS8696"
+   "YS",
+   "8696"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
@@ -1408,7 +1420,7 @@
   "text_clean": "YS8696",
   "valid": true,
   "format": "HK",
-  "lines": 1
+  "lines": 2
  },
  {
   "file": "IMG-20261002-WA0087__0__hk.jpg",
@@ -1540,8 +1552,8 @@
    790
   ],
   "crop_wh": [
-   200,
-   35
+   160,
+   105
   ],
   "double_line_merged": true,
   "paddle_raw": [
@@ -1568,20 +1580,21 @@
    1022
   ],
   "crop_wh": [
-   402,
-   83
+   201,
+   159
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "5276"
+   "NV",
+   "3276"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
-  "text_clean": "5276",
-  "valid": false,
-  "format": "",
-  "lines": 1
+  "paddle_confidence": 0.963,
+  "paddle_mean_conf": 0.981,
+  "text_clean": "NV3276",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
  },
  {
   "file": "IMG-20261002-WA0206__0__hk.jpg",
@@ -1596,20 +1609,20 @@
    1146
   ],
   "crop_wh": [
-   284,
-   44
+   160,
+   94
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "6341",
-   "TY"
+   "TY",
+   "6341"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
-  "paddle_mean_conf": 0.999,
-  "text_clean": "6341TY",
-  "valid": false,
-  "format": "",
+  "paddle_confidence": 0.998,
+  "paddle_mean_conf": 0.998,
+  "text_clean": "TY6341",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -1625,20 +1638,20 @@
    668
   ],
   "crop_wh": [
-   418,
-   65
+   209,
+   125
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "4403",
-   "UP"
+   "UP",
+   "4403"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.993,
-  "paddle_mean_conf": 0.997,
-  "text_clean": "4403UP",
-  "valid": false,
-  "format": "",
+  "paddle_confidence": 0.996,
+  "paddle_mean_conf": 0.998,
+  "text_clean": "UP4403",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -1654,12 +1667,13 @@
    1061
   ],
   "crop_wh": [
-   338,
-   51
+   169,
+   98
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "XM2969"
+   "XM",
+   "2969"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
@@ -1667,7 +1681,7 @@
   "text_clean": "XM2969",
   "valid": true,
   "format": "HK",
-  "lines": 1
+  "lines": 2
  },
  {
   "file": "IMG-20261004-WA0135__0__hk.jpg",
@@ -1711,20 +1725,21 @@
    966
   ],
   "crop_wh": [
-   160,
-   48
+   98,
+   112
   ],
   "double_line_merged": true,
   "paddle_raw": [
+   "TEAR",
    "855"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
-  "text_clean": "855",
+  "paddle_confidence": 0.676,
+  "paddle_mean_conf": 0.837,
+  "text_clean": "TEAR855",
   "valid": false,
   "format": "",
-  "lines": 1
+  "lines": 2
  },
  {
   "file": "IMG-20261004-WA0208__1__hk.jpg",
@@ -1825,20 +1840,20 @@
    913
   ],
   "crop_wh": [
-   184,
-   33
+   160,
+   109
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "3701",
-   "UT"
+   "UT",
+   "3701"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
-  "paddle_mean_conf": 1.0,
-  "text_clean": "3701UT",
-  "valid": false,
-  "format": "",
+  "paddle_confidence": 0.998,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "UT3701",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -1911,18 +1926,22 @@
    570
   ],
   "crop_wh": [
-   160,
-   21
+   82,
+   42
   ],
   "double_line_merged": true,
-  "paddle_raw": [],
-  "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.0,
+  "paddle_raw": [
+   "T城034"
+  ],
+  "paddle_dropped": [
+   "T城034"
+  ],
+  "paddle_confidence": 0.283,
+  "paddle_mean_conf": 0.283,
   "text_clean": "",
   "valid": false,
   "format": "",
-  "lines": 0
+  "lines": 1
  },
  {
   "file": "IMG-20261005-WA0094__1__hk.jpg",
@@ -2139,20 +2158,20 @@
    3150
   ],
   "crop_wh": [
-   656,
-   139
+   328,
+   267
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "9112",
-   "XM"
+   "XM",
+   "9112"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
-  "text_clean": "9112XM",
-  "valid": false,
-  "format": "",
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "XM9112",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -2168,20 +2187,20 @@
    1024
   ],
   "crop_wh": [
-   252,
-   39
+   160,
+   93
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "9770",
-   "TK"
+   "TK",
+   "9770"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
-  "text_clean": "9770TK",
-  "valid": false,
-  "format": "",
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "TK9770",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -2197,20 +2216,20 @@
    1094
   ],
   "crop_wh": [
-   356,
-   53
+   178,
+   101
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "590",
-   "WY"
+   "WY",
+   "590"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
-  "text_clean": "590WY",
-  "valid": false,
-  "format": "",
+  "paddle_confidence": 0.997,
+  "paddle_mean_conf": 0.998,
+  "text_clean": "WY590",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -2284,21 +2303,20 @@
    997
   ],
   "crop_wh": [
-   576,
-   121
+   288,
+   231
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "26T2",
    "WZ"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.879,
-  "paddle_mean_conf": 0.939,
-  "text_clean": "26T2WZ",
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "WZ",
   "valid": false,
   "format": "",
-  "lines": 2
+  "lines": 1
  },
  {
   "file": "IMG-20261009-WA0097__0__hk.jpg",
@@ -2341,17 +2359,17 @@
    1139
   ],
   "crop_wh": [
-   160,
-   36
+   128,
+   110
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "LKT2811"
+   "28"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.791,
-  "paddle_mean_conf": 0.791,
-  "text_clean": "LKT2811",
+  "paddle_confidence": 0.816,
+  "paddle_mean_conf": 0.816,
+  "text_clean": "28",
   "valid": false,
   "format": "",
   "lines": 1
@@ -2426,20 +2444,21 @@
    791
   ],
   "crop_wh": [
-   160,
-   48
+   150,
+   170
   ],
   "double_line_merged": true,
   "paddle_raw": [
+   "WN",
    "4958"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "4958",
-  "valid": false,
-  "format": "",
-  "lines": 1
+  "text_clean": "WN4958",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
  },
  {
   "file": "IMG-20261011-WA0253__0__hk.jpg",
@@ -2715,20 +2734,21 @@
    1326
   ],
   "crop_wh": [
-   336,
-   54
+   168,
+   102
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "VJ6989"
+   "RVJA",
+   "6989"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
-  "text_clean": "VJ6989",
-  "valid": true,
-  "format": "HK",
-  "lines": 1
+  "paddle_confidence": 0.971,
+  "paddle_mean_conf": 0.986,
+  "text_clean": "RVJA6989",
+  "valid": false,
+  "format": "",
+  "lines": 2
  },
  {
   "file": "IMG-20261014-WA0051__0__hk.jpg",
@@ -2743,8 +2763,8 @@
    1872
   ],
   "crop_wh": [
-   498,
-   142
+   249,
+   273
   ],
   "double_line_merged": true,
   "paddle_raw": [
@@ -2800,20 +2820,20 @@
    1580
   ],
   "crop_wh": [
-   426,
-   91
+   213,
+   174
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "4403",
-   "UP"
+   "UP·",
+   "4403"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
-  "paddle_mean_conf": 1.0,
-  "text_clean": "4403UP",
-  "valid": false,
-  "format": "",
+  "paddle_confidence": 0.955,
+  "paddle_mean_conf": 0.978,
+  "text_clean": "UP4403",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -2885,21 +2905,20 @@
    731
   ],
   "crop_wh": [
-   160,
-   33
+   152,
+   122
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "9231",
-   "YG"
+   "9231"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.96,
-  "paddle_mean_conf": 0.979,
-  "text_clean": "9231YG",
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "9231",
   "valid": false,
   "format": "",
-  "lines": 2
+  "lines": 1
  },
  {
   "file": "IMG-20261014-WA0255__0__hk.jpg",
@@ -3060,21 +3079,20 @@
    960
   ],
   "crop_wh": [
-   160,
-   20
+   144,
+   68
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "MH6192",
-   "HLEIDO"
+   "MH 6192"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.487,
-  "paddle_mean_conf": 0.701,
-  "text_clean": "MH6192HLEIDO",
-  "valid": false,
-  "format": "",
-  "lines": 2
+  "paddle_confidence": 0.908,
+  "paddle_mean_conf": 0.908,
+  "text_clean": "MH6192",
+  "valid": true,
+  "format": "MO",
+  "lines": 1
  },
  {
   "file": "IMG-20261014-WA0364__1__hk.jpg",
@@ -3117,21 +3135,24 @@
    1391
   ],
   "crop_wh": [
-   270,
-   46
+   160,
+   103
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "2308",
-   "EL"
+   "·C",
+   "E",
+   "L0",
+   "8",
+   "2308"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.996,
-  "paddle_mean_conf": 0.998,
-  "text_clean": "2308EL",
+  "paddle_confidence": 0.629,
+  "paddle_mean_conf": 0.806,
+  "text_clean": "CEL082308",
   "valid": false,
   "format": "",
-  "lines": 2
+  "lines": 5
  },
  {
   "file": "IMG-20261015-WA0308__0__hk.jpg",
@@ -3146,20 +3167,20 @@
    1138
   ],
   "crop_wh": [
-   190,
-   41
+   160,
+   131
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "4403",
-   "·UP·"
+   "·UP",
+   "4403"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.88,
-  "paddle_mean_conf": 0.94,
-  "text_clean": "4403UP",
-  "valid": false,
-  "format": "",
+  "paddle_confidence": 0.816,
+  "paddle_mean_conf": 0.908,
+  "text_clean": "UP4403",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -3175,19 +3196,19 @@
    1060
   ],
   "crop_wh": [
-   144,
-   36
+   72,
+   68
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "M3"
+   "N"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.226,
-  "paddle_mean_conf": 0.226,
-  "text_clean": "M3",
-  "valid": true,
-  "format": "HK",
+  "paddle_confidence": 0.214,
+  "paddle_mean_conf": 0.214,
+  "text_clean": "N",
+  "valid": false,
+  "format": "",
   "lines": 1
  },
  {
@@ -3289,20 +3310,20 @@
    2371
   ],
   "crop_wh": [
-   856,
-   131
+   428,
+   251
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "7164",
-   "YR"
+   "YR",
+   "7164"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.998,
   "paddle_mean_conf": 0.999,
-  "text_clean": "7164YR",
-  "valid": false,
-  "format": "",
+  "text_clean": "YR7164",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -3318,20 +3339,21 @@
    1013
   ],
   "crop_wh": [
-   160,
-   19
+   122,
+   56
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "B334"
+   "2",
+   "EMB314"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.734,
-  "paddle_mean_conf": 0.734,
-  "text_clean": "B334",
-  "valid": true,
-  "format": "HK",
-  "lines": 1
+  "paddle_confidence": 0.778,
+  "paddle_mean_conf": 0.783,
+  "text_clean": "2EMB314",
+  "valid": false,
+  "format": "",
+  "lines": 2
  },
  {
   "file": "IMG-20261018-WA0235__1__hk.jpg",
@@ -3490,21 +3512,20 @@
    1366
   ],
   "crop_wh": [
-   176,
-   38
+   160,
+   132
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "7147",
-   "VJ"
+   "7147"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.977,
-  "paddle_mean_conf": 0.987,
-  "text_clean": "7147VJ",
+  "paddle_confidence": 0.935,
+  "paddle_mean_conf": 0.935,
+  "text_clean": "7147",
   "valid": false,
   "format": "",
-  "lines": 2
+  "lines": 1
  },
  {
   "file": "IMG-20261019-WA0038__0__hk.jpg",
@@ -3633,18 +3654,20 @@
    247
   ],
   "crop_wh": [
-   236,
-   100
+   160,
+   258
   ],
   "double_line_merged": true,
-  "paddle_raw": [],
+  "paddle_raw": [
+   "9317"
+  ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.0,
-  "text_clean": "",
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "9317",
   "valid": false,
   "format": "",
-  "lines": 0
+  "lines": 1
  },
  {
   "file": "IMG-20261019-WA0457__0__hk.jpg",
@@ -3659,20 +3682,20 @@
    2583
   ],
   "crop_wh": [
-   540,
-   92
+   270,
+   176
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "9205",
-   "UY"
+   "UY",
+   "9205"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "9205UY",
-  "valid": false,
-  "format": "",
+  "text_clean": "UY9205",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -3804,20 +3827,21 @@
    2587
   ],
   "crop_wh": [
-   488,
-   76
+   244,
+   146
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "CC3208"
+   "CC",
+   "3208"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.985,
+  "paddle_mean_conf": 0.992,
   "text_clean": "CC3208",
   "valid": true,
   "format": "HK",
-  "lines": 1
+  "lines": 2
  },
  {
   "file": "IMG-20261020-WA0160__0__hk.jpg",

@@ -141,7 +141,20 @@ def build_items() -> list[dict]:
             "action": (v or {}).get("action", ""),
             "bbox": r.get("bbox"),
             "clarity": clarity.get(f, 0.0),
+            "region_final": (v or {}).get("region") or r.get("region_det", ""),
+            "region_edited": bool((v or {}).get("region")),
         })
+
+    # 同圖多牌：把同一張原圖的所有車牌框附上，供原圖上全部畫出
+    by_src: dict[str, list[dict]] = {}
+    for it in items:
+        by_src.setdefault(it["src"], []).append(it)
+    for src, group in by_src.items():
+        sibs = [{"file": g["file"], "bbox": g["bbox"],
+                 "text": g["text"], "region": g["region_final"],
+                 "verified": g["verified"]} for g in group]
+        for g in group:
+            g["siblings"] = sibs
 
     # 排序策略（依人工效率而非單純分數）：
     #   1. 未核對優先
@@ -237,9 +250,11 @@ def api_verify():
     elif action == "unusable":
         text = ""
 
+    region = (body.get("region") or "").strip() or None
     verified[f] = {
         "text": text,
         "action": action,
+        "region": region,
         "ts": int(time.time()),
     }
     save_json(d / "verified.json", verified)
@@ -369,9 +384,39 @@ PAGE = r"""<!DOCTYPE html>
   .filters button.on { background: #2f3340; border-color: #4a7fd4; }
 
   .done { text-align: center; padding: 60px 20px; color: #6d7688; font-size: 15px; }
-  .srcbox { margin-top: 10px; }
-  .srcbox img { max-width: 100%; border-radius: 6px; border: 1px solid #2c2f3c; }
+  .srcbox { margin-top: 14px; }
+  .srcbox img { max-width: 100%; border-radius: 6px; border: 1px solid #2c2f3c; display: block; }
   details summary { cursor: pointer; font-size: 12px; color: #6d7688; }
+
+  /* 原圖 + YOLO 框 */
+  .srcwrap { position: relative; display: inline-block; max-width: 100%; }
+  .srcwrap img { max-width: 100%; max-height: 340px; display: block; border-radius: 6px; }
+  .yolobox {
+    position: absolute; border: 2px solid #4ade80;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.7), inset 0 0 0 1px rgba(0,0,0,.5);
+    pointer-events: none;
+  }
+  .yolobox::after {
+    content: attr(data-label); position: absolute; left: -2px; top: -19px;
+    background: #4ade80; color: #0b1a10; font-size: 10px; font-weight: 700;
+    padding: 1px 5px; border-radius: 3px; white-space: nowrap;
+  }
+  /* 同圖中的其他車牌：灰色細框 */
+  .yolobox.other {
+    border: 1.5px dashed #8a93a6; box-shadow: none;
+  }
+  .yolobox.other::after {
+    background: #495062; color: #cfd6e3; font-weight: 500;
+  }
+  .yolobox.cur { border-color: #4ade80; border-style: solid; }
+  select {
+    padding: 8px 10px; font-size: 13px; border-radius: 6px;
+    background: #0f1015; color: #e6e9ef; border: 1px solid #2c2f3c;
+    font-family: inherit; outline: none;
+  }
+  select:focus { border-color: #4a7fd4; }
+  select.edited { border-color: #d4a24a; }
+  .regrow { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
 </style>
 </head>
 <body>
@@ -470,13 +515,74 @@ function render() {
       <div class="hint">提示：直接打字修正後按 <kbd>Ctrl+Enter</kbd> 提交；
         <kbd>Enter</kbd> 表示 OCR 已正確；<kbd>←</kbd> 上一張</div>
 
-      <details class="srcbox"><summary>查看原圖上下文</summary>
-        <img src="/srcimg/${encodeURIComponent(it.src)}" alt="">
-      </details>
+      <div class="regrow">
+        <span style="font-size:12px;color:#9aa3b2">地區</span>
+        <select id="reg">
+          <option value="hk"${it.region_final==='hk'?' selected':''}>香港</option>
+          <option value="mo"${it.region_final==='mo'?' selected':''}>澳門</option>
+          <option value="mainland"${it.region_final==='mainland'?' selected':''}>內地</option>
+          <option value="gangao"${it.region_final==='gangao'?' selected':''}>粵Z</option>
+          <option value="unknown"${it.region_final==='unknown'?' selected':''}>未知</option>
+        </select>
+        <span class="hint" style="margin:0">檢測判定為 <b>${esc(it.region_det)}</b>${it.region_det!==it.region_final?' → 已改為 '+esc(it.region_final):''}</span>
+      </div>
+
+      <div class="srcbox">
+        <div class="srcwrap" id="srcwrap">
+          <img id="srcimg" src="/srcimg/${encodeURIComponent(it.src)}" alt="">
+        </div>
+        <div class="hint">綠實線＝當前車牌；灰虛線＝同一張圖中的其他車牌
+          ${(it.siblings||[]).length > 1 ? '（共 ' + (it.siblings||[]).length + ' 個）' : ''}</div>
+      </div>
     </div>`;
 
   const plate = $('plate');
   if (plate) plate.onclick = () => plate.classList.toggle('zoom');
+
+  // 在原圖上畫出「同一張圖的所有車牌框」，當前那塊高亮
+  const si = $('srcimg'), wrap = $('srcwrap');
+  if (si && wrap && it.bbox) {
+    const draw = () => {
+      const nw = si.naturalWidth, nh = si.naturalHeight;
+      if (!nw || !nh) return;
+      // 清掉舊框（保留 img）
+      wrap.querySelectorAll('.yolobox').forEach(n => n.remove());
+      const sx = si.clientWidth / nw, sy = si.clientHeight / nh;
+      const sibs = (it.siblings && it.siblings.length) ? it.siblings
+                    : [{ file: it.file, bbox: it.bbox, text: it.text,
+                         region: it.region_final }];
+      sibs.forEach((s, k) => {
+        if (!s.bbox) return;
+        const isCur = (s.file === it.file);
+        const box = document.createElement('div');
+        box.className = 'yolobox' + (isCur ? ' cur' : ' other');
+        const [x1, y1, x2, y2] = s.bbox;
+        box.style.left = (x1 * sx) + 'px';
+        box.style.top = (y1 * sy) + 'px';
+        box.style.width = Math.max(2, (x2 - x1) * sx) + 'px';
+        box.style.height = Math.max(2, (y2 - y1) * sy) + 'px';
+        box.dataset.label = (isCur ? '▶ ' : '')
+          + (s.text || '(空)') + ' · ' + (s.region || '?');
+        if (!isCur) {
+          box.style.pointerEvents = 'auto';
+          box.style.cursor = 'pointer';
+          box.onclick = () => {
+            const idx = ITEMS.findIndex(x => x.file === s.file);
+            if (idx >= 0) { IDX = idx; render(); }
+          };
+        }
+        wrap.appendChild(box);
+      });
+    };
+    if (si.complete) draw(); else si.onload = draw;
+    window.addEventListener('resize', draw);
+    window.addEventListener('load', draw);
+  }
+
+  const reg = $('reg');
+  if (reg) reg.onchange = () => {
+    reg.classList.toggle('edited', reg.value !== it.region_final);
+  };
 
   const txt = $('txt');
   txt.focus();
@@ -495,6 +601,7 @@ async function submit(action) {
   const it = ITEMS[IDX];
   if (!it) return;
   const text = $('txt').value.trim();
+  const region = ($('reg') && $('reg').value) || '';
 
   // 防誤送：格式不符又沒改過，要求確認，避免把 OCR 錯值當正確送出
   if (action === 'pass' && text === it.text && !it.format_ok) {
@@ -506,7 +613,7 @@ async function submit(action) {
   const r = await fetch('/api/verify', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ file: it.file, action, text }),
+    body: JSON.stringify({ file: it.file, action, text, region }),
   });
   const j = await r.json();
   if (!j.ok) { alert('保存失敗：' + (j.error || '')); return; }
@@ -517,6 +624,7 @@ async function submit(action) {
   } else {
     it.verified = true; it.action = action; it.text = text;
     it.format = j.format; it.format_ok = j.format_ok;
+    it.region_final = region || it.region_final;
     IDX++;
   }
   render();
