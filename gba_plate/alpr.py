@@ -17,6 +17,8 @@ from pathlib import Path
 
 import numpy as np
 
+from typing import TYPE_CHECKING
+
 from gba_plate.base import (
     BaseDetector,
     BaseOCR,
@@ -33,6 +35,9 @@ from gba_plate.postprocess.rules import (
 from gba_plate.postprocess.region_map import resolve_energy, resolve_plate_region
 from gba_plate.preprocess.double_line import looks_double_line, split_merge_double
 from gba_plate.preprocess.perspective import crop_by_bbox, warp_plate
+
+if TYPE_CHECKING:  # pragma: no cover
+    from gba_plate.grouping import VehicleResult
 
 
 class ALPR:
@@ -216,6 +221,20 @@ class ALPR:
         if image is None:
             raise FileNotFoundError(f"無法讀取影像: {path}")
         return self.process(image)
+
+    def process_vehicles(self, image: np.ndarray) -> list["VehicleResult"]:
+        """
+        識別並按「車輛」聚合 —— 處理一車多牌（兩地牌／三地牌）。
+
+        港澳路面常見同一輛車垂直懸掛 3 塊牌照（粵Z + 澳門 + 香港 ZM），
+        process() 只回傳扁平的車牌列表，本方法把它們聚成車輛。
+
+        Returns:
+            按畫面位置排序的 VehicleResult，每項含該車所有車牌
+        """
+        from gba_plate.grouping import group_vehicles
+
+        return group_vehicles(self.process(image))
 
     def __call__(self, image: np.ndarray) -> list[PlateResult]:
         return self.process(image)
