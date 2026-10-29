@@ -286,19 +286,17 @@ def generate_mainland_plate() -> Tuple[str, PlateSpec]:
 
 
 def generate_gangao_plate() -> Tuple[str, PlateSpec]:
-    """生成粵Z兩地牌"""
-    suffix = random.choice(GANGAO_SUFFIX)
-    is_double = random.random() < 0.3
+    """
+    生成粵Z兩地牌。
 
-    if is_double:
-        # 雙層: 粵Z+2位 / 3位+港/澳
-        top_chars = ''.join(random.choices(MAINLAND_ALPHA + string.digits, k=2))
-        bottom_chars = ''.join(random.choices(MAINLAND_ALPHA + string.digits, k=3))
-        return f"粤Z{top_chars}\n{bottom_chars}{suffix}", GANGAO_DOUBLE
-    else:
-        # 單層: 粵Z+4位英數+港/澳
-        mid = ''.join(random.choices(MAINLAND_ALPHA + string.digits, k=4))
-        return f"粤Z{mid}{suffix}", GANGAO_SINGLE
+    真實樣本（24 張目視驗證）：全部單行黑底白字，
+    格式為「粵Z + 3~4 位英數 + 港/澳」，卡片上有分隔點（粵Z·T67港）。
+    原生成器有 30% 機率產生雙行版本，但那在真實中並不存在。
+    """
+    suffix = random.choice(GANGAO_SUFFIX)
+    n_mid = random.choices([3, 4], weights=[30, 70], k=1)[0]
+    mid = "".join(random.choices(MAINLAND_ALPHA + string.digits, k=n_mid))
+    return f"粤Z{mid}{suffix}", GANGAO_SINGLE
 
 
 def generate_hk_plate() -> Tuple[str, PlateSpec]:
@@ -317,13 +315,29 @@ def generate_hk_plate() -> Tuple[str, PlateSpec]:
 
 
 def generate_mo_plate() -> Tuple[str, PlateSpec]:
-    """生成澳門車牌"""
-    # 澳門車牌格式: M/MA + 兩位數字 + 兩位數字 (如 MG 12-34, MA 56-78)
-    prefix = random.choice(["MG", "MA", "MK"])
-    num1 = ''.join(random.choices(string.digits, k=2))
-    num2 = ''.join(random.choices(string.digits, k=2))
-    plate_text = f"{prefix} {num1} {num2}"
+    """
+    生成澳門車牌。
+
+    真實規範（DSAT）：M + 一個英文字母 + 4 位數字，每 2 位一個連字符
+        例：MA-12-34
+    前綴字母涵蓋 MA 至 MZ（排除 I 與 O，避免與 1/0 混淆）。
+    """
+    letter = random.choice("ABCDEFGHJKLMNPQRSTUVWXYZ")
+    num1 = "".join(random.choices(string.digits, k=2))
+    num2 = "".join(random.choices(string.digits, k=2))
+    plate_text = f"M{letter}-{num1}-{num2}"
     return plate_text, MO_PLATE
+
+
+def generate_zm_plate() -> Tuple[str, PlateSpec]:
+    """
+    生成 ZM 車牌 —— 澳門登記車輛經港珠澳大橋進入香港時掛的香港牌。
+
+    格式：ZM + 4 位數字，白底黑字（HK_FRONT 規格）。
+    香港路面常見，但原生成器完全沒有這個類別。
+    """
+    digits = "".join(random.choices(string.digits, k=4))
+    return f"ZM {digits}", HK_FRONT
 
 
 def generate_plate(region: str = "random") -> Tuple[str, PlateSpec, str]:

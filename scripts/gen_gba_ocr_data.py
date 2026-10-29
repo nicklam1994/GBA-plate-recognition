@@ -87,39 +87,51 @@ def render_one(args):
         if kind == "gangao":
             text, spec = generate_gangao_plate()
         elif kind == "hk":
-            # 優先使用 plate.hk 真實車牌號：模型學到的是真實分佈（長度、字母組合規律）
-            db = load_hk_plates()
-            if db:
-                import re as _re
-                import synthetic_data.plate_specs as _ps
-                plate = random.choice(db)
-                m = _re.match(r"^([A-Z]{1,2})(\d{1,4})$", plate)
-                if m:
-                    text = f"{m.group(1)} {m.group(2)}"
-                else:
-                    letters = "".join(c for c in plate if c.isalpha())
-                    digits = "".join(c for c in plate if c.isdigit())
-                    text = f"{letters} {digits}"
-                spec = random.choice([_ps.HK_FRONT, _ps.HK_REAR])
+            # 15% 機率生成 ZM 牌（澳門車經港珠澳大橋進香港，香港路面常見）
+            if random.random() < 0.15:
+                from synthetic_data.plate_specs import generate_zm_plate
+                text, spec = generate_zm_plate()
             else:
-                text, spec = generate_hk_plate()
+                # 優先使用 plate.hk 真實車牌號：模型學到的是真實分佈
+                db = load_hk_plates()
+                if db:
+                    import re as _re
+                    import synthetic_data.plate_specs as _ps
+                    plate = random.choice(db)
+                    m = _re.match(r"^([A-Z]{1,2})(\d{1,4})$", plate)
+                    if m:
+                        text = f"{m.group(1)} {m.group(2)}"
+                    else:
+                        letters = "".join(c for c in plate if c.isalpha())
+                        digits = "".join(c for c in plate if c.isdigit())
+                        text = f"{letters} {digits}"
+                    spec = random.choice([_ps.HK_FRONT, _ps.HK_REAR])
+                else:
+                    text, spec = generate_hk_plate()
         elif kind == "mo":
             text, spec = generate_mo_plate()
         else:
             # guangdong：直接構造粵牌（避免隨機省份的低命中率）
-            import string as _s
-            alpha = random.choice("ABCDEFGHJKLMNPQRSTUVWXYZ")
+            # 排除 Z：粵Z 是兩地牌專用前綴，普通粵牌不存在
+            alpha = random.choice("ABCDEFGHJKLMNPQRSTUVWXY")
+
+            def _suffix(n: int) -> str:
+                """生成 n 位英數後綴 —— 真實粵牌字母少、數字多（字母通常 0-2 個）"""
+                n_alpha = random.choices([0, 1, 2, 3], weights=[35, 40, 20, 5], k=1)[0]
+                n_alpha = min(n_alpha, n)
+                chars = [random.choice("ABCDEFGHJKLMNPQRSTUVWXYZ") for _ in range(n_alpha)]
+                chars += [random.choice("0123456789") for _ in range(n - n_alpha)]
+                random.shuffle(chars)
+                return "".join(chars)
+
             if random.random() < 0.25:
-                # 新能源 8 位
+                # 新能源 8 位：粵A + D/F + 5 位
                 special = random.choice(["D", "F"])
-                rest = "".join(random.choices(
-                    "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789", k=5))
-                text = f"粤{alpha}{special}{rest}"
+                text = f"粤{alpha}{special}{_suffix(5)}"
                 spec = MAINLAND_GREEN
             else:
-                rest = "".join(random.choices(
-                    "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789", k=5))
-                text = f"粤{alpha}{rest}"
+                # 普通藍牌 7 位：粵A + 5 位
+                text = f"粤{alpha}{_suffix(5)}"
                 spec = MAINLAND_BLUE
 
         label = clean_label(text)
