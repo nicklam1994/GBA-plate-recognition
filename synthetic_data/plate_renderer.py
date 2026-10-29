@@ -1,0 +1,271 @@
+"""
+車牌渲染器 - 使用 Pillow 渲染四地車牌
+"""
+import os
+import random
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from typing import Tuple, Optional
+from .plate_specs import PlateSpec, generate_plate
+
+
+# 字體路徑
+FONT_PATHS = {
+    "chinese_plate": os.path.join(os.path.dirname(__file__), "..", "fonts", "platech.ttf"),
+    "droid_fallback": "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf",
+}
+
+
+def get_font(size: int, font_name: str = "chinese_plate") -> ImageFont.FreeTypeFont:
+    """獲取字體"""
+    path = FONT_PATHS.get(font_name, FONT_PATHS["chinese_plate"])
+    if not os.path.exists(path):
+        path = FONT_PATHS["droid_fallback"]
+    return ImageFont.truetype(path, size)
+
+
+def render_plate(
+    text: str,
+    spec: PlateSpec,
+    noise_level: float = 0.0,
+    blur_level: float = 0.0,
+    brightness_offset: float = 0.0,
+    perspective: Optional[Tuple[float, float]] = None,
+) -> np.ndarray:
+    """
+    渲染車牌圖像
+
+    Args:
+        text: 車牌文字（雙層用 \n 分隔）
+        spec: 車牌規格
+        noise_level: 噪聲強度 (0-1)
+        blur_level: 模糊強度 (0-5)
+        brightness_offset: 亮度偏移 (-50 to 50)
+        perspective: 透視變形 (dx, dy) 像素
+
+    Returns:
+        numpy array (H, W, 3) BGR 格式（OpenCV 兼容）
+    """
+    # 創建圖像
+    img = Image.new('RGB', (spec.width, spec.height), spec.bg_color)
+    draw = ImageDraw.Draw(img)
+
+    # 繪製邊框
+    if spec.border_width > 0 and spec.border_color:
+        for i in range(spec.border_width):
+            draw.rectangle(
+                [i, i, spec.width - 1 - i, spec.height - 1 - i],
+                outline=spec.border_color
+            )
+
+    # 處理雙層車牌
+    if spec.is_double and '\n' in text:
+        lines = text.split('\n')
+        _render_double_plate(draw, lines, spec)
+    else:
+        _render_single_plate(draw, text, spec)
+
+    # 應用後處理
+    img = _apply_post_processing(img, noise_level, blur_level, brightness_offset, perspective)
+
+    # 轉換為 BGR numpy array
+    img_rgb = np.array(img)
+    img_bgr = img_rgb[:, :, ::-1].copy()
+    return img_bgr
+
+
+def _render_single_plate(draw: ImageDraw.Draw, text: str, spec: PlateSpec):
+    """渲染單層車牌 - 自動縮放字體以適應板面"""
+    font_size = spec.font_size
+    font = get_font(font_size)
+
+    # 自動縮放：如果文字超出板面，逐步縮小字體
+    usable_w = spec.width - 2 * spec.margin_x
+    usable_h = spec.height - 2 * spec.margin_y
+
+    while font_size > 20:
+        total_width = 0
+        for ch in text:
+            bbox = font.getbbox(ch)
+            total_width += (bbox[2] - bbox[0])
+        total_width += spec.char_spacing * max(0, len(text) - 1)
+
+        if total_width <= usable_w:
+            break
+        font_size -= 2
+        font = get_font(font_size)
+
+    # 重新計算總寬度
+    char_widths = []
+    total_width = 0
+    for ch in text:
+        bbox = font.getbbox(ch)
+        w = bbox[2] - bbox[0]
+        char_widths.append(w)
+        total_width += w
+    total_width += spec.char_spacing * max(0, len(text) - 1)
+
+    # 起始位置（居中）
+    x = (spec.width - total_width) // 2
+    y = (spec.height - font_size) // 2
+
+    # 繪製每個字符
+    for i, ch in enumerate(text):
+        bbox = font.getbbox(ch)
+        ch_h = bbox[3] - bbox[1]
+        ch_y = y + (font_size - ch_h) // 2 - bbox[1]
+        draw.text((x, ch_y), ch, fill=spec.text_color, font=font)
+        x += char_widths[i] + spec.char_spacing
+
+
+def _render_double_plate(draw: ImageDraw.Draw, lines: list, spec: PlateSpec):
+    """渲染雙層車牌 - 自動縮放字體"""
+    # 繪製分隔線
+    if spec.separator_color:
+        y_sep = spec.top_height
+        draw.line(
+            [(spec.border_width, y_sep), (spec.width - spec.border_width, y_sep)],
+            fill=spec.separator_color,
+            width=2
+        )
+
+    for layer_idx, line_text in enumerate(lines[:2]):
+        if layer_idx == 0:
+            y_offset = 0
+            layer_height = spec.top_height
+        else:
+            y_offset = spec.top_height
+            layer_height = spec.bottom_height
+
+        font_size = spec.font_size
+        font = get_font(font_size)
+        usable_w = spec.width - 2 * spec.margin_x
+
+        # 自動縮放
+        while font_size > 16:
+            total_width = 0
+            for ch in line_text:
+                bbox = font.getbbox(ch)
+                total_width += (bbox[2] - bbox[0])
+            total_width += spec.char_spacing * max(0, len(line_text) - 1)
+            if total_width <= usable_w:
+                break
+            font_size -= 2
+            font = get_font(font_size)
+
+        # 計算文字寬度
+        char_widths = []
+        total_width = 0
+        for ch in line_text:
+            bbox = font.getbbox(ch)
+            w = bbox[2] - bbox[0]
+            char_widths.append(w)
+            total_width += w
+        total_width += spec.char_spacing * max(0, len(line_text) - 1)
+
+        # 起始位置
+        x = (spec.width - total_width) // 2
+        y = y_offset + (layer_height - font_size) // 2
+
+        # 繪製字符
+        for i, ch in enumerate(line_text):
+            bbox = font.getbbox(ch)
+            ch_h = bbox[3] - bbox[1]
+            ch_y = y + (font_size - ch_h) // 2 - bbox[1]
+            draw.text((x, ch_y), ch, fill=spec.text_color, font=font)
+            x += char_widths[i] + spec.char_spacing
+
+
+def _apply_post_processing(
+    img: Image.Image,
+    noise_level: float,
+    blur_level: float,
+    brightness_offset: float,
+    perspective: Optional[Tuple[float, float]],
+) -> Image.Image:
+    """應用後處理效果"""
+    # 亮度調整
+    if brightness_offset != 0:
+        from PIL import ImageEnhance
+        factor = 1.0 + brightness_offset / 100.0
+        enhancer = ImageEnhance.Brightness(img)
+        img = enhancer.enhance(factor)
+
+    # 高斯模糊
+    if blur_level > 0:
+        img = img.filter(ImageFilter.GaussianBlur(radius=blur_level))
+
+    # 添加噪聲
+    if noise_level > 0:
+        arr = np.array(img).astype(np.float32)
+        noise = np.random.normal(0, noise_level * 30, arr.shape)
+        arr = np.clip(arr + noise, 0, 255).astype(np.uint8)
+        img = Image.fromarray(arr)
+
+    # 透視變形
+    if perspective:
+        img = _apply_perspective(img, perspective)
+
+    return img
+
+
+def _apply_perspective(img: Image.Image, params: Tuple[float, float]) -> Image.Image:
+    """應用輕微透視變形"""
+    dx, dy = params
+    w, h = img.size
+
+    # 定義四點變換
+    coeffs = [
+        1.0, dx / w, 0,
+        dy / h, 1.0, 0,
+        0, 0, 1.0
+    ]
+    # 使用簡化的仿射變換
+    img = img.transform(
+        img.size,
+        Image.AFFINE,
+        (1.0 + dx / 1000, dx / w, 0, dy / h, 1.0 + dy / 1000, 0),
+        Image.BICUBIC
+    )
+    return img
+
+
+def render_random_plate(
+    region: str = "random",
+    noise_level: float = None,
+    blur_level: float = None,
+) -> Tuple[np.ndarray, str, str, str]:
+    """
+    渲染隨機車牌
+
+    Returns:
+        (image_bgr, plate_text, spec_name, region)
+    """
+    text, spec, region = generate_plate(region)
+
+    # 隨機增強參數（如果未指定）
+    if noise_level is None:
+        noise_level = random.uniform(0, 0.3)
+    if blur_level is None:
+        blur_level = random.uniform(0, 1.5)
+
+    brightness = random.uniform(-20, 20)
+    perspective = (random.uniform(-3, 3), random.uniform(-2, 2)) if random.random() < 0.3 else None
+
+    img = render_plate(text, spec, noise_level, blur_level, brightness, perspective)
+    return img, text, spec.name, region
+
+
+if __name__ == "__main__":
+    import cv2
+
+    # 測試渲染
+    os.makedirs("test_output", exist_ok=True)
+
+    for i in range(20):
+        img, text, spec_name, region = render_random_plate()
+        filename = f"test_output/test_{i:03d}_{region}_{spec_name}.jpg"
+        cv2.imwrite(filename, img)
+        print(f"[{i:02d}] [{region:8s}] [{spec_name:25s}] {text} -> {filename}")
+
+    print("\nDone! Check test_output/")

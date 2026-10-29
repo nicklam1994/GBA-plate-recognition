@@ -1,35 +1,51 @@
-# .gitignore
-# 首先忽略所有的文件
-*
-# 但是不忽略目录
-!*/
-# 忽略一些指定的目录名
-ut/
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+*.egg-info/
+
+# ===== 大數據集（不入庫）=====
+test_data/
+dataset_*/
+yolov8*.pt
+*.log
+
+# ===== 運行輸出 =====
 runs/
-.vscode/
-build/
-result1/
 result/
+result1/
 mytest/
 mytest_double/
+build/
+dist/
+
+# ===== IDE / OS =====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ===== CodeGraph 索引 =====
+.codegraph/
+
+# ===== 原始項目遺留排除 =====
+ut/
 pretrained_model/
-gangao/
 extra/
 ccpd/
-*.pyc
-# 不忽略下面指定的文件类型
-!*.cpp
-!*.h
-!*.hpp
-!*.c
-!.gitignore
-!*.py
-!*.sh
-!*.npy
-!*.jpg
-!*.pt
-!*.npy
-!*.pth
-!*.png
-!*.yaml
-!*.md
+gangao/
+
+# ===== 字體（第三方版權，不入庫）=====
+synthetic_data/fonts/*.ttf
+synthetic_data/fonts/*.otf
+synthetic_data/fonts/*.zip
+
+# ===== 保留模型權重（小文件）=====
+!weights/*.pt
+!weights/*.pth
+!weights/*.onnx
