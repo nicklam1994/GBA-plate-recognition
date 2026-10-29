@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from datetime import datetime
 from pathlib import Path
 
 import cv2
@@ -63,21 +64,71 @@ def show(title: str, rep) -> None:
             print(f"    真值 {f['gt']:<12} 預測 {f['pred'] or '(空)':<12} {f['region']:<9} 錯 {f['dist']} 字")
 
 
+def _flush(history: list[dict], args) -> None:
+    """把本次評估追加到歷史檔，方便比較不同模型／不同輪次。"""
+    if not args.record or not history:
+        return
+    path = ROOT / "crnn_verified" / "eval_history.jsonl"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "a", encoding="utf-8") as fh:
+        for h in history:
+            fh.write(json.dumps(h, ensure_ascii=False) + "\n")
+    print(f"\n已記錄 {len(history)} 條評估結果 → {path.relative_to(ROOT)}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default="prelabel/hk")
     ap.add_argument("--crnn", default="weights/crnn_gba_v2.pth")
     ap.add_argument("--skip-crnn", action="store_true")
+    ap.add_argument("--split", choices=["all", "train", "test"], default="all",
+                    help="只評某個切分。test 為凍結測試集，是唯一可跨版本比較的分數")
+    ap.add_argument("--frozen", default="crnn_verified/test_frozen.json")
+    ap.add_argument("--record", action="store_true",
+                    help="把結果追加到 eval_history.jsonl")
     args = ap.parse_args()
 
     rows = load_pairs(ROOT / args.data)
     print(f"有效真值 {len(rows)} 筆")
 
+    # 按凍結名單篩選切分
+    if args.split != "all":
+        fp = ROOT / args.frozen
+        if not fp.exists():
+            raise SystemExit(f"缺少凍結名單 {fp}，先跑 export_verified_dataset.py")
+        frozen = json.loads(fp.read_text(encoding="utf-8"))
+        test_files = set(frozen["files"])
+        if args.split == "test":
+            rows = [r for r in rows if r["file"] in test_files]
+        else:
+            rows = [r for r in rows if r["file"] not in test_files]
+        print(f"切分 {args.split}：{len(rows)} 筆"
+              f"（凍結集 {frozen['sha256_16']}）")
+
+    history: list[dict] = []
+
+    def record(model: str, rep) -> None:
+        d = rep.as_dict()
+        history.append({
+            "ts": datetime.now().isoformat(timespec="seconds"),
+            "split": args.split,
+            "frozen_sha": (json.loads((ROOT / args.frozen).read_text(encoding="utf-8"))["sha256_16"]
+                           if (ROOT / args.frozen).exists() else None),
+            "model": model,
+            "n": d["total"],
+            "em": d["em"],
+            "em_rate": d["em_rate"],
+            "cer": d["cer"],
+            "by_region": {k: v["em_rate"] for k, v in d["by_region"].items()},
+        })
+
     # --- PaddleOCR（用預標註結果，不必重跑推論） ---
     rep_p = evaluate_pairs([(r["gt"], r["pred_paddle"], r["region"]) for r in rows])
     show("PaddleOCR（預標註時的輸出）", rep_p)
+    record("paddleocr", rep_p)
 
     if args.skip_crnn:
+        _flush(history, args)
         return
 
     # --- CRNN ---
@@ -101,6 +152,8 @@ def main() -> None:
         pairs.append((r["gt"], text, r["region"]))
     rep_c = evaluate_pairs(pairs)
     show(f"CRNN（{wpath.name}）", rep_c)
+    record(f"crnn:{wpath.name}", rep_c)
+    _flush(history, args)
 
 
 if __name__ == "__main__":

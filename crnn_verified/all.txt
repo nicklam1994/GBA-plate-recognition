@@ -1,210 +1,210 @@
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261009-WA0097__0__hk.jpg	44 51 47 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_db__1108-0_1-143&385_633&574-__0__mainland.jpg	13 52 58 59 50 50 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_tilt__0588-28_40-260&429_492&__0__mainland.jpg	20 52 73 44 72 49 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261015-WA0213__0__hk.jpg	56 62 44 45 42 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0255__0__hk.jpg	75 69 44 42 42 47
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260928-WA0031__0__hk.jpg	57 70 50 45 42 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260801-WA0012__0__hk.jpg	69 61 49 48 50 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261001-WA0129__0__mo.jpg	73 63 44 51 48 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/gangao__macau_merged__train__047_png.rf.f7e8ec0b__0__gangao.jpg	20 75 53 43 42 46 35
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__047_png.rf.f7e8ec0b__1__mo.jpg	63 60 46 47 46 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__054_png.rf.c0b76eec__0__mo.jpg	52 52 46 42 47 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__177_png_jpg.rf.04db__0__mo.jpg	63 65 47 46 49 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260813-WA0024__0__hk.jpg	69 61 51 49 49 42
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_fn__0806-8_31-151&436_603&585__0__mainland.jpg	4 57 44 50 56 45 42
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__MY1153_ZM2089_jpg.r__0__mo.jpg	63 74 43 43 47 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__MY1153_ZM2089_jpg.r__1__mo.jpg	75 63 44 42 50 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261001-WA0422__1__hk.jpg	52 63 48 51 51 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261001-WA0422__3__hk.jpg	73 56 48 46 47 47
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0206__0__hk.jpg	69 74 48 45 46 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261004-WA0050__0__hk.jpg	70 65 46 46 42 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261010-WA0385__0__hk.jpg	72 64 46 51 47 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0253__0__hk.jpg	74 58 51 44 45 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261015-WA0309__1__hk.jpg	70 65 46 46 42 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0103__0__hk.jpg	65 65 51 42 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0463__1__hk.jpg	71 63 51 46 49 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261020-WA0056__0__hk.jpg	64 62 49 49 50 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261020-WA0241__0__hk.jpg	73 75 44 50 48 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__063_png_jpg.rf.304b__0__mo.jpg	63 72 45 43 49 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__063_png_jpg.rf.304b__1__mo.jpg	63 63 51 51 48 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240228_084405_000__2__mo.jpg	63 54 43 44 47 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240228_084405_000__0__mo.jpg	63 65 51 48 42 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__MQ-17-50_jpg.rf.9f3__0__mo.jpg	63 66 43 49 47 42
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__MY-36-03_jpg.rf.229__0__mo.jpg	63 74 45 48 42 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/gangao__macau_shh5r__train__062_jpg.rf.adb55a3c9__0__gangao.jpg	20 75 54 45 51 51 35
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260725-WA0329__0__hk.jpg	67 70 50 47 45 46
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260725-WA0332__0__mo.jpg	67 70 50 47 45 46
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260725-WA0338__0__hk.jpg	67 70 50 47 45 46
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__IMG-20260731-WA0245__0__mo.jpg	69 61 49 48 50 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260801-WA0012__0__hk.jpg	69 61 49 48 50 49
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260801-WA0015__0__hk.jpg	69 61 49 48 50 49
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260802-WA0014__0__hk.jpg	69 61 49 48 50 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260802-WA0017__0__hk.jpg	69 61 49 48 50 49
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260805-WA0005__0__hk.jpg	69 61 49 48 50 49
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260807-WA0009__0__hk.jpg	70 56 50 44 46 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260829-WA0258__0__hk.jpg	74 68 50 48 51 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260914-WA0256__0__hk.jpg	74 68 50 48 51 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260925-WA0015__0__hk.jpg	65 65 51 42 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260925-WA0221__0__hk.jpg	59 59 51 43 47 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__IMG-20260927-WA0180__0__mo.jpg	65 65 51 42 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__IMG-20260929-WA0026__1__mo.jpg	57 71 49 50 45 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260929-WA0305__0__hk.jpg	67 70 43 48 44 47
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0169__0__hk.jpg	64 71 47 44 49 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261004-WA0208__1__hk.jpg	71 56 45 47 46 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261018-WA0235__1__hk.jpg	44 74 49 42
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260924-WA0144__0__hk.jpg	50 46 51 51 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__hk_default__train__338002433_000095_jpg.__3__hk.jpg	75 63 48 42 47 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8931_jpg.rf.1a1__1__mo.jpg	52 52 47 45 44 47
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261012-WA0014__0__hk.jpg	72 59 51 45 43 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_shh5r__train__137_jpg.rf.d2b412a3e__0__mo.jpg	69 46 45 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0064__0__hk.jpg	69 57 46 48 47 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261006-WA0037__0__hk.jpg	73 63 51 43 43 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261004-WA0128__0__hk.jpg	73 63 44 51 48 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_tilt__0419-24_44-225&482_431&__0__mainland.jpg	13 52 59 42 42 42 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0195977011495-90_87-185__0__mainland.jpg	13 52 51 69 51 50 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0254334291188-94_81-204__0__mainland.jpg	13 52 72 51 75 42 42
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_challenge__0219-3_4-211&499_4__0__mainland.jpg	13 52 45 57 43 51 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261007-WA0153__0__hk.jpg	69 61 51 49 49 42
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0217__0__hk.jpg	69 56 44 42 44 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0205711206897-90_80-217__0__mainland.jpg	13 61 60 48 48 51 63
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260725-WA0332__0__mo.jpg	67 70 50 47 45 46
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260915-WA0015__0__hk.jpg	74 68 50 48 51 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0030__0__hk.jpg	74 68 50 48 51 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0038__0__hk.jpg	69 62 51 50 47 46
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240228_084405_000__1__mo.jpg	63 62 48 50 51 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261013-WA0016__0__hk.jpg	72 64 46 51 47 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261009-WA0003__0__hk.jpg	72 75 44 48 43 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260904-WA0385__0__hk.jpg	74 68 50 48 51 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0096__0__hk.jpg	70 65 46 46 42 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261017-WA0020__0__hk.jpg	74 67 49 43 48 46
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_tilt__0269-18_27-208&439_388&__0__mainland.jpg	8 60 75 50 50 48 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260813-WA0024__0__hk.jpg	69 61 51 49 49 42
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260821-WA0050__0__hk.jpg	74 67 49 43 48 46
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260928-WA0250__0__hk.jpg	71 53 50 47 44 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0168__0__hk.jpg	69 65 45 49 46 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0126352969348-89_91-185__0__mainland.jpg	13 61 71 45 63 43 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__hk_alan_carplate__train__WhatsApp-Image-__2__mainland.jpg	20 75 64 42 47 47 34
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__hk_alan_carplate__train__WhatsApp-Image-__1__hk.jpg	74 69 43 44 45 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__hk_alan_carplate__train__WhatsApp-Image-__0__hk.jpg	59 71 50 51 42 42
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__hk_alan_carplate__train__WhatsApp-Image-__1__mainland.jpg	20 75 52 44 44 45 34
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240228_141553_000__1__mo.jpg	63 69 48 44 43 46
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240228_141553_000__0__mo.jpg	63 68 45 46 44 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240224_031834_jpg__1__mo.jpg	63 68 51 50 43 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0094__1__hk.jpg	59 63 49 50 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/gangao__IMG-20261005-WA0094__2__gangao.jpg	20 75 60 63 46 47 34
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260824-WA0032__0__hk.jpg	72 65 51 49 48 44
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260825-WA0276__0__hk.jpg	74 67 49 43 48 46
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0051__0__hk.jpg	70 57 48 43 50 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261001-WA0216__0__hk.jpg	68 75 44 46 49 47
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240902_114823_jpg__1__mo.jpg	63 65 48 49 44 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261010-WA0013__0__hk.jpg	62 61 44 50 43 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8998_jpg.rf.026__3__mo.jpg	63 64 46 42 47 51
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260826-WA0038__0__hk.jpg	74 67 49 43 48 46
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0271048850574-99_74-225__0__mainland.jpg	13 52 60 67 45 43 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0364__1__hk.jpg	57 63 50 43 46
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261013-WA0327__0__hk.jpg	74 75 46 49 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0035__0__hk.jpg	71 60 48 51 50 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0608189655172-106_67-20__0__mainland.jpg	11 52 51 43 43 45 69
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0434099616858-89_87-79&__0__mainland.jpg	13 52 51 42 44 52 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260829-WA0258__0__hk.jpg	74 68 50 48 51 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260831-WA0230__0__hk.jpg	74 68 50 48 51 48
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__IMG-20260902-WA0404__0__mo.jpg	74 68 50 48 51 48
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260902-WA0404__1__hk.jpg	74 68 50 48 51 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0157854406131-90_89-264__0__mainland.jpg	13 52 60 72 49 50 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260904-WA0385__0__hk.jpg	74 68 50 48 51 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260914-WA0256__0__hk.jpg	74 68 50 48 51 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260915-WA0015__0__hk.jpg	74 68 50 48 51 48
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260923-WA0045__0__hk.jpg	54 54 45 44 42 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/gangao__IMG-20260929-WA0026__0__gangao.jpg	20 53 61 51 51 51 73
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261004-WA0135__0__hk.jpg	73 63 51 43 43 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0416654693486-90_89-183__0__mainland.jpg	13 52 53 44 48 42 56
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__hk_default__train__Picture202_png.rf.a9c__2__hk.jpg	75 63 44 48 51 46
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__hk_default__train__Picture202_png.rf.a9c__1__mo.jpg	63 63 47 42 48 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261016-WA0313__0__hk.jpg	71 56 44 43 42 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__MS-58-16_jpg.rf.ae3__0__mo.jpg	63 68 47 50 43 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260924-WA0144__0__hk.jpg	50 46 51 51 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260925-WA0015__0__hk.jpg	65 65 51 42 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260925-WA0221__0__hk.jpg	59 59 51 43 47 51
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260926-WA0239__0__hk.jpg	72 54 50 46 44 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261020-WA0160__0__hk.jpg	72 62 46 48 43 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260802-WA0017__0__hk.jpg	69 61 49 48 50 49
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260926-WA0249__0__hk.jpg	70 56 50 44 46 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__IMG-20260927-WA0180__0__mo.jpg	65 65 51 42 49
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260928-WA0010__0__hk.jpg	75 60 46 46 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260928-WA0031__0__hk.jpg	57 70 50 45 42 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260928-WA0173__0__hk.jpg	70 65 46 46 42 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260928-WA0190__0__hk.jpg	72 55 46 46 48 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260928-WA0250__0__hk.jpg	71 53 50 47 44 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/gangao__IMG-20260929-WA0026__0__gangao.jpg	20 53 61 51 51 51 73
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__IMG-20260929-WA0026__1__mo.jpg	57 71 49 50 45 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260929-WA0305__0__hk.jpg	67 70 43 48 44 47
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260930-WA0019__0__hk.jpg	72 64 46 51 47 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260930-WA0214__1__hk.jpg	74 54 46 51 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261001-WA0129__0__mo.jpg	73 63 44 51 48 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261001-WA0216__0__hk.jpg	68 75 44 46 49 47
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261001-WA0392__0__hk.jpg	62 56 44 42 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261001-WA0422__1__hk.jpg	52 63 48 51 51 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261001-WA0422__3__hk.jpg	73 56 48 46 47 47
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0030__0__hk.jpg	74 68 50 48 51 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0087__0__hk.jpg	75 74 48 44 43 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0107__0__hk.jpg	67 68 43 44 50 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0107__1__hk.jpg	60 62 44
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0108__0__hk.jpg	67 68 43 44 50 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261008-WA0211__0__hk.jpg	68 58 47 43 44 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261013-WA0094__0__hk.jpg	75 56 43 44 45 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__00989942528736-93_84-28__0__mainland.jpg	13 52 66 47 49 50 47
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0118318965517-90_92-206__0__mainland.jpg	13 54 55 51 50 50 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__018125-90_86-224&423_48__0__mainland.jpg	13 52 49 51 44 73 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0272078544062-87_88-347__0__mainland.jpg	13 52 43 43 47 51 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__006_png_jpg.rf.f3fc__0__mo.jpg	63 55 45 44 42 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0117__0__hk.jpg	72 52 48 46 47 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0169__0__hk.jpg	64 71 47 44 49 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0206__0__hk.jpg	69 74 48 45 46 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261004-WA0050__0__hk.jpg	70 65 46 46 42 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261004-WA0128__0__hk.jpg	73 63 44 51 48 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261004-WA0135__0__hk.jpg	73 63 51 43 43 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261004-WA0208__1__hk.jpg	71 56 45 47 46 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261004-WA0209__0__hk.jpg	56 52 50 47 47
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261004-WA0209__1__hk.jpg	71 56 45 47 46 43
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0061__0__hk.jpg	70 69 45 49 42 43
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0063__0__hk.jpg	70 62 45 47 45 51
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0093__0__hk.jpg	71 60 51 49 47
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8962_jpg.rf.352__3__mo.jpg	63 64 43 47 45 47
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8962_jpg.rf.352__4__mo.jpg	63 59 51 44 49 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8962_jpg.rf.352__2__mo.jpg	63 65 48 47 49 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8962_jpg.rf.352__1__mo.jpg	63 64 43 49 48 42
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8962_jpg.rf.352__0__mo.jpg	63 72 48 48 45 47
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261015-WA0308__0__hk.jpg	70 65 46 46 42 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0278__0__hk.jpg	74 70 48 44 47 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8983_jpg.rf.657__2__mo.jpg	63 62 46 50 51 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8983_jpg.rf.657__3__mo.jpg	63 65 51 51 44 42
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8983_jpg.rf.657__0__mo.jpg	63 62 44 48 45 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0094__1__hk.jpg	59 63 49 50 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/gangao__IMG-20261005-WA0094__2__gangao.jpg	20 75 60 63 46 47 34
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0138__0__hk.jpg	72 61 50 45 46 45
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0138__1__hk.jpg	73 68 48 45 48 47
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0168__0__hk.jpg	69 65 45 49 46 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0217__0__hk.jpg	69 56 44 42 44 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0223__0__hk.jpg	75 69 48 44 44 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261006-WA0037__0__hk.jpg	73 63 51 43 43 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261007-WA0153__0__hk.jpg	69 61 51 49 49 42
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261008-WA0010__0__hk.jpg	72 74 47 51 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261008-WA0211__0__hk.jpg	68 58 47 43 44 45
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261008-WA0304__0__hk.jpg	74 71 43 43 50 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261009-WA0003__0__hk.jpg	72 75 44 48 43 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261009-WA0097__0__hk.jpg	44 51 47 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261010-WA0013__0__hk.jpg	62 61 44 50 43 43
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261010-WA0044__0__hk.jpg	72 74 47 51 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261010-WA0149__0__hk.jpg	61 53 45 49 44 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261010-WA0385__0__hk.jpg	72 64 46 51 47 50
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261011-WA0253__0__hk.jpg	74 64 43 46 48 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261012-WA0014__0__hk.jpg	72 59 51 45 43 49
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261012-WA0027__0__hk.jpg	69 69 51 42 48 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0245__1__hk.jpg	67 53 48 51 49 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261012-WA0102__0__hk.jpg	69 75 46 51 51 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261013-WA0016__0__hk.jpg	72 64 46 51 47 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261013-WA0094__0__hk.jpg	75 56 43 44 45 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261013-WA0327__0__hk.jpg	74 75 46 49 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0035__0__hk.jpg	71 60 48 51 50 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0051__0__hk.jpg	70 57 48 43 50 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0064__0__hk.jpg	69 57 46 48 47 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0096__0__hk.jpg	70 65 46 46 42 45
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0245__0__hk.jpg	64 65 43 43 48 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0245__1__hk.jpg	67 53 48 51 49 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0253__0__hk.jpg	74 58 51 44 45 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0255__0__hk.jpg	75 69 44 42 42 47
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0281__1__hk.jpg	72 73 49 42 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0332__0__hk.jpg	59 70 43 45 43 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0361__0__hk.jpg	74 63 47 50 45 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0364__1__hk.jpg	57 63 50 43 46
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261015-WA0213__0__hk.jpg	56 62 44 45 42 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261015-WA0308__0__hk.jpg	70 65 46 46 42 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261015-WA0309__1__hk.jpg	70 65 46 46 42 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261016-WA0313__0__hk.jpg	71 56 44 43 42 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261016-WA0366__0__hk.jpg	71 54 50 43 42 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261017-WA0020__0__hk.jpg	74 67 49 43 48 46
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261018-WA0235__0__hk.jpg	62 63 45 43 46
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261018-WA0235__1__hk.jpg	44 74 49 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261018-WA0245__0__hk.jpg	59 60 43 45 43 46
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/gangao__IMG-20261018-WA0245__1__gangao.jpg	20 75 48 42 42 51 34
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261018-WA0269__0__hk.jpg	71 64 51 45 51 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261018-WA0302__0__hk.jpg	71 60 49 43 46 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0038__0__hk.jpg	69 62 51 50 47 46
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0103__0__hk.jpg	65 65 51 42 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0104__0__hk.jpg	65 65 51 42 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0278__0__hk.jpg	74 70 48 44 47 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0446__0__hk.jpg	72 59 51 45 43 49
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0457__0__hk.jpg	70 74 51 44 42 47
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0463__1__hk.jpg	71 63 51 46 49 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261020-WA0016__0__hk.jpg	71 60 49 43 46 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261020-WA0056__0__hk.jpg	64 62 49 49 50 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261020-WA0075__0__hk.jpg	54 54 45 44 42 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261020-WA0160__0__hk.jpg	72 62 46 48 43 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261020-WA0241__0__hk.jpg	73 75 44 50 48 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__00989942528736-93_84-28__0__mainland.jpg	13 52 66 47 49 50 47
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0108357279693-90_86-241__0__mainland.jpg	13 52 55 44 43 42 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0118318965517-90_92-206__0__mainland.jpg	13 54 55 51 50 50 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0126352969348-89_91-185__0__mainland.jpg	13 61 71 45 63 43 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0157854406131-90_89-264__0__mainland.jpg	13 52 60 72 49 50 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__018125-90_86-224&423_48__0__mainland.jpg	13 52 49 51 44 73 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0195977011495-90_87-185__0__mainland.jpg	13 52 51 69 51 50 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0205711206897-90_80-217__0__mainland.jpg	13 61 60 48 48 51 63
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0217432950191-91_90-262__0__mainland.jpg	13 52 75 57 44 43 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0254334291188-94_81-204__0__mainland.jpg	13 52 72 51 75 42 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0271048850574-99_74-225__0__mainland.jpg	13 52 60 67 45 43 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0272078544062-87_88-347__0__mainland.jpg	13 52 43 43 47 51 43
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0342564655172-89_88-176__0__mainland.jpg	13 52 55 52 51 47 42
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0343845785441-90_79-154__0__mainland.jpg	13 52 51 68 51 42 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0416654693486-90_89-183__0__mainland.jpg	13 52 53 44 48 42 56
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0434099616858-89_87-79&__0__mainland.jpg	13 52 51 42 44 52 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0608189655172-106_67-20__0__mainland.jpg	11 52 51 43 43 45 69
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_challenge__0162-9_6-330&507_4__0__mainland.jpg	13 52 48 56 43 42 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_challenge__0191-5_4-334&486_4__0__mainland.jpg	13 52 69 45 48 51 56
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_challenge__0219-3_4-211&499_4__0__mainland.jpg	13 52 45 57 43 51 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_db__1108-0_1-143&385_633&574-__0__mainland.jpg	13 52 58 59 50 50 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_fn__0077-10_21-323&483_411&55__0__mainland.jpg	13 52 48 51 42 46 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_fn__0806-8_31-151&436_603&585__0__mainland.jpg	4 57 44 50 56 45 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_tilt__0269-18_27-208&439_388&__0__mainland.jpg	8 60 75 50 50 48 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_tilt__0381-27_29-306&439_480&__0__mainland.jpg	13 52 61 50 69 44 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_tilt__0419-24_44-225&482_431&__0__mainland.jpg	13 52 59 42 42 42 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_tilt__0588-28_40-260&429_492&__0__mainland.jpg	20 52 73 44 72 49 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__hk_alan_carplate__train__WhatsApp-Image-__0__hk.jpg	59 71 50 51 42 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__hk_alan_carplate__train__WhatsApp-Image-__1__hk.jpg	74 69 43 44 45 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__hk_alan_carplate__train__WhatsApp-Image-__1__mainland.jpg	20 75 52 44 44 45 34
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__hk_alan_carplate__train__WhatsApp-Image-__2__mainland.jpg	20 75 64 42 47 47 34
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__hk_default__train__338002433_000095_jpg.__3__hk.jpg	75 63 48 42 47 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__hk_default__train__Picture202_png.rf.a9c__1__mo.jpg	63 63 47 42 48 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__hk_default__train__Picture202_png.rf.a9c__2__hk.jpg	75 63 44 48 51 46
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__hk_default__train__Picture378_png.rf.eb9__0__hk.jpg	75 63 45 49 44 47
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__hk_default__train__Picture378_png.rf.eb9__1__mo.jpg	63 68 51 48 44 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261004-WA0209__1__hk.jpg	71 56 45 47 46 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261004-WA0209__0__hk.jpg	56 52 50 47 47
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__hk_default__train__videoplayback_mp4-127__1__mo.jpg	63 65 44 48 44 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__hk_trial_zihyp__train__336533831_000188___2__hk.jpg	58 62 45 43 50 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/gangao__hk_trial_zihyp__train__336533831_000188___3__gangao.jpg	20 75 45 50 70 46 34
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_clear__train__004_png.rf.7906f85bb__0__mo.jpg	63 61 45 47 45 44
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_clear__train__043_png.rf.df4bcadfc__0__mo.jpg	52 52 45 50 51 50
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_clear__train__069_png.rf.c115588e8__0__mo.jpg	63 62 44 43 46 47
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_clear__train__083_png.rf.91f3b06fd__0__mo.jpg	63 63 46 51 48 44
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_clear__train__115_png.rf.6a34bd96a__0__mo.jpg	63 63 51 51 48 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__006_png_jpg.rf.f3fc__0__mo.jpg	63 55 45 44 42 49
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__046_png.rf.659be900__0__mo.jpg	63 54 42 42 42 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/gangao__macau_merged__train__047_png.rf.f7e8ec0b__0__gangao.jpg	20 75 53 43 42 46 35
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__047_png.rf.f7e8ec0b__1__mo.jpg	63 60 46 47 46 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__054_png.rf.c0b76eec__0__mo.jpg	52 52 46 42 47 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__063_png_jpg.rf.304b__0__mo.jpg	63 72 45 43 49 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__063_png_jpg.rf.304b__1__mo.jpg	63 63 51 51 48 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__177_png_jpg.rf.04db__0__mo.jpg	63 65 47 46 49 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240224_031834_jpg__1__mo.jpg	63 68 51 50 43 44
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240228_084258_000__1__mo.jpg	63 59 47 50 45 47
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240228_084405_000__0__mo.jpg	63 65 51 48 42 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240228_084405_000__1__mo.jpg	63 62 48 50 51 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240228_084405_000__2__mo.jpg	63 54 43 44 47 50
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240228_141553_000__0__mo.jpg	63 68 45 46 44 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240228_141553_000__1__mo.jpg	63 69 48 44 43 46
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240831_025507_jpg__0__mo.jpg	63 75 45 46 51 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__20240902_114823_jpg__1__mo.jpg	63 65 48 49 44 43
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__312_png.rf.b0d58fb0__0__mo.jpg	63 64 47 46 45 42
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__360_png_jpg.rf.1035__0__mo.jpg	63 67 49 49 43 43
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__macau_merged__train__360_png_jpg.rf.1035__1__mo.jpg	75 63 43 45 50 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__MT-36-20_jpg.rf.6fe__0__mo.jpg	63 69 45 48 44 42
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_parkinglot__train__IMG_1299_jpg.rf__0__mo.jpg	63 69 43 44 43 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_shh5r__train__062_jpg.rf.adb55a3c9__1__mo.jpg	63 65 47 49 49 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0138__0__hk.jpg	72 61 50 45 46 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8931_jpg.rf.1a1__0__mo.jpg	63 67 46 51 42 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8931_jpg.rf.1a1__1__mo.jpg	52 52 47 45 44 47
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8962_jpg.rf.352__0__mo.jpg	63 72 48 48 45 47
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8962_jpg.rf.352__1__mo.jpg	63 64 43 49 48 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8962_jpg.rf.352__2__mo.jpg	63 65 48 47 49 43
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8962_jpg.rf.352__3__mo.jpg	63 64 43 47 45 47
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8962_jpg.rf.352__4__mo.jpg	63 59 51 44 49 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8983_jpg.rf.657__0__mo.jpg	63 62 44 48 45 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8983_jpg.rf.657__2__mo.jpg	63 62 46 50 51 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8983_jpg.rf.657__3__mo.jpg	63 65 51 51 44 42
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8998_jpg.rf.026__0__mo.jpg	63 63 47 51 47 46
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8998_jpg.rf.026__1__mo.jpg	63 59 45 49 48 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261018-WA0235__0__hk.jpg	62 63 45 43 46
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__hk_default__train__videoplayback_mp4-127__1__mo.jpg	63 65 44 48 44 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261001-WA0392__0__hk.jpg	62 56 44 42 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261010-WA0149__0__hk.jpg	61 53 45 49 44 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_fn__0077-10_21-323&483_411&55__0__mainland.jpg	13 52 48 51 42 46 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0117__0__hk.jpg	72 52 48 46 47 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__hk_trial_zihyp__train__336533831_000188___2__hk.jpg	58 62 45 43 50 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/gangao__hk_trial_zihyp__train__336533831_000188___3__gangao.jpg	20 75 45 50 70 46 34
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_base__0108357279693-90_86-241__0__mainland.jpg	13 52 55 44 43 42 42
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261018-WA0245__0__hk.jpg	59 60 43 45 43 46
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/gangao__IMG-20261018-WA0245__1__gangao.jpg	20 75 48 42 42 51 34
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0332__0__hk.jpg	59 70 43 45 43 51
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0107__0__hk.jpg	67 68 43 44 50 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0107__1__hk.jpg	60 62 44
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8998_jpg.rf.026__3__mo.jpg	63 64 46 42 47 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__MQ-17-50_jpg.rf.9f3__0__mo.jpg	63 66 43 49 47 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__MS-58-16_jpg.rf.ae3__0__mo.jpg	63 68 47 50 43 48
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__MT-36-20_jpg.rf.6fe__0__mo.jpg	63 69 45 48 44 42
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__MY-36-03_jpg.rf.229__0__mo.jpg	63 74 45 48 42 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__MY1153_ZM2089_jpg.r__0__mo.jpg	63 74 43 43 47 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__MY1153_ZM2089_jpg.r__1__mo.jpg	75 63 44 42 50 51
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_parkinglot__train__IMG_1299_jpg.rf__0__mo.jpg	63 69 43 44 43 45
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/gangao__macau_shh5r__train__062_jpg.rf.adb55a3c9__0__gangao.jpg	20 75 54 45 51 51 35
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_shh5r__train__062_jpg.rf.adb55a3c9__1__mo.jpg	63 65 47 49 49 49
+/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_shh5r__train__137_jpg.rf.d2b412a3e__0__mo.jpg	69 46 45 48
 /home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_shh5r__train__192_jpg.rf.1f5bbbe2e__0__mo.jpg	63 67 50 45 45 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0446__0__hk.jpg	72 59 51 45 43 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mo__macau_merged__train__IMG_8931_jpg.rf.1a1__0__mo.jpg	63 67 46 51 42 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260831-WA0230__0__hk.jpg	74 68 50 48 51 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261012-WA0102__0__hk.jpg	69 75 46 51 51 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261018-WA0269__0__hk.jpg	71 64 51 45 51 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261020-WA0016__0__hk.jpg	71 60 49 43 46 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261018-WA0302__0__hk.jpg	71 60 49 43 46 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261014-WA0361__0__hk.jpg	74 63 47 50 45 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261020-WA0075__0__hk.jpg	54 54 45 44 42 50
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261016-WA0366__0__hk.jpg	71 54 50 43 42 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_challenge__0162-9_6-330&507_4__0__mainland.jpg	13 52 48 56 43 42 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_challenge__0191-5_4-334&486_4__0__mainland.jpg	13 52 69 45 48 51 56
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261002-WA0087__0__hk.jpg	75 74 48 44 43 48
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261019-WA0104__0__hk.jpg	65 65 51 42 49
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/mainland__ccpd__ccpd_tilt__0381-27_29-306&439_480&__0__mainland.jpg	13 52 61 50 69 44 42
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260928-WA0173__0__hk.jpg	70 65 46 46 42 45
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20261005-WA0223__0__hk.jpg	75 69 48 44 44 43
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260824-WA0032__0__hk.jpg	72 65 51 49 48 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260928-WA0190__0__hk.jpg	72 55 46 46 48 44
-/home/nicklam-ai/repos/GBA-plate-recognition/crnn_verified/images/hk__IMG-20260930-WA0214__1__hk.jpg	74 54 46 51 49

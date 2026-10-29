@@ -25,6 +25,7 @@ import json
 import random
 import shutil
 from collections import Counter, defaultdict
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -40,6 +41,8 @@ def main() -> None:
     ap.add_argument("--chars", default="crnn_dataset/chars.txt")
     ap.add_argument("--test-ratio", type=float, default=0.25)
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--reset-frozen", action="store_true",
+                    help="重新劃定測試集（會破壞歷史評估的可比性，慎用）")
     args = ap.parse_args()
 
     data = ROOT / args.data
@@ -97,20 +100,57 @@ def main() -> None:
     if outside:
         print(f"字符表外字符（需補進 chars.txt 才能用）：{dict(outside)}")
 
-    # 依地區分層切分，避免小地區（粵Z 只有 9 筆）全落在測試集
-    by_region: dict[str, list[dict]] = defaultdict(list)
-    for r in rows:
-        by_region[r["region"] or "unknown"].append(r)
+    # ---- 測試集凍結 ----
+    # 同一批標註既當訓練材料又當測試基準，最大的風險是數據泄漏：
+    # 模型見過的樣本拿去測，準確率必然虛高，而且換一版模型就不可比。
+    # 做法：第一次劃定後把測試集的 file 列表寫進 test_frozen.json，
+    # 之後每次重新導出都沿用同一份名單，新標註的數據只進訓練集。
+    frozen_path = out / "test_frozen.json"
+    frozen = None
+    if frozen_path.exists() and not args.reset_frozen:
+        frozen = json.loads(frozen_path.read_text(encoding="utf-8"))
 
-    rng = random.Random(args.seed)
-    train, test = [], []
-    for region, group in sorted(by_region.items()):
-        group = group[:]
-        rng.shuffle(group)
-        n_test = max(1, round(len(group) * args.test_ratio)) if len(group) > 1 else 0
-        test.extend(group[:n_test])
-        train.extend(group[n_test:])
-        print(f"  {region:<10} {len(group):>3} 筆 → 訓練 {len(group)-n_test:>3} / 測試 {n_test:>2}")
+    if frozen:
+        test_files = set(frozen["files"])
+        available = {r["file"] for r in rows}
+        missing = test_files - available
+        test = [r for r in rows if r["file"] in test_files]
+        train = [r for r in rows if r["file"] not in test_files]
+        print(f"沿用凍結測試集（{frozen['frozen_at'][:10]} 劃定，"
+              f"{len(frozen['files'])} 筆）")
+        if missing:
+            print(f"  ⚠ {len(missing)} 筆凍結樣本已不在資料中（可能被標為不可用）")
+        # 凍結後新增的數據全部歸入訓練集
+        print(f"  測試 {len(test)} 筆 / 訓練 {len(train)} 筆")
+    else:
+        # 首次：依地區分層切分，避免小地區（粵Z 只有 6 筆）全落在測試集
+        by_region: dict[str, list[dict]] = defaultdict(list)
+        for r in rows:
+            by_region[r["region"] or "unknown"].append(r)
+
+        rng = random.Random(args.seed)
+        train, test = [], []
+        for region, group in sorted(by_region.items()):
+            group = group[:]
+            rng.shuffle(group)
+            n_test = max(1, round(len(group) * args.test_ratio)) if len(group) > 1 else 0
+            test.extend(group[:n_test])
+            train.extend(group[n_test:])
+            print(f"  {region:<10} {len(group):>3} 筆 → 訓練 {len(group)-n_test:>3} / 測試 {n_test:>2}")
+
+        import hashlib
+        files = sorted(r["file"] for r in test)
+        digest = hashlib.sha256("\n".join(files).encode()).hexdigest()[:16]
+        frozen_path.write_text(json.dumps({
+            "files": files,
+            "count": len(files),
+            "sha256_16": digest,
+            "seed": args.seed,
+            "test_ratio": args.test_ratio,
+            "frozen_at": datetime.now().isoformat(timespec="seconds"),
+        }, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"\n已凍結測試集 → {frozen_path.name}（sha256 {digest}）")
+        print("  之後重新導出會沿用這份名單，新數據只進訓練集")
 
     # 複製裁圖並寫標籤
     for r in rows:
@@ -119,18 +159,27 @@ def main() -> None:
         r["dst"] = dst
 
     def write_txt(path: Path, subset: list[dict]) -> None:
+        # 按檔名排序輸出，讓同樣的輸入產生位元組級相同的檔案 ——
+        # 沿用凍結測試集時，集合內容雖然不變，但 rows 的原始順序會變，
+        # 不排序就每次產生不同的 test.txt，難以用 diff 確認「測試集沒被動過」。
         with open(path, "w", encoding="utf-8") as fh:
-            for r in subset:
+            for r in sorted(subset, key=lambda x: x["file"]):
                 fh.write(f"{r['dst']}\t{' '.join(map(str, r['chars_idx']))}\n")
 
     write_txt(out / "all.txt", rows)
     write_txt(out / "train.txt", train)
     write_txt(out / "test.txt", test)
 
+    frozen_info = (json.loads(frozen_path.read_text(encoding="utf-8"))
+                   if frozen_path.exists() else {})
     report = {
         "total": len(rows),
         "train": len(train),
         "test": len(test),
+        "test_frozen": {
+            "sha256_16": frozen_info.get("sha256_16"),
+            "frozen_at": frozen_info.get("frozen_at"),
+        },
         "by_region": dict(Counter(r["region"] for r in rows)),
         "skipped": dict(skipped),
         "chars_outside_vocab": dict(outside),
