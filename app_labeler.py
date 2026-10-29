@@ -738,6 +738,10 @@ PAGE = r"""<!DOCTYPE html>
     background: #495062; color: #cfd6e3; font-weight: 500;
   }
   .yolobox.cur { border-color: #4ade80; border-style: solid; }
+  /* 同圖中「已核對過」的其他牌：淡化，一眼看出還剩幾塊沒處理 */
+  .yolobox.other.done {
+    opacity: .35; border-color: #3d4452; border-style: dotted;
+  }
   select {
     padding: 8px 10px; font-size: 13px; border-radius: 6px;
     background: #0f1015; color: #e6e9ef; border: 1px solid #2c2f3c;
@@ -828,8 +832,10 @@ function render() {
         <div class="srcwrap" id="srcwrap">
           <img id="srcimg" src="/srcimg/${encodeURIComponent(it.src)}" alt="">
         </div>
-        <div class="hint" style="margin-top:6px">綠實線＝當前車牌；灰虛線＝同一張圖中的其他車牌
-          ${(it.siblings||[]).length > 1 ? '（共 ' + (it.siblings||[]).length + ' 個，點灰框可切換）' : ''}</div>
+        <div class="hint" style="margin-top:6px">綠實線＝正在核對這塊；灰虛線＝同一張圖的<b>其他車牌</b>
+          ${(it.siblings||[]).length > 1
+            ? '（共 ' + (it.siblings||[]).length + ' 個都要核對，已核對的會淡化打 ✓，點框可切換）'
+            : ''}</div>
       </div>
 
       <div class="navrow">
@@ -907,14 +913,15 @@ function render() {
         if (!s.bbox) return;
         const isCur = (s.file === it.file);
         const box = document.createElement('div');
-        box.className = 'yolobox' + (isCur ? ' cur' : ' other');
+        box.className = 'yolobox' + (isCur ? ' cur' : ' other')
+                        + (!isCur && s.verified ? ' done' : '');
         const [x1, y1, x2, y2] = s.bbox;
         box.style.left = (x1 * sx) + 'px';
         box.style.top = (y1 * sy) + 'px';
         box.style.width = Math.max(2, (x2 - x1) * sx) + 'px';
         box.style.height = Math.max(2, (y2 - y1) * sy) + 'px';
-        box.dataset.label = (isCur ? '▶ ' : '')
-          + (s.action === 'not_plate' ? '✕ 非車牌'
+        box.dataset.label = (isCur ? '▶ ' : (s.verified ? '✓ ' : ''))
+          + (s.action === 'not_plate' ? '非車牌'
              : (s.text || '(空)') + ' · ' + (s.region || '?'));
         if (!isCur) {
           box.style.pointerEvents = 'auto';
