@@ -111,8 +111,8 @@ def classify_plate_type(text: str, region: str,
     if region == "hk":
         if t.startswith(("FV", "FU")):
             return "FV/FU 內地入出香港車輛"
-        if t.startswith(("ZM", "ZN", "ZP")):
-            return "廣東省港澳入出車輛"
+        if t.startswith(("ZM", "ZN", "ZL")):
+            return "澳門私家車往來港澳常規配額（香港牌）"
         return "香港車牌"
 
     if region == "mo":

@@ -162,7 +162,7 @@ class TestCrossBorderPrefixes:
     """
     跨境車牌中「字頭與發牌地不符」的三種情況。
 
-    ZM/ZN/ZP 是香港牌（澳門車入港用）
+    ZM/ZN/ZL 是香港牌（澳門車入港用）
     FV/FU    是香港牌（內地車入港用）
     HK-xx-xx 是澳門牌（香港車入澳用）
     """
@@ -171,7 +171,7 @@ class TestCrossBorderPrefixes:
         """ZM 是香港發給澳門車的牌，不是澳門本地牌。"""
         assert detect_region_from_text("ZM6371") == Region.HK
         assert detect_region_from_text("ZN1234") == Region.HK
-        assert detect_region_from_text("ZP9999") == Region.HK
+        assert detect_region_from_text("ZL9999") == Region.HK
 
     def test_zm_wrong_order_not_hk(self):
         """OCR 若把 ZM 讀成 MZ，會落進澳門規則 —— 記錄此已知風險。"""

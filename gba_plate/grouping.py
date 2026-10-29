@@ -235,7 +235,7 @@ def check_combo(vehicle: VehicleResult) -> list[str]:
     規則（依粵港澳三套跨境牌制度，見 docs/PLATE_COMBINATIONS.md）：
       - 粵Z 後綴「港」→ 應同時有香港牌
       - 粵Z 後綴「澳」→ 應同時有澳門牌
-      - ZM／ZN／ZP（澳門車入港，香港發牌）→ 應伴隨澳門本地牌
+      - ZM／ZN／ZL（澳門車入港，香港發牌）→ 應伴隨澳門本地牌
       - FV／FU（內地車入港，香港發牌）→ 應伴隨內地牌
       - HK-xx-xx（香港配額車入澳，澳門發牌）→ 應伴隨香港牌
     """
@@ -253,8 +253,8 @@ def check_combo(vehicle: VehicleResult) -> list[str]:
 
     for r in vehicle.plates:
         t = (r.text or "").upper()
-        # 澳門車入港：ZM/ZN/ZP 是香港牌，須有澳門本地牌
-        if t.startswith(("ZM", "ZN", "ZP")) and Region.MO not in regions:
+        # 澳門車入港：ZM/ZN/ZL 是香港牌，須有澳門本地牌
+        if t.startswith(("ZM", "ZN", "ZL")) and Region.MO not in regions:
             notes.append(f"{t} 為澳門車入港牌，但未見澳門本地牌")
         # 內地車入港：FV/FU 是香港牌，須有內地牌
         if t.startswith(("FV", "FU")) and Region.MAINLAND not in regions:

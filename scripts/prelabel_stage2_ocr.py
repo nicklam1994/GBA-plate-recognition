@@ -35,7 +35,7 @@ PROVINCE_CHARS = (
 RE_MAINLAND = re.compile(
     rf"^[{PROVINCE_CHARS}][A-HJ-NP-Z][A-HJ-NP-Z0-9]{{4,6}}$")
 RE_HK = re.compile(r"^[A-Z]{1,2}\d{1,4}$")
-RE_HK_ZM = re.compile(r"^Z[MNP]\d{3,4}$")          # 澳門車入港的香港牌
+RE_HK_ZM = re.compile(r"^Z[MNL]\d{3,4}$")          # 澳門配額車的香港牌 ZM/ZN/ZL
 RE_HK_FV = re.compile(r"^F[VU]\d{3,4}$")           # 內地車入港的香港牌
 RE_MO = re.compile(r"^M[A-Z]\d{4}$")               # 澳門本地 M?-??-??
 RE_MO_HK = re.compile(r"^HK\d{4}$")                # 澳門發給香港配額車的號段

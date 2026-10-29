@@ -209,7 +209,7 @@ def detect_region_from_text(text: str, color: str | None = None) -> Region:
     優先級（關鍵：粵Z 必須先判斷，否則會被省份規則吃掉）：
         1. 粤Z 前綴          → GANGAO
         2. 首字是省份        → MAINLAND
-        3. ZM/ZN/ZP 開頭    → HK     澳門車入港，香港發的牌
+        3. ZM/ZN/ZL 開頭    → HK     澳門車入港，香港發的牌
         4. FV/FU 開頭       → HK     內地車入港，香港發的牌
         5. HK 開頭 + 黑底   → MO     澳門發給香港配額車的專用號段
         6. M + 字母開頭      → MO     澳門本地牌
@@ -238,8 +238,8 @@ def detect_region_from_text(text: str, color: str | None = None) -> Region:
     if is_province(text[0]):
         return Region.MAINLAND
 
-    # 3. ZM/ZN/ZP —— 澳門車經港珠澳大橋入港，領的是香港號牌
-    if re.match(r"^Z[MNP]", text):
+    # 3. ZM/ZN/ZL —— 澳門私家車往來港澳常規配額，經港珠澳大橋入港，領香港號牌
+    if re.match(r"^Z[MNL]", text):
         return Region.HK
 
     # 4. FV/FU —— 內地企業車入香港，領的是香港號牌（前白後黃）
