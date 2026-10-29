@@ -175,9 +175,13 @@ def _render_single_plate(draw: ImageDraw.Draw, text: str, spec: PlateSpec):
     for i, ch in enumerate(text):
         # 尾字／前綴特殊顏色：警（紅尾字）；軍車武警消防（紅前綴）
         color = spec.text_color
-        if spec.suffix_color and i == len(text) - 1 and ch in _RED_SUFFIX_CHARS:
+        if spec.suffix_color and spec.suffix_len > 0:
+            # 尾部 N 字固定紅色（消防救援「應急」）
+            if i >= len(text) - spec.suffix_len:
+                color = spec.suffix_color
+        elif spec.suffix_color and i == len(text) - 1 and ch in _RED_SUFFIX_CHARS:
             color = spec.suffix_color
-        elif spec.prefix_color and i < spec.prefix_len:
+        if spec.prefix_color and i < spec.prefix_len:
             color = spec.prefix_color
 
         if ch in _DOT_CHARS:
@@ -211,7 +215,12 @@ def _render_double_plate(draw: ImageDraw.Draw, lines: list, spec: PlateSpec):
             y_offset = spec.top_height
             layer_height = spec.bottom_height
 
-        font_size = spec.font_size
+        if layer_idx == 0 and spec.top_font_size:
+            font_size = spec.top_font_size
+        elif layer_idx == 1 and spec.bottom_font_size:
+            font_size = spec.bottom_font_size
+        else:
+            font_size = spec.font_size
         font = get_font(font_size)
         usable_w = spec.width - 2 * spec.margin_x
 

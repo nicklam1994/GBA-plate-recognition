@@ -31,12 +31,17 @@ class PlateSpec:
     separator_color: Optional[Tuple[int, int, int]] = None  # 雙層分隔線顏色
     #: 漸變底色（上, 下）。設定時忽略 bg_color，用於新能源漸變綠牌
     bg_gradient: Optional[Tuple[Tuple[int, int, int], Tuple[int, int, int]]] = None
-    #: 尾字特殊顏色。目前僅「警」為紅色（2017 版外交牌的「使」「領」已改白字）
+    #: 尾字特殊顏色。消防救援號牌的「應急」、警用牌「警」為紅色
     suffix_color: Optional[Tuple[int, int, int]] = None
+    #: 尾部連續使用 suffix_color 的字符數（消防救援「應急」為 2）
+    suffix_len: int = 0
     #: 前綴特殊顏色，用於軍車／武警／消防的字頭（紅色）
     prefix_color: Optional[Tuple[int, int, int]] = None
     #: 前綴紅色字符數（軍車 2、武警 3、消防 4）
     prefix_len: int = 0
+    #: 雙行牌的分排字號（大型車後牌上排 90mm、下排 110mm，字高不同）
+    top_font_size: Optional[int] = None
+    bottom_font_size: Optional[int] = None
     #: 上下雙色拼接（上, 下）。用於大型新能源的黃綠雙拼
     bg_split: Optional[Tuple[Tuple[int, int, int], Tuple[int, int, int]]] = None
 
@@ -51,9 +56,9 @@ MAINLAND_BLUE = PlateSpec(
     width=440, height=140,
     bg_color=(15, 75, 180),       # 藍色
     text_color=(255, 255, 255),   # 白色文字
-    font_size=120,                # 字高 90mm / 牌高 140mm = 64%
-    char_spacing=6,
-    margin_x=30, margin_y=25,
+    font_size=125,                # 字高 90mm（GA36 圖1）
+    char_spacing=12,              # 官方字符間距 12mm
+    margin_x=15, margin_y=25,     # 官方左右邊距 15.5mm
     border_width=4,
     border_color=(255, 255, 255),
 )
@@ -64,9 +69,9 @@ MAINLAND_YELLOW = PlateSpec(
     width=440, height=140,
     bg_color=(230, 190, 30),      # 黃色
     text_color=(0, 0, 0),         # 黑色文字
-    font_size=120,
-    char_spacing=6,
-    margin_x=30, margin_y=25,
+    font_size=125,
+    char_spacing=12,
+    margin_x=15, margin_y=25,
     border_width=4,
     border_color=(0, 0, 0),
 )
@@ -78,9 +83,9 @@ MAINLAND_GREEN = PlateSpec(
     width=480, height=140,
     bg_color=(60, 170, 95),          # 佔位，實際由 bg_gradient 覆蓋
     text_color=(0, 0, 0),            # 黑字
-    font_size=120,
-    char_spacing=6,
-    margin_x=30, margin_y=25,
+    font_size=125,
+    char_spacing=9,                  # 新能源字距 9mm（GA36 圖7）
+    margin_x=15, margin_y=25,
     border_width=4,
     border_color=(20, 20, 20),
     bg_gradient=((208, 236, 198), (32, 126, 72)),   # 上淺綠 → 下深綠
@@ -92,9 +97,9 @@ MAINLAND_GREEN_LARGE = PlateSpec(
     width=480, height=140,
     bg_color=(200, 180, 60),
     text_color=(0, 0, 0),
-    font_size=120,
-    char_spacing=6,
-    margin_x=30, margin_y=25,
+    font_size=125,
+    char_spacing=9,
+    margin_x=15, margin_y=25,
     border_width=4,
     border_color=(20, 20, 20),
     bg_split=((235, 200, 70), (45, 150, 90)),       # 黃 / 綠
@@ -106,9 +111,9 @@ MAINLAND_WHITE = PlateSpec(
     width=440, height=140,
     bg_color=(250, 250, 250),     # 白色
     text_color=(0, 0, 0),         # 黑色文字
-    font_size=120,
-    char_spacing=6,
-    margin_x=30, margin_y=25,
+    font_size=125,
+    char_spacing=12,
+    margin_x=15, margin_y=25,
     border_width=4,
     border_color=(0, 0, 0),
     suffix_color=(200, 30, 30),   # 「警」紅色
@@ -123,9 +128,9 @@ MAINLAND_BLACK = PlateSpec(
     width=440, height=140,
     bg_color=(18, 18, 18),        # 黑色
     text_color=(245, 245, 245),   # 白色文字（含「使」「領」）
-    font_size=110,
-    char_spacing=5,
-    margin_x=25, margin_y=25,
+    font_size=125,
+    char_spacing=12,
+    margin_x=15, margin_y=25,
     border_width=4,
     border_color=(245, 245, 245),
 )
@@ -138,9 +143,9 @@ MAINLAND_MILITARY = PlateSpec(
     width=440, height=140,
     bg_color=(248, 248, 248),
     text_color=(20, 20, 20),
-    font_size=115,
-    char_spacing=5,
-    margin_x=25, margin_y=25,
+    font_size=125,
+    char_spacing=12,
+    margin_x=15, margin_y=25,
     border_width=4,
     border_color=(20, 20, 20),
     prefix_color=(200, 30, 30),
@@ -154,9 +159,9 @@ MAINLAND_ARMED_POLICE = PlateSpec(
     width=440, height=140,
     bg_color=(248, 248, 248),
     text_color=(20, 20, 20),
-    font_size=115,
-    char_spacing=4,
-    margin_x=22, margin_y=25,
+    font_size=125,
+    char_spacing=12,
+    margin_x=15, margin_y=25,
     border_width=4,
     border_color=(20, 20, 20),
     prefix_color=(200, 30, 30),
@@ -169,13 +174,13 @@ MAINLAND_RESCUE = PlateSpec(
     width=480, height=140,
     bg_color=(248, 248, 248),
     text_color=(20, 20, 20),
-    font_size=110,
-    char_spacing=4,
-    margin_x=22, margin_y=25,
+    font_size=120,
+    char_spacing=8,
+    margin_x=15, margin_y=25,
     border_width=4,
     border_color=(20, 20, 20),
-    prefix_color=(200, 30, 30),
-    prefix_len=4,                 # 救援隊伍代號紅色
+    suffix_color=(200, 30, 30),
+    suffix_len=2,                 # 尾部「應急」兩字紅色
 )
 
 # 教練車（學牌）—— 黃底黑字，尾字「學」
@@ -184,10 +189,49 @@ MAINLAND_COACH = PlateSpec(
     width=440, height=140,
     bg_color=(230, 190, 30),
     text_color=(0, 0, 0),
-    font_size=120,
-    char_spacing=6,
-    margin_x=30, margin_y=25,
+    font_size=125,
+    char_spacing=12,
+    margin_x=15, margin_y=25,
     border_width=4,
+    border_color=(0, 0, 0),
+)
+
+# 普通摩托車號牌 —— 220×140，黃底黑字，黑框（GA36 表1 序號 11）
+MAINLAND_MOTO = PlateSpec(
+    name="mainland_moto",
+    width=220, height=140,
+    bg_color=(230, 190, 30),
+    text_color=(0, 0, 0),
+    font_size=100,
+    char_spacing=10,
+    margin_x=12, margin_y=25,
+    border_width=3,
+    border_color=(0, 0, 0),
+)
+
+# 輕便摩托車號牌 —— 220×140，藍底白字，白框（GA36 表1 序號 12）
+MAINLAND_MOTO_LIGHT = PlateSpec(
+    name="mainland_moto_light",
+    width=220, height=140,
+    bg_color=(15, 75, 180),
+    text_color=(255, 255, 255),
+    font_size=100,
+    char_spacing=10,
+    margin_x=12, margin_y=25,
+    border_width=3,
+    border_color=(255, 255, 255),
+)
+
+# 低速車號牌 —— 300×165，黃底黑字，黑框（GA36 表1 序號 17）
+MAINLAND_LOWSPEED = PlateSpec(
+    name="mainland_lowspeed",
+    width=300, height=165,
+    bg_color=(230, 190, 30),
+    text_color=(0, 0, 0),
+    font_size=110,
+    char_spacing=12,
+    margin_x=15, margin_y=25,
+    border_width=3,
     border_color=(0, 0, 0),
 )
 
@@ -197,14 +241,16 @@ MAINLAND_DOUBLE_YELLOW = PlateSpec(
     width=440, height=220,
     bg_color=(230, 190, 30),
     text_color=(0, 0, 0),
-    font_size=110,
-    char_spacing=6,
-    margin_x=25, margin_y=15,
+    font_size=125,
+    char_spacing=15,              # 下排序號間距 15mm（GA36 圖6）
+    margin_x=15, margin_y=8,
     border_width=3,
     border_color=(0, 0, 0),
     is_double=True,
-    top_height=110,
-    bottom_height=110,
+    top_height=104,               # 上排：粵·B，字符高 90
+    bottom_height=116,            # 下排：序號，字符高 110、字寬 65
+    top_font_size=125,            # 90 / 0.72
+    bottom_font_size=153,         # 110 / 0.72
     separator_color=(0, 0, 0),
 )
 
@@ -220,9 +266,9 @@ GANGAO_SINGLE = PlateSpec(
     width=440, height=140,
     bg_color=(20, 20, 20),        # 黑色底
     text_color=(255, 255, 255),   # 白色字
-    font_size=120,
-    char_spacing=6,
-    margin_x=30, margin_y=25,
+    font_size=125,                # 與圖1 同：字高 90
+    char_spacing=12,              # 官方字符間距 12mm
+    margin_x=15, margin_y=25,
     border_width=5,
     border_color=(255, 255, 255),
 )
@@ -297,83 +343,85 @@ HK_REAR_DOUBLE = PlateSpec(
 
 # ============================================================
 # 澳門車牌規格（DSAT《車輛註冊號牌技術規格表》2023）
+# 一手文獻：docs/refs/dsat_spec_2023.pdf
 # ============================================================
-# 汽車（第一類）字高 70mm、筆劃 12mm、字距牌邊 ≥15mm：
-#   A 款 520×120  標準歐洲長牌
-#   B 款 460×100  較短長牌
-#   C 款 440×100  緊湊長牌
-#   D 款 340×230  雙行正方形牌
-#   E 款 330×175  雙行中型方形牌
-# 電單車（第二類）230×50，字高 35mm、字闊 25mm、筆劃 6mm、邊距 7.5mm
-# 顏色（前後相同，與香港「前白後黃」不同）：
-#   民用        黑底白字
-#   免稅/政府   黑底黃字
-#   臨時 (T)    黃底黑字
+# 汽車（第一類）
+#   短系列（小） 460×100  字高 70、字寬 50、筆劃 12、字距 10–24、邊距 ≥15
+#   短系列（大） 520×120  字高 90、字寬 60、筆劃 15、字距 10–25、邊距 ≥15
+#   闊系列       330×175  字高 70、字寬 50、筆劃 12、字距 10–24、邊距 ≥15
+# 摩托車（第二類）
+#   短系列       230×50   字高 35、字寬 25、筆劃 6、字距 5–12、邊距 ≥7.5
+#   闊系列       170×115  字高 35、字寬 25
+# 其他制度號牌
+#   工業機器車 MI        460×100  綠底黃字  字高 70
+#   特別制度 ES/試驗 EX  460×100  白底紅字  字高 70
+#   臨時制度 T           330×175  黃底黑字  字高 70、字距 10–24
+#   領事                 155×155  白底紅字  字高 45
+#   半掛車               330×125
+#   的士（半圓）         175×65   字高 30
 #
-# 尺寸以 1px = 1mm 繪製，字高 70mm → PIL font_size ≈ 100（大寫高約 0.7em）
+# 顏色：汽車底色黑／白、字體白／黃，「可透過繳交相應的費用作更改」，
+#       故黑底白字與白底黑字兩種民用牌並存（非只有黑底）。
+#
+# 繪製約定：1px = 1mm；font_size ≈ 字高 / 0.72
 
-_MO_BG, _MO_FG = (14, 14, 14), (245, 245, 245)          # 民用黑底白字
+_MO_BG, _MO_FG = (14, 14, 14), (245, 245, 245)     # 黑底白字
+_MO_WBG, _MO_WFG = (248, 248, 248), (20, 20, 20)   # 白底黑字
 
-# A 款：標準長牌
-MO_A = PlateSpec(
-    name="mo_a",
-    width=520, height=120,
-    bg_color=_MO_BG, text_color=_MO_FG,
-    font_size=100,
-    char_spacing=10,
-    margin_x=15, margin_y=25,      # 字高 70 → 上下各留 25mm
-    border_width=3,
-    border_color=_MO_FG,
-)
-
-# B 款：較短長牌
-MO_B = PlateSpec(
-    name="mo_b",
+# --- 短系列（小）460×100，字高 70 ---
+MO_SHORT_S = PlateSpec(
+    name="mo_short_small",
     width=460, height=100,
     bg_color=_MO_BG, text_color=_MO_FG,
-    font_size=100,
-    char_spacing=9,
+    font_size=97,
+    char_spacing=15,
     margin_x=15, margin_y=15,
     border_width=3,
     border_color=_MO_FG,
 )
 
-# C 款：緊湊長牌
-MO_C = PlateSpec(
-    name="mo_c",
-    width=440, height=100,
+MO_SHORT_S_WHITE = PlateSpec(
+    name="mo_short_small_white",
+    width=460, height=100,
+    bg_color=_MO_WBG, text_color=_MO_WFG,
+    font_size=97,
+    char_spacing=15,
+    margin_x=15, margin_y=15,
+    border_width=3,
+    border_color=_MO_WFG,
+)
+
+# --- 短系列（大）520×120，字高 90 ---
+MO_SHORT_L = PlateSpec(
+    name="mo_short_large",
+    width=520, height=120,
     bg_color=_MO_BG, text_color=_MO_FG,
-    font_size=100,
-    char_spacing=9,
+    font_size=125,                 # 字高 90 / 0.72
+    char_spacing=15,
     margin_x=15, margin_y=15,
     border_width=3,
     border_color=_MO_FG,
 )
 
-# D 款：雙行正方形牌
-MO_D = PlateSpec(
-    name="mo_d",
-    width=340, height=230,
-    bg_color=_MO_BG, text_color=_MO_FG,
-    font_size=100,
-    char_spacing=8,
+MO_SHORT_L_WHITE = PlateSpec(
+    name="mo_short_large_white",
+    width=520, height=120,
+    bg_color=_MO_WBG, text_color=_MO_WFG,
+    font_size=125,
+    char_spacing=15,
     margin_x=15, margin_y=15,
     border_width=3,
-    border_color=_MO_FG,
-    is_double=True,
-    top_height=115,
-    bottom_height=115,
-    separator_color=None,
+    border_color=_MO_WFG,
 )
 
-# E 款：雙行中型方形牌
-MO_E = PlateSpec(
-    name="mo_e",
+# --- 闊系列 330×175，雙行，字高 70 ---
+MO_WIDE = PlateSpec(
+    name="mo_wide",
     width=330, height=175,
     bg_color=_MO_BG, text_color=_MO_FG,
-    font_size=95,
-    char_spacing=8,
-    margin_x=15, margin_y=10,
+    font_size=97,
+    char_spacing=15,
+    margin_x=15, margin_y=8,
     border_width=3,
     border_color=_MO_FG,
     is_double=True,
@@ -382,63 +430,166 @@ MO_E = PlateSpec(
     separator_color=None,
 )
 
-# 電單車：230×50，字高 35mm
+MO_WIDE_WHITE = PlateSpec(
+    name="mo_wide_white",
+    width=330, height=175,
+    bg_color=_MO_WBG, text_color=_MO_WFG,
+    font_size=97,
+    char_spacing=15,
+    margin_x=15, margin_y=8,
+    border_width=3,
+    border_color=_MO_WFG,
+    is_double=True,
+    top_height=87,
+    bottom_height=88,
+    separator_color=None,
+)
+
+# --- 摩托車短系列 230×50，字高 35 ---
 MO_MOTO = PlateSpec(
     name="mo_moto",
     width=230, height=50,
     bg_color=_MO_BG, text_color=_MO_FG,
-    font_size=50,
-    char_spacing=5,
+    font_size=49,                  # 字高 35 / 0.72
+    char_spacing=8,
     margin_x=8, margin_y=8,
     border_width=2,
     border_color=_MO_FG,
 )
 
-# 免稅／政府車：黑底黃字（A 款尺寸）
-MO_A_TAXFREE = PlateSpec(
-    name="mo_a_taxfree",
-    width=520, height=120,
-    bg_color=(14, 14, 14), text_color=(240, 200, 30),
-    font_size=100,
-    char_spacing=10,
-    margin_x=15, margin_y=25,
+# --- 摩托車闊系列 170×115，字高 35，雙行 ---
+MO_MOTO_WIDE = PlateSpec(
+    name="mo_moto_wide",
+    width=170, height=115,
+    bg_color=_MO_BG, text_color=_MO_FG,
+    font_size=49,
+    char_spacing=6,
+    margin_x=8, margin_y=6,
+    border_width=2,
+    border_color=_MO_FG,
+    is_double=True,
+    top_height=57,
+    bottom_height=58,
+    separator_color=None,
+)
+
+# --- 工業機器車 MI：460×100，綠底黃字，字高 70 ---
+MO_MI = PlateSpec(
+    name="mo_mi",
+    width=460, height=100,
+    bg_color=(20, 130, 70), text_color=(240, 200, 30),
+    font_size=97,
+    char_spacing=15,
+    margin_x=15, margin_y=15,
     border_width=3,
     border_color=(240, 200, 30),
 )
 
-# 臨時制度 T 牌：黃底黑字
-MO_A_TEMP = PlateSpec(
-    name="mo_a_temp",
-    width=520, height=120,
+# --- 特別制度 ES / 試驗制度 EX：460×100，白底紅字 ---
+MO_ES = PlateSpec(
+    name="mo_es",
+    width=460, height=100,
+    bg_color=(250, 250, 250), text_color=(200, 30, 30),
+    font_size=97,
+    char_spacing=15,
+    margin_x=15, margin_y=15,
+    border_width=3,
+    border_color=(200, 30, 30),
+)
+
+MO_EX = PlateSpec(
+    name="mo_ex",
+    width=460, height=100,
+    bg_color=(250, 250, 250), text_color=(200, 30, 30),
+    font_size=97,
+    char_spacing=15,
+    margin_x=15, margin_y=15,
+    border_width=3,
+    border_color=(200, 30, 30),
+)
+
+# --- 臨時制度 T：330×175，黃底黑字，字高 70 ---
+MO_T = PlateSpec(
+    name="mo_t",
+    width=330, height=175,
     bg_color=(235, 195, 25), text_color=(20, 20, 20),
-    font_size=100,
-    char_spacing=10,
-    margin_x=15, margin_y=25,
+    font_size=97,
+    char_spacing=15,
+    margin_x=15, margin_y=15,
     border_width=3,
     border_color=(20, 20, 20),
 )
 
-#: 汽車單行款式（A/B/C，按真實安裝比例加權）
-MO_SINGLE_SPECS = [(MO_A, 0.55), (MO_B, 0.15), (MO_C, 0.15)]
-#: 汽車雙行款式（D/E）
-MO_DOUBLE_SPECS = [(MO_D, 0.5), (MO_E, 0.5)]
+# --- 領事：155×155，白底紅字，字高 45 ---
+MO_CONSUL = PlateSpec(
+    name="mo_consul",
+    width=155, height=155,
+    bg_color=(250, 250, 250), text_color=(200, 30, 30),
+    font_size=63,
+    char_spacing=8,
+    margin_x=10, margin_y=10,
+    border_width=2,
+    border_color=(200, 30, 30),
+)
+
+# --- 半掛車 330×125 ---
+MO_SEMI_TRAILER = PlateSpec(
+    name="mo_semi_trailer",
+    width=330, height=125,
+    bg_color=_MO_BG, text_color=_MO_FG,
+    font_size=97,
+    char_spacing=15,
+    margin_x=15, margin_y=15,
+    border_width=3,
+    border_color=_MO_FG,
+)
+
+# --- 的士（半圓）175×65，字高 30 ---
+MO_TAXI = PlateSpec(
+    name="mo_taxi",
+    width=175, height=65,
+    bg_color=(248, 248, 248), text_color=(20, 20, 20),
+    font_size=42,
+    char_spacing=6,
+    margin_x=8, margin_y=6,
+    border_width=2,
+    border_color=(20, 20, 20),
+)
+
+# --- 民用汽車單行款式（黑底為主，少量白底）---
+#: (規格, 權重)
+MO_SINGLE_SPECS = [
+    (MO_SHORT_L, 0.34),        # 520×120 黑
+    (MO_SHORT_S, 0.30),        # 460×100 黑
+    (MO_SHORT_L_WHITE, 0.18),  # 520×120 白
+    (MO_SHORT_S_WHITE, 0.18),  # 460×100 白
+]
+#: 民用汽車雙行（闊系列 330×175）
+MO_DOUBLE_SPECS = [(MO_WIDE, 0.6), (MO_WIDE_WHITE, 0.4)]
 
 # 駐澳解放軍車牌（ZA）—— 尺寸字體照大陸號牌格式，顏色與字元格式照澳門規格
 #   黑底白字，格式 ZA-nn-nn（如 ZA-12-34），不受交通事務局管理
 MO_ZA = PlateSpec(
     name="mo_za",
-    width=440, height=140,        # 參照大陸汽車號牌尺寸
+    width=440, height=140,
     bg_color=(14, 14, 14),
     text_color=(245, 245, 245),
-    font_size=115,
-    char_spacing=6,
-    margin_x=25, margin_y=25,
+    font_size=125,
+    char_spacing=12,
+    margin_x=15, margin_y=25,
     border_width=3,
     border_color=(245, 245, 245),
 )
 
-#: 兼容舊引用：默認 = A 款民用
-MO_PLATE = MO_A
+#: 兼容別名（舊名稱 → 官方規格）
+MO_A = MO_SHORT_L          # 520×120（原稱 A 款）
+MO_B = MO_SHORT_S          # 460×100（原稱 B 款）
+MO_C = MO_SHORT_S          # 440×100 並不存在，併入 460×100
+MO_D = MO_WIDE             # 340×230 並不存在，實為闊系列 330×175
+MO_E = MO_WIDE             # 闊系列
+MO_A_TAXFREE = MO_SHORT_L  # 免稅以黃字呈現，尺寸同短系列大
+MO_A_TEMP = MO_T           # 臨時 T 牌實為 330×175 黃底黑字
+MO_PLATE = MO_SHORT_L      # 默認
 
 
 # ============================================================
@@ -515,7 +666,8 @@ def generate_gangao_plate() -> Tuple[str, PlateSpec]:
     原生成器有 30% 機率產生雙行版本，但那在真實中並不存在。
     """
     suffix = random.choice(GANGAO_SUFFIX)
-    n_mid = random.choices([3, 4], weights=[30, 70], k=1)[0]
+    # GA36 表3：港澳入出境車號牌序號為 4 或 5 位
+    n_mid = random.choices([4, 5], weights=[70, 30], k=1)[0]
     mid = "".join(random.choices(MAINLAND_ALPHA + string.digits, k=n_mid))
     # 牌面為「粵Z·1234港」，中間有分隔圓點
     return f"粤Z·{mid}{suffix}", GANGAO_SINGLE

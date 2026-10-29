@@ -134,9 +134,9 @@ def render_one(args):
                 return "".join(chars)
 
             if random.random() < 0.25:
-                # 新能源 8 位：粵A·D12345
+                # 新能源 8 位：粵A D12345 —— 官方牌面無間隔符（GA36 圖7）
                 special = random.choice(["D", "F"])
-                text = f"粤{alpha}·{special}{_suffix(5)}"
+                text = f"粤{alpha}{special}{_suffix(5)}"
                 spec = MAINLAND_GREEN
             else:
                 # 普通藍牌 7 位：粵A·12345
