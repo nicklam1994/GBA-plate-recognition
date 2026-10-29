@@ -208,3 +208,29 @@ PyTorch 2.6+ 改變了 `torch.load` 的 `weights_only` 默認值，需顯式傳 
 
 **維護者**：Nick（尼克🦊）
 **倉庫**：https://github.com/nicklam1994/GBA-plate-recognition
+
+---
+
+## 📚 文檔索引
+
+| 文檔 | 內容 |
+|------|------|
+| `docs/OPENSOURCE_RESEARCH.md` | **開源方案調研報告**（數據集 / 代碼 / 論文 / 規格核實）|
+| `docs/BASELINE_TEST_REPORT.md` | 三地牌基準測試（11 張實拍）|
+| `docs/TEST_REPORT.md` | CCPD 樣本測試 |
+| `docs/DOWNLOAD_GUIDE.md` | 數據集下載指引 |
+| `docs/README_UPSTREAM.md` | 原始項目 README（we0091234）|
+
+### 待下載的港澳真實數據
+
+Roboflow 上有 4 個 CC BY 4.0 港澳車牌數據集（約 2,900 張），需免費 API key：
+
+```bash
+# 1. 取得 key: https://app.roboflow.com/settings/api
+export ROBOFLOW_API_KEY=rf_xxxxx
+
+# 2. 一條命令下載全部
+python scripts/download_hk_mo_datasets.py --output test_data/real
+```
+
+
