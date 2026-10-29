@@ -78,33 +78,46 @@ COLOR_NAMES = ["黑", "藍", "綠", "白", "黃"]
 
 def detect_color(bgr: np.ndarray) -> int:
     """
-    由車牌小圖的 HSV 平均值判定底色（自動標註顏色標籤）。
+    判定車牌底色（自動標註顏色標籤）。
 
     Returns:
         0=黑 1=藍 2=綠 3=白 4=黃
-    """
-    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
-    h, s, v = [float(x) for x in hsv.reshape(-1, 3).mean(axis=0)]
-    b, g, r = [float(x) for x in bgr.reshape(-1, 3).mean(axis=0)]
 
-    if v < 70:
-        return 0                      # 黑
-    if s < 45 and v > 110:
-        return 3                      # 白
-    if 15 <= h <= 35 and s > 60:
+    兩個關鍵修正（舊版用整圖 HSV 平均值，粵Z 只有 3/7 判對）：
+
+    1. H 通道是圓形數據，不能取平均。0° 與 180° 都是紅，平均會落到 90°（青色）。
+    2. 黑底白字牌的白字筆劃很粗，中央區域可能被白字佔滿，
+       用「多數像素」必然判成白底。改看「最暗的 20% 像素」= 底板本身。
+
+    實測（7 個粵Z 樣本）：3/7 → 6/7 判黑。
+    """
+    h, w = bgr.shape[:2]
+    c = bgr[int(h * 0.2):int(h * 0.8), int(w * 0.15):int(w * 0.85)]
+    if c.size == 0:
+        c = bgr
+    hsv = cv2.cvtColor(c, cv2.COLOR_BGR2HSV)
+    H, S, V = [x.reshape(-1) for x in cv2.split(hsv)]
+    if V.size == 0:
+        return 3
+
+    n = V.size
+    # 彩色底（面積大，用佔比即可）
+    if float(((H >= 15) & (H <= 35) & (S > 90) & (V > 90)).sum()) / n >= 0.30:
         return 4                      # 黃
-    if 40 <= h <= 90 and s > 50:
+    if float(((H >= 40) & (H <= 90) & (S > 70) & (V > 70)).sum()) / n >= 0.30:
         return 2                      # 綠
-    if 90 <= h <= 135 and s > 50:
+    if float(((H >= 95) & (H <= 130) & (S > 70) & (V > 70)).sum()) / n >= 0.30:
         return 1                      # 藍
-    # 後備：看 BGR 通道
-    if b > r and b > g:
-        return 1
-    if g > r and g > b:
-        return 2
-    if r > 120 and g > 120 and b < 100:
-        return 4
-    return 3
+
+    # 無彩色（黑底 / 白底）：看底板亮度，而非整體平均
+    v_lo = float(np.percentile(V, 20))     # 暗的那批 = 底板
+    v_hi = float(np.percentile(V, 80))
+    s_lo = float(np.percentile(S, 20))
+    if v_lo < 110:
+        return 0                      # 底板暗 → 黑底
+    if v_lo > 165 and s_lo < 60:
+        return 3                      # 底板亮且低飽和 → 白底
+    return 3 if v_hi > 180 else 0
 
 
 class PlateDataset(Dataset):
