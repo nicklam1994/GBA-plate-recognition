@@ -57,12 +57,31 @@
 
 真實數據放在 `test_data/real/`（**不納入版本控制**）。
 
-| 目錄 | 內容 | 數量 | 來源 |
-|------|------|------|------|
-| `ccpd/` | 內地車牌，多場景 | 355,015 張 | CCPD |
-| `three_region/` | 三地牌同車實拍 | 11 張 | 自採 |
-| `hk/` | 香港本地牌參考 | 3 張 | 自採 |
-| `mo/` | 澳門本地牌參考 | 14 張 | 自採 |
+| 目錄 | 內容 | 圖片 | 標註框 | 來源 |
+|------|------|------|--------|------|
+| `ccpd/` | 內地車牌，多場景 | 355,018 | ~355k | CCPD2019 |
+| `macau_merged/` | 澳門為主，含 GDM/HKF/HKR/MEV/MO/MTP/OTH | 4,629 | 7,356 | Roboflow (CC BY 4.0) |
+| `macau_clear/` | 澳門車牌 | 769 | 822 | Roboflow (CC BY 4.0) |
+| `macau_shh5r/` | 澳門車牌 | 490 | 521 | Roboflow (CC BY 4.0) |
+| `macau_parkinglot/` | 澳門停車場 | 239 | 239 | Roboflow (CC BY 4.0) |
+| `hk_alan_carplate/` | 三地牌同車 | 134 | 166 | Roboflow (CC BY 4.0) |
+| `hk_lpr/` | 香港車牌 | 50 | 88 | Roboflow (CC BY 4.0) |
+| `three_region/` | 三地牌同車實拍 | 11 | 手工 | 自採 |
+| `hk/` | 香港本地牌參考 | 3 | 手工 | 自採 |
+| `mo/` | 澳門本地牌參考 | 14 | 手工 | 自採 |
+
+**港澳真實數據合計**：6,311 張 / 9,192 標註框
+
+### 港澳標註類別分佈（實測）
+
+| 類別 | 標註數 | 說明 |
+|------|--------|------|
+| 澳門本地牌 | ~7,900 | MO 6,328 + Licence-Plate 1,343 + MO 239 |
+| 粵Z 澳牌 (GDM) | 368 | Roboflow 專用類別 |
+| 香港本地牌 | 326 | HKF 103 + HKR 87 + hk_carplate 135 + 1 |
+| 其他/臨時 | 255 | OTH 217 + MTP 38 |
+
+> **注意**：澳門數據充足，香港與粵Z 偏少，需持續自採補充。
 
 **CCPD 子集分佈**
 
@@ -215,7 +234,8 @@ PyTorch 2.6+ 改變了 `torch.load` 的 `weights_only` 默認值，需顯式傳 
 
 | 文檔 | 內容 |
 |------|------|
-| `docs/OPENSOURCE_RESEARCH.md` | **開源方案調研報告**（數據集 / 代碼 / 論文 / 規格核實）|
+| `docs/OPENSOURCE_RESEARCH.md` | 開源方案調研報告（數據集 / 代碼 / 論文）|
+| `docs/ARCHITECTURE_COMPARISON.md` | **架構對比與融合方案**（代碼實證，非二手資料）|
 | `docs/BASELINE_TEST_REPORT.md` | 三地牌基準測試（11 張實拍）|
 | `docs/TEST_REPORT.md` | CCPD 樣本測試 |
 | `docs/DOWNLOAD_GUIDE.md` | 數據集下載指引 |
@@ -232,5 +252,4 @@ export ROBOFLOW_API_KEY=rf_xxxxx
 # 2. 一條命令下載全部
 python scripts/download_hk_mo_datasets.py --output test_data/real
 ```
-
 
