@@ -54,7 +54,7 @@ _REGION_PRIORITY = {
 #: 地區中文標籤
 REGION_LABEL = {
     Region.MAINLAND: "內地",
-    Region.GANGAO: "粵Z",
+    Region.GANGAO: "粤Z",
     Region.HK: "香港",
     Region.MO: "澳門",
     Region.UNKNOWN: "未知",

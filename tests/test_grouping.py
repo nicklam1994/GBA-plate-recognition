@@ -106,7 +106,7 @@ class TestGrouping:
 class TestCombo:
     def test_combo_label(self):
         v = group_vehicles(TRI)[0]
-        assert v.combo == "粵Z+澳門+香港"
+        assert v.combo == "粤Z+澳門+香港"
 
     def test_entry_direction_ao(self):
         v = group_vehicles(TRI)[0]
@@ -152,7 +152,7 @@ class TestDescribe:
         v = group_vehicles(TRI)[0]
         s = v.describe()
         assert "[多牌]" in s
-        assert "粵Z:粤Z7366澳" in s
+        assert "粤Z:粤Z7366澳" in s
 
 
 class TestCrossBorderCombos:

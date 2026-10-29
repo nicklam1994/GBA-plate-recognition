@@ -104,8 +104,9 @@ def classify_plate_type(text: str, region: str,
         return ""
 
     if region == "gangao":
-        if t.startswith("粵Z"):
-            return "粵Z 港澳入出內地車輛"
+        # 簡繁都要認 —— 資料層已統一簡體，但使用者手動輸入可能打繁體
+        if t.startswith(("粤Z", "粵Z")):
+            return "粤Z 港澳入出內地車輛"
         return "港澳入出內地車輛"
 
     if region == "hk":
@@ -188,7 +189,7 @@ def check_format(text: str, region: str | None = None) -> tuple[bool, str]:
 
     #: validate 只回 "ok"，對人工核對沒辨識度，換成看得懂的地區名
     label = {
-        Region.GANGAO: "粵Z",
+        Region.GANGAO: "粤Z",      # 簡體，與車牌號碼字元一致
         Region.MAINLAND: "內地",
         Region.HK: "香港",
         Region.MO: "澳門",
