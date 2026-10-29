@@ -15,6 +15,16 @@ dataset_*/
 yolov8*.pt
 *.log
 
+# ===== OCR / 影片訓練數據與中間產物（可由腳本重建）=====
+crnn_dataset/
+crnn_dataset_gba/
+crnn_dataset_mix/
+gba_ocr_label/
+ocr_bench/
+video_test/
+video_out/
+data/hk_plates.json
+
 # ===== 運行輸出 =====
 runs/
 result/

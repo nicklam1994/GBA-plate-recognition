@@ -1,0 +1,20 @@
+# GBA 四地區車牌檢測數據集
+# 由 scripts/unify_classes.py + scripts/sample_ccpd.py + scripts/rebalance_splits.py 產生
+#
+# 類別順序刻意對應 gba_plate/base.py 的 Region 枚舉：
+#   0 = mainland  內地（藍牌/綠牌/黃牌/警/學/領/使）
+#   1 = gangao    粵Z 兩地牌（港澳入出內地車輛）
+#   2 = hk        香港車牌（前牌白底 / 後牌黃底）
+#   3 = mo        澳門車牌（黑底白字 / 黃底 / 兩行牌）
+
+path: /home/nicklam-ai/repos/GBA-plate-recognition/dataset_unified
+train: images/train
+val: images/valid
+test: images/test
+
+nc: 4
+names:
+  0: mainland
+  1: gangao
+  2: hk
+  3: mo

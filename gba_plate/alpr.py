@@ -64,14 +64,25 @@ class ALPR:
             min_confidence: 識別置信度低於此值時丟棄結果
         """
         if detector is None:
-            from gba_plate.detectors.yolo_plate import YOLOPlateDetector
+            # class_mode="region" → YOLOv8 四類模型；"single_double" → 舊 YOLOv5-face
+            if class_mode == "region" or "yolov8" in str(detect_model).lower():
+                from gba_plate.detectors.yolov8_plate import YOLOv8PlateDetector
 
-            detector = YOLOPlateDetector(
-                weights=detect_model,
-                device=device,
-                conf_thres=conf_thres,
-                class_mode=class_mode,
-            )
+                detector = YOLOv8PlateDetector(
+                    weights=detect_model,
+                    device=device,
+                    conf_thres=conf_thres,
+                )
+                class_mode = "region"
+            else:
+                from gba_plate.detectors.yolo_plate import YOLOPlateDetector
+
+                detector = YOLOPlateDetector(
+                    weights=detect_model,
+                    device=device,
+                    conf_thres=conf_thres,
+                    class_mode=class_mode,
+                )
         if ocr is None:
             from gba_plate.ocr.crnn import CRNNPlateOCR
 
@@ -101,9 +112,23 @@ class ALPR:
         Returns:
             (final_text, is_valid, correction_applied, note)
         """
+        from gba_plate.postprocess.hk_mo_rules import apply_format_rules
+
         text = normalize(raw_text)
         corrected, changed = correct_confusables(text, region)
+
+        # 港澳車牌格式修正：長度超限、字母數字錯位、開頭為 0 等
+        region_note = ""
+        if region in (Region.HK, Region.MO, Region.GANGAO):
+            fixed, fmt_changed, fmt_note = apply_format_rules(corrected, region.value)
+            if fmt_changed:
+                corrected = fixed
+                changed = True
+                region_note = fmt_note
+
         ok, note = validate(corrected, region)
+        if region_note:
+            note = f"{note}; {region_note}" if note else region_note
         return corrected, ok, changed, note
 
     # ------------------------------------------------------------------ 對外
@@ -119,7 +144,9 @@ class ALPR:
         for det in detections:
             try:
                 crop = self._prepare_crop(image, det)
-                ocr_result = self.ocr.predict(crop)
+                # 傳入地區，讓 OCR 按地區限制字符集（避免香港牌輸出漢字省份）
+                region_hint = det.region.value if det.region != Region.UNKNOWN else None
+                ocr_result = self.ocr.predict(crop, region=region_hint)
             except Exception:
                 # 單個車牌失敗不影響其他車牌
                 ocr_result = None

@@ -35,11 +35,28 @@ _COLOR_MAP = [
     PlateColor.YELLOW,  # 4 黃（內地大型車 / 香港後牌）
 ]
 
+#: 字母與數字（香港/澳門車牌只用這些）
+_ALNUM = frozenset("ABCDEFGHJKLMNPQRSTUVWXYZ0123456789")
+
+#: 按地區限制可輸出字符集 —— 解決「香港車牌被識別成皖A123」的分佈偏移問題。
+#: 檢測器已判定地區，OCR 卻自由輸出漢字，兩者矛盾。約束後模型只能在合法字符裡選次優解。
+REGION_CHARSET: dict[str, frozenset[str]] = {
+    # 香港：1-2 字母 + 1-4 數字，無漢字
+    "hk": _ALNUM,
+    # 澳門：M + 字母 + 數字，無漢字
+    "mo": _ALNUM,
+    # 粵Z 兩地牌：粵 Z + 字母數字 + 港/澳 後綴
+    "gangao": frozenset("粵Z港澳") | _ALNUM,
+    # 內地：不限制（省份、警、學、領等都要）
+    "mainland": None,  # type: ignore[dict-item]
+}
+
 
 def ctc_greedy_decode(
     indices: np.ndarray,
     probs: np.ndarray,
     vocab: str,
+    allowed: frozenset[str] | None = None,
 ) -> tuple[str, list[float]]:
     """
     CTC 貪心解碼。
@@ -50,6 +67,7 @@ def ctc_greedy_decode(
         indices: 每帧 argmax 的類別索引
         probs: 每帧對應的最大概率
         vocab: 字符表（索引 0 必須是 blank）
+        allowed: 允許的字符集合；None 表示不限制（用於按地區約束輸出）
 
     Returns:
         (解碼文字, 每字符置信度列表)
@@ -66,8 +84,10 @@ def ctc_greedy_decode(
             prev = idx
             continue
         if 0 < idx < len(vocab):
-            chars.append(vocab[idx])
-            char_probs.append(float(prob))
+            ch = vocab[idx]
+            if allowed is None or ch in allowed:
+                chars.append(ch)
+                char_probs.append(float(prob))
         prev = idx
 
     return "".join(chars), char_probs
@@ -145,11 +165,24 @@ class CRNNPlateOCR(BaseOCR):
 
     # ------------------------------------------------------------------ 對外
 
-    def predict(self, plate_crop: np.ndarray) -> OcrResult | None:
+    def predict(
+        self,
+        plate_crop: np.ndarray,
+        region: str | None = None,
+    ) -> OcrResult | None:
+        """
+        Args:
+            plate_crop: 已校正的車牌小圖（BGR）
+            region: 地區字串（"hk"/"mo"/"gangao"/"mainland"）；
+                    給定時會限制可輸出字符集，避免分佈偏移
+                    （例如香港車牌不會輸出漢字省份）
+        """
         if plate_crop is None or plate_crop.size == 0:
             return None
 
         tensor = self._preprocess(plate_crop)
+
+        allowed = REGION_CHARSET.get(region) if region else None
 
         with torch.no_grad():
             if self.use_color:
@@ -162,12 +195,28 @@ class CRNNPlateOCR(BaseOCR):
                 char_logits = self.model(tensor)
                 color, color_conf = None, None
 
+            # 地區約束：非法字符的概率轉移到 CTC blank（而非直接 -inf）。
+            # 直接用 -inf 會讓模型被迫在每個時間步選字母，產生長串亂碼；
+            # 轉移到 blank 則等價於「模型想輸出漢字時當作跳過」。
+            if allowed:
+                idx_map = {ch: i for i, ch in enumerate(self.vocab)}
+                keep = {idx_map[ch] for ch in allowed if ch in idx_map}
+                keep.add(0)  # blank 永遠合法
+
+                illegal = [i for i in range(len(self.vocab)) if i not in keep]
+                if illegal:
+                    char_logits = char_logits.clone()
+                    illegal_logits = char_logits[..., illegal]
+                    transfer = torch.logsumexp(illegal_logits, dim=-1)
+                    char_logits[..., 0] = torch.logaddexp(char_logits[..., 0], transfer)
+                    char_logits[..., illegal] = float("-inf")
+
             probs = torch.softmax(char_logits, dim=-1)
             max_probs, indices = probs.max(dim=-1)
             indices = indices.view(-1).cpu().numpy()
             max_probs = max_probs.view(-1).cpu().numpy()
 
-        text, char_probs = ctc_greedy_decode(indices, max_probs, self.vocab)
+        text, char_probs = ctc_greedy_decode(indices, max_probs, self.vocab, allowed)
         if not text:
             return None
 
