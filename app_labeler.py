@@ -447,6 +447,22 @@ def api_verify():
                     "format_ok": ok, "stats": stats()})
 
 
+@app.post("/api/check")
+def api_check():
+    """
+    即時校驗輸入框內容。
+
+    先前按鈕的「正確／格式不符」只依頁面載入時的 text 算一次，
+    使用者手動把 912 改成 XM9112 後，按鈕仍顯示格式不符 ——
+    明明輸入對了卻被提示錯，會讓人以為校驗壞了。
+    """
+    body = request.get_json(force=True) or {}
+    text = (body.get("text") or "").strip()
+    region = (body.get("region") or "").strip() or None
+    ok, fmt = check_format(text, region) if text else (False, "")
+    return jsonify({"ok": True, "format_ok": ok, "format": fmt})
+
+
 @app.get("/api/eval")
 def api_eval():
     """
@@ -848,8 +864,36 @@ function render() {
   }
 
   const reg = $('reg');
+
+  // 即時校驗：輸入框或地區一改，按鈕狀態立刻跟著變
+  let checkTimer = null;
+  const revalidate = () => {
+    clearTimeout(checkTimer);
+    checkTimer = setTimeout(async () => {
+      const t = $('txt').value.trim();
+      const r = ($('reg') && $('reg').value) || '';
+      const res = await fetch('/api/check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: t, region: r }),
+      });
+      const j = await res.json();
+      const bp = $('btn-pass');
+      if (!bp) return;
+      bp.className = j.format_ok ? 'primary' : 'caution';
+      bp.innerHTML = (j.format_ok ? '✅ 正確，下一張' : '⚠️ 格式不符，仍提交')
+        + ' <kbd>Enter</kbd>';
+      const tag = document.querySelector('.card .tag');
+      if (tag) {
+        tag.className = 'tag ' + (j.format_ok ? 't-ok' : 't-bad');
+        tag.textContent = j.format_ok ? j.format : '格式不符';
+      }
+    }, 220);
+  };
+  if ($('txt')) $('txt').addEventListener('input', revalidate);
   if (reg) reg.onchange = () => {
     reg.classList.toggle('edited', reg.value !== it.region_final);
+    revalidate();
   };
 
   const txt = $('txt');
