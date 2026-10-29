@@ -364,11 +364,15 @@ def build_items() -> list[dict]:
     #   1. 未核對優先
     #   2. 「有 OCR 文字但格式不符」最優先 —— 只需改一兩個字符，處理最快
     #   3. 空結果排到最後 —— 要從零輸入，成本最高
-    #   4. 同組內 OCR 置信度低的優先（更可能錯）
+    #   4. 模糊圖排最後：人眼也讀不出，核對無意義
+    #
+    # 排序單位是「原圖」而不是「單塊牌」。
+    # 先前逐塊排序，同一張圖的三塊牌會被 OCR 置信度打散到列表各處，
+    # 核對完一塊要隔很久才遇到同圖的另一塊，每次都重新辨識車輛。
+    # 現在同圖的牌連續排列，組間再按組內最優先那塊的品質決定先後。
     def key(it):
         has_text = 1 if it["text"] else 0
         fixable = 1 if (has_text and not it["format_ok"]) else 0
-        # 模糊圖（清晰度 < 門檻）排最後：人眼也讀不出，核對無意義
         blurry = 1 if it["clarity"] < CLARITY_BLUR else 0
         return (
             blurry,
@@ -378,8 +382,27 @@ def build_items() -> list[dict]:
             it["ocr_conf"],
             it["file"],
         )
-    items.sort(key=key)
-    return items
+
+    # 每一塊牌在組內的固定位置：用檢測序號（file 名裡的 __N__）
+    def plate_order(it) -> int:
+        m = re.search(r"__(\d+)__", it["file"])
+        return int(m.group(1)) if m else 0
+
+    groups: dict[str, list[dict]] = {}
+    for it in items:
+        groups.setdefault(it["src"], []).append(it)
+
+    ordered: list[dict] = []
+    for src in sorted(groups, key=lambda s: min(key(g) for g in groups[s])):
+        group = sorted(groups[src], key=plate_order)
+        # 標上「本圖第幾塊 / 共幾塊」，供卡片顯示
+        total = len(group)
+        for n, g in enumerate(group, 1):
+            g["plate_no"] = n
+            g["plate_total"] = total
+        ordered.extend(group)
+
+    return ordered
 
 
 def stats() -> dict:
@@ -852,7 +875,9 @@ function render() {
           <div>OCR 置信 <b>${(it.ocr_conf||0).toFixed(3)}</b>
             · 清晰度 <b style="color:${it.clarity < 40 ? '#ef7a86' : (it.clarity < 100 ? '#e0b44e' : '#5ec98a')}">${(it.clarity||0).toFixed(0)}</b></div>
           <div>OCR 原始 <b>${esc((it.ocr_raw||[]).join(' | ') || '(空)')}</b></div>
-          <div class="hint">第 ${IDX+1} / ${ITEMS.length} 張</div>
+          <div class="hint">第 ${IDX+1} / ${ITEMS.length} 張${(it.plate_total > 1)
+            ? ' · <b style="color:#8fb8f0">本圖第 ' + it.plate_no + ' / ' + it.plate_total + ' 塊</b>'
+            : ''}</div>
         </div>
       </div>
 
@@ -1041,7 +1066,10 @@ async function submit(action) {
   it.region_final = region || it.region_final;
   // 同步更新同圖其他框的顯示狀態
   (it.siblings || []).forEach(s => {
-    if (s.file === it.file) { s.verified = true; s.text = text; s.region = it.region_final; }
+    if (s.file === it.file) {
+      s.verified = true; s.text = text; s.region = it.region_final;
+      s.action = action;
+    }
   });
 
   // 「無法辨識」只影響當前這一塊牌，同圖其他牌仍要逐個核對
