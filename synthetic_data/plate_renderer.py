@@ -19,6 +19,12 @@ FONT_PATHS = {
 #: 2017 版《外交車輛管理辦法》已把「使」「領」由紅色改為白色置於末位）
 _RED_SUFFIX_CHARS = frozenset({"警"})
 
+#: 分隔圓點字符（內地「粵A·12345」、粵Z「粵Z·1234港」中間的那一點）。
+#: 字體自帶的 U+00B7 基線偏低，故改用繪圖自畫，置於垂直中央。
+_DOT_CHARS = frozenset({"·", "•", "・"})
+#: 圓點佔用的水平寬度（相對字號）
+DOT_WIDTH_RATIO = 0.42
+
 
 def get_font(size: int, font_name: str = "chinese_plate") -> ImageFont.FreeTypeFont:
     """獲取字體"""
@@ -115,6 +121,21 @@ def render_plate(
     return img_bgr
 
 
+def _char_width(font, ch: str, font_size: int) -> int:
+    """單個字符的繪製寬度。分隔圓點用固定寬度（字體自帶的過寬且偏低）。"""
+    if ch in _DOT_CHARS:
+        return max(6, int(font_size * DOT_WIDTH_RATIO))
+    bbox = font.getbbox(ch)
+    return bbox[2] - bbox[0]
+
+
+def _draw_dot(draw: ImageDraw.Draw, cx: int, cy: int, font_size: int,
+              color) -> None:
+    """在 (cx, cy) 畫分隔圓點，半徑約字號的 1/9。"""
+    r = max(2, font_size // 9)
+    draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=color)
+
+
 def _render_single_plate(draw: ImageDraw.Draw, text: str, spec: PlateSpec):
     """渲染單層車牌 - 自動縮放字體以適應板面"""
     font_size = spec.font_size
@@ -125,10 +146,7 @@ def _render_single_plate(draw: ImageDraw.Draw, text: str, spec: PlateSpec):
     usable_h = spec.height - 2 * spec.margin_y
 
     while font_size > 20:
-        total_width = 0
-        for ch in text:
-            bbox = font.getbbox(ch)
-            total_width += (bbox[2] - bbox[0])
+        total_width = sum(_char_width(font, ch, font_size) for ch in text)
         total_width += spec.char_spacing * max(0, len(text) - 1)
 
         if total_width <= usable_w:
@@ -140,8 +158,7 @@ def _render_single_plate(draw: ImageDraw.Draw, text: str, spec: PlateSpec):
     char_widths = []
     total_width = 0
     for ch in text:
-        bbox = font.getbbox(ch)
-        w = bbox[2] - bbox[0]
+        w = _char_width(font, ch, font_size)
         char_widths.append(w)
         total_width += w
     total_width += spec.char_spacing * max(0, len(text) - 1)
@@ -152,16 +169,22 @@ def _render_single_plate(draw: ImageDraw.Draw, text: str, spec: PlateSpec):
 
     # 繪製每個字符
     for i, ch in enumerate(text):
-        bbox = font.getbbox(ch)
-        ch_h = bbox[3] - bbox[1]
-        ch_y = y + (font_size - ch_h) // 2 - bbox[1]
         # 尾字／前綴特殊顏色：警（紅尾字）；軍車武警消防（紅前綴）
         color = spec.text_color
         if spec.suffix_color and i == len(text) - 1 and ch in _RED_SUFFIX_CHARS:
             color = spec.suffix_color
         elif spec.prefix_color and i < spec.prefix_len:
             color = spec.prefix_color
-        draw.text((x, ch_y), ch, fill=color, font=font)
+
+        if ch in _DOT_CHARS:
+            # 分隔圓點：畫在垂直中央，不用字體字形
+            _draw_dot(draw, x + char_widths[i] // 2, spec.height // 2,
+                      font_size, color)
+        else:
+            bbox = font.getbbox(ch)
+            ch_h = bbox[3] - bbox[1]
+            ch_y = y + (font_size - ch_h) // 2 - bbox[1]
+            draw.text((x, ch_y), ch, fill=color, font=font)
         x += char_widths[i] + spec.char_spacing
 
 
@@ -190,10 +213,8 @@ def _render_double_plate(draw: ImageDraw.Draw, lines: list, spec: PlateSpec):
 
         # 自動縮放
         while font_size > 16:
-            total_width = 0
-            for ch in line_text:
-                bbox = font.getbbox(ch)
-                total_width += (bbox[2] - bbox[0])
+            total_width = sum(_char_width(font, ch, font_size)
+                              for ch in line_text)
             total_width += spec.char_spacing * max(0, len(line_text) - 1)
             if total_width <= usable_w:
                 break
@@ -204,8 +225,7 @@ def _render_double_plate(draw: ImageDraw.Draw, lines: list, spec: PlateSpec):
         char_widths = []
         total_width = 0
         for ch in line_text:
-            bbox = font.getbbox(ch)
-            w = bbox[2] - bbox[0]
+            w = _char_width(font, ch, font_size)
             char_widths.append(w)
             total_width += w
         total_width += spec.char_spacing * max(0, len(line_text) - 1)
@@ -216,10 +236,16 @@ def _render_double_plate(draw: ImageDraw.Draw, lines: list, spec: PlateSpec):
 
         # 繪製字符
         for i, ch in enumerate(line_text):
-            bbox = font.getbbox(ch)
-            ch_h = bbox[3] - bbox[1]
-            ch_y = y + (font_size - ch_h) // 2 - bbox[1]
-            draw.text((x, ch_y), ch, fill=spec.text_color, font=font)
+            if ch in _DOT_CHARS:
+                # 分隔圓點：置於該行垂直中央
+                _draw_dot(draw, x + char_widths[i] // 2,
+                          y_offset + layer_height // 2,
+                          font_size, spec.text_color)
+            else:
+                bbox = font.getbbox(ch)
+                ch_h = bbox[3] - bbox[1]
+                ch_y = y + (font_size - ch_h) // 2 - bbox[1]
+                draw.text((x, ch_y), ch, fill=spec.text_color, font=font)
             x += char_widths[i] + spec.char_spacing
 
 

@@ -517,7 +517,8 @@ def generate_gangao_plate() -> Tuple[str, PlateSpec]:
     suffix = random.choice(GANGAO_SUFFIX)
     n_mid = random.choices([3, 4], weights=[30, 70], k=1)[0]
     mid = "".join(random.choices(MAINLAND_ALPHA + string.digits, k=n_mid))
-    return f"粤Z{mid}{suffix}", GANGAO_SINGLE
+    # 牌面為「粵Z·1234港」，中間有分隔圓點
+    return f"粤Z·{mid}{suffix}", GANGAO_SINGLE
 
 
 def generate_hk_plate() -> Tuple[str, PlateSpec]:
