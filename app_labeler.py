@@ -455,9 +455,15 @@ def api_verify():
     verified = load_json(d / "verified.json", {})
 
     if action == "pass":
-        # 用當前顯示的 OCR 文字作為最終值
+        # 使用者直接按 Enter 確認。但若他先在輸入框改了字再按 Enter，
+        # 以前會用伺服器上的舊值蓋掉他的修改（改了等於白改）。
+        # 現在：前端傳來的值與伺服器不同，就視為「已修正」。
         cur = next((i for i in build_items() if i["file"] == f), None)
-        text = (cur or {}).get("text", text)
+        cur_text = (cur or {}).get("text", "")
+        if text and text != cur_text:
+            action = "correct"          # 保留使用者的修改
+        else:
+            text = cur_text
     elif action in ("unusable", "not_plate"):
         # unusable = 是車牌但糊到看不清；not_plate = 檢測框錯了，畫面裡沒車牌
         # 兩者都清空 text，但分開記錄 —— not_plate 是 detector 的負樣本，
@@ -1117,6 +1123,15 @@ document.querySelectorAll('.filters button').forEach(b => {
 });
 
 document.addEventListener('keydown', e => {
+  // 焦點在輸入框／下拉時，左右鍵要留給游標移動與選項切換，
+  // 不能拿來翻頁 —— 否則修改車牌號碼時按方向鍵，照片會突然跳走。
+  const tag = (e.target && e.target.tagName || '').toLowerCase();
+  const inField = tag === 'input' || tag === 'textarea' || tag === 'select'
+                  || (e.target && e.target.isContentEditable);
+  if (inField && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+    return;                       // 不 preventDefault，讓瀏覽器正常處理
+  }
+
   if (e.key === 'Enter' && !e.ctrlKey && !e.metaKey) {
     e.preventDefault(); submit('pass');
   } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
