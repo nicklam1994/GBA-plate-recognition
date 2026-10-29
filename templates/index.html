@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🦊 四地車牌識別 - WebCam 測試</title>
+    <title data-i18n="app.docTitle">四地車牌識別 - WebCam 測試</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="/static/js/i18n.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -14,6 +15,7 @@
             min-height: 100vh;
         }
         .header {
+            position: relative;
             background: rgba(0,0,0,0.3);
             padding: 20px;
             text-align: center;
@@ -21,6 +23,39 @@
         }
         .header h1 { font-size: 24px; color: #e94560; }
         .header p { color: #aaa; margin-top: 5px; font-size: 14px; }
+
+        /* 語言切換 */
+        .lang-switch {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            display: flex;
+            gap: 4px;
+            background: rgba(15,52,96,0.6);
+            border: 1px solid #0f3460;
+            border-radius: 8px;
+            padding: 3px;
+        }
+        .lang-switch button {
+            min-width: 34px;
+            padding: 5px 8px;
+            border: none;
+            border-radius: 5px;
+            background: transparent;
+            color: #8fa8c8;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.18s;
+        }
+        .lang-switch button:hover { color: #fff; background: rgba(233,69,96,0.25); }
+        .lang-switch button.active {
+            background: #e94560;
+            color: #fff;
+        }
+        @media (max-width: 768px) {
+            .lang-switch { top: 12px; right: 12px; }
+        }
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -149,6 +184,11 @@
             margin-top: 2px;
             font-weight: 600;
         }
+        .empty-hint {
+            color: #666;
+            text-align: center;
+            font-size: 13px;
+        }
         .plate-meta {
             font-size: 11px;
             color: #888;
@@ -184,8 +224,13 @@
 </head>
 <body>
     <div class="header">
-        <h1>🦊 四地車牌識別系統</h1>
-        <p>內地 · 粵Z兩地牌 · 香港 · 澳門 | WebCam 實時測試</p>
+        <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" data-lang-btn="zh-TW" onclick="I18N.setLang('zh-TW')" title="繁體中文">繁</button>
+            <button type="button" data-lang-btn="zh-CN" onclick="I18N.setLang('zh-CN')" title="简体中文">简</button>
+            <button type="button" data-lang-btn="en" onclick="I18N.setLang('en')" title="English">EN</button>
+        </div>
+        <h1>🦊 <span data-i18n="app.title">四地車牌識別系統</span></h1>
+        <p data-i18n="app.subtitle">內地 · 粵Z兩地牌 · 香港 · 澳門 | WebCam 實時測試</p>
     </div>
 
     <div class="container">
@@ -196,10 +241,10 @@
                 <canvas id="captureCanvas" style="display:none;"></canvas>
             </div>
             <div class="controls">
-                <button class="btn-start" id="btnStart" onclick="startWebcam()">📷 啟動 WebCam</button>
-                <button class="btn-stop" id="btnStop" onclick="stopWebcam()" disabled>⏹ 停止</button>
-                <button class="btn-toggle" id="btnDetect" onclick="toggleDetection()">🔍 開始識別</button>
-                <button class="btn-upload" onclick="document.getElementById('fileInput').click()">📁 上傳圖片</button>
+                <button class="btn-start" id="btnStart" onclick="startWebcam()">📷 <span data-i18n="btn.startCam">啟動 WebCam</span></button>
+                <button class="btn-stop" id="btnStop" onclick="stopWebcam()" disabled>⏹ <span data-i18n="btn.stop">停止</span></button>
+                <button class="btn-toggle" id="btnDetect" onclick="toggleDetection()">🔍 <span id="btnDetectLabel" data-i18n="btn.startDetect">開始識別</span></button>
+                <button class="btn-upload" onclick="document.getElementById('fileInput').click()">📁 <span data-i18n="btn.upload">上傳圖片</span></button>
                 <input type="file" id="fileInput" accept="image/*" onchange="handleUpload(event)">
             </div>
             <div class="fps-bar">
@@ -209,46 +254,46 @@
 
         <div class="sidebar">
             <div class="panel">
-                <h3>📡 連接狀態</h3>
+                <h3>📡 <span data-i18n="panel.status">連接狀態</span></h3>
                 <div class="status">
                     <div class="status-dot" id="statusDot"></div>
-                    <span id="statusText">未連接</span>
+                    <span id="statusText" data-i18n="status.disconnected">未連接</span>
                 </div>
             </div>
 
             <div class="panel">
-                <h3>📊 性能統計</h3>
+                <h3>📊 <span data-i18n="panel.stats">性能統計</span></h3>
                 <div class="stats">
                     <div class="stat-item">
                         <div class="stat-value" id="fpsValue">0</div>
-                        <div class="stat-label">FPS</div>
+                        <div class="stat-label" data-i18n="stat.fps">FPS</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value" id="latencyValue">0</div>
-                        <div class="stat-label">延遲 (ms)</div>
+                        <div class="stat-label" data-i18n="stat.latency">延遲 (ms)</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value" id="platesValue">0</div>
-                        <div class="stat-label">檢測車牌</div>
+                        <div class="stat-label" data-i18n="stat.plates">檢測車牌</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value" id="framesValue">0</div>
-                        <div class="stat-label">處理幀數</div>
+                        <div class="stat-label" data-i18n="stat.frames">處理幀數</div>
                     </div>
                 </div>
             </div>
 
             <div class="panel">
-                <h3>🚗 識別結果</h3>
+                <h3>🚗 <span data-i18n="panel.results">識別結果</span></h3>
                 <div class="plate-list" id="plateList">
-                    <p style="color: #666; text-align: center; font-size: 13px;">暫無識別結果</p>
+                    <p class="empty-hint" data-i18n="result.empty">暫無識別結果</p>
                 </div>
             </div>
 
             <div class="panel">
-                <h3>📁 上傳測試</h3>
+                <h3>📁 <span data-i18n="panel.upload">上傳測試</span></h3>
                 <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-                    <p>點擊上傳車牌圖片<br>或拖拽到此處</p>
+                    <p><span data-i18n="upload.hint">點擊上傳車牌圖片</span><br><span data-i18n="upload.orDrag">或拖拽到此處</span></p>
                 </div>
             </div>
         </div>
@@ -267,28 +312,36 @@
         // 初始化 WebSocket
         function initSocket() {
             socket = io();
-            
+
             socket.on('connect', () => {
                 document.getElementById('statusDot').classList.add('connected');
-                document.getElementById('statusText').textContent = '已連接';
+                setStatus('status.connected');
             });
-            
+
             socket.on('disconnect', () => {
                 document.getElementById('statusDot').classList.remove('connected');
-                document.getElementById('statusText').textContent = '已斷開';
+                setStatus('status.closed');
             });
-            
+
             socket.on('result', (data) => {
                 handleResult(data);
             });
-            
+
             socket.on('test_result', (data) => {
                 handleTestResult(data);
             });
-            
+
             socket.on('error', (data) => {
-                console.error('服務器錯誤:', data.message);
+                console.error('server error:', data.message);
             });
+        }
+
+        // 設定狀態文字（同時記住 key，語言切換時可重新翻譯）
+        let currentStatusKey = 'status.disconnected';
+        function setStatus(key) {
+            currentStatusKey = key;
+            document.getElementById('statusText').setAttribute('data-i18n', key);
+            document.getElementById('statusText').textContent = I18N.t(key);
         }
 
         // 啟動 WebCam
@@ -300,9 +353,9 @@
                 document.getElementById('webcam').srcObject = webcamStream;
                 document.getElementById('btnStart').disabled = true;
                 document.getElementById('btnStop').disabled = false;
-                document.getElementById('statusText').textContent = 'WebCam 已啟動';
+                setStatus('status.camOn');
             } catch (err) {
-                alert('無法訪問 WebCam: ' + err.message);
+                alert(I18N.t('err.camDenied') + ': ' + err.message);
             }
         }
 
@@ -315,21 +368,26 @@
             if (isDetecting) toggleDetection();
             document.getElementById('btnStart').disabled = false;
             document.getElementById('btnStop').disabled = true;
-            document.getElementById('statusText').textContent = '已連接';
+            setStatus('status.connected');
         }
 
         // 切換識別
         function toggleDetection() {
             isDetecting = !isDetecting;
             const btn = document.getElementById('btnDetect');
-            
+            const label = document.getElementById('btnDetectLabel');
+
             if (isDetecting) {
-                btn.textContent = '⏸ 暫停識別';
                 btn.classList.add('active');
+                btn.firstChild.textContent = '⏸ ';
+                label.setAttribute('data-i18n', 'btn.pauseDetect');
+                label.textContent = I18N.t('btn.pauseDetect');
                 startDetection();
             } else {
-                btn.textContent = '🔍 開始識別';
                 btn.classList.remove('active');
+                btn.firstChild.textContent = '🔍 ';
+                label.setAttribute('data-i18n', 'btn.startDetect');
+                label.textContent = I18N.t('btn.startDetect');
                 stopDetection();
             }
         }
@@ -339,17 +397,18 @@
             const video = document.getElementById('webcam');
             const canvas = document.getElementById('captureCanvas');
             const ctx = canvas.getContext('2d');
-            
+
             frameInterval = setInterval(() => {
                 if (video.readyState === video.HAVE_ENOUGH_DATA) {
                     canvas.width = video.videoWidth;
                     canvas.height = video.videoHeight;
                     ctx.drawImage(video, 0, 0);
-                    
+
                     const imageData = canvas.toDataURL('image/jpeg', 0.7);
                     const base64 = imageData.split(',')[1];
-                    
-                    socket.emit('frame', { image: base64 });
+
+                    // 帶上目前語言，後端據此轉換省市名
+                    socket.emit('frame', { image: base64, lang: I18N.lang });
                     lastFrameTime = Date.now();
                     stats.frames++;
                 }
@@ -427,11 +486,11 @@
         function handleUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
-            
+
             const reader = new FileReader();
             reader.onload = (e) => {
                 const base64 = e.target.result.split(',')[1];
-                socket.emit('test_image', { image: base64 });
+                socket.emit('test_image', { image: base64, lang: I18N.lang });
             };
             reader.readAsDataURL(file);
         }
@@ -447,11 +506,16 @@
             document.getElementById('fpsFill').style.width = fpsPercent + '%';
         }
 
+        // 記住最後一次結果，語言切換時重新渲染
+        let lastPlates = [];
+
         // 更新車牌列表
         function updatePlateList(plates) {
+            lastPlates = plates || [];
             const list = document.getElementById('plateList');
+
             if (!plates || plates.length === 0) {
-                list.innerHTML = '<p style="color: #666; text-align: center; font-size: 13px;">暫無識別結果</p>';
+                list.innerHTML = `<p class="empty-hint">${I18N.t('result.empty')}</p>`;
                 return;
             }
 
@@ -462,21 +526,16 @@
                 mo: '#9c27b0',
                 unknown: '#888'
             };
-            const regionName = {
-                mainland: '內地',
-                gangao: '粵Z',
-                hk: '香港',
-                mo: '澳門',
-                unknown: '未知'
-            };
 
             list.innerHTML = plates.map(p => {
                 const rc = regionColor[p.region] || regionColor.unknown;
-                const rn = regionName[p.region] || p.region;
+                const rn = I18N.t('region.' + p.region, p.region);
                 const valid = p.is_valid
                     ? '<span style="color:#4caf50">✓</span>'
                     : `<span style="color:#e94560" title="${p.validation_note || ''}">✗</span>`;
-                const dbl = p.is_double ? ' <span style="color:#ff9800;font-size:10px">雙行</span>' : '';
+                const dbl = p.is_double
+                    ? ` <span style="color:#ff9800;font-size:10px">${I18N.t('result.double')}</span>`
+                    : '';
                 // 省 · 市（僅內地/粵Z 有值）
                 let loc = '';
                 if (p.province) {
@@ -486,7 +545,8 @@
                 // 能源類型（僅內地新能源牌）
                 let energy = '';
                 if (p.energy) {
-                    const isPure = p.energy_note && p.energy_note.indexOf('純電動') === 0;
+                    const isPure = p.energy_note && p.energy_note.indexOf('純電動') === 0 ||
+                                   p.energy_note && p.energy_note.indexOf('纯电动') === 0;
                     const ec = isPure ? '#00e676' : '#ffb300';
                     energy = `<div class="plate-energy" style="color:${ec}">⚡ ${p.energy} · ${p.energy_note}</div>`;
                 }
@@ -499,19 +559,37 @@
                         <div style="font-size: 11px; color: #888;">
                             <span style="color:${rc}">${rn}</span> ${valid}${dbl}
                             ${p.color ? '· ' + p.color : ''}
-                            ${p.correction_applied ? '· 已糾正' : ''}
+                            ${p.correction_applied ? '· ' + I18N.t('result.corrected') : ''}
                         </div>
                     </div>
                     <div class="plate-meta">
-                        <div>辨識: ${(p.confidence * 100).toFixed(1)}%</div>
-                        <div>檢測: ${(p.detect_confidence * 100).toFixed(0)}%</div>
+                        <div>${I18N.t('result.recognize')}: ${(p.confidence * 100).toFixed(1)}%</div>
+                        <div>${I18N.t('result.detect')}: ${(p.detect_confidence * 100).toFixed(0)}%</div>
                     </div>
                 </div>
             `}).join('');
         }
 
+        // 語言切換：重新翻譯靜態文字 + 重新渲染結果列表
+        I18N.onChange(() => {
+            I18N.apply(document);
+            // 狀態文字依目前的 key 重翻
+            if (currentStatusKey) setStatus(currentStatusKey);
+            // 結果列表重渲染
+            if (lastPlates.length) updatePlateList(lastPlates);
+            // 識別按鈕標籤依目前狀態重翻
+            const label = document.getElementById('btnDetectLabel');
+            if (label) {
+                const key = isDetecting ? 'btn.pauseDetect' : 'btn.startDetect';
+                label.setAttribute('data-i18n', key);
+                label.textContent = I18N.t(key);
+            }
+            console.log('[i18n] language switched to', I18N.lang);
+        });
+
         // 初始化
         window.onload = () => {
+            I18N.apply(document);
             initSocket();
         };
     </script>

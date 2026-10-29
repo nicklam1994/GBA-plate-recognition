@@ -26,6 +26,8 @@ from flask_socketio import SocketIO, emit
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
+from gba_plate.i18n import DEFAULT_LANG, localize_plate_dict  # noqa: E402
+
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "gba-plate-recognition-web"
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -135,6 +137,8 @@ def handle_frame(data):
     if img is None:
         return
 
+    lang = data.get("lang", DEFAULT_LANG)
+
     t0 = time.perf_counter()
     try:
         results = alpr.process(img)
@@ -148,9 +152,10 @@ def handle_frame(data):
         "result",
         {
             "image": encode_jpeg_base64(draw_results(img, results), 80),
-            "plates": [r.to_dict() for r in results],
+            "plates": [localize_plate_dict(r.to_dict(), lang) for r in results],
             "process_time": round(process_ms, 2),
             "num_plates": len(results),
+            "lang": lang,
         },
     )
 
@@ -167,6 +172,8 @@ def handle_test_image(data):
         emit("error", {"message": "無法解碼圖片"})
         return
 
+    lang = data.get("lang", DEFAULT_LANG)
+
     t0 = time.perf_counter()
     try:
         results = alpr.process(img)
@@ -180,9 +187,10 @@ def handle_test_image(data):
         "test_result",
         {
             "image": encode_jpeg_base64(draw_results(img, results), 90),
-            "plates": [r.to_dict() for r in results],
+            "plates": [localize_plate_dict(r.to_dict(), lang) for r in results],
             "process_time": round(process_ms, 2),
             "num_plates": len(results),
+            "lang": lang,
         },
     )
 

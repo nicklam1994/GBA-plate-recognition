@@ -45,3 +45,7 @@ traitlets
 typing-extensions
 urllib3
 wcwidth
+# Web UI + i18n
+flask
+flask-socketio
+zhconv

@@ -122,6 +122,7 @@ GBA-plate-recognition/
 ├── gba_plate/                    # ★ 分層架構（新，推薦使用）
 │   ├── base.py                   #   ABC 抽象 + 結果 dataclass（Region/Detection/OcrResult/PlateResult）
 │   ├── alpr.py                   #   ALPR 組合類（唯一對外入口）
+│   ├── i18n.py                   #   繁簡轉換與語言正規化（zhconv）
 │   ├── detectors/
 │   │   └── yolo_plate.py         #   YOLOv5 檢測器（支援 single_double / region 兩種類別語義）
 │   ├── preprocess/
@@ -139,11 +140,53 @@ GBA-plate-recognition/
 ├── weights/
 │   ├── plate_detect.pt           #   檢測 1.12 MB
 │   └── plate_rec_color.pth       #   識別 0.72 MB（180,435 參數）
-├── web_ui.py                     # WebCam 實時識別（218 行，只調 ALPR）
-├── templates/index.html          # Web UI 前端
+├── web_ui.py                     # WebCam 實時識別（只調 ALPR）
+├── templates/index.html          # Web UI 前端（data-i18n 綁定）
+├── static/js/i18n.js             # 三語言資源包（繁/簡/英）
 ├── detect_plate.py               # 舊版單體腳本（保留對照，新代碼請用 gba_plate）
 └── test_data/                    # 真實數據（不入庫）
 ```
+
+### 多語言（i18n）
+
+Web UI 支援 **繁體中文（預設）/ 簡體中文 / English**，右上角切換，選擇存 localStorage。
+
+| 層 | 檔案 | 職責 |
+|----|------|------|
+| 前端 UI 文字 | `static/js/i18n.js` | 三語言資源包 + `data-i18n` 綁定 + localStorage |
+| 後端動態文字 | `gba_plate/i18n.py` | 省市名 / 能源說明 / 車牌顏色的繁簡轉換（zhconv）|
+
+省市名會跟著語言切換：
+
+| 語言 | 顯示 |
+|------|------|
+| 繁 | 上海市 · 上海市區 · 綠 · 非純電動（混動/燃料電池）|
+| 简 | 上海市 · 上海市区 · 绿 · 非纯电动（混动/燃料电池）|
+| EN | UI 文字英文；地名保留中文（無英文地名表）|
+
+前端用法：
+
+```html
+<script src="/static/js/i18n.js"></script>
+<span data-i18n="btn.startCam"></span>
+```
+
+```javascript
+I18N.t("stat.fps");            // "FPS"
+I18N.setLang("zh-CN");         // 切換並存 localStorage
+I18N.onChange(lang => {...});  // 切換回調
+```
+
+後端用法：
+
+```python
+from gba_plate.i18n import localize_plate_dict, normalize_lang
+normalize_lang("zh_Hans")                    # 'zh-CN'
+localize_plate_dict(result.to_dict(), "zh-CN")  # 省市名轉簡體
+```
+
+`normalize_lang` 接受 `zh-TW` / `zh-tw` / `zh_Hant` / `zh-HK` / `zh-MO` / `tw` / `cht` /
+`zh-CN` / `zh_Hans` / `cn` / `chs` / `en` / `en-US` 等別名，無法識別時退回繁體。
 
 ### 分層設計理由
 
