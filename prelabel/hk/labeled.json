@@ -12,8 +12,8 @@
    1412
   ],
   "crop_wh": [
-   320,
-   204
+   238,
+   152
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -74,11 +74,11 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "RU·8534"
+   "RU8534"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.962,
-  "paddle_mean_conf": 0.962,
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
   "text_clean": "RU8534",
   "valid": true,
   "format": "HK",
@@ -97,8 +97,8 @@
    1589
   ],
   "crop_wh": [
-   320,
-   157
+   310,
+   153
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -154,20 +154,21 @@
    2807
   ],
   "crop_wh": [
-   320,
-   226
+   218,
+   154
   ],
   "double_line_merged": false,
   "paddle_raw": [
+   "TK",
    "7687"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "7687",
-  "valid": false,
-  "format": "",
-  "lines": 1
+  "text_clean": "TK7687",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
  },
  {
   "file": "IMG-20260802-WA0014__0__hk.jpg",
@@ -210,8 +211,8 @@
    2984
   ],
   "crop_wh": [
-   320,
-   230
+   239,
+   172
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -219,8 +220,8 @@
    "7687"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.997,
+  "paddle_mean_conf": 0.999,
   "text_clean": "TK7687",
   "valid": true,
   "format": "HK",
@@ -302,16 +303,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "TK",
-   "9770"
+   "TK19770"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.962,
-  "paddle_mean_conf": 0.981,
-  "text_clean": "TK9770",
-  "valid": true,
-  "format": "HK",
-  "lines": 2
+  "paddle_confidence": 0.949,
+  "paddle_mean_conf": 0.949,
+  "text_clean": "TK19770",
+  "valid": false,
+  "format": "",
+  "lines": 1
  },
  {
   "file": "IMG-20260821-WA0050__0__hk.jpg",
@@ -334,8 +334,8 @@
    "YR7164"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.996,
-  "paddle_mean_conf": 0.996,
+  "paddle_confidence": 0.953,
+  "paddle_mean_conf": 0.953,
   "text_clean": "YR7164",
   "valid": true,
   "format": "HK",
@@ -354,8 +354,8 @@
    1161
   ],
   "crop_wh": [
-   320,
-   231
+   189,
+   137
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -383,8 +383,8 @@
    1390
   ],
   "crop_wh": [
-   320,
-   231
+   160,
+   115
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -392,8 +392,8 @@
    "7164"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.983,
-  "paddle_mean_conf": 0.992,
+  "paddle_confidence": 0.99,
+  "paddle_mean_conf": 0.995,
   "text_clean": "YR7164",
   "valid": true,
   "format": "HK",
@@ -421,8 +421,8 @@
    "7164"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.975,
-  "paddle_mean_conf": 0.987,
+  "paddle_confidence": 0.961,
+  "paddle_mean_conf": 0.98,
   "text_clean": "YR7164",
   "valid": true,
   "format": "HK",
@@ -441,20 +441,21 @@
    1170
   ],
   "crop_wh": [
-   320,
-   205
+   251,
+   161
   ],
   "double_line_merged": false,
   "paddle_raw": [
+   "YS",
    "8696"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.987,
-  "paddle_mean_conf": 0.987,
-  "text_clean": "8696",
-  "valid": false,
-  "format": "",
-  "lines": 1
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
  },
  {
   "file": "IMG-20260831-WA0230__0__hk.jpg",
@@ -474,15 +475,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "YS",
-   "8696"
+   "8696",
+   "YS"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.939,
-  "paddle_mean_conf": 0.97,
-  "text_clean": "YS8696",
-  "valid": true,
-  "format": "HK",
+  "paddle_confidence": 0.993,
+  "paddle_mean_conf": 0.997,
+  "text_clean": "8696YS",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -503,15 +504,16 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "YS8696"
+   "8696",
+   "YS"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "YS8696",
-  "valid": true,
-  "format": "HK",
-  "lines": 1
+  "text_clean": "8696YS",
+  "valid": false,
+  "format": "",
+  "lines": 2
  },
  {
   "file": "IMG-20260902-WA0404__1__hk.jpg",
@@ -531,15 +533,16 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "YS8696"
+   "8696",
+   "YS"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "YS8696",
-  "valid": true,
-  "format": "HK",
-  "lines": 1
+  "text_clean": "8696YS",
+  "valid": false,
+  "format": "",
+  "lines": 2
  },
  {
   "file": "IMG-20260904-WA0385__0__hk.jpg",
@@ -559,17 +562,17 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "YS",
    "TOYOTA",
-   "Crowm Molors Ld.",
+   "Chower Motors Un",
+   "YS",
    "8696"
   ],
   "paddle_dropped": [
    "TOYOTA",
-   "Crowm Molors Ld."
+   "Chower Motors Un"
   ],
-  "paddle_confidence": 0.791,
-  "paddle_mean_conf": 0.948,
+  "paddle_confidence": 0.681,
+  "paddle_mean_conf": 0.92,
   "text_clean": "YS8696",
   "valid": true,
   "format": "HK",
@@ -593,15 +596,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "YS",
-   "8696"
+   "8696",
+   "YS"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "YS8696",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "8696YS",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -622,15 +625,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "YS",
-   "8696"
+   "8696",
+   "YS"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
-  "paddle_mean_conf": 0.999,
-  "text_clean": "YS8696",
-  "valid": true,
-  "format": "HK",
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "8696YS",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -646,8 +649,8 @@
    1322
   ],
   "crop_wh": [
-   320,
-   159
+   225,
+   112
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -655,8 +658,8 @@
    "3208"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.994,
+  "paddle_mean_conf": 0.997,
   "text_clean": "CC3208",
   "valid": true,
   "format": "HK",
@@ -675,23 +678,21 @@
    903
   ],
   "crop_wh": [
-   320,
-   192
+   160,
+   96
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "S",
-   "8",
-   "49",
-   "19"
+   "8499",
+   "8"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.78,
-  "paddle_mean_conf": 0.942,
-  "text_clean": "S84919",
+  "paddle_confidence": 0.785,
+  "paddle_mean_conf": 0.889,
+  "text_clean": "84998",
   "valid": false,
   "format": "",
-  "lines": 4
+  "lines": 2
  },
  {
   "file": "IMG-20260925-WA0015__0__hk.jpg",
@@ -706,18 +707,21 @@
    989
   ],
   "crop_wh": [
-   320,
-   187
+   160,
+   93
   ],
   "double_line_merged": false,
-  "paddle_raw": [],
+  "paddle_raw": [
+   "PP",
+   "907"
+  ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.0,
-  "text_clean": "",
-  "valid": false,
-  "format": "",
-  "lines": 0
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "PP907",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
  },
  {
   "file": "IMG-20260925-WA0221__0__hk.jpg",
@@ -732,8 +736,8 @@
    1175
   ],
   "crop_wh": [
-   320,
-   189
+   176,
+   104
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -741,7 +745,7 @@
    "9159"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
+  "paddle_confidence": 0.999,
   "paddle_mean_conf": 1.0,
   "text_clean": "HH9159",
   "valid": true,
@@ -766,15 +770,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "WC",
-   "8421"
+   "8421",
+   "WC"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.973,
-  "paddle_mean_conf": 0.987,
-  "text_clean": "WC8421",
-  "valid": true,
-  "format": "HK",
+  "paddle_confidence": 0.986,
+  "paddle_mean_conf": 0.993,
+  "text_clean": "8421WC",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -790,8 +794,8 @@
    1049
   ],
   "crop_wh": [
-   320,
-   190
+   160,
+   95
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -799,8 +803,8 @@
    "8247"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
   "text_clean": "UE8247",
   "valid": true,
   "format": "HK",
@@ -819,8 +823,8 @@
    1084
   ],
   "crop_wh": [
-   320,
-   192
+   213,
+   128
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -848,8 +852,8 @@
    952
   ],
   "crop_wh": [
-   320,
-   192
+   160,
+   96
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -857,8 +861,8 @@
    "447"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.998,
+  "paddle_mean_conf": 0.999,
   "text_clean": "ZJ447",
   "valid": true,
   "format": "HK",
@@ -882,16 +886,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "AFU·",
-   "8306"
+   "FU·8306"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.724,
-  "paddle_mean_conf": 0.862,
-  "text_clean": "AFU8306",
-  "valid": false,
-  "format": "",
-  "lines": 2
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "FU8306",
+  "valid": true,
+  "format": "HK-FV",
+  "lines": 1
  },
  {
   "file": "IMG-20260928-WA0173__0__hk.jpg",
@@ -906,8 +909,8 @@
    1195
   ],
   "crop_wh": [
-   320,
-   192
+   160,
+   96
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -915,8 +918,8 @@
    "4403"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
   "text_clean": "UP4403",
   "valid": true,
   "format": "HK",
@@ -935,8 +938,8 @@
    1075
   ],
   "crop_wh": [
-   320,
-   185
+   160,
+   92
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -964,21 +967,20 @@
    1496
   ],
   "crop_wh": [
-   320,
-   125
+   184,
+   72
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "VB",
-   "8528"
+   "VB 8528"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.968,
+  "paddle_mean_conf": 0.968,
   "text_clean": "VB8528",
   "valid": true,
   "format": "HK",
-  "lines": 2
+  "lines": 1
  },
  {
   "file": "IMG-20260929-WA0005__0__hk.jpg",
@@ -993,8 +995,8 @@
    980
   ],
   "crop_wh": [
-   320,
-   208
+   187,
+   122
   ],
   "double_line_merged": false,
   "paddle_raw": [],
@@ -1019,8 +1021,8 @@
    1034
   ],
   "crop_wh": [
-   320,
-   120
+   160,
+   60
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1029,8 +1031,8 @@
   "paddle_dropped": [
    "粤B·K999X"
   ],
-  "paddle_confidence": 0.998,
-  "paddle_mean_conf": 0.998,
+  "paddle_confidence": 0.997,
+  "paddle_mean_conf": 0.997,
   "text_clean": "",
   "valid": false,
   "format": "粵Z",
@@ -1049,16 +1051,16 @@
    1069
   ],
   "crop_wh": [
-   320,
-   93
+   172,
+   50
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "FV 7839"
+   "FV7839"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.978,
-  "paddle_mean_conf": 0.978,
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
   "text_clean": "FV7839",
   "valid": true,
   "format": "HK-FV",
@@ -1077,20 +1079,21 @@
    1168
   ],
   "crop_wh": [
-   320,
-   203
+   160,
+   101
   ],
   "double_line_merged": false,
   "paddle_raw": [
+   "RU",
    "1625"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "1625",
-  "valid": false,
-  "format": "",
-  "lines": 1
+  "text_clean": "RU1625",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
  },
  {
   "file": "IMG-20260930-WA0019__0__hk.jpg",
@@ -1105,8 +1108,8 @@
    1262
   ],
   "crop_wh": [
-   320,
-   70
+   164,
+   36
   ],
   "double_line_merged": true,
   "paddle_raw": [
@@ -1133,20 +1136,18 @@
    450
   ],
   "crop_wh": [
-   320,
-   216
+   68,
+   46
   ],
   "double_line_merged": false,
-  "paddle_raw": [
-   "T"
-  ],
+  "paddle_raw": [],
   "paddle_dropped": [],
-  "paddle_confidence": 0.309,
-  "paddle_mean_conf": 0.309,
-  "text_clean": "T",
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
   "valid": false,
   "format": "",
-  "lines": 1
+  "lines": 0
  },
  {
   "file": "IMG-20260930-WA0214__1__hk.jpg",
@@ -1161,8 +1162,8 @@
    575
   ],
   "crop_wh": [
-   320,
-   192
+   160,
+   96
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1170,7 +1171,7 @@
    "497"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
+  "paddle_confidence": 0.999,
   "paddle_mean_conf": 1.0,
   "text_clean": "YC497",
   "valid": true,
@@ -1197,12 +1198,12 @@
   "paddle_raw": [
    "2969",
    "XM",
-   "1OYOTA"
+   ""
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.778,
-  "paddle_mean_conf": 0.926,
-  "text_clean": "2969XM1OYOTA",
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.667,
+  "text_clean": "2969XM",
   "valid": false,
   "format": "",
   "lines": 3
@@ -1220,8 +1221,8 @@
    1159
   ],
   "crop_wh": [
-   320,
-   200
+   160,
+   100
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1229,8 +1230,8 @@
    "2475"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.998,
+  "paddle_mean_conf": 0.999,
   "text_clean": "SZ2475",
   "valid": true,
   "format": "HK",
@@ -1249,18 +1250,22 @@
    1107
   ],
   "crop_wh": [
-   320,
-   194
+   158,
+   96
   ],
   "double_line_merged": false,
-  "paddle_raw": [],
+  "paddle_raw": [
+   "F",
+   "PLE",
+   "206"
+  ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.0,
-  "text_clean": "",
+  "paddle_confidence": 0.377,
+  "paddle_mean_conf": 0.701,
+  "text_clean": "FPLE206",
   "valid": false,
   "format": "",
-  "lines": 0
+  "lines": 3
  },
  {
   "file": "IMG-20261001-WA0422__0__hk.jpg",
@@ -1275,8 +1280,8 @@
    535
   ],
   "crop_wh": [
-   320,
-   71
+   144,
+   32
   ],
   "double_line_merged": true,
   "paddle_raw": [
@@ -1303,8 +1308,8 @@
    583
   ],
   "crop_wh": [
-   320,
-   116
+   160,
+   58
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1331,8 +1336,8 @@
    629
   ],
   "crop_wh": [
-   320,
-   95
+   160,
+   47
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1341,8 +1346,8 @@
   "paddle_dropped": [
    "警POLICE"
   ],
-  "paddle_confidence": 0.999,
-  "paddle_mean_conf": 0.999,
+  "paddle_confidence": 0.996,
+  "paddle_mean_conf": 0.996,
   "text_clean": "",
   "valid": false,
   "format": "",
@@ -1361,20 +1366,21 @@
    728
   ],
   "crop_wh": [
-   320,
-   182
+   160,
+   91
   ],
   "double_line_merged": false,
   "paddle_raw": [
+   "XE",
    "6455"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.998,
-  "paddle_mean_conf": 0.998,
-  "text_clean": "6455",
-  "valid": false,
-  "format": "",
-  "lines": 1
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "XE6455",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
  },
  {
   "file": "IMG-20261002-WA0030__0__hk.jpg",
@@ -1417,8 +1423,8 @@
    580
   ],
   "crop_wh": [
-   320,
-   183
+   160,
+   91
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1426,8 +1432,8 @@
    "6216"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.996,
-  "paddle_mean_conf": 0.998,
+  "paddle_confidence": 0.993,
+  "paddle_mean_conf": 0.997,
   "text_clean": "ZY6216",
   "valid": true,
   "format": "HK",
@@ -1446,20 +1452,22 @@
    721
   ],
   "crop_wh": [
-   320,
-   200
+   134,
+   84
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "RS",
+   ":RS",
    "1282"
   ],
-  "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
-  "text_clean": "RS1282",
-  "valid": true,
-  "format": "HK",
+  "paddle_dropped": [
+   ":RS"
+  ],
+  "paddle_confidence": 0.961,
+  "paddle_mean_conf": 0.98,
+  "text_clean": "1282",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -1475,8 +1483,8 @@
    759
   ],
   "crop_wh": [
-   320,
-   151
+   110,
+   52
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1503,8 +1511,8 @@
    1022
   ],
   "crop_wh": [
-   320,
-   206
+   161,
+   104
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1512,7 +1520,7 @@
    "1282"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
+  "paddle_confidence": 0.998,
   "paddle_mean_conf": 0.999,
   "text_clean": "RS1282",
   "valid": true,
@@ -1532,8 +1540,8 @@
    790
   ],
   "crop_wh": [
-   320,
-   56
+   200,
+   35
   ],
   "double_line_merged": true,
   "paddle_raw": [
@@ -1565,16 +1573,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "NV",
    "5276"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
+  "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "NV5276",
-  "valid": true,
-  "format": "HK",
-  "lines": 2
+  "text_clean": "5276",
+  "valid": false,
+  "format": "",
+  "lines": 1
  },
  {
   "file": "IMG-20261002-WA0206__0__hk.jpg",
@@ -1589,20 +1596,18 @@
    1146
   ],
   "crop_wh": [
-   320,
-   49
+   284,
+   44
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   ":TY",
-   "6341"
+   "6341",
+   "TY"
   ],
-  "paddle_dropped": [
-   ":TY"
-  ],
-  "paddle_confidence": 0.81,
-  "paddle_mean_conf": 0.904,
-  "text_clean": "6341",
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "6341TY",
   "valid": false,
   "format": "",
   "lines": 2
@@ -1625,15 +1630,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "UP",
-   "4403"
+   "4403",
+   "UP"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.995,
+  "paddle_confidence": 0.993,
   "paddle_mean_conf": 0.997,
-  "text_clean": "UP4403",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "4403UP",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -1677,8 +1682,8 @@
    979
   ],
   "crop_wh": [
-   320,
-   181
+   182,
+   103
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1686,8 +1691,8 @@
    "9112"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.992,
-  "paddle_mean_conf": 0.996,
+  "paddle_confidence": 0.995,
+  "paddle_mean_conf": 0.997,
   "text_clean": "XM9112",
   "valid": true,
   "format": "HK",
@@ -1706,21 +1711,20 @@
    966
   ],
   "crop_wh": [
-   320,
-   97
+   160,
+   48
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "TEAD",
    "855"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.654,
-  "paddle_mean_conf": 0.827,
-  "text_clean": "TEAD855",
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "855",
   "valid": false,
   "format": "",
-  "lines": 2
+  "lines": 1
  },
  {
   "file": "IMG-20261004-WA0208__1__hk.jpg",
@@ -1735,8 +1739,8 @@
    1197
   ],
   "crop_wh": [
-   320,
-   186
+   160,
+   93
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1764,22 +1768,21 @@
    907
   ],
   "crop_wh": [
-   320,
-   231
+   116,
+   84
   ],
   "double_line_merged": false,
   "paddle_raw": [
    "EA",
-   "55",
-   "8"
+   "855"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.576,
-  "paddle_mean_conf": 0.859,
-  "text_clean": "EA558",
+  "paddle_confidence": 0.98,
+  "paddle_mean_conf": 0.989,
+  "text_clean": "EA855",
   "valid": true,
   "format": "HK",
-  "lines": 3
+  "lines": 2
  },
  {
   "file": "IMG-20261004-WA0209__1__hk.jpg",
@@ -1794,21 +1797,20 @@
    996
   ],
   "crop_wh": [
-   320,
-   236
+   130,
+   96
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "VE",
    "3541"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
-  "paddle_mean_conf": 0.999,
-  "text_clean": "VE3541",
-  "valid": true,
-  "format": "HK",
-  "lines": 2
+  "paddle_confidence": 0.998,
+  "paddle_mean_conf": 0.998,
+  "text_clean": "3541",
+  "valid": false,
+  "format": "",
+  "lines": 1
  },
  {
   "file": "IMG-20261005-WA0061__0__hk.jpg",
@@ -1823,20 +1825,20 @@
    913
   ],
   "crop_wh": [
-   320,
-   57
+   184,
+   33
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "UT",
-   "3701"
+   "3701",
+   "UT"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.999,
   "paddle_mean_conf": 1.0,
-  "text_clean": "UT3701",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "3701UT",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -1852,8 +1854,8 @@
    1173
   ],
   "crop_wh": [
-   320,
-   204
+   160,
+   102
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1861,7 +1863,7 @@
    "3539"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
+  "paddle_confidence": 0.999,
   "paddle_mean_conf": 1.0,
   "text_clean": "UL3539",
   "valid": true,
@@ -1881,8 +1883,8 @@
    1062
   ],
   "crop_wh": [
-   320,
-   93
+   167,
+   49
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1909,8 +1911,8 @@
    570
   ],
   "crop_wh": [
-   320,
-   42
+   160,
+   21
   ],
   "double_line_merged": true,
   "paddle_raw": [],
@@ -1935,19 +1937,19 @@
    768
   ],
   "crop_wh": [
-   320,
-   126
+   160,
+   63
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "HM 78I"
+   "HM781"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.884,
-  "paddle_mean_conf": 0.884,
-  "text_clean": "HM78I",
-  "valid": false,
-  "format": "",
+  "paddle_confidence": 0.905,
+  "paddle_mean_conf": 0.905,
+  "text_clean": "HM781",
+  "valid": true,
+  "format": "HK",
   "lines": 1
  },
  {
@@ -1963,8 +1965,8 @@
    807
   ],
   "crop_wh": [
-   320,
-   124
+   160,
+   62
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -1973,8 +1975,8 @@
   "paddle_dropped": [
    "粤Z·JM45港"
   ],
-  "paddle_confidence": 0.994,
-  "paddle_mean_conf": 0.994,
+  "paddle_confidence": 0.993,
+  "paddle_mean_conf": 0.993,
   "text_clean": "",
   "valid": false,
   "format": "粵Z",
@@ -1993,8 +1995,8 @@
    1113
   ],
   "crop_wh": [
-   320,
-   194
+   102,
+   62
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -2021,8 +2023,8 @@
    1268
   ],
   "crop_wh": [
-   320,
-   187
+   160,
+   93
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -2050,8 +2052,8 @@
    1115
   ],
   "crop_wh": [
-   320,
-   185
+   160,
+   92
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -2059,8 +2061,8 @@
    "3749"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.94,
+  "paddle_mean_conf": 0.97,
   "text_clean": "TP3749",
   "valid": true,
   "format": "HK",
@@ -2079,8 +2081,8 @@
    1089
   ],
   "crop_wh": [
-   320,
-   90
+   222,
+   63
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -2088,8 +2090,8 @@
    "M"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.201,
-  "paddle_mean_conf": 0.598,
+  "paddle_confidence": 0.996,
+  "paddle_mean_conf": 0.997,
   "text_clean": "TE2021M",
   "valid": false,
   "format": "",
@@ -2108,8 +2110,8 @@
    1452
   ],
   "crop_wh": [
-   320,
-   188
+   160,
+   94
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -2117,8 +2119,8 @@
    "6221"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
   "text_clean": "ZT6221",
   "valid": true,
   "format": "HK",
@@ -2146,7 +2148,7 @@
    "XM"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
+  "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
   "text_clean": "9112XM",
   "valid": false,
@@ -2166,20 +2168,20 @@
    1024
   ],
   "crop_wh": [
-   320,
-   49
+   252,
+   39
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "TK",
-   "9770"
+   "9770",
+   "TK"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.967,
-  "paddle_mean_conf": 0.984,
-  "text_clean": "TK9770",
-  "valid": true,
-  "format": "HK",
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "9770TK",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -2200,15 +2202,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "WY",
-   "590"
+   "590",
+   "WY"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "WY590",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "590WY",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -2224,8 +2226,8 @@
    1177
   ],
   "crop_wh": [
-   320,
-   195
+   160,
+   97
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -2233,7 +2235,7 @@
    "5123"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.998,
+  "paddle_confidence": 0.997,
   "paddle_mean_conf": 0.999,
   "text_clean": "SG5123",
   "valid": true,
@@ -2253,8 +2255,8 @@
    996
   ],
   "crop_wh": [
-   320,
-   196
+   160,
+   98
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -2287,15 +2289,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "WZ",
-   "2612"
+   "26T2",
+   "WZ"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.892,
-  "paddle_mean_conf": 0.932,
-  "text_clean": "WZ2612",
-  "valid": true,
-  "format": "HK",
+  "paddle_confidence": 0.879,
+  "paddle_mean_conf": 0.939,
+  "text_clean": "26T2WZ",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -2311,17 +2313,17 @@
    1138
   ],
   "crop_wh": [
-   320,
-   206
+   158,
+   102
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "25"
+   "2959"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.507,
-  "paddle_mean_conf": 0.507,
-  "text_clean": "25",
+  "paddle_confidence": 0.498,
+  "paddle_mean_conf": 0.498,
+  "text_clean": "2959",
   "valid": false,
   "format": "",
   "lines": 1
@@ -2339,21 +2341,20 @@
    1139
   ],
   "crop_wh": [
-   320,
-   72
+   160,
+   36
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "PLK",
-   "2811"
+   "LKT2811"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.594,
-  "paddle_mean_conf": 0.788,
-  "text_clean": "PLK2811",
+  "paddle_confidence": 0.791,
+  "paddle_mean_conf": 0.791,
+  "text_clean": "LKT2811",
   "valid": false,
   "format": "",
-  "lines": 2
+  "lines": 1
  },
  {
   "file": "IMG-20261010-WA0044__0__hk.jpg",
@@ -2397,24 +2398,20 @@
    1099
   ],
   "crop_wh": [
-   320,
-   193
+   126,
+   76
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "B",
-   "5",
-   "3",
-   "2",
-   "7"
+   "3727"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.379,
-  "paddle_mean_conf": 0.869,
-  "text_clean": "B5327",
-  "valid": true,
-  "format": "HK",
-  "lines": 5
+  "paddle_confidence": 0.728,
+  "paddle_mean_conf": 0.728,
+  "text_clean": "3727",
+  "valid": false,
+  "format": "",
+  "lines": 1
  },
  {
   "file": "IMG-20261010-WA0385__0__hk.jpg",
@@ -2429,21 +2426,20 @@
    791
   ],
   "crop_wh": [
-   320,
-   96
+   160,
+   48
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "4958",
-   "WN"
+   "4958"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
-  "paddle_mean_conf": 0.999,
-  "text_clean": "4958WN",
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "4958",
   "valid": false,
   "format": "",
-  "lines": 2
+  "lines": 1
  },
  {
   "file": "IMG-20261011-WA0253__0__hk.jpg",
@@ -2458,8 +2454,8 @@
    1034
   ],
   "crop_wh": [
-   320,
-   202
+   160,
+   101
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -2487,16 +2483,16 @@
    997
   ],
   "crop_wh": [
-   320,
-   148
+   116,
+   54
   ],
   "double_line_merged": false,
   "paddle_raw": [
    "WH 9317"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.981,
-  "paddle_mean_conf": 0.981,
+  "paddle_confidence": 0.975,
+  "paddle_mean_conf": 0.975,
   "text_clean": "WH9317",
   "valid": true,
   "format": "HK",
@@ -2515,18 +2511,22 @@
    1007
   ],
   "crop_wh": [
-   320,
-   223
+   86,
+   60
   ],
   "double_line_merged": false,
-  "paddle_raw": [],
-  "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.0,
+  "paddle_raw": [
+   "限"
+  ],
+  "paddle_dropped": [
+   "限"
+  ],
+  "paddle_confidence": 0.407,
+  "paddle_mean_conf": 0.407,
   "text_clean": "",
   "valid": false,
   "format": "",
-  "lines": 0
+  "lines": 1
  },
  {
   "file": "IMG-20261012-WA0027__0__hk.jpg",
@@ -2541,8 +2541,8 @@
    1330
   ],
   "crop_wh": [
-   320,
-   183
+   195,
+   112
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -2570,16 +2570,16 @@
    700
   ],
   "crop_wh": [
-   320,
-   205
+   160,
+   102
   ],
   "double_line_merged": false,
   "paddle_raw": [
    "4993"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.936,
-  "paddle_mean_conf": 0.936,
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
   "text_clean": "4993",
   "valid": false,
   "format": "",
@@ -2598,19 +2598,19 @@
    756
   ],
   "crop_wh": [
-   320,
-   225
+   136,
+   96
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "5X97"
+   "X7"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.67,
-  "paddle_mean_conf": 0.67,
-  "text_clean": "5X97",
-  "valid": false,
-  "format": "",
+  "paddle_confidence": 0.668,
+  "paddle_mean_conf": 0.668,
+  "text_clean": "X7",
+  "valid": true,
+  "format": "HK",
   "lines": 1
  },
  {
@@ -2626,21 +2626,24 @@
    1117
   ],
   "crop_wh": [
-   320,
-   201
+   160,
+   100
   ],
   "double_line_merged": false,
   "paddle_raw": [
+   "行",
    "WN",
    "4958"
   ],
-  "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_dropped": [
+   "行"
+  ],
+  "paddle_confidence": 0.439,
+  "paddle_mean_conf": 0.813,
   "text_clean": "WN4958",
   "valid": true,
   "format": "HK",
-  "lines": 2
+  "lines": 3
  },
  {
   "file": "IMG-20261013-WA0094__0__hk.jpg",
@@ -2655,8 +2658,8 @@
    923
   ],
   "crop_wh": [
-   320,
-   180
+   160,
+   90
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -2684,16 +2687,16 @@
    1185
   ],
   "crop_wh": [
-   320,
-   106
+   172,
+   57
   ],
   "double_line_merged": false,
   "paddle_raw": [
    "YZ 473"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.995,
-  "paddle_mean_conf": 0.995,
+  "paddle_confidence": 0.994,
+  "paddle_mean_conf": 0.994,
   "text_clean": "YZ473",
   "valid": true,
   "format": "HK",
@@ -2748,8 +2751,8 @@
    "6182"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
   "text_clean": "6182",
   "valid": false,
   "format": "",
@@ -2768,23 +2771,21 @@
    802
   ],
   "crop_wh": [
-   320,
-   200
+   160,
+   100
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "F",
-   "46",
-   "5",
-   "6"
+   "TE",
+   "4656"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.993,
-  "paddle_mean_conf": 0.998,
-  "text_clean": "F4656",
+  "paddle_confidence": 0.969,
+  "paddle_mean_conf": 0.984,
+  "text_clean": "TE4656",
   "valid": true,
   "format": "HK",
-  "lines": 4
+  "lines": 2
  },
  {
   "file": "IMG-20261014-WA0096__0__hk.jpg",
@@ -2808,7 +2809,7 @@
    "UP"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
+  "paddle_confidence": 0.999,
   "paddle_mean_conf": 1.0,
   "text_clean": "4403UP",
   "valid": false,
@@ -2828,16 +2829,16 @@
    1094
   ],
   "crop_wh": [
-   320,
-   123
+   140,
+   54
   ],
   "double_line_merged": false,
   "paddle_raw": [
    "NP 1162"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.92,
-  "paddle_mean_conf": 0.92,
+  "paddle_confidence": 0.919,
+  "paddle_mean_conf": 0.919,
   "text_clean": "NP1162",
   "valid": true,
   "format": "HK",
@@ -2856,13 +2857,12 @@
    1159
   ],
   "crop_wh": [
-   320,
-   93
+   189,
+   55
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "RB",
-   "6970"
+   "RB 6970"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
@@ -2870,7 +2870,7 @@
   "text_clean": "RB6970",
   "valid": true,
   "format": "HK",
-  "lines": 2
+  "lines": 1
  },
  {
   "file": "IMG-20261014-WA0253__0__hk.jpg",
@@ -2885,8 +2885,8 @@
    731
   ],
   "crop_wh": [
-   320,
-   67
+   160,
+   33
   ],
   "double_line_merged": true,
   "paddle_raw": [
@@ -2894,8 +2894,8 @@
    "YG"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
-  "paddle_mean_conf": 0.999,
+  "paddle_confidence": 0.96,
+  "paddle_mean_conf": 0.979,
   "text_clean": "9231YG",
   "valid": false,
   "format": "",
@@ -2914,21 +2914,22 @@
    1347
   ],
   "crop_wh": [
-   320,
-   186
+   175,
+   102
   ],
   "double_line_merged": false,
   "paddle_raw": [
+   "9",
    "ZT",
    "2005"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
-  "text_clean": "ZT2005",
-  "valid": true,
-  "format": "HK",
-  "lines": 2
+  "paddle_confidence": 0.534,
+  "paddle_mean_conf": 0.845,
+  "text_clean": "9ZT2005",
+  "valid": false,
+  "format": "",
+  "lines": 3
  },
  {
   "file": "IMG-20261014-WA0281__0__hk.jpg",
@@ -2943,18 +2944,20 @@
    566
   ],
   "crop_wh": [
-   320,
-   216
+   80,
+   54
   ],
   "double_line_merged": false,
-  "paddle_raw": [],
+  "paddle_raw": [
+   "658"
+  ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.0,
-  "text_clean": "",
+  "paddle_confidence": 0.97,
+  "paddle_mean_conf": 0.97,
+  "text_clean": "658",
   "valid": false,
   "format": "",
-  "lines": 0
+  "lines": 1
  },
  {
   "file": "IMG-20261014-WA0281__1__hk.jpg",
@@ -2969,8 +2972,8 @@
    751
   ],
   "crop_wh": [
-   320,
-   188
+   180,
+   106
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -2998,16 +3001,16 @@
    571
   ],
   "crop_wh": [
-   320,
-   175
+   124,
+   68
   ],
   "double_line_merged": false,
   "paddle_raw": [
    "1319"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.959,
-  "paddle_mean_conf": 0.959,
+  "paddle_confidence": 0.97,
+  "paddle_mean_conf": 0.97,
   "text_clean": "1319",
   "valid": false,
   "format": "",
@@ -3026,22 +3029,23 @@
    479
   ],
   "crop_wh": [
-   320,
-   213
+   144,
+   96
   ],
   "double_line_merged": false,
   "paddle_raw": [
    "M",
+   "8",
    "5",
-   "838"
+   "8"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.997,
-  "paddle_mean_conf": 0.999,
-  "text_clean": "M5838",
+  "paddle_confidence": 0.812,
+  "paddle_mean_conf": 0.921,
+  "text_clean": "M858",
   "valid": true,
   "format": "HK",
-  "lines": 3
+  "lines": 4
  },
  {
   "file": "IMG-20261014-WA0364__0__hk.jpg",
@@ -3056,18 +3060,21 @@
    960
   ],
   "crop_wh": [
-   320,
-   40
+   160,
+   20
   ],
   "double_line_merged": true,
-  "paddle_raw": [],
+  "paddle_raw": [
+   "MH6192",
+   "HLEIDO"
+  ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.0,
-  "text_clean": "",
+  "paddle_confidence": 0.487,
+  "paddle_mean_conf": 0.701,
+  "text_clean": "MH6192HLEIDO",
   "valid": false,
   "format": "",
-  "lines": 0
+  "lines": 2
  },
  {
   "file": "IMG-20261014-WA0364__1__hk.jpg",
@@ -3082,16 +3089,16 @@
    1056
   ],
   "crop_wh": [
-   320,
-   89
+   201,
+   56
   ],
   "double_line_merged": false,
   "paddle_raw": [
    "FM 814"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.911,
-  "paddle_mean_conf": 0.911,
+  "paddle_confidence": 0.989,
+  "paddle_mean_conf": 0.989,
   "text_clean": "FM814",
   "valid": true,
   "format": "HK",
@@ -3110,8 +3117,8 @@
    1391
   ],
   "crop_wh": [
-   320,
-   54
+   270,
+   46
   ],
   "double_line_merged": true,
   "paddle_raw": [
@@ -3119,8 +3126,8 @@
    "EL"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.994,
-  "paddle_mean_conf": 0.997,
+  "paddle_confidence": 0.996,
+  "paddle_mean_conf": 0.998,
   "text_clean": "2308EL",
   "valid": false,
   "format": "",
@@ -3139,20 +3146,20 @@
    1138
   ],
   "crop_wh": [
-   320,
-   69
+   190,
+   41
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "·UP",
-   "4403"
+   "4403",
+   "·UP·"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.874,
-  "paddle_mean_conf": 0.937,
-  "text_clean": "UP4403",
-  "valid": true,
-  "format": "HK",
+  "paddle_confidence": 0.88,
+  "paddle_mean_conf": 0.94,
+  "text_clean": "4403UP",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -3168,21 +3175,20 @@
    1060
   ],
   "crop_wh": [
-   320,
-   80
+   144,
+   36
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "B3",
-   "1"
+   "M3"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.219,
-  "paddle_mean_conf": 0.373,
-  "text_clean": "B31",
+  "paddle_confidence": 0.226,
+  "paddle_mean_conf": 0.226,
+  "text_clean": "M3",
   "valid": true,
   "format": "HK",
-  "lines": 2
+  "lines": 1
  },
  {
   "file": "IMG-20261015-WA0309__1__hk.jpg",
@@ -3197,20 +3203,21 @@
    1265
   ],
   "crop_wh": [
-   320,
-   195
+   160,
+   97
   ],
   "double_line_merged": false,
   "paddle_raw": [
+   "UP",
    "4403"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
+  "paddle_confidence": 0.999,
   "paddle_mean_conf": 1.0,
-  "text_clean": "4403",
-  "valid": false,
-  "format": "",
-  "lines": 1
+  "text_clean": "UP4403",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
  },
  {
   "file": "IMG-20261016-WA0313__0__hk.jpg",
@@ -3225,17 +3232,17 @@
    972
   ],
   "crop_wh": [
-   320,
-   209
+   160,
+   104
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "2Y02"
+   "2Y52"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.782,
-  "paddle_mean_conf": 0.782,
-  "text_clean": "2Y02",
+  "paddle_confidence": 0.756,
+  "paddle_mean_conf": 0.756,
+  "text_clean": "2Y52",
   "valid": false,
   "format": "",
   "lines": 1
@@ -3253,8 +3260,8 @@
    1188
   ],
   "crop_wh": [
-   320,
-   197
+   160,
+   98
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -3262,8 +3269,8 @@
    "8106"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.99,
-  "paddle_mean_conf": 0.995,
+  "paddle_confidence": 0.988,
+  "paddle_mean_conf": 0.991,
   "text_clean": "VC8106",
   "valid": true,
   "format": "HK",
@@ -3287,15 +3294,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "YR",
-   "7164"
+   "7164",
+   "YR"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
+  "paddle_confidence": 0.998,
   "paddle_mean_conf": 0.999,
-  "text_clean": "YR7164",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "7164YR",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -3311,21 +3318,20 @@
    1013
   ],
   "crop_wh": [
-   320,
-   39
+   160,
+   19
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "2",
-   "MB314"
+   "B334"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.345,
-  "paddle_mean_conf": 0.553,
-  "text_clean": "2MB314",
-  "valid": false,
-  "format": "",
-  "lines": 2
+  "paddle_confidence": 0.734,
+  "paddle_mean_conf": 0.734,
+  "text_clean": "B334",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
  },
  {
   "file": "IMG-20261018-WA0235__1__hk.jpg",
@@ -3340,16 +3346,16 @@
    1089
   ],
   "crop_wh": [
-   320,
-   215
+   160,
+   107
   ],
   "double_line_merged": false,
   "paddle_raw": [
    "2Y70"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.834,
-  "paddle_mean_conf": 0.834,
+  "paddle_confidence": 0.878,
+  "paddle_mean_conf": 0.878,
   "text_clean": "2Y70",
   "valid": false,
   "format": "",
@@ -3368,16 +3374,16 @@
    917
   ],
   "crop_wh": [
-   320,
-   176
+   160,
+   88
   ],
   "double_line_merged": false,
   "paddle_raw": [
    "1314"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.934,
-  "paddle_mean_conf": 0.934,
+  "paddle_confidence": 0.927,
+  "paddle_mean_conf": 0.927,
   "text_clean": "1314",
   "valid": false,
   "format": "",
@@ -3396,23 +3402,22 @@
    961
   ],
   "crop_wh": [
-   320,
-   138
+   160,
+   69
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "粤",
-   "10"
+   "粤Z·6009港"
   ],
   "paddle_dropped": [
-   "粤"
+   "粤Z·6009港"
   ],
-  "paddle_confidence": 0.714,
-  "paddle_mean_conf": 0.768,
-  "text_clean": "10",
+  "paddle_confidence": 0.909,
+  "paddle_mean_conf": 0.909,
+  "text_clean": "",
   "valid": false,
   "format": "粵Z",
-  "lines": 2
+  "lines": 1
  },
  {
   "file": "IMG-20261018-WA0259__0__hk.jpg",
@@ -3427,18 +3432,18 @@
    1560
   ],
   "crop_wh": [
-   320,
-   160
+   232,
+   116
   ],
   "double_line_merged": false,
   "paddle_raw": [
    "KA",
-   "3461"
+   "2461"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.765,
-  "paddle_mean_conf": 0.883,
-  "text_clean": "KA3461",
+  "paddle_confidence": 0.84,
+  "paddle_mean_conf": 0.92,
+  "text_clean": "KA2461",
   "valid": true,
   "format": "HK",
   "lines": 2
@@ -3456,18 +3461,21 @@
    1070
   ],
   "crop_wh": [
-   320,
-   197
+   160,
+   98
   ],
   "double_line_merged": false,
-  "paddle_raw": [],
+  "paddle_raw": [
+   "93",
+   "9"
+  ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.0,
-  "text_clean": "",
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "939",
   "valid": false,
   "format": "",
-  "lines": 0
+  "lines": 2
  },
  {
   "file": "IMG-20261018-WA0302__0__hk.jpg",
@@ -3482,8 +3490,8 @@
    1366
   ],
   "crop_wh": [
-   320,
-   69
+   176,
+   38
   ],
   "double_line_merged": true,
   "paddle_raw": [
@@ -3491,8 +3499,8 @@
    "VJ"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.951,
-  "paddle_mean_conf": 0.975,
+  "paddle_confidence": 0.977,
+  "paddle_mean_conf": 0.987,
   "text_clean": "7147VJ",
   "valid": false,
   "format": "",
@@ -3511,8 +3519,8 @@
    1306
   ],
   "crop_wh": [
-   320,
-   180
+   209,
+   118
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -3539,18 +3547,21 @@
    837
   ],
   "crop_wh": [
-   320,
-   205
+   160,
+   102
   ],
   "double_line_merged": false,
-  "paddle_raw": [],
+  "paddle_raw": [
+   "PP",
+   "907"
+  ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.0,
-  "text_clean": "",
-  "valid": false,
-  "format": "",
-  "lines": 0
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "PP907",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
  },
  {
   "file": "IMG-20261019-WA0104__0__hk.jpg",
@@ -3565,18 +3576,21 @@
    837
   ],
   "crop_wh": [
-   320,
-   201
+   160,
+   100
   ],
   "double_line_merged": false,
-  "paddle_raw": [],
+  "paddle_raw": [
+   "PP",
+   "907"
+  ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.0,
-  "text_clean": "",
-  "valid": false,
-  "format": "",
-  "lines": 0
+  "paddle_confidence": 0.997,
+  "paddle_mean_conf": 0.998,
+  "text_clean": "PP907",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
  },
  {
   "file": "IMG-20261019-WA0278__0__hk.jpg",
@@ -3591,16 +3605,16 @@
    480
   ],
   "crop_wh": [
-   320,
-   188
+   122,
+   72
   ],
   "double_line_merged": false,
   "paddle_raw": [
    "6259"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
-  "paddle_mean_conf": 1.0,
+  "paddle_confidence": 0.938,
+  "paddle_mean_conf": 0.938,
   "text_clean": "6259",
   "valid": false,
   "format": "",
@@ -3619,8 +3633,8 @@
    247
   ],
   "crop_wh": [
-   320,
-   135
+   236,
+   100
   ],
   "double_line_merged": true,
   "paddle_raw": [],
@@ -3654,7 +3668,7 @@
    "UY"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
+  "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
   "text_clean": "9205UY",
   "valid": false,
@@ -3674,18 +3688,22 @@
    613
   ],
   "crop_wh": [
-   320,
-   211
+   94,
+   62
   ],
   "double_line_merged": false,
-  "paddle_raw": [],
-  "paddle_dropped": [],
-  "paddle_confidence": 0.0,
-  "paddle_mean_conf": 0.0,
+  "paddle_raw": [
+   "油"
+  ],
+  "paddle_dropped": [
+   "油"
+  ],
+  "paddle_confidence": 0.238,
+  "paddle_mean_conf": 0.238,
   "text_clean": "",
   "valid": false,
   "format": "",
-  "lines": 0
+  "lines": 1
  },
  {
   "file": "IMG-20261019-WA0463__1__hk.jpg",
@@ -3700,8 +3718,8 @@
    736
   ],
   "crop_wh": [
-   320,
-   189
+   160,
+   94
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -3729,17 +3747,17 @@
    1144
   ],
   "crop_wh": [
-   320,
-   212
+   161,
+   107
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "G47"
+   "GX7"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.812,
-  "paddle_mean_conf": 0.812,
-  "text_clean": "G47",
+  "paddle_confidence": 0.757,
+  "paddle_mean_conf": 0.757,
+  "text_clean": "GX7",
   "valid": true,
   "format": "HK",
   "lines": 1
@@ -3757,20 +3775,20 @@
    1181
   ],
   "crop_wh": [
-   320,
-   219
+   160,
+   109
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "7",
-   "86"
+   "NL",
+   "7786"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "786",
-  "valid": false,
-  "format": "",
+  "text_clean": "NL7786",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -3814,8 +3832,8 @@
    950
   ],
   "crop_wh": [
-   320,
-   203
+   160,
+   101
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -3823,8 +3841,8 @@
    "4613"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 0.999,
-  "paddle_mean_conf": 0.999,
+  "paddle_confidence": 0.998,
+  "paddle_mean_conf": 0.998,
   "text_clean": "WL4613",
   "valid": true,
   "format": "HK",
@@ -3843,8 +3861,8 @@
    1342
   ],
   "crop_wh": [
-   320,
-   203
+   160,
+   101
   ],
   "double_line_merged": false,
   "paddle_raw": [
@@ -3852,7 +3870,7 @@
    "2867"
   ],
   "paddle_dropped": [],
-  "paddle_confidence": 1.0,
+  "paddle_confidence": 0.999,
   "paddle_mean_conf": 1.0,
   "text_clean": "XZ2867",
   "valid": true,

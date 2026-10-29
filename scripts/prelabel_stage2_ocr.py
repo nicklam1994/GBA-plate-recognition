@@ -17,6 +17,8 @@ import re
 from difflib import SequenceMatcher
 from pathlib import Path
 
+import cv2
+import numpy as np
 from paddleocr import PaddleOCR
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -52,6 +54,25 @@ def normalize_gangao(s: str) -> str:
     if m:
         return "粵Z" + m.group(1)
     return s
+
+
+#: PaddleOCR 的最佳輸入寬度。裁圖存 560 寬供人眼核對，
+#: 但餵給 OCR 要縮回 320 —— 實測 560 時雙行牌的字母行會讀不到
+#: （TK7687 → 7687），320 時正確。
+OCR_TARGET_W = 320
+
+
+def prep_for_ocr(path: Path):
+    """讀圖並等比縮到 OCR 友善寬度。"""
+    img = cv2.imdecode(np.fromfile(str(path), dtype=np.uint8), cv2.IMREAD_COLOR)
+    if img is None:
+        return None
+    w = img.shape[1]
+    if w > OCR_TARGET_W + 20:
+        s = OCR_TARGET_W / float(w)
+        img = cv2.resize(img, (OCR_TARGET_W, max(1, int(img.shape[0] * s))),
+                         interpolation=cv2.INTER_AREA)
+    return img
 
 
 #: 常見車標／車身文字，PaddleOCR 常與車牌一起框到
@@ -157,10 +178,23 @@ def main():
     for i, f in enumerate(files, 1):
         meta = index.get(f.name, {})
         try:
-            r = ocr.predict(str(f))[0]
-            d = r["res"] if isinstance(r, dict) and "res" in r else r
-            texts = d.get("rec_texts") or []
-            scores = d.get("rec_scores") or []
+            small = prep_for_ocr(f)
+            texts, scores = [], []
+            if small is not None:
+                r = ocr.predict(small)[0]
+                d = r["res"] if isinstance(r, dict) and "res" in r else r
+                if isinstance(d, dict):
+                    texts = d.get("rec_texts") or []
+                    scores = d.get("rec_scores") or []
+                    # 雙行牌要先讀上排再讀下排，PaddleOCR 原始順序不可靠
+                    # （實測 XM2969 被輸出成 2969XM）
+                    polys = d.get("rec_polys") or d.get("dt_polys") or []
+                    if len(polys) == len(texts) and len(texts) > 1:
+                        order = sorted(
+                            range(len(texts)),
+                            key=lambda i: float(np.array(polys[i])[:, 1].mean()))
+                        texts = [texts[i] for i in order]
+                        scores = [scores[i] for i in order] if len(scores) == len(order) else scores
         except Exception as e:
             texts, scores = [], []
             print(f"  ! {f.name}: {e}")

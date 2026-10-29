@@ -12,8 +12,8 @@
    1412
   ],
   "crop_wh": [
-   320,
-   204
+   238,
+   152
   ],
   "double_line_merged": false
  },
@@ -66,8 +66,8 @@
    1589
   ],
   "crop_wh": [
-   320,
-   157
+   310,
+   153
   ],
   "double_line_merged": false
  },
@@ -102,8 +102,8 @@
    2807
   ],
   "crop_wh": [
-   320,
-   226
+   218,
+   154
   ],
   "double_line_merged": false
  },
@@ -138,8 +138,8 @@
    2984
   ],
   "crop_wh": [
-   320,
-   230
+   239,
+   172
   ],
   "double_line_merged": false
  },
@@ -228,8 +228,8 @@
    1161
   ],
   "crop_wh": [
-   320,
-   231
+   189,
+   137
   ],
   "double_line_merged": false
  },
@@ -246,8 +246,8 @@
    1390
   ],
   "crop_wh": [
-   320,
-   231
+   160,
+   115
   ],
   "double_line_merged": false
  },
@@ -282,8 +282,8 @@
    1170
   ],
   "crop_wh": [
-   320,
-   205
+   251,
+   161
   ],
   "double_line_merged": false
  },
@@ -408,8 +408,8 @@
    1322
   ],
   "crop_wh": [
-   320,
-   159
+   225,
+   112
   ],
   "double_line_merged": false
  },
@@ -426,8 +426,8 @@
    903
   ],
   "crop_wh": [
-   320,
-   192
+   160,
+   96
   ],
   "double_line_merged": false
  },
@@ -444,8 +444,8 @@
    989
   ],
   "crop_wh": [
-   320,
-   187
+   160,
+   93
   ],
   "double_line_merged": false
  },
@@ -462,8 +462,8 @@
    1175
   ],
   "crop_wh": [
-   320,
-   189
+   176,
+   104
   ],
   "double_line_merged": false
  },
@@ -498,8 +498,8 @@
    1049
   ],
   "crop_wh": [
-   320,
-   190
+   160,
+   95
   ],
   "double_line_merged": false
  },
@@ -516,8 +516,8 @@
    1084
   ],
   "crop_wh": [
-   320,
-   192
+   213,
+   128
   ],
   "double_line_merged": false
  },
@@ -534,8 +534,8 @@
    952
   ],
   "crop_wh": [
-   320,
-   192
+   160,
+   96
   ],
   "double_line_merged": false
  },
@@ -570,8 +570,8 @@
    1195
   ],
   "crop_wh": [
-   320,
-   192
+   160,
+   96
   ],
   "double_line_merged": false
  },
@@ -588,8 +588,8 @@
    1075
   ],
   "crop_wh": [
-   320,
-   185
+   160,
+   92
   ],
   "double_line_merged": false
  },
@@ -606,8 +606,8 @@
    1496
   ],
   "crop_wh": [
-   320,
-   125
+   184,
+   72
   ],
   "double_line_merged": false
  },
@@ -624,8 +624,8 @@
    980
   ],
   "crop_wh": [
-   320,
-   208
+   187,
+   122
   ],
   "double_line_merged": false
  },
@@ -642,8 +642,8 @@
    1034
   ],
   "crop_wh": [
-   320,
-   120
+   160,
+   60
   ],
   "double_line_merged": false
  },
@@ -660,8 +660,8 @@
    1069
   ],
   "crop_wh": [
-   320,
-   93
+   172,
+   50
   ],
   "double_line_merged": false
  },
@@ -678,8 +678,8 @@
    1168
   ],
   "crop_wh": [
-   320,
-   203
+   160,
+   101
   ],
   "double_line_merged": false
  },
@@ -696,8 +696,8 @@
    1262
   ],
   "crop_wh": [
-   320,
-   70
+   164,
+   36
   ],
   "double_line_merged": true
  },
@@ -714,8 +714,8 @@
    450
   ],
   "crop_wh": [
-   320,
-   216
+   68,
+   46
   ],
   "double_line_merged": false
  },
@@ -732,8 +732,8 @@
    575
   ],
   "crop_wh": [
-   320,
-   192
+   160,
+   96
   ],
   "double_line_merged": false
  },
@@ -768,8 +768,8 @@
    1159
   ],
   "crop_wh": [
-   320,
-   200
+   160,
+   100
   ],
   "double_line_merged": false
  },
@@ -786,8 +786,8 @@
    1107
   ],
   "crop_wh": [
-   320,
-   194
+   158,
+   96
   ],
   "double_line_merged": false
  },
@@ -804,8 +804,8 @@
    535
   ],
   "crop_wh": [
-   320,
-   71
+   144,
+   32
   ],
   "double_line_merged": true
  },
@@ -822,8 +822,8 @@
    583
   ],
   "crop_wh": [
-   320,
-   116
+   160,
+   58
   ],
   "double_line_merged": false
  },
@@ -840,8 +840,8 @@
    629
   ],
   "crop_wh": [
-   320,
-   95
+   160,
+   47
   ],
   "double_line_merged": false
  },
@@ -858,8 +858,8 @@
    728
   ],
   "crop_wh": [
-   320,
-   182
+   160,
+   91
   ],
   "double_line_merged": false
  },
@@ -894,8 +894,8 @@
    580
   ],
   "crop_wh": [
-   320,
-   183
+   160,
+   91
   ],
   "double_line_merged": false
  },
@@ -912,8 +912,8 @@
    721
   ],
   "crop_wh": [
-   320,
-   200
+   134,
+   84
   ],
   "double_line_merged": false
  },
@@ -930,8 +930,8 @@
    759
   ],
   "crop_wh": [
-   320,
-   151
+   110,
+   52
   ],
   "double_line_merged": false
  },
@@ -948,8 +948,8 @@
    1022
   ],
   "crop_wh": [
-   320,
-   206
+   161,
+   104
   ],
   "double_line_merged": false
  },
@@ -966,8 +966,8 @@
    790
   ],
   "crop_wh": [
-   320,
-   56
+   200,
+   35
   ],
   "double_line_merged": true
  },
@@ -1002,8 +1002,8 @@
    1146
   ],
   "crop_wh": [
-   320,
-   49
+   284,
+   44
   ],
   "double_line_merged": true
  },
@@ -1056,8 +1056,8 @@
    979
   ],
   "crop_wh": [
-   320,
-   181
+   182,
+   103
   ],
   "double_line_merged": false
  },
@@ -1074,8 +1074,8 @@
    966
   ],
   "crop_wh": [
-   320,
-   97
+   160,
+   48
   ],
   "double_line_merged": true
  },
@@ -1092,8 +1092,8 @@
    1197
   ],
   "crop_wh": [
-   320,
-   186
+   160,
+   93
   ],
   "double_line_merged": false
  },
@@ -1110,8 +1110,8 @@
    907
   ],
   "crop_wh": [
-   320,
-   231
+   116,
+   84
   ],
   "double_line_merged": false
  },
@@ -1128,8 +1128,8 @@
    996
   ],
   "crop_wh": [
-   320,
-   236
+   130,
+   96
   ],
   "double_line_merged": false
  },
@@ -1146,8 +1146,8 @@
    913
   ],
   "crop_wh": [
-   320,
-   57
+   184,
+   33
   ],
   "double_line_merged": true
  },
@@ -1164,8 +1164,8 @@
    1173
   ],
   "crop_wh": [
-   320,
-   204
+   160,
+   102
   ],
   "double_line_merged": false
  },
@@ -1182,8 +1182,8 @@
    1062
   ],
   "crop_wh": [
-   320,
-   93
+   167,
+   49
   ],
   "double_line_merged": false
  },
@@ -1200,8 +1200,8 @@
    570
   ],
   "crop_wh": [
-   320,
-   42
+   160,
+   21
   ],
   "double_line_merged": true
  },
@@ -1218,8 +1218,8 @@
    768
   ],
   "crop_wh": [
-   320,
-   126
+   160,
+   63
   ],
   "double_line_merged": false
  },
@@ -1236,8 +1236,8 @@
    807
   ],
   "crop_wh": [
-   320,
-   124
+   160,
+   62
   ],
   "double_line_merged": false
  },
@@ -1254,8 +1254,8 @@
    1113
   ],
   "crop_wh": [
-   320,
-   194
+   102,
+   62
   ],
   "double_line_merged": false
  },
@@ -1272,8 +1272,8 @@
    1268
   ],
   "crop_wh": [
-   320,
-   187
+   160,
+   93
   ],
   "double_line_merged": false
  },
@@ -1290,8 +1290,8 @@
    1115
   ],
   "crop_wh": [
-   320,
-   185
+   160,
+   92
   ],
   "double_line_merged": false
  },
@@ -1308,8 +1308,8 @@
    1089
   ],
   "crop_wh": [
-   320,
-   90
+   222,
+   63
   ],
   "double_line_merged": false
  },
@@ -1326,8 +1326,8 @@
    1452
   ],
   "crop_wh": [
-   320,
-   188
+   160,
+   94
   ],
   "double_line_merged": false
  },
@@ -1362,8 +1362,8 @@
    1024
   ],
   "crop_wh": [
-   320,
-   49
+   252,
+   39
   ],
   "double_line_merged": true
  },
@@ -1398,8 +1398,8 @@
    1177
   ],
   "crop_wh": [
-   320,
-   195
+   160,
+   97
   ],
   "double_line_merged": false
  },
@@ -1416,8 +1416,8 @@
    996
   ],
   "crop_wh": [
-   320,
-   196
+   160,
+   98
   ],
   "double_line_merged": false
  },
@@ -1452,8 +1452,8 @@
    1138
   ],
   "crop_wh": [
-   320,
-   206
+   158,
+   102
   ],
   "double_line_merged": false
  },
@@ -1470,8 +1470,8 @@
    1139
   ],
   "crop_wh": [
-   320,
-   72
+   160,
+   36
   ],
   "double_line_merged": true
  },
@@ -1506,8 +1506,8 @@
    1099
   ],
   "crop_wh": [
-   320,
-   193
+   126,
+   76
   ],
   "double_line_merged": false
  },
@@ -1524,8 +1524,8 @@
    791
   ],
   "crop_wh": [
-   320,
-   96
+   160,
+   48
   ],
   "double_line_merged": true
  },
@@ -1542,8 +1542,8 @@
    1034
   ],
   "crop_wh": [
-   320,
-   202
+   160,
+   101
   ],
   "double_line_merged": false
  },
@@ -1560,8 +1560,8 @@
    997
   ],
   "crop_wh": [
-   320,
-   148
+   116,
+   54
   ],
   "double_line_merged": false
  },
@@ -1578,8 +1578,8 @@
    1007
   ],
   "crop_wh": [
-   320,
-   223
+   86,
+   60
   ],
   "double_line_merged": false
  },
@@ -1596,8 +1596,8 @@
    1330
   ],
   "crop_wh": [
-   320,
-   183
+   195,
+   112
   ],
   "double_line_merged": false
  },
@@ -1614,8 +1614,8 @@
    700
   ],
   "crop_wh": [
-   320,
-   205
+   160,
+   102
   ],
   "double_line_merged": false
  },
@@ -1632,8 +1632,8 @@
    756
   ],
   "crop_wh": [
-   320,
-   225
+   136,
+   96
   ],
   "double_line_merged": false
  },
@@ -1650,8 +1650,8 @@
    1117
   ],
   "crop_wh": [
-   320,
-   201
+   160,
+   100
   ],
   "double_line_merged": false
  },
@@ -1668,8 +1668,8 @@
    923
   ],
   "crop_wh": [
-   320,
-   180
+   160,
+   90
   ],
   "double_line_merged": false
  },
@@ -1686,8 +1686,8 @@
    1185
   ],
   "crop_wh": [
-   320,
-   106
+   172,
+   57
   ],
   "double_line_merged": false
  },
@@ -1740,8 +1740,8 @@
    802
   ],
   "crop_wh": [
-   320,
-   200
+   160,
+   100
   ],
   "double_line_merged": false
  },
@@ -1776,8 +1776,8 @@
    1094
   ],
   "crop_wh": [
-   320,
-   123
+   140,
+   54
   ],
   "double_line_merged": false
  },
@@ -1794,8 +1794,8 @@
    1159
   ],
   "crop_wh": [
-   320,
-   93
+   189,
+   55
   ],
   "double_line_merged": false
  },
@@ -1812,8 +1812,8 @@
    731
   ],
   "crop_wh": [
-   320,
-   67
+   160,
+   33
   ],
   "double_line_merged": true
  },
@@ -1830,8 +1830,8 @@
    1347
   ],
   "crop_wh": [
-   320,
-   186
+   175,
+   102
   ],
   "double_line_merged": false
  },
@@ -1848,8 +1848,8 @@
    566
   ],
   "crop_wh": [
-   320,
-   216
+   80,
+   54
   ],
   "double_line_merged": false
  },
@@ -1866,8 +1866,8 @@
    751
   ],
   "crop_wh": [
-   320,
-   188
+   180,
+   106
   ],
   "double_line_merged": false
  },
@@ -1884,8 +1884,8 @@
    571
   ],
   "crop_wh": [
-   320,
-   175
+   124,
+   68
   ],
   "double_line_merged": false
  },
@@ -1902,8 +1902,8 @@
    479
   ],
   "crop_wh": [
-   320,
-   213
+   144,
+   96
   ],
   "double_line_merged": false
  },
@@ -1920,8 +1920,8 @@
    960
   ],
   "crop_wh": [
-   320,
-   40
+   160,
+   20
   ],
   "double_line_merged": true
  },
@@ -1938,8 +1938,8 @@
    1056
   ],
   "crop_wh": [
-   320,
-   89
+   201,
+   56
   ],
   "double_line_merged": false
  },
@@ -1956,8 +1956,8 @@
    1391
   ],
   "crop_wh": [
-   320,
-   54
+   270,
+   46
   ],
   "double_line_merged": true
  },
@@ -1974,8 +1974,8 @@
    1138
   ],
   "crop_wh": [
-   320,
-   69
+   190,
+   41
   ],
   "double_line_merged": true
  },
@@ -1992,8 +1992,8 @@
    1060
   ],
   "crop_wh": [
-   320,
-   80
+   144,
+   36
   ],
   "double_line_merged": true
  },
@@ -2010,8 +2010,8 @@
    1265
   ],
   "crop_wh": [
-   320,
-   195
+   160,
+   97
   ],
   "double_line_merged": false
  },
@@ -2028,8 +2028,8 @@
    972
   ],
   "crop_wh": [
-   320,
-   209
+   160,
+   104
   ],
   "double_line_merged": false
  },
@@ -2046,8 +2046,8 @@
    1188
   ],
   "crop_wh": [
-   320,
-   197
+   160,
+   98
   ],
   "double_line_merged": false
  },
@@ -2082,8 +2082,8 @@
    1013
   ],
   "crop_wh": [
-   320,
-   39
+   160,
+   19
   ],
   "double_line_merged": true
  },
@@ -2100,8 +2100,8 @@
    1089
   ],
   "crop_wh": [
-   320,
-   215
+   160,
+   107
   ],
   "double_line_merged": false
  },
@@ -2118,8 +2118,8 @@
    917
   ],
   "crop_wh": [
-   320,
-   176
+   160,
+   88
   ],
   "double_line_merged": false
  },
@@ -2136,8 +2136,8 @@
    961
   ],
   "crop_wh": [
-   320,
-   138
+   160,
+   69
   ],
   "double_line_merged": false
  },
@@ -2154,8 +2154,8 @@
    1560
   ],
   "crop_wh": [
-   320,
-   160
+   232,
+   116
   ],
   "double_line_merged": false
  },
@@ -2172,8 +2172,8 @@
    1070
   ],
   "crop_wh": [
-   320,
-   197
+   160,
+   98
   ],
   "double_line_merged": false
  },
@@ -2190,8 +2190,8 @@
    1366
   ],
   "crop_wh": [
-   320,
-   69
+   176,
+   38
   ],
   "double_line_merged": true
  },
@@ -2208,8 +2208,8 @@
    1306
   ],
   "crop_wh": [
-   320,
-   180
+   209,
+   118
   ],
   "double_line_merged": false
  },
@@ -2226,8 +2226,8 @@
    837
   ],
   "crop_wh": [
-   320,
-   205
+   160,
+   102
   ],
   "double_line_merged": false
  },
@@ -2244,8 +2244,8 @@
    837
   ],
   "crop_wh": [
-   320,
-   201
+   160,
+   100
   ],
   "double_line_merged": false
  },
@@ -2262,8 +2262,8 @@
    480
   ],
   "crop_wh": [
-   320,
-   188
+   122,
+   72
   ],
   "double_line_merged": false
  },
@@ -2280,8 +2280,8 @@
    247
   ],
   "crop_wh": [
-   320,
-   135
+   236,
+   100
   ],
   "double_line_merged": true
  },
@@ -2316,8 +2316,8 @@
    613
   ],
   "crop_wh": [
-   320,
-   211
+   94,
+   62
   ],
   "double_line_merged": false
  },
@@ -2334,8 +2334,8 @@
    736
   ],
   "crop_wh": [
-   320,
-   189
+   160,
+   94
   ],
   "double_line_merged": false
  },
@@ -2352,8 +2352,8 @@
    1144
   ],
   "crop_wh": [
-   320,
-   212
+   161,
+   107
   ],
   "double_line_merged": false
  },
@@ -2370,8 +2370,8 @@
    1181
   ],
   "crop_wh": [
-   320,
-   219
+   160,
+   109
   ],
   "double_line_merged": false
  },
@@ -2406,8 +2406,8 @@
    950
   ],
   "crop_wh": [
-   320,
-   203
+   160,
+   101
   ],
   "double_line_merged": false
  },
@@ -2424,8 +2424,8 @@
    1342
   ],
   "crop_wh": [
-   320,
-   203
+   160,
+   101
   ],
   "double_line_merged": false
  }

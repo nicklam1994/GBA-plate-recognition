@@ -131,11 +131,14 @@ def main():
             if merged:
                 crop = split_merge_double(crop)
 
+            # 不強制放大：原圖 bbox 可能只有 80px 寬，放大到 560 等於 7 倍，
+            # 只會更糊（實測清晰度中位數從 92 掉到 15）。
+            # 只在極小時做有限放大，其餘交給瀏覽器用 CSS 放大顯示。
             ch, cw = crop.shape[:2]
-            if cw < args.target_w:
-                s = args.target_w / float(cw)
+            if cw < 160:
+                s = min(2.0, 160.0 / max(1, cw))
                 crop = cv2.resize(crop, (int(cw * s), int(ch * s)),
-                                  interpolation=cv2.INTER_CUBIC)
+                                  interpolation=cv2.INTER_LANCZOS4)
             region = getattr(d.region, "value", str(d.region))
             name = f"{p.stem[:40]}__{j}__{region}.jpg"
             cv2.imwrite(str(crops_dir / name), crop,

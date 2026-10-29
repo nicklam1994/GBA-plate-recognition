@@ -59,3 +59,6 @@ synthetic_data/fonts/*.zip
 !weights/*.pt
 !weights/*.pth
 !weights/*.onnx
+
+# ===== 標註工作目錄（可由 scripts/prelabel_stage*.py 重建）=====
+prelabel/
