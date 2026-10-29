@@ -153,3 +153,33 @@ class TestDescribe:
         s = v.describe()
         assert "[多牌]" in s
         assert "粵Z:粤Z7366澳" in s
+
+
+class TestCrossBorderCombos:
+    """跨境組合校驗：FV/FU 與 HK-xx-xx。"""
+
+    def test_fv_without_mainland_flagged(self):
+        plates = [mk("FV1234", (100, 100, 300, 150), Region.HK),
+                  mk("AB8888", (100, 160, 300, 210), Region.HK)]
+        v = group_vehicles(plates)[0]
+        notes = check_combo(v)
+        assert any("內地牌" in n for n in notes)
+
+    def test_fv_with_mainland_ok(self):
+        plates = [mk("FV1234", (100, 100, 300, 150), Region.HK),
+                  mk("粵A12345", (100, 160, 300, 210), Region.MAINLAND)]
+        v = group_vehicles(plates)[0]
+        assert not any("內地牌" in n for n in check_combo(v))
+
+    def test_hk_macau_plate_without_hk_flagged(self):
+        plates = [mk("HK1234", (100, 100, 300, 150), Region.MO),
+                  mk("MA1234", (100, 160, 300, 210), Region.MO)]
+        v = group_vehicles(plates)[0]
+        notes = check_combo(v)
+        assert any("香港牌" in n for n in notes)
+
+    def test_hk_macau_plate_with_hk_ok(self):
+        plates = [mk("HK1234", (100, 100, 300, 150), Region.MO),
+                  mk("AB8888", (100, 160, 300, 210), Region.HK)]
+        v = group_vehicles(plates)[0]
+        assert not any("未見香港牌" in n for n in check_combo(v))

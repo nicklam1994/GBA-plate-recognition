@@ -156,3 +156,46 @@ class TestCorrectConfusables:
         fixed, changed = correct_confusables("", None)
         assert fixed == ""
         assert not changed
+
+
+class TestCrossBorderPrefixes:
+    """
+    跨境車牌中「字頭與發牌地不符」的三種情況。
+
+    ZM/ZN/ZP 是香港牌（澳門車入港用）
+    FV/FU    是香港牌（內地車入港用）
+    HK-xx-xx 是澳門牌（香港車入澳用）
+    """
+
+    def test_zm_is_hong_kong(self):
+        """ZM 是香港發給澳門車的牌，不是澳門本地牌。"""
+        assert detect_region_from_text("ZM6371") == Region.HK
+        assert detect_region_from_text("ZN1234") == Region.HK
+        assert detect_region_from_text("ZP9999") == Region.HK
+
+    def test_zm_wrong_order_not_hk(self):
+        """OCR 若把 ZM 讀成 MZ，會落進澳門規則 —— 記錄此已知風險。"""
+        assert detect_region_from_text("MZ6371") == Region.MO
+
+    def test_fv_fu_is_hong_kong(self):
+        """FV/FU 是香港發給內地車的牌，不是內地牌。"""
+        assert detect_region_from_text("FV1234") == Region.HK
+        assert detect_region_from_text("FU8888") == Region.HK
+
+    def test_hk_black_is_macau(self):
+        """HK 字頭 + 黑底 = 澳門發給香港配額車的牌。"""
+        assert detect_region_from_text("HK1234", color="黑") == Region.MO
+
+    def test_hk_white_is_hong_kong(self):
+        """HK 字頭 + 白/黃底 = 香港本地牌。"""
+        assert detect_region_from_text("HK1234", color="白") == Region.HK
+        assert detect_region_from_text("HK8888", color="黃") == Region.HK
+
+    def test_macau_local_prefix(self):
+        """M + 字母是澳門本地牌。"""
+        assert detect_region_from_text("MA1234") == Region.MO
+        assert detect_region_from_text("MW8888") == Region.MO
+
+    def test_gangao_still_first(self):
+        """粵Z 判斷優先於一切。"""
+        assert detect_region_from_text("粤Z1234港") == Region.GANGAO

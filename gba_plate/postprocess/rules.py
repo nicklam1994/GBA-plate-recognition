@@ -203,10 +203,18 @@ def detect_region_from_text(text: str, color: str | None = None) -> Region:
     從文字 + 顏色推斷地區（檢測器未提供地區時的 fallback）。
 
     優先級（關鍵：粵Z 必須先判斷，否則會被省份規則吃掉）：
-        1. 粤Z 前綴      → GANGAO
-        2. 首字是省份    → MAINLAND
-        3. M+字母開頭    → MO
-        4. 純英數        → HK
+        1. 粤Z 前綴          → GANGAO
+        2. 首字是省份        → MAINLAND
+        3. ZM/ZN/ZP 開頭    → HK     澳門車入港，香港發的牌
+        4. FV/FU 開頭       → HK     內地車入港，香港發的牌
+        5. HK 開頭 + 黑底   → MO     澳門發給香港配額車的專用號段
+        6. M + 字母開頭      → MO     澳門本地牌
+        7. 純英數           → HK
+
+    第 3~5 條處理「字頭與發牌地不符」的情況 —— 這是跨境車牌最容易誤判處：
+        ZM1234  是香港牌（不是澳門）  Zhuhai-Macao 入境香港專用
+        FV1234  是香港牌（不是內地）  內地企業車入港用
+        HK-12-34 是澳門牌（不是香港） 澳門發給港車的配額號段
 
     Args:
         text: 正規化後的文字
@@ -226,11 +234,24 @@ def detect_region_from_text(text: str, color: str | None = None) -> Region:
     if is_province(text[0]):
         return Region.MAINLAND
 
-    # 3. 澳門（M + 字母）
+    # 3. ZM/ZN/ZP —— 澳門車經港珠澳大橋入港，領的是香港號牌
+    if re.match(r"^Z[MNP]", text):
+        return Region.HK
+
+    # 4. FV/FU —— 內地企業車入香港，領的是香港號牌（前白後黃）
+    if re.match(r"^F[VU]", text):
+        return Region.HK
+
+    # 5. HK-xx-xx —— 澳門發給香港配額車的專用號段，黑底白字
+    #    與香港本地可能的 "HK1234" 靠顏色區分（澳門牌前後皆黑底）
+    if re.match(r"^HK\d", text) and color == "黑":
+        return Region.MO
+
+    # 6. 澳門（M + 字母）
     if re.match(r"^M[A-Z]", text):
         return Region.MO
 
-    # 4. 香港（純英數）
+    # 7. 香港（純英數）
     if re.match(r"^[A-Z0-9]+$", text):
         return Region.HK
 

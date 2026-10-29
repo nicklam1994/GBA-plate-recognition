@@ -232,10 +232,12 @@ def check_combo(vehicle: VehicleResult) -> list[str]:
     """
     檢查多牌組合是否符合地理邏輯，回傳問題描述列表。
 
-    規則（依粵Z號牌規則與港澳通行安排）：
+    規則（依粵港澳三套跨境牌制度，見 docs/PLATE_COMBINATIONS.md）：
       - 粵Z 後綴「港」→ 應同時有香港牌
-      - 粵Z 後綴「澳」→ 應同時有澳門牌或 ZM/ZN/ZP 牌
-      - ZM／ZN／ZP 字頭是香港發給澳門車的牌，應伴隨澳門牌
+      - 粵Z 後綴「澳」→ 應同時有澳門牌
+      - ZM／ZN／ZP（澳門車入港，香港發牌）→ 應伴隨澳門本地牌
+      - FV／FU（內地車入港，香港發牌）→ 應伴隨內地牌
+      - HK-xx-xx（香港配額車入澳，澳門發牌）→ 應伴隨香港牌
     """
     notes: list[str] = []
     if not vehicle.is_multi_plate:
@@ -246,12 +248,20 @@ def check_combo(vehicle: VehicleResult) -> list[str]:
 
     if direction == "港" and Region.HK not in regions:
         notes.append("粵Z 後綴為「港」但未見香港牌")
-    if direction == "澳" and Region.MO not in regions and Region.HK not in regions:
+    if direction == "澳" and Region.MO not in regions:
         notes.append("粵Z 後綴為「澳」但未見澳門牌")
 
     for r in vehicle.plates:
         t = (r.text or "").upper()
+        # 澳門車入港：ZM/ZN/ZP 是香港牌，須有澳門本地牌
         if t.startswith(("ZM", "ZN", "ZP")) and Region.MO not in regions:
             notes.append(f"{t} 為澳門車入港牌，但未見澳門本地牌")
+        # 內地車入港：FV/FU 是香港牌，須有內地牌
+        if t.startswith(("FV", "FU")) and Region.MAINLAND not in regions:
+            notes.append(f"{t} 為內地車入港牌，但未見內地牌")
+        # 香港車入澳：HK 字頭的黑底牌是澳門配額牌，須有香港牌
+        if (t.startswith("HK") and r.region == Region.MO
+                and Region.HK not in regions):
+            notes.append(f"{t} 為香港車入澳的澳門配額牌，但未見香港牌")
 
     return notes
