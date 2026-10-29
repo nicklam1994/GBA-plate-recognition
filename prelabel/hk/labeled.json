@@ -1,0 +1,3862 @@
+[
+ {
+  "file": "IMG-20260725-WA0329__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260725-WA0329.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.823,
+  "bbox": [
+   2275,
+   1270,
+   2503,
+   1412
+  ],
+  "crop_wh": [
+   320,
+   204
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "RU",
+   "8534"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "RU8534",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260725-WA0332__0__mo.jpg",
+  "src": "test_data/real/hk/IMG-20260725-WA0332.jpeg",
+  "idx": 0,
+  "region_det": "mo",
+  "det_conf": 0.787,
+  "bbox": [
+   932,
+   2514,
+   1255,
+   2695
+  ],
+  "crop_wh": [
+   333,
+   191
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "8534"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "8534",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260725-WA0338__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260725-WA0338.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.847,
+  "bbox": [
+   879,
+   2065,
+   1150,
+   2228
+  ],
+  "crop_wh": [
+   562,
+   90
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "RU·8534"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.962,
+  "paddle_mean_conf": 0.962,
+  "text_clean": "RU8534",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260731-WA0245__0__mo.jpg",
+  "src": "test_data/real/hk/IMG-20260731-WA0245.jpg",
+  "idx": 0,
+  "region_det": "mo",
+  "det_conf": 0.877,
+  "bbox": [
+   402,
+   1446,
+   702,
+   1589
+  ],
+  "crop_wh": [
+   320,
+   157
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "TK",
+   "7687"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "TK7687",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260801-WA0012__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260801-WA0012.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.85,
+  "bbox": [
+   1145,
+   2485,
+   1499,
+   2682
+  ],
+  "crop_wh": [
+   728,
+   108
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "TK7687"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "TK7687",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260801-WA0015__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260801-WA0015.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.848,
+  "bbox": [
+   263,
+   2663,
+   471,
+   2807
+  ],
+  "crop_wh": [
+   320,
+   226
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "7687"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "7687",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260802-WA0014__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260802-WA0014.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.856,
+  "bbox": [
+   1089,
+   2456,
+   1454,
+   2664
+  ],
+  "crop_wh": [
+   750,
+   114
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "TK7687"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "TK7687",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260802-WA0017__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260802-WA0017.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.832,
+  "bbox": [
+   311,
+   2822,
+   540,
+   2984
+  ],
+  "crop_wh": [
+   320,
+   230
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "TK",
+   "7687"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "TK7687",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260805-WA0005__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260805-WA0005.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.855,
+  "bbox": [
+   1066,
+   2311,
+   1378,
+   2499
+  ],
+  "crop_wh": [
+   322,
+   198
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "TK",
+   "7687"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "TK7687",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260807-WA0009__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260807-WA0009.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.848,
+  "bbox": [
+   922,
+   2558,
+   1262,
+   2770
+  ],
+  "crop_wh": [
+   350,
+   222
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "UE",
+   "8247"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "UE8247",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260813-WA0024__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260813-WA0024.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.863,
+  "bbox": [
+   874,
+   2383,
+   1242,
+   2593
+  ],
+  "crop_wh": [
+   756,
+   115
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "TK",
+   "9770"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.962,
+  "paddle_mean_conf": 0.981,
+  "text_clean": "TK9770",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260821-WA0050__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260821-WA0050.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.852,
+  "bbox": [
+   1089,
+   2463,
+   1458,
+   2684
+  ],
+  "crop_wh": [
+   758,
+   121
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "YR7164"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.996,
+  "paddle_mean_conf": 0.996,
+  "text_clean": "YR7164",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260824-WA0032__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260824-WA0032.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.819,
+  "bbox": [
+   441,
+   1034,
+   620,
+   1161
+  ],
+  "crop_wh": [
+   320,
+   231
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "WP",
+   "9762"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "WP9762",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260825-WA0276__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260825-WA0276.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.864,
+  "bbox": [
+   147,
+   1298,
+   278,
+   1390
+  ],
+  "crop_wh": [
+   320,
+   231
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "YR",
+   "7164"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.983,
+  "paddle_mean_conf": 0.992,
+  "text_clean": "YR7164",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260826-WA0038__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260826-WA0038.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.862,
+  "bbox": [
+   1361,
+   2669,
+   1753,
+   2921
+  ],
+  "crop_wh": [
+   402,
+   262
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "YR",
+   "7164"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.975,
+  "paddle_mean_conf": 0.987,
+  "text_clean": "YR7164",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260829-WA0258__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260829-WA0258.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.874,
+  "bbox": [
+   251,
+   1019,
+   492,
+   1170
+  ],
+  "crop_wh": [
+   320,
+   205
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "8696"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.987,
+  "paddle_mean_conf": 0.987,
+  "text_clean": "8696",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260831-WA0230__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260831-WA0230.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.86,
+  "bbox": [
+   585,
+   873,
+   789,
+   1057
+  ],
+  "crop_wh": [
+   428,
+   101
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "YS",
+   "8696"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.939,
+  "paddle_mean_conf": 0.97,
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260902-WA0404__0__mo.jpg",
+  "src": "test_data/real/hk/IMG-20260902-WA0404.jpg",
+  "idx": 0,
+  "region_det": "mo",
+  "det_conf": 0.685,
+  "bbox": [
+   407,
+   1238,
+   680,
+   1383
+  ],
+  "crop_wh": [
+   566,
+   81
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "YS8696"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260902-WA0404__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260902-WA0404.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.337,
+  "bbox": [
+   407,
+   1238,
+   680,
+   1384
+  ],
+  "crop_wh": [
+   566,
+   82
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "YS8696"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260904-WA0385__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260904-WA0385.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.832,
+  "bbox": [
+   321,
+   1269,
+   764,
+   1487
+  ],
+  "crop_wh": [
+   453,
+   228
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "YS",
+   "TOYOTA",
+   "Crowm Molors Ld.",
+   "8696"
+  ],
+  "paddle_dropped": [
+   "TOYOTA",
+   "Crowm Molors Ld."
+  ],
+  "paddle_confidence": 0.791,
+  "paddle_mean_conf": 0.948,
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
+  "lines": 4
+ },
+ {
+  "file": "IMG-20260914-WA0256__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260914-WA0256.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.873,
+  "bbox": [
+   392,
+   732,
+   585,
+   837
+  ],
+  "crop_wh": [
+   406,
+   60
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "YS",
+   "8696"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260915-WA0015__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260915-WA0015.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.838,
+  "bbox": [
+   1199,
+   2505,
+   1542,
+   2717
+  ],
+  "crop_wh": [
+   706,
+   116
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "YS",
+   "8696"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260923-WA0045__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260923-WA0045.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.836,
+  "bbox": [
+   439,
+   1220,
+   654,
+   1322
+  ],
+  "crop_wh": [
+   320,
+   159
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "CC",
+   "3208"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "CC3208",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260924-WA0144__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260924-WA0144.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.844,
+  "bbox": [
+   436,
+   853,
+   526,
+   903
+  ],
+  "crop_wh": [
+   320,
+   192
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "S",
+   "8",
+   "49",
+   "19"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.78,
+  "paddle_mean_conf": 0.942,
+  "text_clean": "S84919",
+  "valid": false,
+  "format": "",
+  "lines": 4
+ },
+ {
+  "file": "IMG-20260925-WA0015__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260925-WA0015.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.851,
+  "bbox": [
+   413,
+   915,
+   546,
+   989
+  ],
+  "crop_wh": [
+   320,
+   187
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 0
+ },
+ {
+  "file": "IMG-20260925-WA0221__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260925-WA0221.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.862,
+  "bbox": [
+   8,
+   1081,
+   174,
+   1175
+  ],
+  "crop_wh": [
+   320,
+   189
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "HH",
+   "9159"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "HH9159",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260926-WA0239__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260926-WA0239.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.864,
+  "bbox": [
+   815,
+   1125,
+   1004,
+   1232
+  ],
+  "crop_wh": [
+   398,
+   61
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "WC",
+   "8421"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.973,
+  "paddle_mean_conf": 0.987,
+  "text_clean": "WC8421",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260926-WA0249__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260926-WA0249.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.697,
+  "bbox": [
+   488,
+   999,
+   579,
+   1049
+  ],
+  "crop_wh": [
+   320,
+   190
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "UE",
+   "8247"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "UE8247",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260927-WA0180__0__mo.jpg",
+  "src": "test_data/real/hk/IMG-20260927-WA0180.jpg",
+  "idx": 0,
+  "region_det": "mo",
+  "det_conf": 0.87,
+  "bbox": [
+   309,
+   966,
+   512,
+   1084
+  ],
+  "crop_wh": [
+   320,
+   192
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "PP",
+   "907"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "PP907",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260928-WA0010__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260928-WA0010.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.847,
+  "bbox": [
+   321,
+   876,
+   454,
+   952
+  ],
+  "crop_wh": [
+   320,
+   192
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "ZJ",
+   "447"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "ZJ447",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260928-WA0031__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260928-WA0031.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.859,
+  "bbox": [
+   867,
+   988,
+   1055,
+   1094
+  ],
+  "crop_wh": [
+   396,
+   61
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "AFU·",
+   "8306"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.724,
+  "paddle_mean_conf": 0.862,
+  "text_clean": "AFU8306",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260928-WA0173__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260928-WA0173.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.819,
+  "bbox": [
+   522,
+   1118,
+   657,
+   1195
+  ],
+  "crop_wh": [
+   320,
+   192
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "UP",
+   "4403"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "UP4403",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260928-WA0190__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260928-WA0190.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.846,
+  "bbox": [
+   808,
+   1015,
+   919,
+   1075
+  ],
+  "crop_wh": [
+   320,
+   185
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "WD",
+   "4462"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "WD4462",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260928-WA0250__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260928-WA0250.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.833,
+  "bbox": [
+   799,
+   1434,
+   973,
+   1496
+  ],
+  "crop_wh": [
+   320,
+   125
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "VB",
+   "8528"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "VB8528",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20260929-WA0005__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260929-WA0005.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.834,
+  "bbox": [
+   33,
+   868,
+   210,
+   980
+  ],
+  "crop_wh": [
+   320,
+   208
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 0
+ },
+ {
+  "file": "IMG-20260929-WA0026__0__gangao.jpg",
+  "src": "test_data/real/hk/IMG-20260929-WA0026.jpg",
+  "idx": 0,
+  "region_det": "gangao",
+  "det_conf": 0.491,
+  "bbox": [
+   166,
+   988,
+   305,
+   1034
+  ],
+  "crop_wh": [
+   320,
+   120
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "粤B·K999X"
+  ],
+  "paddle_dropped": [
+   "粤B·K999X"
+  ],
+  "paddle_confidence": 0.998,
+  "paddle_mean_conf": 0.998,
+  "text_clean": "",
+  "valid": false,
+  "format": "粵Z",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260929-WA0026__1__mo.jpg",
+  "src": "test_data/real/hk/IMG-20260929-WA0026.jpg",
+  "idx": 1,
+  "region_det": "mo",
+  "det_conf": 0.679,
+  "bbox": [
+   156,
+   1029,
+   318,
+   1069
+  ],
+  "crop_wh": [
+   320,
+   93
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "FV 7839"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.978,
+  "paddle_mean_conf": 0.978,
+  "text_clean": "FV7839",
+  "valid": true,
+  "format": "HK-FV",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260929-WA0305__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260929-WA0305.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.869,
+  "bbox": [
+   557,
+   1098,
+   673,
+   1168
+  ],
+  "crop_wh": [
+   320,
+   203
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "1625"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "1625",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260930-WA0019__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260930-WA0019.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.827,
+  "bbox": [
+   203,
+   1204,
+   275,
+   1262
+  ],
+  "crop_wh": [
+   320,
+   70
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "4958"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "4958",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260930-WA0214__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260930-WA0214.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.441,
+  "bbox": [
+   854,
+   437,
+   878,
+   450
+  ],
+  "crop_wh": [
+   320,
+   216
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "T"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.309,
+  "paddle_mean_conf": 0.309,
+  "text_clean": "T",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20260930-WA0214__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260930-WA0214.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.853,
+  "bbox": [
+   593,
+   526,
+   681,
+   575
+  ],
+  "crop_wh": [
+   320,
+   192
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "YC",
+   "497"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "YC497",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261001-WA0129__0__mo.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0129.jpg",
+  "idx": 0,
+  "region_det": "mo",
+  "det_conf": 0.808,
+  "bbox": [
+   274,
+   1444,
+   524,
+   1672
+  ],
+  "crop_wh": [
+   520,
+   124
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "2969",
+   "XM",
+   "1OYOTA"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.778,
+  "paddle_mean_conf": 0.926,
+  "text_clean": "2969XM1OYOTA",
+  "valid": false,
+  "format": "",
+  "lines": 3
+ },
+ {
+  "file": "IMG-20261001-WA0216__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0216.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.847,
+  "bbox": [
+   266,
+   1092,
+   379,
+   1159
+  ],
+  "crop_wh": [
+   320,
+   200
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "SZ",
+   "2475"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "SZ2475",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261001-WA0392__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0392.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.831,
+  "bbox": [
+   236,
+   1069,
+   305,
+   1107
+  ],
+  "crop_wh": [
+   320,
+   194
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 0
+ },
+ {
+  "file": "IMG-20261001-WA0422__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0422.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.493,
+  "bbox": [
+   43,
+   515,
+   69,
+   535
+  ],
+  "crop_wh": [
+   320,
+   71
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   ""
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261001-WA0422__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0422.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.651,
+  "bbox": [
+   1286,
+   554,
+   1383,
+   583
+  ],
+  "crop_wh": [
+   320,
+   116
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "AM6996"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "AM6996",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261001-WA0422__2__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0422.jpg",
+  "idx": 2,
+  "region_det": "hk",
+  "det_conf": 0.637,
+  "bbox": [
+   1291,
+   607,
+   1388,
+   629
+  ],
+  "crop_wh": [
+   320,
+   95
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "警POLICE"
+  ],
+  "paddle_dropped": [
+   "警POLICE"
+  ],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261001-WA0422__3__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0422.jpg",
+  "idx": 3,
+  "region_det": "hk",
+  "det_conf": 0.848,
+  "bbox": [
+   470,
+   647,
+   620,
+   728
+  ],
+  "crop_wh": [
+   320,
+   182
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "6455"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.998,
+  "paddle_mean_conf": 0.998,
+  "text_clean": "6455",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261002-WA0030__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0030.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.855,
+  "bbox": [
+   1229,
+   2367,
+   1475,
+   2513
+  ],
+  "crop_wh": [
+   512,
+   82
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "YS8696"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261002-WA0087__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0087.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.851,
+  "bbox": [
+   417,
+   528,
+   515,
+   580
+  ],
+  "crop_wh": [
+   320,
+   183
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "ZY",
+   "6216"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.996,
+  "paddle_mean_conf": 0.998,
+  "text_clean": "ZY6216",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261002-WA0107__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0107.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.841,
+  "bbox": [
+   268,
+   689,
+   325,
+   721
+  ],
+  "crop_wh": [
+   320,
+   200
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "RS",
+   "1282"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "RS1282",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261002-WA0107__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0107.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.706,
+  "bbox": [
+   686,
+   743,
+   731,
+   759
+  ],
+  "crop_wh": [
+   320,
+   151
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "JL2"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "JL2",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261002-WA0108__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0108.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.864,
+  "bbox": [
+   527,
+   928,
+   678,
+   1022
+  ],
+  "crop_wh": [
+   320,
+   206
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "RS",
+   "1282"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "RS1282",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261002-WA0117__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0117.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.84,
+  "bbox": [
+   190,
+   734,
+   280,
+   790
+  ],
+  "crop_wh": [
+   320,
+   56
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "6453"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "6453",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261002-WA0169__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0169.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.863,
+  "bbox": [
+   450,
+   873,
+   641,
+   1022
+  ],
+  "crop_wh": [
+   402,
+   83
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "NV",
+   "5276"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "NV5276",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261002-WA0206__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0206.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.839,
+  "bbox": [
+   370,
+   1072,
+   502,
+   1146
+  ],
+  "crop_wh": [
+   320,
+   49
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   ":TY",
+   "6341"
+  ],
+  "paddle_dropped": [
+   ":TY"
+  ],
+  "paddle_confidence": 0.81,
+  "paddle_mean_conf": 0.904,
+  "text_clean": "6341",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261004-WA0050__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0050.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.849,
+  "bbox": [
+   754,
+   553,
+   953,
+   668
+  ],
+  "crop_wh": [
+   418,
+   65
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "UP",
+   "4403"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.995,
+  "paddle_mean_conf": 0.997,
+  "text_clean": "UP4403",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261004-WA0128__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0128.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.855,
+  "bbox": [
+   585,
+   973,
+   744,
+   1061
+  ],
+  "crop_wh": [
+   338,
+   51
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "XM2969"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "XM2969",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261004-WA0135__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0135.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.814,
+  "bbox": [
+   515,
+   886,
+   687,
+   979
+  ],
+  "crop_wh": [
+   320,
+   181
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "XM",
+   "9112"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.992,
+  "paddle_mean_conf": 0.996,
+  "text_clean": "XM9112",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261004-WA0208__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0208.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.733,
+  "bbox": [
+   1749,
+   920,
+   1788,
+   966
+  ],
+  "crop_wh": [
+   320,
+   97
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "TEAD",
+   "855"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.654,
+  "paddle_mean_conf": 0.827,
+  "text_clean": "TEAD855",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261004-WA0208__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0208.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.816,
+  "bbox": [
+   517,
+   1129,
+   641,
+   1197
+  ],
+  "crop_wh": [
+   320,
+   186
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "VE",
+   "3541"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "VE3541",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261004-WA0209__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0209.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.807,
+  "bbox": [
+   1518,
+   875,
+   1566,
+   907
+  ],
+  "crop_wh": [
+   320,
+   231
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "EA",
+   "55",
+   "8"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.576,
+  "paddle_mean_conf": 0.859,
+  "text_clean": "EA558",
+  "valid": true,
+  "format": "HK",
+  "lines": 3
+ },
+ {
+  "file": "IMG-20261004-WA0209__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0209.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.824,
+  "bbox": [
+   570,
+   958,
+   625,
+   996
+  ],
+  "crop_wh": [
+   320,
+   236
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "VE",
+   "3541"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "VE3541",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261005-WA0061__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0061.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.828,
+  "bbox": [
+   247,
+   860,
+   329,
+   913
+  ],
+  "crop_wh": [
+   320,
+   57
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "UT",
+   "3701"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "UT3701",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261005-WA0063__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0063.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.868,
+  "bbox": [
+   472,
+   1093,
+   603,
+   1173
+  ],
+  "crop_wh": [
+   320,
+   204
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "UL",
+   "3539"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "UL3539",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261005-WA0093__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0093.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.77,
+  "bbox": [
+   267,
+   1023,
+   424,
+   1062
+  ],
+  "crop_wh": [
+   320,
+   93
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "VJ975"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "VJ975",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261005-WA0094__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0094.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.448,
+  "bbox": [
+   744,
+   559,
+   775,
+   570
+  ],
+  "crop_wh": [
+   320,
+   42
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 0
+ },
+ {
+  "file": "IMG-20261005-WA0094__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0094.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.801,
+  "bbox": [
+   1224,
+   733,
+   1328,
+   768
+  ],
+  "crop_wh": [
+   320,
+   126
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "HM 78I"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.884,
+  "paddle_mean_conf": 0.884,
+  "text_clean": "HM78I",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261005-WA0094__2__gangao.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0094.jpg",
+  "idx": 2,
+  "region_det": "gangao",
+  "det_conf": 0.767,
+  "bbox": [
+   1218,
+   767,
+   1337,
+   807
+  ],
+  "crop_wh": [
+   320,
+   124
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "粤Z·JM45港"
+  ],
+  "paddle_dropped": [
+   "粤Z·JM45港"
+  ],
+  "paddle_confidence": 0.994,
+  "paddle_mean_conf": 0.994,
+  "text_clean": "",
+  "valid": false,
+  "format": "粵Z",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261005-WA0138__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0138.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.579,
+  "bbox": [
+   507,
+   1092,
+   548,
+   1113
+  ],
+  "crop_wh": [
+   320,
+   194
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "8343"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "8343",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261005-WA0138__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0138.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.858,
+  "bbox": [
+   755,
+   1196,
+   885,
+   1268
+  ],
+  "crop_wh": [
+   320,
+   187
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "XS",
+   "6365"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "XS6365",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261005-WA0168__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0168.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.844,
+  "bbox": [
+   682,
+   1046,
+   808,
+   1115
+  ],
+  "crop_wh": [
+   320,
+   185
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "TP",
+   "3749"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "TP3749",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261005-WA0217__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0217.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.798,
+  "bbox": [
+   110,
+   1036,
+   322,
+   1089
+  ],
+  "crop_wh": [
+   320,
+   90
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "TE2021",
+   "M"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.201,
+  "paddle_mean_conf": 0.598,
+  "text_clean": "TE2021M",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261005-WA0223__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0223.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.832,
+  "bbox": [
+   197,
+   1383,
+   321,
+   1452
+  ],
+  "crop_wh": [
+   320,
+   188
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "ZT",
+   "6221"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "ZT6221",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261006-WA0037__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261006-WA0037.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.82,
+  "bbox": [
+   1039,
+   2893,
+   1357,
+   3150
+  ],
+  "crop_wh": [
+   656,
+   139
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "9112",
+   "XM"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "9112XM",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261007-WA0153__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261007-WA0153.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.855,
+  "bbox": [
+   221,
+   960,
+   337,
+   1024
+  ],
+  "crop_wh": [
+   320,
+   49
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "TK",
+   "9770"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.967,
+  "paddle_mean_conf": 0.984,
+  "text_clean": "TK9770",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261008-WA0010__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261008-WA0010.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.847,
+  "bbox": [
+   372,
+   1003,
+   540,
+   1094
+  ],
+  "crop_wh": [
+   356,
+   53
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "WY",
+   "590"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "WY590",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261008-WA0211__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261008-WA0211.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.849,
+  "bbox": [
+   528,
+   1118,
+   631,
+   1177
+  ],
+  "crop_wh": [
+   320,
+   195
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "SG",
+   "5123"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.998,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "SG5123",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261008-WA0304__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261008-WA0304.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.857,
+  "bbox": [
+   206,
+   938,
+   307,
+   996
+  ],
+  "crop_wh": [
+   320,
+   196
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "YV",
+   "1180"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "YV1180",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261009-WA0003__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261009-WA0003.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.888,
+  "bbox": [
+   230,
+   776,
+   508,
+   997
+  ],
+  "crop_wh": [
+   576,
+   121
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "WZ",
+   "2612"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.892,
+  "paddle_mean_conf": 0.932,
+  "text_clean": "WZ2612",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261009-WA0097__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261009-WA0097.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.826,
+  "bbox": [
+   560,
+   1097,
+   629,
+   1138
+  ],
+  "crop_wh": [
+   320,
+   206
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "25"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.507,
+  "paddle_mean_conf": 0.507,
+  "text_clean": "25",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261010-WA0013__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261010-WA0013.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.826,
+  "bbox": [
+   778,
+   1094,
+   832,
+   1139
+  ],
+  "crop_wh": [
+   320,
+   72
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "PLK",
+   "2811"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.594,
+  "paddle_mean_conf": 0.788,
+  "text_clean": "PLK2811",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261010-WA0044__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261010-WA0044.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.855,
+  "bbox": [
+   621,
+   2644,
+   975,
+   2883
+  ],
+  "crop_wh": [
+   364,
+   249
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "WY",
+   "590"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "WY590",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261010-WA0149__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261010-WA0149.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.798,
+  "bbox": [
+   729,
+   1071,
+   782,
+   1099
+  ],
+  "crop_wh": [
+   320,
+   193
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "B",
+   "5",
+   "3",
+   "2",
+   "7"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.379,
+  "paddle_mean_conf": 0.869,
+  "text_clean": "B5327",
+  "valid": true,
+  "format": "HK",
+  "lines": 5
+ },
+ {
+  "file": "IMG-20261010-WA0385__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261010-WA0385.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.822,
+  "bbox": [
+   581,
+   716,
+   646,
+   791
+  ],
+  "crop_wh": [
+   320,
+   96
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "4958",
+   "WN"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "4958WN",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261011-WA0253__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261011-WA0253.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.857,
+  "bbox": [
+   329,
+   972,
+   433,
+   1034
+  ],
+  "crop_wh": [
+   320,
+   202
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "YN",
+   "1463"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "YN1463",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261012-WA0014__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261012-WA0014.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.813,
+  "bbox": [
+   469,
+   980,
+   517,
+   997
+  ],
+  "crop_wh": [
+   320,
+   148
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "WH 9317"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.981,
+  "paddle_mean_conf": 0.981,
+  "text_clean": "WH9317",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261012-WA0014__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261012-WA0014.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.788,
+  "bbox": [
+   172,
+   987,
+   205,
+   1007
+  ],
+  "crop_wh": [
+   320,
+   223
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 0
+ },
+ {
+  "file": "IMG-20261012-WA0027__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261012-WA0027.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.858,
+  "bbox": [
+   858,
+   1228,
+   1043,
+   1330
+  ],
+  "crop_wh": [
+   320,
+   183
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "TT",
+   "9063"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "TT9063",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261012-WA0102__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261012-WA0102.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.807,
+  "bbox": [
+   697,
+   635,
+   804,
+   700
+  ],
+  "crop_wh": [
+   320,
+   205
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "4993"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.936,
+  "paddle_mean_conf": 0.936,
+  "text_clean": "4993",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261012-WA0102__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261012-WA0102.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.818,
+  "bbox": [
+   204,
+   718,
+   262,
+   756
+  ],
+  "crop_wh": [
+   320,
+   225
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "5X97"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.67,
+  "paddle_mean_conf": 0.67,
+  "text_clean": "5X97",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261013-WA0016__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261013-WA0016.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.847,
+  "bbox": [
+   342,
+   1039,
+   472,
+   1117
+  ],
+  "crop_wh": [
+   320,
+   201
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "WN",
+   "4958"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "WN4958",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261013-WA0094__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261013-WA0094.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.864,
+  "bbox": [
+   283,
+   870,
+   385,
+   923
+  ],
+  "crop_wh": [
+   320,
+   180
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "ZE",
+   "1239"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "ZE1239",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261013-WA0327__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261013-WA0327.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.817,
+  "bbox": [
+   925,
+   1138,
+   1087,
+   1185
+  ],
+  "crop_wh": [
+   320,
+   106
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "YZ 473"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.995,
+  "paddle_mean_conf": 0.995,
+  "text_clean": "YZ473",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261014-WA0035__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0035.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.861,
+  "bbox": [
+   851,
+   1234,
+   1009,
+   1326
+  ],
+  "crop_wh": [
+   336,
+   54
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "VJ6989"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "VJ6989",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261014-WA0051__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0051.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.851,
+  "bbox": [
+   2115,
+   1609,
+   2354,
+   1872
+  ],
+  "crop_wh": [
+   498,
+   142
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "6182"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "6182",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261014-WA0064__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0064.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.863,
+  "bbox": [
+   379,
+   748,
+   471,
+   802
+  ],
+  "crop_wh": [
+   320,
+   200
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "F",
+   "46",
+   "5",
+   "6"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.993,
+  "paddle_mean_conf": 0.998,
+  "text_clean": "F4656",
+  "valid": true,
+  "format": "HK",
+  "lines": 4
+ },
+ {
+  "file": "IMG-20261014-WA0096__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0096.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.868,
+  "bbox": [
+   434,
+   1416,
+   637,
+   1580
+  ],
+  "crop_wh": [
+   426,
+   91
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "4403",
+   "UP"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "4403UP",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261014-WA0245__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0245.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.718,
+  "bbox": [
+   311,
+   1077,
+   371,
+   1094
+  ],
+  "crop_wh": [
+   320,
+   123
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "NP 1162"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.92,
+  "paddle_mean_conf": 0.92,
+  "text_clean": "NP1162",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261014-WA0245__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0245.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.812,
+  "bbox": [
+   825,
+   1114,
+   1004,
+   1159
+  ],
+  "crop_wh": [
+   320,
+   93
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "RB",
+   "6970"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "RB6970",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261014-WA0253__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0253.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.855,
+  "bbox": [
+   574,
+   680,
+   640,
+   731
+  ],
+  "crop_wh": [
+   320,
+   67
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "9231",
+   "YG"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "9231YG",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261014-WA0255__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0255.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.845,
+  "bbox": [
+   68,
+   1255,
+   233,
+   1347
+  ],
+  "crop_wh": [
+   320,
+   186
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "ZT",
+   "2005"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "ZT2005",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261014-WA0281__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0281.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.394,
+  "bbox": [
+   769,
+   549,
+   799,
+   566
+  ],
+  "crop_wh": [
+   320,
+   216
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 0
+ },
+ {
+  "file": "IMG-20261014-WA0281__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0281.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.864,
+  "bbox": [
+   238,
+   655,
+   408,
+   751
+  ],
+  "crop_wh": [
+   320,
+   188
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "WX",
+   "709"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "WX709",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261014-WA0332__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0332.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.78,
+  "bbox": [
+   1317,
+   547,
+   1369,
+   571
+  ],
+  "crop_wh": [
+   320,
+   175
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "1319"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.959,
+  "paddle_mean_conf": 0.959,
+  "text_clean": "1319",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261014-WA0361__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0361.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.84,
+  "bbox": [
+   844,
+   441,
+   906,
+   479
+  ],
+  "crop_wh": [
+   320,
+   213
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "M",
+   "5",
+   "838"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.997,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "M5838",
+  "valid": true,
+  "format": "HK",
+  "lines": 3
+ },
+ {
+  "file": "IMG-20261014-WA0364__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0364.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.705,
+  "bbox": [
+   714,
+   936,
+   776,
+   960
+  ],
+  "crop_wh": [
+   320,
+   40
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 0
+ },
+ {
+  "file": "IMG-20261014-WA0364__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0364.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.806,
+  "bbox": [
+   11,
+   1010,
+   202,
+   1056
+  ],
+  "crop_wh": [
+   320,
+   89
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "FM 814"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.911,
+  "paddle_mean_conf": 0.911,
+  "text_clean": "FM814",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261015-WA0213__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261015-WA0213.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.828,
+  "bbox": [
+   691,
+   1314,
+   816,
+   1391
+  ],
+  "crop_wh": [
+   320,
+   54
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "2308",
+   "EL"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.994,
+  "paddle_mean_conf": 0.997,
+  "text_clean": "2308EL",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261015-WA0308__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261015-WA0308.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.863,
+  "bbox": [
+   768,
+   1070,
+   853,
+   1138
+  ],
+  "crop_wh": [
+   320,
+   69
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "·UP",
+   "4403"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.874,
+  "paddle_mean_conf": 0.937,
+  "text_clean": "UP4403",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261015-WA0309__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261015-WA0309.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.399,
+  "bbox": [
+   832,
+   1036,
+   858,
+   1060
+  ],
+  "crop_wh": [
+   320,
+   80
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "B3",
+   "1"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.219,
+  "paddle_mean_conf": 0.373,
+  "text_clean": "B31",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261015-WA0309__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261015-WA0309.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.835,
+  "bbox": [
+   288,
+   1203,
+   396,
+   1265
+  ],
+  "crop_wh": [
+   320,
+   195
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "4403"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "4403",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261016-WA0313__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261016-WA0313.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.848,
+  "bbox": [
+   409,
+   927,
+   483,
+   972
+  ],
+  "crop_wh": [
+   320,
+   209
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "2Y02"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.782,
+  "paddle_mean_conf": 0.782,
+  "text_clean": "2Y02",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261016-WA0366__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261016-WA0366.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.87,
+  "bbox": [
+   314,
+   1116,
+   437,
+   1188
+  ],
+  "crop_wh": [
+   320,
+   197
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "VC",
+   "8106"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.99,
+  "paddle_mean_conf": 0.995,
+  "text_clean": "VC8106",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261017-WA0020__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261017-WA0020.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.872,
+  "bbox": [
+   862,
+   2130,
+   1280,
+   2371
+  ],
+  "crop_wh": [
+   856,
+   131
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "YR",
+   "7164"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "YR7164",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261018-WA0235__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0235.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.604,
+  "bbox": [
+   772,
+   995,
+   823,
+   1013
+  ],
+  "crop_wh": [
+   320,
+   39
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "2",
+   "MB314"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.345,
+  "paddle_mean_conf": 0.553,
+  "text_clean": "2MB314",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261018-WA0235__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0235.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.851,
+  "bbox": [
+   226,
+   1043,
+   299,
+   1089
+  ],
+  "crop_wh": [
+   320,
+   215
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "2Y70"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.834,
+  "paddle_mean_conf": 0.834,
+  "text_clean": "2Y70",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261018-WA0245__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0245.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.812,
+  "bbox": [
+   94,
+   869,
+   189,
+   917
+  ],
+  "crop_wh": [
+   320,
+   176
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "1314"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.934,
+  "paddle_mean_conf": 0.934,
+  "text_clean": "1314",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261018-WA0245__1__gangao.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0245.jpg",
+  "idx": 1,
+  "region_det": "gangao",
+  "det_conf": 0.779,
+  "bbox": [
+   81,
+   914,
+   203,
+   961
+  ],
+  "crop_wh": [
+   320,
+   138
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "粤",
+   "10"
+  ],
+  "paddle_dropped": [
+   "粤"
+  ],
+  "paddle_confidence": 0.714,
+  "paddle_mean_conf": 0.768,
+  "text_clean": "10",
+  "valid": false,
+  "format": "粵Z",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261018-WA0259__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0259.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.847,
+  "bbox": [
+   229,
+   1454,
+   451,
+   1560
+  ],
+  "crop_wh": [
+   320,
+   160
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "KA",
+   "3461"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.765,
+  "paddle_mean_conf": 0.883,
+  "text_clean": "KA3461",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261018-WA0269__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0269.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.839,
+  "bbox": [
+   563,
+   1011,
+   665,
+   1070
+  ],
+  "crop_wh": [
+   320,
+   197
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 0
+ },
+ {
+  "file": "IMG-20261018-WA0302__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0302.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.857,
+  "bbox": [
+   982,
+   1303,
+   1060,
+   1366
+  ],
+  "crop_wh": [
+   320,
+   69
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "7147",
+   "VJ"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.951,
+  "paddle_mean_conf": 0.975,
+  "text_clean": "7147VJ",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261019-WA0038__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0038.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.861,
+  "bbox": [
+   734,
+   1198,
+   933,
+   1306
+  ],
+  "crop_wh": [
+   320,
+   180
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "9854"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "9854",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261019-WA0103__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0103.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.693,
+  "bbox": [
+   584,
+   750,
+   725,
+   837
+  ],
+  "crop_wh": [
+   320,
+   205
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 0
+ },
+ {
+  "file": "IMG-20261019-WA0104__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0104.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.75,
+  "bbox": [
+   585,
+   752,
+   726,
+   837
+  ],
+  "crop_wh": [
+   320,
+   201
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 0
+ },
+ {
+  "file": "IMG-20261019-WA0278__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0278.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.829,
+  "bbox": [
+   857,
+   454,
+   908,
+   480
+  ],
+  "crop_wh": [
+   320,
+   188
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "6259"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "6259",
+  "valid": false,
+  "format": "",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261019-WA0446__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0446.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.5,
+  "bbox": [
+   614,
+   66,
+   722,
+   247
+  ],
+  "crop_wh": [
+   320,
+   135
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 0
+ },
+ {
+  "file": "IMG-20261019-WA0457__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0457.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.87,
+  "bbox": [
+   1507,
+   2417,
+   1767,
+   2583
+  ],
+  "crop_wh": [
+   540,
+   92
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "9205",
+   "UY"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "9205UY",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261019-WA0463__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0463.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.735,
+  "bbox": [
+   626,
+   592,
+   663,
+   613
+  ],
+  "crop_wh": [
+   320,
+   211
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.0,
+  "paddle_mean_conf": 0.0,
+  "text_clean": "",
+  "valid": false,
+  "format": "",
+  "lines": 0
+ },
+ {
+  "file": "IMG-20261019-WA0463__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0463.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.848,
+  "bbox": [
+   1056,
+   672,
+   1171,
+   736
+  ],
+  "crop_wh": [
+   320,
+   189
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "VM",
+   "9471"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "VM9471",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261020-WA0016__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261020-WA0016.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.755,
+  "bbox": [
+   370,
+   1047,
+   521,
+   1144
+  ],
+  "crop_wh": [
+   320,
+   212
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "G47"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.812,
+  "paddle_mean_conf": 0.812,
+  "text_clean": "G47",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261020-WA0056__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261020-WA0056.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.859,
+  "bbox": [
+   221,
+   1095,
+   351,
+   1181
+  ],
+  "crop_wh": [
+   320,
+   219
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "7",
+   "86"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "786",
+  "valid": false,
+  "format": "",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261020-WA0075__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261020-WA0075.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.845,
+  "bbox": [
+   1424,
+   2451,
+   1658,
+   2587
+  ],
+  "crop_wh": [
+   488,
+   76
+  ],
+  "double_line_merged": true,
+  "paddle_raw": [
+   "CC3208"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "CC3208",
+  "valid": true,
+  "format": "HK",
+  "lines": 1
+ },
+ {
+  "file": "IMG-20261020-WA0160__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261020-WA0160.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.85,
+  "bbox": [
+   637,
+   880,
+   753,
+   950
+  ],
+  "crop_wh": [
+   320,
+   203
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "WL",
+   "4613"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 0.999,
+  "paddle_mean_conf": 0.999,
+  "text_clean": "WL4613",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ },
+ {
+  "file": "IMG-20261020-WA0241__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261020-WA0241.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.851,
+  "bbox": [
+   479,
+   1280,
+   582,
+   1342
+  ],
+  "crop_wh": [
+   320,
+   203
+  ],
+  "double_line_merged": false,
+  "paddle_raw": [
+   "XZ",
+   "2867"
+  ],
+  "paddle_dropped": [],
+  "paddle_confidence": 1.0,
+  "paddle_mean_conf": 1.0,
+  "text_clean": "XZ2867",
+  "valid": true,
+  "format": "HK",
+  "lines": 2
+ }
+]

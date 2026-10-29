@@ -1,0 +1,2432 @@
+[
+ {
+  "file": "IMG-20260725-WA0329__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260725-WA0329.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.823,
+  "bbox": [
+   2275,
+   1270,
+   2503,
+   1412
+  ],
+  "crop_wh": [
+   320,
+   204
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260725-WA0332__0__mo.jpg",
+  "src": "test_data/real/hk/IMG-20260725-WA0332.jpeg",
+  "idx": 0,
+  "region_det": "mo",
+  "det_conf": 0.787,
+  "bbox": [
+   932,
+   2514,
+   1255,
+   2695
+  ],
+  "crop_wh": [
+   333,
+   191
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260725-WA0338__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260725-WA0338.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.847,
+  "bbox": [
+   879,
+   2065,
+   1150,
+   2228
+  ],
+  "crop_wh": [
+   562,
+   90
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260731-WA0245__0__mo.jpg",
+  "src": "test_data/real/hk/IMG-20260731-WA0245.jpg",
+  "idx": 0,
+  "region_det": "mo",
+  "det_conf": 0.877,
+  "bbox": [
+   402,
+   1446,
+   702,
+   1589
+  ],
+  "crop_wh": [
+   320,
+   157
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260801-WA0012__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260801-WA0012.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.85,
+  "bbox": [
+   1145,
+   2485,
+   1499,
+   2682
+  ],
+  "crop_wh": [
+   728,
+   108
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260801-WA0015__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260801-WA0015.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.848,
+  "bbox": [
+   263,
+   2663,
+   471,
+   2807
+  ],
+  "crop_wh": [
+   320,
+   226
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260802-WA0014__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260802-WA0014.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.856,
+  "bbox": [
+   1089,
+   2456,
+   1454,
+   2664
+  ],
+  "crop_wh": [
+   750,
+   114
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260802-WA0017__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260802-WA0017.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.832,
+  "bbox": [
+   311,
+   2822,
+   540,
+   2984
+  ],
+  "crop_wh": [
+   320,
+   230
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260805-WA0005__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260805-WA0005.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.855,
+  "bbox": [
+   1066,
+   2311,
+   1378,
+   2499
+  ],
+  "crop_wh": [
+   322,
+   198
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260807-WA0009__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260807-WA0009.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.848,
+  "bbox": [
+   922,
+   2558,
+   1262,
+   2770
+  ],
+  "crop_wh": [
+   350,
+   222
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260813-WA0024__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260813-WA0024.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.863,
+  "bbox": [
+   874,
+   2383,
+   1242,
+   2593
+  ],
+  "crop_wh": [
+   756,
+   115
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260821-WA0050__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260821-WA0050.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.852,
+  "bbox": [
+   1089,
+   2463,
+   1458,
+   2684
+  ],
+  "crop_wh": [
+   758,
+   121
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260824-WA0032__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260824-WA0032.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.819,
+  "bbox": [
+   441,
+   1034,
+   620,
+   1161
+  ],
+  "crop_wh": [
+   320,
+   231
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260825-WA0276__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260825-WA0276.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.864,
+  "bbox": [
+   147,
+   1298,
+   278,
+   1390
+  ],
+  "crop_wh": [
+   320,
+   231
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260826-WA0038__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260826-WA0038.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.862,
+  "bbox": [
+   1361,
+   2669,
+   1753,
+   2921
+  ],
+  "crop_wh": [
+   402,
+   262
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260829-WA0258__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260829-WA0258.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.874,
+  "bbox": [
+   251,
+   1019,
+   492,
+   1170
+  ],
+  "crop_wh": [
+   320,
+   205
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260831-WA0230__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260831-WA0230.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.86,
+  "bbox": [
+   585,
+   873,
+   789,
+   1057
+  ],
+  "crop_wh": [
+   428,
+   101
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260902-WA0404__0__mo.jpg",
+  "src": "test_data/real/hk/IMG-20260902-WA0404.jpg",
+  "idx": 0,
+  "region_det": "mo",
+  "det_conf": 0.685,
+  "bbox": [
+   407,
+   1238,
+   680,
+   1383
+  ],
+  "crop_wh": [
+   566,
+   81
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260902-WA0404__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260902-WA0404.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.337,
+  "bbox": [
+   407,
+   1238,
+   680,
+   1384
+  ],
+  "crop_wh": [
+   566,
+   82
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260904-WA0385__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260904-WA0385.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.832,
+  "bbox": [
+   321,
+   1269,
+   764,
+   1487
+  ],
+  "crop_wh": [
+   453,
+   228
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260914-WA0256__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260914-WA0256.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.873,
+  "bbox": [
+   392,
+   732,
+   585,
+   837
+  ],
+  "crop_wh": [
+   406,
+   60
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260915-WA0015__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260915-WA0015.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.838,
+  "bbox": [
+   1199,
+   2505,
+   1542,
+   2717
+  ],
+  "crop_wh": [
+   706,
+   116
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260923-WA0045__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260923-WA0045.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.836,
+  "bbox": [
+   439,
+   1220,
+   654,
+   1322
+  ],
+  "crop_wh": [
+   320,
+   159
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260924-WA0144__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260924-WA0144.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.844,
+  "bbox": [
+   436,
+   853,
+   526,
+   903
+  ],
+  "crop_wh": [
+   320,
+   192
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260925-WA0015__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260925-WA0015.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.851,
+  "bbox": [
+   413,
+   915,
+   546,
+   989
+  ],
+  "crop_wh": [
+   320,
+   187
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260925-WA0221__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260925-WA0221.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.862,
+  "bbox": [
+   8,
+   1081,
+   174,
+   1175
+  ],
+  "crop_wh": [
+   320,
+   189
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260926-WA0239__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260926-WA0239.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.864,
+  "bbox": [
+   815,
+   1125,
+   1004,
+   1232
+  ],
+  "crop_wh": [
+   398,
+   61
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260926-WA0249__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260926-WA0249.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.697,
+  "bbox": [
+   488,
+   999,
+   579,
+   1049
+  ],
+  "crop_wh": [
+   320,
+   190
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260927-WA0180__0__mo.jpg",
+  "src": "test_data/real/hk/IMG-20260927-WA0180.jpg",
+  "idx": 0,
+  "region_det": "mo",
+  "det_conf": 0.87,
+  "bbox": [
+   309,
+   966,
+   512,
+   1084
+  ],
+  "crop_wh": [
+   320,
+   192
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260928-WA0010__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260928-WA0010.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.847,
+  "bbox": [
+   321,
+   876,
+   454,
+   952
+  ],
+  "crop_wh": [
+   320,
+   192
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260928-WA0031__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260928-WA0031.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.859,
+  "bbox": [
+   867,
+   988,
+   1055,
+   1094
+  ],
+  "crop_wh": [
+   396,
+   61
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260928-WA0173__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260928-WA0173.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.819,
+  "bbox": [
+   522,
+   1118,
+   657,
+   1195
+  ],
+  "crop_wh": [
+   320,
+   192
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260928-WA0190__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260928-WA0190.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.846,
+  "bbox": [
+   808,
+   1015,
+   919,
+   1075
+  ],
+  "crop_wh": [
+   320,
+   185
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260928-WA0250__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260928-WA0250.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.833,
+  "bbox": [
+   799,
+   1434,
+   973,
+   1496
+  ],
+  "crop_wh": [
+   320,
+   125
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260929-WA0005__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260929-WA0005.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.834,
+  "bbox": [
+   33,
+   868,
+   210,
+   980
+  ],
+  "crop_wh": [
+   320,
+   208
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260929-WA0026__0__gangao.jpg",
+  "src": "test_data/real/hk/IMG-20260929-WA0026.jpg",
+  "idx": 0,
+  "region_det": "gangao",
+  "det_conf": 0.491,
+  "bbox": [
+   166,
+   988,
+   305,
+   1034
+  ],
+  "crop_wh": [
+   320,
+   120
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260929-WA0026__1__mo.jpg",
+  "src": "test_data/real/hk/IMG-20260929-WA0026.jpg",
+  "idx": 1,
+  "region_det": "mo",
+  "det_conf": 0.679,
+  "bbox": [
+   156,
+   1029,
+   318,
+   1069
+  ],
+  "crop_wh": [
+   320,
+   93
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260929-WA0305__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260929-WA0305.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.869,
+  "bbox": [
+   557,
+   1098,
+   673,
+   1168
+  ],
+  "crop_wh": [
+   320,
+   203
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260930-WA0019__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260930-WA0019.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.827,
+  "bbox": [
+   203,
+   1204,
+   275,
+   1262
+  ],
+  "crop_wh": [
+   320,
+   70
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20260930-WA0214__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260930-WA0214.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.441,
+  "bbox": [
+   854,
+   437,
+   878,
+   450
+  ],
+  "crop_wh": [
+   320,
+   216
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20260930-WA0214__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20260930-WA0214.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.853,
+  "bbox": [
+   593,
+   526,
+   681,
+   575
+  ],
+  "crop_wh": [
+   320,
+   192
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261001-WA0129__0__mo.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0129.jpg",
+  "idx": 0,
+  "region_det": "mo",
+  "det_conf": 0.808,
+  "bbox": [
+   274,
+   1444,
+   524,
+   1672
+  ],
+  "crop_wh": [
+   520,
+   124
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261001-WA0216__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0216.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.847,
+  "bbox": [
+   266,
+   1092,
+   379,
+   1159
+  ],
+  "crop_wh": [
+   320,
+   200
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261001-WA0392__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0392.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.831,
+  "bbox": [
+   236,
+   1069,
+   305,
+   1107
+  ],
+  "crop_wh": [
+   320,
+   194
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261001-WA0422__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0422.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.493,
+  "bbox": [
+   43,
+   515,
+   69,
+   535
+  ],
+  "crop_wh": [
+   320,
+   71
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261001-WA0422__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0422.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.651,
+  "bbox": [
+   1286,
+   554,
+   1383,
+   583
+  ],
+  "crop_wh": [
+   320,
+   116
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261001-WA0422__2__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0422.jpg",
+  "idx": 2,
+  "region_det": "hk",
+  "det_conf": 0.637,
+  "bbox": [
+   1291,
+   607,
+   1388,
+   629
+  ],
+  "crop_wh": [
+   320,
+   95
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261001-WA0422__3__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261001-WA0422.jpg",
+  "idx": 3,
+  "region_det": "hk",
+  "det_conf": 0.848,
+  "bbox": [
+   470,
+   647,
+   620,
+   728
+  ],
+  "crop_wh": [
+   320,
+   182
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261002-WA0030__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0030.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.855,
+  "bbox": [
+   1229,
+   2367,
+   1475,
+   2513
+  ],
+  "crop_wh": [
+   512,
+   82
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261002-WA0087__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0087.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.851,
+  "bbox": [
+   417,
+   528,
+   515,
+   580
+  ],
+  "crop_wh": [
+   320,
+   183
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261002-WA0107__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0107.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.841,
+  "bbox": [
+   268,
+   689,
+   325,
+   721
+  ],
+  "crop_wh": [
+   320,
+   200
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261002-WA0107__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0107.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.706,
+  "bbox": [
+   686,
+   743,
+   731,
+   759
+  ],
+  "crop_wh": [
+   320,
+   151
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261002-WA0108__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0108.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.864,
+  "bbox": [
+   527,
+   928,
+   678,
+   1022
+  ],
+  "crop_wh": [
+   320,
+   206
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261002-WA0117__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0117.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.84,
+  "bbox": [
+   190,
+   734,
+   280,
+   790
+  ],
+  "crop_wh": [
+   320,
+   56
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261002-WA0169__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0169.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.863,
+  "bbox": [
+   450,
+   873,
+   641,
+   1022
+  ],
+  "crop_wh": [
+   402,
+   83
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261002-WA0206__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261002-WA0206.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.839,
+  "bbox": [
+   370,
+   1072,
+   502,
+   1146
+  ],
+  "crop_wh": [
+   320,
+   49
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261004-WA0050__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0050.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.849,
+  "bbox": [
+   754,
+   553,
+   953,
+   668
+  ],
+  "crop_wh": [
+   418,
+   65
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261004-WA0128__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0128.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.855,
+  "bbox": [
+   585,
+   973,
+   744,
+   1061
+  ],
+  "crop_wh": [
+   338,
+   51
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261004-WA0135__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0135.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.814,
+  "bbox": [
+   515,
+   886,
+   687,
+   979
+  ],
+  "crop_wh": [
+   320,
+   181
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261004-WA0208__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0208.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.733,
+  "bbox": [
+   1749,
+   920,
+   1788,
+   966
+  ],
+  "crop_wh": [
+   320,
+   97
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261004-WA0208__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0208.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.816,
+  "bbox": [
+   517,
+   1129,
+   641,
+   1197
+  ],
+  "crop_wh": [
+   320,
+   186
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261004-WA0209__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0209.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.807,
+  "bbox": [
+   1518,
+   875,
+   1566,
+   907
+  ],
+  "crop_wh": [
+   320,
+   231
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261004-WA0209__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261004-WA0209.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.824,
+  "bbox": [
+   570,
+   958,
+   625,
+   996
+  ],
+  "crop_wh": [
+   320,
+   236
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261005-WA0061__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0061.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.828,
+  "bbox": [
+   247,
+   860,
+   329,
+   913
+  ],
+  "crop_wh": [
+   320,
+   57
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261005-WA0063__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0063.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.868,
+  "bbox": [
+   472,
+   1093,
+   603,
+   1173
+  ],
+  "crop_wh": [
+   320,
+   204
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261005-WA0093__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0093.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.77,
+  "bbox": [
+   267,
+   1023,
+   424,
+   1062
+  ],
+  "crop_wh": [
+   320,
+   93
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261005-WA0094__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0094.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.448,
+  "bbox": [
+   744,
+   559,
+   775,
+   570
+  ],
+  "crop_wh": [
+   320,
+   42
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261005-WA0094__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0094.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.801,
+  "bbox": [
+   1224,
+   733,
+   1328,
+   768
+  ],
+  "crop_wh": [
+   320,
+   126
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261005-WA0094__2__gangao.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0094.jpg",
+  "idx": 2,
+  "region_det": "gangao",
+  "det_conf": 0.767,
+  "bbox": [
+   1218,
+   767,
+   1337,
+   807
+  ],
+  "crop_wh": [
+   320,
+   124
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261005-WA0138__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0138.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.579,
+  "bbox": [
+   507,
+   1092,
+   548,
+   1113
+  ],
+  "crop_wh": [
+   320,
+   194
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261005-WA0138__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0138.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.858,
+  "bbox": [
+   755,
+   1196,
+   885,
+   1268
+  ],
+  "crop_wh": [
+   320,
+   187
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261005-WA0168__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0168.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.844,
+  "bbox": [
+   682,
+   1046,
+   808,
+   1115
+  ],
+  "crop_wh": [
+   320,
+   185
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261005-WA0217__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0217.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.798,
+  "bbox": [
+   110,
+   1036,
+   322,
+   1089
+  ],
+  "crop_wh": [
+   320,
+   90
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261005-WA0223__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261005-WA0223.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.832,
+  "bbox": [
+   197,
+   1383,
+   321,
+   1452
+  ],
+  "crop_wh": [
+   320,
+   188
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261006-WA0037__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261006-WA0037.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.82,
+  "bbox": [
+   1039,
+   2893,
+   1357,
+   3150
+  ],
+  "crop_wh": [
+   656,
+   139
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261007-WA0153__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261007-WA0153.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.855,
+  "bbox": [
+   221,
+   960,
+   337,
+   1024
+  ],
+  "crop_wh": [
+   320,
+   49
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261008-WA0010__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261008-WA0010.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.847,
+  "bbox": [
+   372,
+   1003,
+   540,
+   1094
+  ],
+  "crop_wh": [
+   356,
+   53
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261008-WA0211__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261008-WA0211.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.849,
+  "bbox": [
+   528,
+   1118,
+   631,
+   1177
+  ],
+  "crop_wh": [
+   320,
+   195
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261008-WA0304__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261008-WA0304.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.857,
+  "bbox": [
+   206,
+   938,
+   307,
+   996
+  ],
+  "crop_wh": [
+   320,
+   196
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261009-WA0003__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261009-WA0003.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.888,
+  "bbox": [
+   230,
+   776,
+   508,
+   997
+  ],
+  "crop_wh": [
+   576,
+   121
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261009-WA0097__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261009-WA0097.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.826,
+  "bbox": [
+   560,
+   1097,
+   629,
+   1138
+  ],
+  "crop_wh": [
+   320,
+   206
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261010-WA0013__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261010-WA0013.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.826,
+  "bbox": [
+   778,
+   1094,
+   832,
+   1139
+  ],
+  "crop_wh": [
+   320,
+   72
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261010-WA0044__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261010-WA0044.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.855,
+  "bbox": [
+   621,
+   2644,
+   975,
+   2883
+  ],
+  "crop_wh": [
+   364,
+   249
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261010-WA0149__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261010-WA0149.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.798,
+  "bbox": [
+   729,
+   1071,
+   782,
+   1099
+  ],
+  "crop_wh": [
+   320,
+   193
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261010-WA0385__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261010-WA0385.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.822,
+  "bbox": [
+   581,
+   716,
+   646,
+   791
+  ],
+  "crop_wh": [
+   320,
+   96
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261011-WA0253__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261011-WA0253.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.857,
+  "bbox": [
+   329,
+   972,
+   433,
+   1034
+  ],
+  "crop_wh": [
+   320,
+   202
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261012-WA0014__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261012-WA0014.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.813,
+  "bbox": [
+   469,
+   980,
+   517,
+   997
+  ],
+  "crop_wh": [
+   320,
+   148
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261012-WA0014__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261012-WA0014.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.788,
+  "bbox": [
+   172,
+   987,
+   205,
+   1007
+  ],
+  "crop_wh": [
+   320,
+   223
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261012-WA0027__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261012-WA0027.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.858,
+  "bbox": [
+   858,
+   1228,
+   1043,
+   1330
+  ],
+  "crop_wh": [
+   320,
+   183
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261012-WA0102__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261012-WA0102.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.807,
+  "bbox": [
+   697,
+   635,
+   804,
+   700
+  ],
+  "crop_wh": [
+   320,
+   205
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261012-WA0102__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261012-WA0102.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.818,
+  "bbox": [
+   204,
+   718,
+   262,
+   756
+  ],
+  "crop_wh": [
+   320,
+   225
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261013-WA0016__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261013-WA0016.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.847,
+  "bbox": [
+   342,
+   1039,
+   472,
+   1117
+  ],
+  "crop_wh": [
+   320,
+   201
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261013-WA0094__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261013-WA0094.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.864,
+  "bbox": [
+   283,
+   870,
+   385,
+   923
+  ],
+  "crop_wh": [
+   320,
+   180
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261013-WA0327__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261013-WA0327.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.817,
+  "bbox": [
+   925,
+   1138,
+   1087,
+   1185
+  ],
+  "crop_wh": [
+   320,
+   106
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261014-WA0035__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0035.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.861,
+  "bbox": [
+   851,
+   1234,
+   1009,
+   1326
+  ],
+  "crop_wh": [
+   336,
+   54
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261014-WA0051__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0051.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.851,
+  "bbox": [
+   2115,
+   1609,
+   2354,
+   1872
+  ],
+  "crop_wh": [
+   498,
+   142
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261014-WA0064__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0064.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.863,
+  "bbox": [
+   379,
+   748,
+   471,
+   802
+  ],
+  "crop_wh": [
+   320,
+   200
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261014-WA0096__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0096.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.868,
+  "bbox": [
+   434,
+   1416,
+   637,
+   1580
+  ],
+  "crop_wh": [
+   426,
+   91
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261014-WA0245__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0245.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.718,
+  "bbox": [
+   311,
+   1077,
+   371,
+   1094
+  ],
+  "crop_wh": [
+   320,
+   123
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261014-WA0245__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0245.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.812,
+  "bbox": [
+   825,
+   1114,
+   1004,
+   1159
+  ],
+  "crop_wh": [
+   320,
+   93
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261014-WA0253__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0253.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.855,
+  "bbox": [
+   574,
+   680,
+   640,
+   731
+  ],
+  "crop_wh": [
+   320,
+   67
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261014-WA0255__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0255.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.845,
+  "bbox": [
+   68,
+   1255,
+   233,
+   1347
+  ],
+  "crop_wh": [
+   320,
+   186
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261014-WA0281__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0281.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.394,
+  "bbox": [
+   769,
+   549,
+   799,
+   566
+  ],
+  "crop_wh": [
+   320,
+   216
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261014-WA0281__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0281.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.864,
+  "bbox": [
+   238,
+   655,
+   408,
+   751
+  ],
+  "crop_wh": [
+   320,
+   188
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261014-WA0332__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0332.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.78,
+  "bbox": [
+   1317,
+   547,
+   1369,
+   571
+  ],
+  "crop_wh": [
+   320,
+   175
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261014-WA0361__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0361.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.84,
+  "bbox": [
+   844,
+   441,
+   906,
+   479
+  ],
+  "crop_wh": [
+   320,
+   213
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261014-WA0364__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0364.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.705,
+  "bbox": [
+   714,
+   936,
+   776,
+   960
+  ],
+  "crop_wh": [
+   320,
+   40
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261014-WA0364__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261014-WA0364.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.806,
+  "bbox": [
+   11,
+   1010,
+   202,
+   1056
+  ],
+  "crop_wh": [
+   320,
+   89
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261015-WA0213__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261015-WA0213.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.828,
+  "bbox": [
+   691,
+   1314,
+   816,
+   1391
+  ],
+  "crop_wh": [
+   320,
+   54
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261015-WA0308__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261015-WA0308.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.863,
+  "bbox": [
+   768,
+   1070,
+   853,
+   1138
+  ],
+  "crop_wh": [
+   320,
+   69
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261015-WA0309__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261015-WA0309.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.399,
+  "bbox": [
+   832,
+   1036,
+   858,
+   1060
+  ],
+  "crop_wh": [
+   320,
+   80
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261015-WA0309__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261015-WA0309.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.835,
+  "bbox": [
+   288,
+   1203,
+   396,
+   1265
+  ],
+  "crop_wh": [
+   320,
+   195
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261016-WA0313__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261016-WA0313.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.848,
+  "bbox": [
+   409,
+   927,
+   483,
+   972
+  ],
+  "crop_wh": [
+   320,
+   209
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261016-WA0366__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261016-WA0366.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.87,
+  "bbox": [
+   314,
+   1116,
+   437,
+   1188
+  ],
+  "crop_wh": [
+   320,
+   197
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261017-WA0020__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261017-WA0020.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.872,
+  "bbox": [
+   862,
+   2130,
+   1280,
+   2371
+  ],
+  "crop_wh": [
+   856,
+   131
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261018-WA0235__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0235.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.604,
+  "bbox": [
+   772,
+   995,
+   823,
+   1013
+  ],
+  "crop_wh": [
+   320,
+   39
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261018-WA0235__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0235.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.851,
+  "bbox": [
+   226,
+   1043,
+   299,
+   1089
+  ],
+  "crop_wh": [
+   320,
+   215
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261018-WA0245__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0245.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.812,
+  "bbox": [
+   94,
+   869,
+   189,
+   917
+  ],
+  "crop_wh": [
+   320,
+   176
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261018-WA0245__1__gangao.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0245.jpg",
+  "idx": 1,
+  "region_det": "gangao",
+  "det_conf": 0.779,
+  "bbox": [
+   81,
+   914,
+   203,
+   961
+  ],
+  "crop_wh": [
+   320,
+   138
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261018-WA0259__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0259.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.847,
+  "bbox": [
+   229,
+   1454,
+   451,
+   1560
+  ],
+  "crop_wh": [
+   320,
+   160
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261018-WA0269__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0269.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.839,
+  "bbox": [
+   563,
+   1011,
+   665,
+   1070
+  ],
+  "crop_wh": [
+   320,
+   197
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261018-WA0302__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261018-WA0302.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.857,
+  "bbox": [
+   982,
+   1303,
+   1060,
+   1366
+  ],
+  "crop_wh": [
+   320,
+   69
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261019-WA0038__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0038.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.861,
+  "bbox": [
+   734,
+   1198,
+   933,
+   1306
+  ],
+  "crop_wh": [
+   320,
+   180
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261019-WA0103__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0103.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.693,
+  "bbox": [
+   584,
+   750,
+   725,
+   837
+  ],
+  "crop_wh": [
+   320,
+   205
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261019-WA0104__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0104.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.75,
+  "bbox": [
+   585,
+   752,
+   726,
+   837
+  ],
+  "crop_wh": [
+   320,
+   201
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261019-WA0278__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0278.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.829,
+  "bbox": [
+   857,
+   454,
+   908,
+   480
+  ],
+  "crop_wh": [
+   320,
+   188
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261019-WA0446__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0446.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.5,
+  "bbox": [
+   614,
+   66,
+   722,
+   247
+  ],
+  "crop_wh": [
+   320,
+   135
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261019-WA0457__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0457.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.87,
+  "bbox": [
+   1507,
+   2417,
+   1767,
+   2583
+  ],
+  "crop_wh": [
+   540,
+   92
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261019-WA0463__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0463.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.735,
+  "bbox": [
+   626,
+   592,
+   663,
+   613
+  ],
+  "crop_wh": [
+   320,
+   211
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261019-WA0463__1__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261019-WA0463.jpg",
+  "idx": 1,
+  "region_det": "hk",
+  "det_conf": 0.848,
+  "bbox": [
+   1056,
+   672,
+   1171,
+   736
+  ],
+  "crop_wh": [
+   320,
+   189
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261020-WA0016__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261020-WA0016.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.755,
+  "bbox": [
+   370,
+   1047,
+   521,
+   1144
+  ],
+  "crop_wh": [
+   320,
+   212
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261020-WA0056__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261020-WA0056.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.859,
+  "bbox": [
+   221,
+   1095,
+   351,
+   1181
+  ],
+  "crop_wh": [
+   320,
+   219
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261020-WA0075__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261020-WA0075.jpeg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.845,
+  "bbox": [
+   1424,
+   2451,
+   1658,
+   2587
+  ],
+  "crop_wh": [
+   488,
+   76
+  ],
+  "double_line_merged": true
+ },
+ {
+  "file": "IMG-20261020-WA0160__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261020-WA0160.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.85,
+  "bbox": [
+   637,
+   880,
+   753,
+   950
+  ],
+  "crop_wh": [
+   320,
+   203
+  ],
+  "double_line_merged": false
+ },
+ {
+  "file": "IMG-20261020-WA0241__0__hk.jpg",
+  "src": "test_data/real/hk/IMG-20261020-WA0241.jpg",
+  "idx": 0,
+  "region_det": "hk",
+  "det_conf": 0.851,
+  "bbox": [
+   479,
+   1280,
+   582,
+   1342
+  ],
+  "crop_wh": [
+   320,
+   203
+  ],
+  "double_line_merged": false
+ }
+]
