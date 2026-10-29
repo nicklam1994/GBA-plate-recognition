@@ -110,6 +110,11 @@ class PlateResult:
         is_valid: 是否符合該地區車牌格式
         validation_note: 校驗說明（不通過時的原因）
         correction_applied: 是否應用了字符糾正
+        province: 省級行政區全名（僅內地牌有值，如「廣東省」）
+        city: 地級市（僅內地牌有值，如「深圳市」）
+        region_note: 地區補充說明（如「香港入出」）
+        energy: 能源代碼（新能源牌才有，D/F 等）
+        energy_note: 能源類型說明（「純電動」/「非純電動（混動/燃料電池）」）
     """
 
     detection: Detection
@@ -120,6 +125,11 @@ class PlateResult:
     is_valid: bool = False
     validation_note: str = ""
     correction_applied: bool = False
+    province: str | None = None
+    city: str | None = None
+    region_note: str = ""
+    energy: str | None = None
+    energy_note: str = ""
 
     @property
     def confidence(self) -> float:
@@ -135,6 +145,11 @@ class PlateResult:
             "text": self.text,
             "raw_text": self.raw_text,
             "region": self.region.value,
+            "province": self.province,
+            "city": self.city,
+            "region_note": self.region_note,
+            "energy": self.energy,
+            "energy_note": self.energy_note,
             "confidence": round(self.confidence, 4),
             "is_double": self.detection.is_double,
             "is_valid": self.is_valid,

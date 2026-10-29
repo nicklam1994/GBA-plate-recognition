@@ -138,6 +138,17 @@
             font-family: monospace;
             color: #4caf50;
         }
+        .plate-loc {
+            font-size: 11.5px;
+            color: #b0bec5;
+            margin-top: 2px;
+            letter-spacing: 0.2px;
+        }
+        .plate-energy {
+            font-size: 11px;
+            margin-top: 2px;
+            font-weight: 600;
+        }
         .plate-meta {
             font-size: 11px;
             color: #888;
@@ -466,10 +477,25 @@
                     ? '<span style="color:#4caf50">✓</span>'
                     : `<span style="color:#e94560" title="${p.validation_note || ''}">✗</span>`;
                 const dbl = p.is_double ? ' <span style="color:#ff9800;font-size:10px">雙行</span>' : '';
+                // 省 · 市（僅內地/粵Z 有值）
+                let loc = '';
+                if (p.province) {
+                    loc = `<div class="plate-loc">📍 ${p.province}${p.city ? ' · ' + p.city : ''}` +
+                          `${p.region_note ? '（' + p.region_note + '）' : ''}</div>`;
+                }
+                // 能源類型（僅內地新能源牌）
+                let energy = '';
+                if (p.energy) {
+                    const isPure = p.energy_note && p.energy_note.indexOf('純電動') === 0;
+                    const ec = isPure ? '#00e676' : '#ffb300';
+                    energy = `<div class="plate-energy" style="color:${ec}">⚡ ${p.energy} · ${p.energy_note}</div>`;
+                }
                 return `
                 <div class="plate-item" style="border-left: 3px solid ${rc}">
                     <div>
                         <div class="plate-text" style="color:${rc}">${p.text}</div>
+                        ${loc}
+                        ${energy}
                         <div style="font-size: 11px; color: #888;">
                             <span style="color:${rc}">${rn}</span> ${valid}${dbl}
                             ${p.color ? '· ' + p.color : ''}

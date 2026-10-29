@@ -207,11 +207,38 @@ results = alpr.process(cv2.imread("test.jpg"))
 for r in results:
     print(r.region.value)          # mainland / gangao / hk / mo
     print(r.text)                  # 後處理後文字
-    print(r.raw_text)              # OCR 原始輸出
+    print(r.province, r.city)      # 廣東省 深圳市（僅內地/粵Z 牌）
+    print(r.energy, r.energy_note) # D 純電動 / F 非純電動（僅新能源牌）
     print(r.confidence)            # 識別置信度
     print(r.is_valid, r.validation_note)   # 格式校驗結果
     print(r.detection.corners)     # 4 角點
     d = r.to_dict()                # 可直接餵給 JSON API
+```
+
+### 省 · 市 · 能源解析
+
+內地車牌第 2 位字母是發牌機關代碼，對應地級市；新能源牌另有能源標識。
+
+| 車牌 | 省 | 地級市 | 能源 |
+|------|-----|--------|------|
+| 粤A12345 | 廣東省 | 廣州市 | — |
+| 粤B12345 | 廣東省 | 深圳市 | — |
+| 粤S12345 | 廣東省 | 東莞市 | — |
+| 粤Z1234港 | 廣東省 | 港澳入出內地車輛 | —（香港入出）|
+| 沪AF71017 | 上海市 | 上海市區 | F · 非純電動（混動/燃料電池）|
+| 京AD12345 | 北京市 | 北京市區 | D · 純電動 |
+
+能源代碼規則（92 式新能源號牌 8 位）：
+- **小型車**：能源字母在第 3 位；**大型車**：在末位
+- `D`/`A`/`B`/`C`/`E`/`P`/`Q`/`R`/`S`/`T` → 純電動（D 為主，號段用盡後依序啟用其餘）
+- `F`/`G`/`H`/`J`/`K`/`L`/`M`/`N` → 非純電動（插電混動、燃料電池）
+
+覆蓋範圍：31 個省級行政區 + 港澳，共 382 個發牌機關代碼。
+
+```python
+from gba_plate.postprocess.region_map import describe_plate, resolve_energy
+describe_plate("沪AF71017")   # '上海市 · 上海市區 · 非純電動（混動/燃料電池）'
+resolve_energy("粤BD12345")   # ('D', '純電動')
 ```
 
 ### 擴展方式

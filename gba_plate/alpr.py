@@ -30,6 +30,7 @@ from gba_plate.postprocess.rules import (
     normalize,
     validate,
 )
+from gba_plate.postprocess.region_map import resolve_energy, resolve_plate_region
 from gba_plate.preprocess.double_line import looks_double_line, split_merge_double
 from gba_plate.preprocess.perspective import crop_by_bbox, warp_plate
 
@@ -148,6 +149,15 @@ class ALPR:
             else:
                 text, is_valid, corrected, note = ocr_result.text, True, False, "rules disabled"
 
+            # 省 + 地級市解析（內地牌與粵Z 牌都由廣東/各省核發）
+            province, city, region_note = (None, None, "")
+            energy, energy_note = (None, "")
+            if region in (Region.MAINLAND, Region.GANGAO):
+                province, city, region_note = resolve_plate_region(text)
+            if region == Region.MAINLAND:
+                # 能源類型只適用於內地新能源牌（8 位）
+                energy, energy_note = resolve_energy(text)
+
             results.append(
                 PlateResult(
                     detection=det,
@@ -158,6 +168,11 @@ class ALPR:
                     is_valid=is_valid,
                     validation_note=note,
                     correction_applied=corrected,
+                    province=province,
+                    city=city,
+                    region_note=region_note,
+                    energy=energy,
+                    energy_note=energy_note,
                 )
             )
 
