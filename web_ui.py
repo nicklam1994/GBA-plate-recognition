@@ -45,7 +45,7 @@ REGION_COLORS = {
 }
 
 
-def load_models(device: str | None = None, class_mode: str = "single_double") -> None:
+def load_models(device: str | None = None, class_mode: str = "region") -> None:
     """載入 ALPR 管線（冪等）"""
     global alpr
     if alpr is not None:
@@ -54,9 +54,12 @@ def load_models(device: str | None = None, class_mode: str = "single_double") ->
     from gba_plate import ALPR
 
     print("正在載入 gba_plate.ALPR ...")
+    # 預設指向四類新模型。舊的 plate_detect.pt 是 YOLOv5-face 2 類
+    # （只有單/雙行，沒有地區），plate_rec_color.pth 是早期 CRNN；
+    # 兩者都不含港澳訓練，識別效果與 eval 用的不是同一套。
     alpr = ALPR(
-        detect_model=ROOT / "weights/plate_detect.pt",
-        rec_model=ROOT / "weights/plate_rec_color.pth",
+        detect_model=ROOT / "weights/gba_4class_yolov8s_best.pt",
+        rec_model=ROOT / "weights/crnn_gba_v5.pth",
         device=device,
         class_mode=class_mode,
     )
@@ -202,7 +205,7 @@ def main() -> None:
     parser.add_argument("--device", default=None, help="torch 設備（cuda / cpu）")
     parser.add_argument(
         "--class-mode",
-        default="single_double",
+        default="region",
         choices=["single_double", "region"],
         help="檢測模型類別語義：舊權重用 single_double，4 類別新權重用 region",
     )
