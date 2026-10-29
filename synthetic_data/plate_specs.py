@@ -31,8 +31,12 @@ class PlateSpec:
     separator_color: Optional[Tuple[int, int, int]] = None  # 雙層分隔線顏色
     #: 漸變底色（上, 下）。設定時忽略 bg_color，用於新能源漸變綠牌
     bg_gradient: Optional[Tuple[Tuple[int, int, int], Tuple[int, int, int]]] = None
-    #: 尾字特殊顏色。用於「警」「使」「領」等紅色尾字
+    #: 尾字特殊顏色。目前僅「警」為紅色（2017 版外交牌的「使」「領」已改白字）
     suffix_color: Optional[Tuple[int, int, int]] = None
+    #: 前綴特殊顏色，用於軍車／武警／消防的字頭（紅色）
+    prefix_color: Optional[Tuple[int, int, int]] = None
+    #: 前綴紅色字符數（軍車 2、武警 3、消防 4）
+    prefix_len: int = 0
     #: 上下雙色拼接（上, 下）。用於大型新能源的黃綠雙拼
     bg_split: Optional[Tuple[Tuple[int, int, int], Tuple[int, int, int]]] = None
 
@@ -110,18 +114,68 @@ MAINLAND_WHITE = PlateSpec(
     suffix_color=(200, 30, 30),   # 「警」紅色
 )
 
-# 使領館車牌 —— 黑底白字，尾字「使」/「領」為紅色
+# 使領館車牌（2017 版《外交車輛管理辦法》）—— 黑底白字
+#   大使館：224·009使   6 位數字（3 位國家碼 + 3 位編號）+ 白「使」
+#   領事館：粵204·01領  省簡稱 + 3 位國家碼 + 2 位編號 + 白「領」
+# 「使」「領」已於 2017 由紅色改為白色並移至末位，不再用 suffix_color
 MAINLAND_BLACK = PlateSpec(
     name="mainland_black",
     width=440, height=140,
     bg_color=(18, 18, 18),        # 黑色
-    text_color=(245, 245, 245),   # 白色文字
-    font_size=120,
-    char_spacing=6,
-    margin_x=30, margin_y=25,
+    text_color=(245, 245, 245),   # 白色文字（含「使」「領」）
+    font_size=110,
+    char_spacing=5,
+    margin_x=25, margin_y=25,
     border_width=4,
     border_color=(245, 245, 245),
-    suffix_color=(200, 30, 30),   # 「使」「領」紅色
+)
+
+# 解放軍車輛號牌 —— 白底黑字，前牌字頭+字頭號為紅色
+#   格式：字頭（軍種字母）+ 字頭號 + 5 位序號，例 VA12345
+#   V=中央軍委、K=空軍、H=海軍；車尾僅字頭紅色
+MAINLAND_MILITARY = PlateSpec(
+    name="mainland_military",
+    width=440, height=140,
+    bg_color=(248, 248, 248),
+    text_color=(20, 20, 20),
+    font_size=115,
+    char_spacing=5,
+    margin_x=25, margin_y=25,
+    border_width=4,
+    border_color=(20, 20, 20),
+    prefix_color=(200, 30, 30),
+    prefix_len=2,                 # 字頭 + 字頭號紅色
+)
+
+# 武警部隊號牌 —— 白底黑字，WJ + 單位字母為紅色
+#   2019 式：WJ·A00001（與解放軍同式樣），5 位數字
+MAINLAND_ARMED_POLICE = PlateSpec(
+    name="mainland_armed_police",
+    width=440, height=140,
+    bg_color=(248, 248, 248),
+    text_color=(20, 20, 20),
+    font_size=115,
+    char_spacing=4,
+    margin_x=22, margin_y=25,
+    border_width=4,
+    border_color=(20, 20, 20),
+    prefix_color=(200, 30, 30),
+    prefix_len=3,                 # WJ + 單位字母紅色
+)
+
+# 國家綜合性消防救援隊伍號牌 —— 白底黑字，8 位，前 4 位隊伍代號為紅色
+MAINLAND_RESCUE = PlateSpec(
+    name="mainland_rescue",
+    width=480, height=140,
+    bg_color=(248, 248, 248),
+    text_color=(20, 20, 20),
+    font_size=110,
+    char_spacing=4,
+    margin_x=22, margin_y=25,
+    border_width=4,
+    border_color=(20, 20, 20),
+    prefix_color=(200, 30, 30),
+    prefix_len=4,                 # 救援隊伍代號紅色
 )
 
 # 教練車（學牌）—— 黃底黑字，尾字「學」
@@ -368,6 +422,20 @@ MO_A_TEMP = PlateSpec(
 MO_SINGLE_SPECS = [(MO_A, 0.55), (MO_B, 0.15), (MO_C, 0.15)]
 #: 汽車雙行款式（D/E）
 MO_DOUBLE_SPECS = [(MO_D, 0.5), (MO_E, 0.5)]
+
+# 駐澳解放軍車牌（ZA）—— 尺寸字體照大陸號牌格式，顏色與字元格式照澳門規格
+#   黑底白字，格式 ZA-nn-nn（如 ZA-12-34），不受交通事務局管理
+MO_ZA = PlateSpec(
+    name="mo_za",
+    width=440, height=140,        # 參照大陸汽車號牌尺寸
+    bg_color=(14, 14, 14),
+    text_color=(245, 245, 245),
+    font_size=115,
+    char_spacing=6,
+    margin_x=25, margin_y=25,
+    border_width=3,
+    border_color=(245, 245, 245),
+)
 
 #: 兼容舊引用：默認 = A 款民用
 MO_PLATE = MO_A

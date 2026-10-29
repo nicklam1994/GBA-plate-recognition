@@ -15,8 +15,9 @@ FONT_PATHS = {
     "droid_fallback": "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf",
 }
 
-#: 尾字需用紅色渲染的字符（警車「警」、使館「使」、領館「領」）
-_RED_SUFFIX_CHARS = frozenset({"警", "使", "領"})
+#: 尾字需用紅色渲染的字符（僅人民警察牌的「警」；
+#: 2017 版《外交車輛管理辦法》已把「使」「領」由紅色改為白色置於末位）
+_RED_SUFFIX_CHARS = frozenset({"警"})
 
 
 def get_font(size: int, font_name: str = "chinese_plate") -> ImageFont.FreeTypeFont:
@@ -154,10 +155,12 @@ def _render_single_plate(draw: ImageDraw.Draw, text: str, spec: PlateSpec):
         bbox = font.getbbox(ch)
         ch_h = bbox[3] - bbox[1]
         ch_y = y + (font_size - ch_h) // 2 - bbox[1]
-        # 尾字特殊顏色：警／使／領 為紅色
+        # 尾字／前綴特殊顏色：警（紅尾字）；軍車武警消防（紅前綴）
         color = spec.text_color
         if spec.suffix_color and i == len(text) - 1 and ch in _RED_SUFFIX_CHARS:
             color = spec.suffix_color
+        elif spec.prefix_color and i < spec.prefix_len:
+            color = spec.prefix_color
         draw.text((x, ch_y), ch, fill=color, font=font)
         x += char_widths[i] + spec.char_spacing
 
