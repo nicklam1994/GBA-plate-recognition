@@ -22,8 +22,12 @@ _RED_SUFFIX_CHARS = frozenset({"警"})
 #: 分隔圓點字符（內地「粵A·12345」、粵Z「粵Z·1234港」中間的那一點）。
 #: 字體自帶的 U+00B7 基線偏低，故改用繪圖自畫，置於垂直中央。
 _DOT_CHARS = frozenset({"·", "•", "・"})
-#: 圓點佔用的水平寬度（相對字號）
-DOT_WIDTH_RATIO = 0.42
+
+#: 官方規格（GA 36-2018）：間隔符直徑 10mm，前後各留 12mm，合計佔位 34mm。
+#: 牌面以 1px = 1mm 繪製，內地牌 font_size=120 對應字高 86.4px ≈ 90mm，
+#: 故換算成字號比例：佔位 34/120、半徑 5/120。
+DOT_WIDTH_RATIO = 34 / 120      # 圓點總佔位（含前後間距）
+DOT_RADIUS_RATIO = 5 / 120      # 圓點半徑
 
 
 def get_font(size: int, font_name: str = "chinese_plate") -> ImageFont.FreeTypeFont:
@@ -131,8 +135,8 @@ def _char_width(font, ch: str, font_size: int) -> int:
 
 def _draw_dot(draw: ImageDraw.Draw, cx: int, cy: int, font_size: int,
               color) -> None:
-    """在 (cx, cy) 畫分隔圓點，半徑約字號的 1/9。"""
-    r = max(2, font_size // 9)
+    """在 (cx, cy) 畫間隔符圓點。官方直徑 10mm（字號 120 時半徑 5px）。"""
+    r = max(2, int(round(font_size * DOT_RADIUS_RATIO)))
     draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=color)
 
 
