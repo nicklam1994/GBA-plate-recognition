@@ -83,6 +83,8 @@ def main():
                     help="裁圖放大後的目標寬度（PaddleOCR 對小圖不敏感）")
     ap.add_argument("--pad", type=int, default=5, help="裁切外擴像素")
     ap.add_argument("--limit", type=int, default=0, help="只處理前 N 張（0=全部）")
+    ap.add_argument("--append", action="store_true",
+                    help="合併到既有 index.json 而非覆蓋")
     args = ap.parse_args()
 
     src = (ROOT / args.dir) if not Path(args.dir).is_absolute() else Path(args.dir)
@@ -130,7 +132,12 @@ def main():
             # 拼接會把兩行殘留混在一起（實測 XM 下方拖著 2969 的頂部，
             # 因為切分點固定取 52% 而實際分界不在那裡）。
             # 改由 stage2 用投影找精確分界，分行 OCR 後再按序合併。
-            merged = looks_double_line(crop)
+            # 完全不拼接，只標記是否雙行。
+            # 拼接會讓 PaddleOCR 把兩行當成一整條讀，實測 EL/2308 被讀成
+            # 「C|E|L0|8|2308」→ CEL082308（多出 C、L0 被拆開）。
+            # 內地牌（含粵Z）一律單行，故只在港澳做雙行判斷。
+            merged = (looks_double_line(crop)
+                      if region in ("mo", "hk") else False)
 
             # 不強制放大：原圖 bbox 可能只有 80px 寬，放大到 560 等於 7 倍，
             # 只會更糊（實測清晰度中位數從 92 掉到 15）。
@@ -157,7 +164,15 @@ def main():
         if i % 100 == 0:
             print(f"  {i}/{len(imgs)}  已裁 {len(records)} 個牌", flush=True)
 
-    json.dump(records, open(out / "index.json", "w"), ensure_ascii=False, indent=1)
+    # --append：合併到既有 index.json，方便分批補不同地區的樣本
+    index_p = out / "index.json"
+    if args.append and index_p.exists():
+        old = json.load(open(index_p, encoding="utf-8"))
+        seen = {r["file"] for r in old}
+        merged_records = old + [r for r in records if r["file"] not in seen]
+        print(f"  合併既有 {len(old)} 筆 → 共 {len(merged_records)} 筆")
+        records = merged_records
+    json.dump(records, open(index_p, "w"), ensure_ascii=False, indent=1)
     print(f"\n完成：{len(imgs)} 張圖 → {len(records)} 個車牌裁圖（{n_det} 個檢測框）")
     from collections import Counter
     print("地區分佈:", dict(Counter(r["region_det"] for r in records)))

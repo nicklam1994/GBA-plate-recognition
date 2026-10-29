@@ -29,6 +29,11 @@ import numpy as np
 
 from flask import Flask, jsonify, request, send_file, render_template_string
 
+from gba_plate.evaluate import evaluate_pairs
+from gba_plate.base import Region
+from gba_plate.postprocess.region_map import resolve_plate_region, resolve_energy
+from gba_plate.postprocess.rules import normalize, validate
+
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "prelabel" / "hk"
 
@@ -36,31 +41,162 @@ app = Flask(__name__)
 
 STATE = {"data_dir": DATA}
 
+# ------------------------------------------------------- 車牌底色與類型判斷
+
+def detect_plate_color(img: np.ndarray) -> str:
+    """
+    判斷車牌底色：blue / yellow / green / white / unknown。
+
+    取裁圖四周條帶的中位色 —— 車牌底色是整塊純色，
+    文字筆劃只佔中間區域，取邊框能避開文字干擾。
+    """
+    if img is None or img.size == 0:
+        return "unknown"
+    h, w = img.shape[:2]
+    strips = [
+        img[: max(1, int(h * 0.12))],
+        img[int(h * 0.88):],
+        img[:, : max(1, int(w * 0.08))],
+        img[:, int(w * 0.92):],
+    ]
+    px = np.vstack([s.reshape(-1, 3) for s in strips if s.size])
+    if not len(px):
+        return "unknown"
+    b, g, r = (float(v) for v in np.median(px, axis=0))
+    if b > 85 and b > r * 1.30 and b > g * 1.10:
+        return "blue"
+    if r > 105 and g > 85 and b < 95 and r > b * 1.4:
+        return "yellow"
+    if g > 90 and g > r * 1.12 and g > b * 1.08:
+        return "green"
+    if min(b, g, r) > 115:
+        return "white"
+    return "unknown"
+
+
+#: 底色 → 車型
+_COLOR_TYPE = {
+    "blue": "小型汽車（藍牌）",
+    "yellow": "大型汽車（黃牌）",
+    "green": "新能源汽車（綠牌）",
+    "white": "警用／軍用／港澳入出（白牌）",
+}
+
+
+def classify_plate_type(text: str, region: str,
+                        color: str = "unknown") -> str:
+    """
+    判斷車牌類型（中文名）。
+
+    內地牌依 GA36-2018：底色決定車型，號碼結構決定細分類。
+    港澳牌結構單一，只區分一般／粵Z。
+    """
+    t = (text or "").upper().strip()
+    if not t:
+        return ""
+
+    if region == "gangao":
+        if t.startswith("粵Z"):
+            return "粵Z 港澳入出內地車輛"
+        return "港澳入出內地車輛"
+
+    if region == "hk":
+        if t.startswith(("FV", "FU")):
+            return "FV/FU 內地入出香港車輛"
+        if t.startswith(("ZM", "ZN", "ZP")):
+            return "廣東省港澳入出車輛"
+        return "香港車牌"
+
+    if region == "mo":
+        return "澳門車牌"
+
+    if region == "mainland":
+        # 特殊牌先判，避免被車型覆蓋
+        if t.startswith("WJ"):
+            return "武警車牌"
+        if len(t) >= 2 and t[0] in "VKHBSLJNGZY" and t[1].isalpha() is False:
+            pass
+        if re.match(r"^[A-Z]{2}\d{4,5}$", t) and t[0] in "VKHBSLJNGZ":
+            return "軍隊車牌"
+        if re.match(r"^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼]"
+                    r"[A-Z]\d{4}[A-Z]?$", t):
+            # 一般民用車牌，用底色細分
+            if t[2] in "DABCEFPQRST" and len(t) == 8:
+                return "新能源小型汽車（綠牌）"
+            if len(t) == 8:
+                return "新能源大型汽車（黃綠牌）"
+            return _COLOR_TYPE.get(color, "民用汽車（藍／黃牌）")
+        # 只有粵Z 開頭且以港/澳結尾才是兩地牌；粵A/B/C… 是普通內地牌
+        if t.startswith(("粵Z", "粤Z")) and re.search(r"[港澳]$", t):
+            return "港澳入出內地車輛"
+        return _COLOR_TYPE.get(color, "民用汽車")
+
+    return ""
+
+
 # ---------------------------------------------------------------- 格式規則
+#
+# 這裡刻意不再自己維護一套正則。
+# 先前 app_labeler / prelabel_stage2 / gba_plate 各有一套 RE_*，三份互相漂移：
+# 例如 XM9112 在 labeled.json 是 valid=True，UI 卻可能顯示格式不符；
+# 內地牌更因為只寫死「粵」而讓 30 個省份全軍覆沒。
+# 現在統一呼叫 gba_plate.postprocess.rules.validate()，只有一份真相。
 
-RE_HK = re.compile(r"^[A-Z]{1,2}\d{1,4}$")
-RE_HK_ZM = re.compile(r"^Z[MNP]\d{3,4}$")
-RE_HK_FV = re.compile(r"^F[VU]\d{3,4}$")
-RE_MO = re.compile(r"^M[A-Z]\d{4}$")
-RE_MO_HK = re.compile(r"^HK\d{4}$")
-RE_GANGAO = re.compile(r"^粵Z[A-Z0-9]{3,5}[港澳]$")
-RE_MAINLAND = re.compile(r"^粵[A-HJ-NP-Z][A-Z0-9]{4,6}$")
+def check_format(text: str, region: str | None = None) -> tuple[bool, str]:
+    """
+    校驗車牌格式。有地區時按該地區規則驗，否則逐個地區試。
 
-FORMAT_RULES = [
-    ("粵Z 兩地牌", RE_GANGAO, "粵Z + 3~5 位英數 + 港/澳"),
-    ("內地粵牌", RE_MAINLAND, "粵 + 市字母 + 4~6 位"),
-    ("香港 ZM 牌", RE_HK_ZM, "ZM/ZN/ZP + 3~4 位"),
-    ("香港 FV/FU 牌", RE_HK_FV, "FV/FU + 3~4 位"),
-    ("澳門 HK 牌", RE_MO_HK, "HK + 4 位（澳門發給港車）"),
-    ("澳門本地牌", RE_MO, "M + 字母 + 4 位"),
-    ("香港本地牌", RE_HK, "1~2 字母 + 1~4 位數字"),
-]
+    Returns:
+        (是否通過, 命中的格式名)
+    """
+    if not text:
+        return False, ""
+    t = normalize(text)
+    if not t:
+        return False, ""
 
+    order = []
+    if region:
+        try:
+            order.append(Region(region))
+        except ValueError:
+            pass
+    for r in (Region.GANGAO, Region.MAINLAND, Region.HK, Region.MO):
+        if r not in order:
+            order.append(r)
 
-def check_format(text: str) -> tuple[bool, str]:
-    for name, rx, _ in FORMAT_RULES:
-        if rx.match(text):
-            return True, name
+    #: validate 只回 "ok"，對人工核對沒辨識度，換成看得懂的地區名
+    label = {
+        Region.GANGAO: "粵Z",
+        Region.MAINLAND: "內地",
+        Region.HK: "香港",
+        Region.MO: "澳門",
+    }
+
+    def _hit(r, fmt: str) -> tuple[bool, str]:
+        if fmt == "ok" or fmt.startswith("ok("):
+            return True, label.get(r, fmt)
+        return True, fmt
+
+    for r in order:
+        try:
+            ok, fmt = validate(t, r)
+        except Exception:
+            continue
+        if ok:
+            return _hit(r, fmt)
+
+    # 連字符 fallback：港澳牌不寫連字符，但澳門牌是 MA-12-34。
+    # 使用者可能把香港牌打成 XM-9112，去掉連字符再驗一次。
+    if "-" in t:
+        bare = t.replace("-", "")
+        for r in order:
+            try:
+                ok, fmt = validate(bare, r)
+            except Exception:
+                continue
+            if ok:
+                return _hit(r, fmt)
     return False, ""
 
 
@@ -91,6 +227,15 @@ def compute_clarity(data_dir: Path) -> dict[str, float]:
         if img is None:
             result[p.name] = 0.0
             continue
+        # 統一縮放到寬 320 再算拉普拉斯方差。
+        # 直接算會被尺寸干擾：CCPD 車牌裁圖只有 ~100px 寬，
+        # 同樣清晰的圖數值天然比香港 200px 的低，導致 129/260 被誤判為廢圖。
+        w = img.shape[1]
+        if w and w != 320:
+            s = 320.0 / w
+            img = cv2.resize(img, (320, max(1, int(img.shape[0] * s))),
+                             interpolation=cv2.INTER_AREA if s < 1
+                             else cv2.INTER_LANCZOS4)
         result[p.name] = round(float(cv2.Laplacian(img, cv2.CV_64F).var()), 1)
     save_json(cache_file, result)
     CLARITY_CACHE = result
@@ -112,19 +257,48 @@ def save_json(path: Path, obj) -> None:
     tmp.replace(path)
 
 
+COLOR_CACHE: dict[str, str] = {}
+
+
+def compute_colors(data_dir: Path) -> dict[str, str]:
+    """算出每張裁圖的底色，快取到 colors.json（車牌底色＝車型的最強線索）。"""
+    global COLOR_CACHE
+    if COLOR_CACHE:
+        return COLOR_CACHE
+    cache_file = data_dir / "colors.json"
+    if cache_file.exists():
+        COLOR_CACHE = load_json(cache_file, {})
+        return COLOR_CACHE
+
+    result: dict[str, str] = {}
+    for p in sorted((data_dir / "crops").glob("*.jpg")):
+        img = cv2.imdecode(np.fromfile(str(p), dtype=np.uint8), cv2.IMREAD_COLOR)
+        result[p.name] = detect_plate_color(img)
+    save_json(cache_file, result)
+    COLOR_CACHE = result
+    return result
+
+
 def build_items() -> list[dict]:
     """合併預標註與人工結果，按「優先處理」排序。"""
     d = STATE["data_dir"]
     labeled = load_json(d / "labeled.json", [])
     verified = load_json(d / "verified.json", {})
     clarity = compute_clarity(d)
+    colors = compute_colors(d)
 
     items = []
     for r in labeled:
         f = r["file"]
         v = verified.get(f)
         text = (v or {}).get("text") or r.get("text_clean") or ""
-        ok, fmt = check_format(text)
+        region_now = (v or {}).get("region") or r.get("region_det", "")
+        ok, fmt = check_format(text, region_now)
+        # 內地牌的省份／地市，以及四地共用的車牌類型
+        prov, city, note = (None, None, "")
+        if region_now in ("mainland", "gangao") and text:
+            prov, city, note = resolve_plate_region(text)
+        ptype = classify_plate_type(text, region_now, colors.get(f, "unknown"))
         items.append({
             "file": f,
             "src": r.get("src", ""),
@@ -141,8 +315,15 @@ def build_items() -> list[dict]:
             "action": (v or {}).get("action", ""),
             "bbox": r.get("bbox"),
             "clarity": clarity.get(f, 0.0),
-            "region_final": (v or {}).get("region") or r.get("region_det", ""),
+            "region_final": region_now,
             "region_edited": bool((v or {}).get("region")),
+            "province": prov,
+            "city": city,
+            "region_note": note,
+            "plate_type": ptype,
+            "plate_color": colors.get(f, "unknown"),
+            "energy": (resolve_energy(text)[1] if region_now in
+                       ("mainland", "gangao") and text else ""),
         })
 
     # 同圖多牌：把同一張原圖的所有車牌框附上，供原圖上全部畫出
@@ -186,7 +367,7 @@ def stats() -> dict:
     corrected = sum(1 for i in items
                     if i["verified"] and i["action"] == "correct")
     blurry = sum(1 for i in items if i["clarity"] < CLARITY_BLUR)
-    usable = total - blurry
+    usable = total
     return {
         "total": total,
         "verified": verified,
@@ -197,6 +378,7 @@ def stats() -> dict:
         "blurry": blurry,
         "usable": usable,
         "usable_remaining": usable - verified,
+        "low_clarity": blurry,
         "progress": round(100 * verified / max(1, usable), 1),
     }
 
@@ -212,12 +394,13 @@ def index():
 def api_items():
     items = build_items()
     only = request.args.get("only", "")
+    # 不把「模糊」當成硬性排除條件 —— 拉普拉斯方差對小尺寸裁圖失真
+    # （CCPD 車牌只有 ~100px 寬，數值天然偏低），曾誤殺 124/260 張
+    # 人眼其實能讀的圖。改為只排序靠後，讓使用者自己決定。
     if only == "todo":
-        items = [i for i in items if not i["verified"]
-                 and i["clarity"] >= CLARITY_BLUR]
+        items = [i for i in items if not i["verified"]]
     elif only == "bad":
-        items = [i for i in items if not i["format_ok"] and not i["verified"]
-                 and i["clarity"] >= CLARITY_BLUR]
+        items = [i for i in items if not i["format_ok"] and not i["verified"]]
     elif only == "clear":
         items = [i for i in items if i["clarity"] >= CLARITY_OK]
     elif only == "blurry":
@@ -259,9 +442,47 @@ def api_verify():
     }
     save_json(d / "verified.json", verified)
 
-    ok, fmt = check_format(text) if text else (False, "")
+    ok, fmt = check_format(text, region) if text else (False, "")
     return jsonify({"ok": True, "text": text, "format": fmt,
                     "format_ok": ok, "stats": stats()})
+
+
+@app.get("/api/eval")
+def api_eval():
+    """
+    拿人工核對過的真值，檢驗 OCR 預測的準確率。
+
+    真值 = verified.json 的 text（人工確認過的）
+    預測 = labeled.json 的 text_clean（PaddleOCR 原始輸出）
+    只統計「已核對且非無法辨識」的樣本。
+    """
+    d = STATE["data_dir"]
+    labeled = load_json(d / "labeled.json", [])
+    verified = load_json(d / "verified.json", {})
+
+    pairs, type_map = [], {}
+    for r in labeled:
+        v = verified.get(r["file"])
+        if not v:
+            continue
+        gt = (v.get("text") or "").strip()
+        if not gt:                      # 無法辨識／空白不列入
+            continue
+        pred = (r.get("text_clean") or "").strip()
+        region = v.get("region") or r.get("region_det", "")
+        pairs.append((gt, pred, region))
+        t = classify_plate_type(gt, region, "unknown")
+        if t:
+            type_map[gt] = t
+
+    if not pairs:
+        return jsonify({"ok": True, "empty": True,
+                        "message": "尚未核對任何樣本，先核對幾張再看評測"})
+
+    rep = evaluate_pairs(pairs, by_type=type_map).as_dict()
+    rep["ok"] = True
+    rep["empty"] = False
+    return jsonify(rep)
 
 
 @app.post("/api/reset")
@@ -348,6 +569,21 @@ PAGE = r"""<!DOCTYPE html>
   .t-bad  { background: #3d2024; color: #ef7a86; }
   .t-warn { background: #3b3420; color: #e0b44e; }
 
+  /* 評測面板 */
+  .evalgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 6px 0 16px; }
+  .evalcard { background: #14161e; border: 1px solid #262b3a; border-radius: 8px; padding: 12px 14px; }
+  .evalcard .k { font-size: 11px; color: #6d7688; }
+  .evalcard .v { font-size: 22px; font-weight: 700; color: #e6e9ef; margin-top: 2px; }
+  .evalcard .v.good { color: #5ec98a; }
+  .evalcard .v.mid { color: #e0b44e; }
+  .evalcard .v.bad { color: #ef7a86; }
+  table.ev { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px; }
+  table.ev th { text-align: left; color: #6d7688; font-weight: 500;
+                padding: 6px 8px; border-bottom: 1px solid #262b3a; }
+  table.ev td { padding: 5px 8px; border-bottom: 1px solid #1b1e28; color: #cfd6e3; }
+  table.ev tr:hover td { background: #171a23; }
+  .evh { font-size: 13px; color: #9aa3b2; margin: 14px 0 6px; font-weight: 600; }
+
   label { display: block; font-size: 12px; color: #9aa3b2; margin: 12px 0 6px; }
   input[type=text] {
     width: 100%; padding: 12px 14px; font-size: 26px; letter-spacing: 3px;
@@ -389,8 +625,25 @@ PAGE = r"""<!DOCTYPE html>
   details summary { cursor: pointer; font-size: 12px; color: #6d7688; }
 
   /* 原圖 + YOLO 框 */
-  .srcwrap { position: relative; display: inline-block; max-width: 100%; }
-  .srcwrap img { max-width: 100%; max-height: 340px; display: block; border-radius: 6px; }
+  .srcwrap { position: relative; display: inline-block; max-width: 100%; line-height: 0; }
+  /* 不能用 object-fit: contain 或 width:100% —— 圖片會被 letterbox 留黑邊，
+     而框的座標是按 clientWidth/naturalWidth 換算的，黑邊會讓框整個偏寬。
+     讓 img 自然尺寸縮放，clientWidth 才等於實際顯示寬度。 */
+  .srcwrap img { max-width: 100%; max-height: 62vh; display: block; border-radius: 6px; }
+  /* 內地牌資訊 */
+  .minfo { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .chip {
+    font-size: 12px; padding: 4px 10px; border-radius: 5px;
+    background: #191c26; border: 1px solid #2c3346; color: #cfd6e3;
+  }
+  .chip b { color: #8fb8f0; font-weight: 600; }
+  .chip.col-blue { border-color: #2f4a80; background: #16233d; }
+  .chip.col-yellow { border-color: #7a6428; background: #2b2415; }
+  .chip.col-green { border-color: #2b6b45; background: #14291d; }
+  .chip.col-white { border-color: #4a4f5c; background: #1d1f26; }
+  /* 上一張 / 下一張 */
+  .navrow { display: flex; gap: 8px; margin-top: 10px; }
+  .navrow button { flex: 0 0 auto; padding: 8px 16px; }
   .yolobox {
     position: absolute; border: 2px solid #4ade80;
     box-shadow: 0 0 0 1px rgba(0,0,0,.7), inset 0 0 0 1px rgba(0,0,0,.5);
@@ -436,6 +689,7 @@ PAGE = r"""<!DOCTYPE html>
     <button data-only="clear">全部清晰</button>
     <button data-only="blurry">模糊廢圖</button>
     <button data-only="all">全部</button>
+    <button id="btn-eval" style="margin-left:auto;border-color:#2f4a80;color:#8fb8f0">📊 檢驗準確率</button>
   </div>
 
   <div id="view"></div>
@@ -488,7 +742,20 @@ function render() {
 
   v.innerHTML = `
     <div class="card">
-      <div class="row">
+      <div class="srcbox" style="margin-top:0">
+        <div class="srcwrap" id="srcwrap">
+          <img id="srcimg" src="/srcimg/${encodeURIComponent(it.src)}" alt="">
+        </div>
+        <div class="hint" style="margin-top:6px">綠實線＝當前車牌；灰虛線＝同一張圖中的其他車牌
+          ${(it.siblings||[]).length > 1 ? '（共 ' + (it.siblings||[]).length + ' 個，點灰框可切換）' : ''}</div>
+      </div>
+
+      <div class="navrow">
+        <button id="btn-prev">← 上一張<kbd>←</kbd></button>
+        <button id="btn-next">下一張 →<kbd>→</kbd></button>
+      </div>
+
+      <div class="row" style="margin-top:14px">
         <div class="plate-wrap"><img id="plate" src="/crop/${encodeURIComponent(it.file)}" alt=""></div>
         <div class="meta">
           <div>${fmtTag}${dblTag}${verTag}</div>
@@ -499,6 +766,14 @@ function render() {
           <div class="hint">第 ${IDX+1} / ${ITEMS.length} 張</div>
         </div>
       </div>
+
+      ${(it.province || it.plate_type) ? `
+      <div class="minfo">
+        ${it.province ? `<span class="chip">📍 <b>${esc(it.province)}</b>${it.city && it.city !== it.province ? ' · ' + esc(it.city) : ''}</span>` : ''}
+        ${it.region_note ? `<span class="chip">${esc(it.region_note)}</span>` : ''}
+        ${it.plate_type ? `<span class="chip col-${esc(it.plate_color||'unknown')}">🚗 <b>${esc(it.plate_type)}</b></span>` : ''}
+        ${it.energy ? `<span class="chip col-green">⚡ ${esc(it.energy)}</span>` : ''}
+      </div>` : ''}
 
       ${it.clarity < 40 ? '<div style="margin-top:10px;padding:8px 12px;background:#3d2024;border-radius:6px;font-size:12px;color:#ef7a86">⚠️ 此圖極度模糊（清晰度 ' + (it.clarity||0).toFixed(0) + '），可能無法辨識，建議按「無法辨識」跳過</div>' : ''}
 
@@ -527,13 +802,6 @@ function render() {
         <span class="hint" style="margin:0">檢測判定為 <b>${esc(it.region_det)}</b>${it.region_det!==it.region_final?' → 已改為 '+esc(it.region_final):''}</span>
       </div>
 
-      <div class="srcbox">
-        <div class="srcwrap" id="srcwrap">
-          <img id="srcimg" src="/srcimg/${encodeURIComponent(it.src)}" alt="">
-        </div>
-        <div class="hint">綠實線＝當前車牌；灰虛線＝同一張圖中的其他車牌
-          ${(it.siblings||[]).length > 1 ? '（共 ' + (it.siblings||[]).length + ' 個）' : ''}</div>
-      </div>
     </div>`;
 
   const plate = $('plate');
@@ -595,6 +863,11 @@ function render() {
   $('btn-save').onclick = () => submit('correct');
   $('btn-skip').onclick = () => { IDX++; render(); };
   $('btn-bad').onclick = () => submit('unusable');
+
+  // 左右切換照片（不改變核對狀態，純瀏覽）
+  const bp = $('btn-prev'), bn = $('btn-next');
+  if (bp) bp.onclick = () => { IDX = (IDX - 1 + ITEMS.length) % ITEMS.length; render(); };
+  if (bn) bn.onclick = () => { IDX = (IDX + 1) % ITEMS.length; render(); };
 }
 
 async function submit(action) {
@@ -618,16 +891,96 @@ async function submit(action) {
   const j = await r.json();
   if (!j.ok) { alert('保存失敗：' + (j.error || '')); return; }
   stats(j.stats);
-  if (ONLY === 'todo') {
-    ITEMS.splice(IDX, 1);          // 待核對模式下移除已處理項
-    if (IDX >= ITEMS.length) IDX = 0;
-  } else {
-    it.verified = true; it.action = action; it.text = text;
-    it.format = j.format; it.format_ok = j.format_ok;
-    it.region_final = region || it.region_final;
-    IDX++;
+
+  // 不從陣列移除已處理項 —— 先前 splice(IDX,1) 會讓陣列位移，
+  // IDX 卻原地不動，最後一張時又歸零，看起來就是「整個跳過」。
+  // 改為標記 verified 後向後找下一個未核對項，位置永遠穩定。
+  it.verified = true;
+  it.action = action;
+  it.text = text;
+  it.format = j.format;
+  it.format_ok = j.format_ok;
+  it.region_final = region || it.region_final;
+  // 同步更新同圖其他框的顯示狀態
+  (it.siblings || []).forEach(s => {
+    if (s.file === it.file) { s.verified = true; s.text = text; s.region = it.region_final; }
+  });
+
+  // 「無法辨識」只影響當前這一塊牌，同圖其他牌仍要逐個核對
+  if (!nextUnverified(IDX)) {
+    $('view').innerHTML =
+      '<div class="done">全部核對完成 🎉<br><span style="font-size:13px;color:#6d7688">'
+      + '可用 ' + (j.stats.usable || 0) + ' 張，已核 ' + (j.stats.verified || 0) + ' 張</span></div>';
+    return;
   }
   render();
+}
+
+/** 從 from 之後找第一個未核對的項；全部核對過回傳 false。 */
+function nextUnverified(from) {
+  const n = ITEMS.length;
+  for (let k = 1; k <= n; k++) {
+    const j = (from + k) % n;
+    if (!ITEMS[j].verified) { IDX = j; return true; }
+  }
+  return false;
+}
+
+function pct(x) { return (x * 100).toFixed(1) + '%'; }
+function cls(v, good, bad) { return v >= good ? 'good' : (v >= bad ? 'mid' : 'bad'); }
+
+async function showEval() {
+  const v = $('view');
+  v.innerHTML = '<div class="done">計算中…</div>';
+  const j = await (await fetch('/api/eval')).json();
+  if (j.empty) {
+    v.innerHTML = '<div class="done">' + esc(j.message || '') +
+      '<br><span style="font-size:13px;color:#6d7688">核對幾張後再回來看</span></div>';
+    return;
+  }
+  const rows = (obj) => Object.entries(obj || {})
+    .sort((a, b) => b[1].n - a[1].n)
+    .map(([k, s]) => `<tr><td>${esc(k)}</td><td>${s.n}</td>
+      <td style="color:${s.em_rate>=0.9?'#5ec98a':(s.em_rate>=0.7?'#e0b44e':'#ef7a86')}">${pct(s.em_rate)}</td>
+      <td>${pct(s.cer)}</td></tr>`).join('');
+
+  v.innerHTML = `
+    <div class="card">
+      <div class="evh" style="margin-top:0">識別準確率（真值＝你核對過的 ${j.total} 個車牌）</div>
+      <div class="evalgrid">
+        <div class="evalcard"><div class="k">精確匹配 EM</div>
+          <div class="v ${cls(j.em_rate, .9, .7)}">${pct(j.em_rate)}</div></div>
+        <div class="evalcard"><div class="k">完全正確</div>
+          <div class="v">${j.em} / ${j.total}</div></div>
+        <div class="evalcard"><div class="k">字符錯誤率 CER</div>
+          <div class="v ${j.cer<=0.05?'good':(j.cer<=0.15?'mid':'bad')}">${pct(j.cer)}</div></div>
+        <div class="evalcard"><div class="k">錯最多的地方</div>
+          <div class="v" style="font-size:14px;color:#e0b44e">${(j.top_errors||[]).length?(esc(j.top_errors[0][0])+' ×'+j.top_errors[0][1]):'—'}</div></div>
+      </div>
+
+      <div class="evh">依地區</div>
+      <table class="ev"><tr><th>地區</th><th>樣本</th><th>精確匹配</th><th>CER</th></tr>${rows(j.by_region)}</table>
+
+      <div class="evh">依車牌類型</div>
+      <table class="ev"><tr><th>類型</th><th>樣本</th><th>精確匹配</th><th>CER</th></tr>${rows(j.by_type)}</table>
+
+      ${(j.top_errors||[]).length ? `
+      <div class="evh">常見字符錯誤</div>
+      <div class="minfo">${j.top_errors.map(([k, n]) =>
+        `<span class="chip">${esc(k)} <b>×${n}</b></span>`).join('')}</div>` : ''}
+
+      ${(j.failures||[]).length ? `
+      <div class="evh">錯誤樣本（依錯誤字數排序）</div>
+      <table class="ev"><tr><th>真值</th><th>預測</th><th>地區</th><th>錯字數</th></tr>
+        ${j.failures.slice(0, 25).map(f => `<tr>
+          <td style="color:#5ec98a">${esc(f.gt)}</td>
+          <td style="color:#ef7a86">${esc(f.pred || '(空)')}</td>
+          <td>${esc(f.region)}</td><td>${f.dist}</td></tr>`).join('')}
+      </table>` : '<div class="hint">全部正確 🎉</div>'}
+
+      <div class="navrow"><button id="btn-back">← 回去核對</button></div>
+    </div>`;
+  $('btn-back').onclick = () => render();
 }
 
 document.querySelectorAll('.filters button').forEach(b => {
@@ -645,13 +998,18 @@ document.addEventListener('keydown', e => {
   } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
     e.preventDefault(); submit('correct');
   } else if (e.key === 'ArrowLeft') {
-    e.preventDefault(); if (IDX > 0) { IDX--; render(); }
+    e.preventDefault(); IDX = (IDX - 1 + ITEMS.length) % ITEMS.length; render();
+  } else if (e.key === 'ArrowRight') {
+    e.preventDefault(); IDX = (IDX + 1) % ITEMS.length; render();
   } else if (e.key === 'Escape') {
     $('btn-skip') && $('btn-skip').click();
   }
 });
 
 load();
+document.addEventListener('click', e => {
+  if (e.target && e.target.id === 'btn-eval') showEval();
+});
 </script>
 </body>
 </html>
@@ -660,7 +1018,7 @@ load();
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--port", type=int, default=8791)
+    ap.add_argument("--port", type=int, default=8795)  # 固定端口，勿再另開
     ap.add_argument("--host", default="0.0.0.0")
     ap.add_argument("--data", default=str(DATA))
     args = ap.parse_args()

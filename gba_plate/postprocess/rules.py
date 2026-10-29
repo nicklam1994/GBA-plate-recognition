@@ -89,8 +89,12 @@ def normalize(text: str) -> str:
     # 繁体 → 簡體（字符表用的是簡體）
     text = text.replace("粵", "粤").replace("學", "学")
 
-    # 去掉分隔符與空白（連字符 '-' 保留）
+    # 去掉分隔符與空白（連字符 '-' 保留給澳門 MA-12-34）
     text = re.sub(r"[\s·.,，。、_]+", "", text)
+
+    # 字母統一轉大寫。先前漏了這步，使用者手動輸入 xm9112 會判定格式不符，
+    # 而 OCR 輸出本身是大寫，所以只有人工核對時才暴露這個問題。
+    text = text.upper()
     return text.strip()
 
 

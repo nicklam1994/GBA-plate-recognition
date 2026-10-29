@@ -23,7 +23,17 @@ from paddleocr import PaddleOCR
 
 ROOT = Path(__file__).resolve().parent.parent
 
+#: 內地車牌可用的漢字：31 省簡稱（簡繁雙收）+ 使領警學掛港澳
+PROVINCE_CHARS = (
+    "京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼渝川贵云藏陕甘青宁新"
+    "京津滬晉蒙遼吉黑滬蘇浙皖閩贛魯豫鄂湘粵桂瓊渝川貴雲藏陝甘青寧新"
+    "使领領警学學挂掛港澳"
+)
+
 # --- 格式校驗（與 gba_plate.postprocess.rules 保持一致的核心規則） ---
+# 先前寫死「粵」，其他 30 個省份全部判為不合格，內地樣本通過率因此為 0。
+RE_MAINLAND = re.compile(
+    rf"^[{PROVINCE_CHARS}][A-HJ-NP-Z][A-HJ-NP-Z0-9]{{4,6}}$")
 RE_HK = re.compile(r"^[A-Z]{1,2}\d{1,4}$")
 RE_HK_ZM = re.compile(r"^Z[MNP]\d{3,4}$")          # 澳門車入港的香港牌
 RE_HK_FV = re.compile(r"^F[VU]\d{3,4}$")           # 內地車入港的香港牌
@@ -132,6 +142,46 @@ _CAR_TEXT = frozenset({
 })
 
 
+def sort_by_line(texts: list[str], polys) -> list[int]:
+    """
+    按「先行後列」排序文字塊，回傳索引順序。
+
+    先前只按 y 座標排序，同一行內的 MY 與 1153（y 幾乎相同）
+    次序不穩定，實測被拼成 11-53MY。車牌是橫書，同行必須按 x 排。
+    """
+    n = len(texts)
+    if n <= 1 or polys is None or len(polys) != n:
+        return list(range(n))
+
+    boxes = []
+    for i in range(n):
+        pts = np.array(polys[i], dtype=np.float32).reshape(-1, 2)
+        boxes.append((i, float(pts[:, 0].min()), float(pts[:, 1].min()),
+                      float(pts[:, 1].max())))
+
+    # 以中位高度的一半作為「同一行」容差
+    heights = [b[3] - b[2] for b in boxes]
+    med_h = float(np.median(heights)) if heights else 10.0
+    tol = max(4.0, med_h * 0.5)
+
+    lines: list[list] = []
+    for b in sorted(boxes, key=lambda b: b[2]):   # 先按上緣 y
+        placed = False
+        for line in lines:
+            if abs(b[2] - line[0][2]) <= tol:
+                line.append(b)
+                placed = True
+                break
+        if not placed:
+            lines.append([b])
+
+    order: list[int] = []
+    for line in lines:
+        for b in sorted(line, key=lambda b: b[1]):   # 行內按左緣 x
+            order.append(b[0])
+    return order
+
+
 def pick_plate(texts: list[str]) -> tuple[str, list[str]]:
     """
     從 PaddleOCR 的多個文字塊中挑出車牌號。
@@ -161,26 +211,29 @@ def pick_plate(texts: list[str]) -> tuple[str, list[str]]:
         if c in _CAR_TEXT or any(b in c for b in _CAR_TEXT if len(b) > 3):
             dropped.append(t)
             continue
-        if not re.fullmatch(r"[A-Z0-9粵港澳]+", c):
+        # 先前只允許「粵港澳」三個漢字，導致所有內地車牌（粵B12345 之外的
+        # 京/沪/苏/浙…）整個被丟掉 —— 內地樣本通過率因此為 0。
+        if not re.fullmatch(rf"[A-Z0-9{PROVINCE_CHARS}]+", c):
             dropped.append(t)
             continue
         parts.append(c)
     return "".join(parts), dropped
 
 
-RE_MAINLAND = re.compile(r"^粵[A-HJ-NP-Z][A-Z0-9]{4,6}$")   # 粵B·12345 等
-
-
 def validate(text: str, region: str) -> tuple[bool, str]:
     """回傳 (是否通過, 命中的格式名)。"""
     t = text
     # 粵Z 才是兩地牌；粵B／粵A 等是內地牌，detector 偶爾誤判為 gangao
-    if t.startswith("粵Z"):
-        return bool(RE_GANGAO.match(t)), "粵Z"
+    if t.startswith(("粵Z", "粤Z")):
+        ok = bool(RE_GANGAO.match(t) or RE_GANGAO.match(t.replace("粤", "粵")))
+        return ok, "粵Z"
     if RE_MAINLAND.match(t):
         return True, "MAINLAND"
     if region == "gangao":
         return bool(RE_GANGAO.match(t)), "粵Z"
+    if region == "mainland":
+        # detector 判內地但號碼不合規則：可能是省份讀漏或字符誤讀
+        return False, "MAINLAND"
     if region == "mo" or region == "hk":
         if RE_HK_ZM.match(t):
             return True, "HK-ZM"
@@ -228,23 +281,21 @@ def main():
             small = prep_for_ocr(f)
             texts, scores = [], []
             if small is not None:
-                if meta.get("double_line_merged"):
-                    # 雙行牌：投影分界後分行 OCR，上排結果在前
-                    texts, scores = ocr_lines(small, ocr)
-                else:
-                    r = ocr.predict(small)[0]
-                    d = r["res"] if isinstance(r, dict) and "res" in r else r
-                    if isinstance(d, dict):
-                        texts = d.get("rec_texts") or []
-                        scores = d.get("rec_scores") or []
-                        # 多塊文字按 y 排序，PaddleOCR 原始順序不可靠
-                        polys = d.get("rec_polys") or d.get("dt_polys") or []
-                        if len(polys) == len(texts) and len(texts) > 1:
-                            order = sorted(
-                                range(len(texts)),
-                                key=lambda k: float(np.array(polys[k])[:, 1].mean()))
-                            texts = [texts[k] for k in order]
-                            scores = [scores[k] for k in order] if len(scores) == len(order) else scores
+                # 一律整塊 OCR，不預先切上下半。
+                # 教訓：曾有兩塊獨立車牌上下緊貼（MY1153 / ZM2089），detector
+                # 給出兩塊重疊、偏高的框，「雙行判斷」再把它當成單塊雙行牌
+                # 從中間切開，結果讀成 MY + M200。
+                # 交給 PaddleOCR 自己分塊 + 按 y 排序，兩塊牌都能各自讀對。
+                r = ocr.predict(small)[0]
+                d = r["res"] if isinstance(r, dict) and "res" in r else r
+                if isinstance(d, dict):
+                    texts = d.get("rec_texts") or []
+                    scores = d.get("rec_scores") or []
+                    polys = d.get("rec_polys") or d.get("dt_polys") or []
+                    if len(polys) == len(texts) and len(texts) > 1:
+                        order = sort_by_line(texts, polys)
+                        texts = [texts[k] for k in order]
+                        scores = [scores[k] for k in order] if len(scores) == len(order) else scores
         except Exception as e:
             texts, scores = [], []
             print(f"  ! {f.name}: {e}")
