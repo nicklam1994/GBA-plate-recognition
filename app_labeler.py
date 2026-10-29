@@ -748,6 +748,9 @@ PAGE = r"""<!DOCTYPE html>
     position: absolute; border: 2px solid #4ade80;
     box-shadow: 0 0 0 1px rgba(0,0,0,.7), inset 0 0 0 1px rgba(0,0,0,.5);
     pointer-events: none;
+    /* 注意：不要用 min-width/min-height 放大框 —— 框是 left/top 定位，
+       強制最小尺寸會讓它向右下撐開，顯示位置就偏離車牌了。
+       改用一個絕對定位的熱區子元素來擴大命中範圍（見 JS）。 */
   }
   .yolobox::after {
     content: attr(data-label); position: absolute; left: -2px; top: -19px;
@@ -756,15 +759,21 @@ PAGE = r"""<!DOCTYPE html>
   }
   /* 同圖中的其他車牌：灰色細框 */
   .yolobox.other {
-    border: 1.5px dashed #8a93a6; box-shadow: none;
+    border: 2px dashed #a8b2c6; box-shadow: 0 0 0 1px rgba(0,0,0,.8);
+    background: rgba(168,178,198,.08);
   }
   .yolobox.other::after {
     background: #495062; color: #cfd6e3; font-weight: 500;
   }
   .yolobox.cur { border-color: #4ade80; border-style: solid; }
   /* 同圖中「已核對過」的其他牌：淡化，一眼看出還剩幾塊沒處理 */
-  .yolobox.other.done {
-    opacity: .35; border-color: #3d4452; border-style: dotted;
+  /* 已核對的其他牌：淡化但仍要看得見。
+     注意類名不能叫 done —— 會撞上「全部核對完成」提示的
+     .done { padding: 60px 20px }，框會被撐成 124px 並內縮偏移，
+     看起來像跑到車牌下方、怎麼點都點不到。 */
+  .yolobox.other.checked {
+    opacity: .75; border-color: #9aa6bd; border-style: dotted;
+    background: rgba(154,166,189,.10);
   }
   select {
     padding: 8px 10px; font-size: 13px; border-radius: 6px;
@@ -939,8 +948,10 @@ function render() {
         if (!s.bbox) return;
         const isCur = (s.file === it.file);
         const box = document.createElement('div');
+        // 用 checked 而非 done：.done 是「全部完成」提示的樣式，
+        // 帶 padding: 60px 20px，撞名會把框撐大並偏移。
         box.className = 'yolobox' + (isCur ? ' cur' : ' other')
-                        + (!isCur && s.verified ? ' done' : '');
+                        + (!isCur && s.verified ? ' checked' : '');
         const [x1, y1, x2, y2] = s.bbox;
         box.style.left = (x1 * sx) + 'px';
         box.style.top = (y1 * sy) + 'px';
@@ -950,12 +961,21 @@ function render() {
           + (s.action === 'not_plate' ? '非車牌'
              : (s.text || '(空)') + ' · ' + (s.region || '?'));
         if (!isCur) {
-          box.style.pointerEvents = 'auto';
-          box.style.cursor = 'pointer';
-          box.onclick = () => {
+          // 遠景車牌縮放後只剩十幾像素，直接點框幾乎點不到。
+          // 加一層外擴 10px 的透明熱區，視覺尺寸不變、命中範圍變大。
+          const hot = document.createElement('div');
+          // 父層 .yolobox 是 pointer-events:none（避免遮擋圖片點擊），
+          // 子元素必須明確設 auto 才收得到事件。
+          hot.style.cssText = 'position:absolute;inset:-10px;cursor:pointer;'
+                            + 'pointer-events:auto;';
+          hot.title = '切換到 ' + (s.text || '這塊牌');
+          hot.onclick = ev => {
+            ev.stopPropagation();
             const idx = ITEMS.findIndex(x => x.file === s.file);
             if (idx >= 0) { IDX = idx; render(); }
           };
+          box.style.pointerEvents = 'none';
+          box.appendChild(hot);
         }
         wrap.appendChild(box);
       });
