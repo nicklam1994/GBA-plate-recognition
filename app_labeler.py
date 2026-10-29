@@ -41,6 +41,14 @@ app = Flask(__name__)
 
 STATE = {"data_dir": DATA}
 
+#: 省份簡稱（簡繁雙收）+ 特殊用途漢字，供類型判斷與正則組裝
+PROVINCE_SRC = (
+    "京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼渝川贵云藏陕甘青宁新"
+    "京津滬晉蒙遼吉黑滬蘇浙皖閩贛魯豫鄂湘粵桂瓊渝川貴雲藏陝甘青寧新"
+    "使领領警学學挂掛港澳"
+)
+
+
 # ------------------------------------------------------- 車牌底色與類型判斷
 
 def detect_plate_color(img: np.ndarray) -> str:
@@ -118,14 +126,27 @@ def classify_plate_type(text: str, region: str,
             pass
         if re.match(r"^[A-Z]{2}\d{4,5}$", t) and t[0] in "VKHBSLJNGZ":
             return "軍隊車牌"
-        if re.match(r"^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼]"
-                    r"[A-Z]\d{4}[A-Z]?$", t):
-            # 一般民用車牌，用底色細分
-            if t[2] in "DABCEFPQRST" and len(t) == 8:
-                return "新能源小型汽車（綠牌）"
+        # 號段常見「皖AH0008」這種序號含字母的形式，先前只允許 \d{4}，
+        # 導致所有帶字母號段都退化成「民用汽車」，省市也跟著解析不出來。
+        if re.match(rf"^[{PROVINCE_SRC}][A-Z][A-Z0-9]{{4,6}}$", t):
             if len(t) == 8:
-                return "新能源大型汽車（黃綠牌）"
-            return _COLOR_TYPE.get(color, "民用汽車（藍／黃牌）")
+                # 8 位＝新能源：第 3 位是能源類型字母
+                if t[2] in "DABCEFPQRST":
+                    return "新能源小型汽車（綠牌·純電動）"
+                return "新能源小型汽車（綠牌·非純電）"
+            if len(t) == 7:
+                if color == "yellow":
+                    return "大型汽車（黃牌·燃油）"
+                if color == "white":
+                    return "警用／軍用／港澳入出（白牌）"
+                if color == "green":
+                    return "新能源汽車（綠牌）"
+                # 藍牌＝小型燃油車，實測最常見
+                return "小型汽車（藍牌·燃油）"
+            return _COLOR_TYPE.get(color, "民用汽車")
+        if re.match(rf"^[{PROVINCE_SRC}][A-Z][A-Z0-9]{{5}}$", t):
+            # 大型車後牌 7 位（省份+字母+5位，舊式）
+            return "大型汽車（黃牌·燃油）" if color == "yellow" else "民用汽車"
         # 只有粵Z 開頭且以港/澳結尾才是兩地牌；粵A/B/C… 是普通內地牌
         if t.startswith(("粵Z", "粤Z")) and re.search(r"[港澳]$", t):
             return "港澳入出內地車輛"
@@ -459,8 +480,31 @@ def api_check():
     body = request.get_json(force=True) or {}
     text = (body.get("text") or "").strip()
     region = (body.get("region") or "").strip() or None
+    file = (body.get("file") or "").strip()
     ok, fmt = check_format(text, region) if text else (False, "")
-    return jsonify({"ok": True, "format_ok": ok, "format": fmt})
+
+    # 省市與類型也必須跟著輸入即時重算 —— 先前只在頁面載入時算一次，
+    # 使用者補上省份「皖」之後，chips 仍停在 AH0008 的失敗狀態。
+    prov = city = note = energy = ptype = ""
+    if text and region in ("mainland", "gangao"):
+        p_, c_, n_ = resolve_plate_region(text)
+        prov = p_ or ""
+        city = c_ or ""
+        note = n_ or ""
+        if region == "mainland" or text.startswith(("粵Z", "粤Z")):
+            energy = resolve_energy(text)[1] or ""
+
+    color = "unknown"
+    if file:
+        color = compute_colors(STATE["data_dir"]).get(file, "unknown")
+    if text:
+        ptype = classify_plate_type(text, region or "", color)
+
+    return jsonify({
+        "ok": True, "format_ok": ok, "format": fmt,
+        "province": prov, "city": city, "region_note": note,
+        "plate_type": ptype, "plate_color": color, "energy": energy,
+    })
 
 
 @app.get("/api/eval")
@@ -783,13 +827,12 @@ function render() {
         </div>
       </div>
 
-      ${(it.province || it.plate_type) ? `
-      <div class="minfo">
+      <div class="minfo" id="minfo">
         ${it.province ? `<span class="chip">📍 <b>${esc(it.province)}</b>${it.city && it.city !== it.province ? ' · ' + esc(it.city) : ''}</span>` : ''}
         ${it.region_note ? `<span class="chip">${esc(it.region_note)}</span>` : ''}
         ${it.plate_type ? `<span class="chip col-${esc(it.plate_color||'unknown')}">🚗 <b>${esc(it.plate_type)}</b></span>` : ''}
         ${it.energy ? `<span class="chip col-green">⚡ ${esc(it.energy)}</span>` : ''}
-      </div>` : ''}
+      </div>
 
       ${it.clarity < 40 ? '<div style="margin-top:10px;padding:8px 12px;background:#3d2024;border-radius:6px;font-size:12px;color:#ef7a86">⚠️ 此圖極度模糊（清晰度 ' + (it.clarity||0).toFixed(0) + '），可能無法辨識，建議按「無法辨識」跳過</div>' : ''}
 
@@ -875,7 +918,7 @@ function render() {
       const res = await fetch('/api/check', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: t, region: r }),
+        body: JSON.stringify({ text: t, region: r, file: it.file }),
       });
       const j = await res.json();
       const bp = $('btn-pass');
@@ -887,6 +930,22 @@ function render() {
       if (tag) {
         tag.className = 'tag ' + (j.format_ok ? 't-ok' : 't-bad');
         tag.textContent = j.format_ok ? j.format : '格式不符';
+      }
+      // 省市 / 車型 / 能源 chips 一併重繪
+      const mi = $('minfo');
+      if (mi) {
+        const chips = [];
+        if (j.province) {
+          chips.push('<span class="chip">📍 <b>' + esc(j.province) + '</b>'
+            + (j.city && j.city !== j.province ? ' · ' + esc(j.city) : '') + '</span>');
+        }
+        if (j.region_note) chips.push('<span class="chip">' + esc(j.region_note) + '</span>');
+        if (j.plate_type) {
+          chips.push('<span class="chip col-' + esc(j.plate_color || 'unknown') + '">🚗 <b>'
+            + esc(j.plate_type) + '</b></span>');
+        }
+        if (j.energy) chips.push('<span class="chip col-green">⚡ ' + esc(j.energy) + '</span>');
+        mi.innerHTML = chips.join('');
       }
     }, 220);
   };
