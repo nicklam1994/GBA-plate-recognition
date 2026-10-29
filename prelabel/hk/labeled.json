@@ -17,15 +17,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "RU",
-   "8534"
+   "8534",
+   "RU"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.999,
   "paddle_mean_conf": 1.0,
-  "text_clean": "RU8534",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "8534RU",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -392,15 +392,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "YR",
-   "7164"
+   "7164",
+   "YR"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.99,
   "paddle_mean_conf": 0.995,
-  "text_clean": "YR7164",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "7164YR",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -450,15 +450,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "YS",
-   "8696"
+   "8696",
+   "YS"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "YS8696",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "8696YS",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -479,15 +479,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "YS",
-   "8696"
+   "8696",
+   "YS"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "YS8696",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "8696YS",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -508,8 +508,8 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "TOYOTA",
    "YS",
+   "TOYOTA",
    "8696"
   ],
   "paddle_dropped": [
@@ -540,8 +540,8 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "TOYOTA",
    "YS",
+   "TOYOTA",
    "8696"
   ],
   "paddle_dropped": [
@@ -572,9 +572,9 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
+   "YS",
    "TOYOTA",
    "Chower Motors Un",
-   "YS",
    "8696"
   ],
   "paddle_dropped": [
@@ -692,13 +692,13 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "8499",
-   "8"
+   "8",
+   "8499"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.785,
   "paddle_mean_conf": 0.889,
-  "text_clean": "84998",
+  "text_clean": "88499",
   "valid": false,
   "format": "",
   "lines": 2
@@ -1204,14 +1204,14 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "1OYOTA",
+   "2969",
    "XM",
-   "2969"
+   "1OYOTA"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.736,
   "paddle_mean_conf": 0.912,
-  "text_clean": "1OYOTAXM2969",
+  "text_clean": "2969XM1OYOTA",
   "valid": false,
   "format": "",
   "lines": 3
@@ -1234,15 +1234,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "SZ",
-   "2475"
+   "2475",
+   "SZ"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.998,
   "paddle_mean_conf": 0.999,
-  "text_clean": "SZ2475",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "2475SZ",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -1263,14 +1263,14 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "F",
    "PLE",
+   "F",
    "206"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.377,
   "paddle_mean_conf": 0.701,
-  "text_clean": "FPLE206",
+  "text_clean": "PLEF206",
   "valid": false,
   "format": "",
   "lines": 3
@@ -1583,15 +1583,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "NV",
-   "5276"
+   "5276",
+   "NV"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "NV5276",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "5276NV",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -1670,14 +1670,14 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "8",
    "XM",
+   "8",
    "2969"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.184,
   "paddle_mean_conf": 0.728,
-  "text_clean": "8XM2969",
+  "text_clean": "XM82969",
   "valid": false,
   "format": "",
   "lines": 3
@@ -1729,13 +1729,13 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "EAC",
-   "855"
+   "855",
+   "EAC"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.75,
   "paddle_mean_conf": 0.875,
-  "text_clean": "EAC855",
+  "text_clean": "855EAC",
   "valid": false,
   "format": "",
   "lines": 2
@@ -1989,9 +1989,9 @@
   "paddle_dropped": [],
   "paddle_confidence": 0.993,
   "paddle_mean_conf": 0.993,
-  "text_clean": "粵ZJM45港",
+  "text_clean": "粤ZJM45港",
   "valid": true,
-  "format": "粵Z",
+  "format": "粤Z",
   "lines": 1
  },
  {
@@ -2300,10 +2300,10 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "TOYOTA",
-   "Crowen Molors d",
    "WZ",
-   "2612"
+   "TOYOTA",
+   "2612",
+   "Crowen Molors d"
   ],
   "paddle_dropped": [
    "TOYOTA",
@@ -2449,15 +2449,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "WN",
-   "4958"
+   "4958",
+   "WN"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "WN4958",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "4958WN",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -2650,8 +2650,8 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "行",
    "WN",
+   "行",
    "4958"
   ],
   "paddle_dropped": [
@@ -2741,14 +2741,14 @@
   "paddle_raw": [
    "J",
    "6",
-   "8",
    "9",
+   "8",
    "9"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.969,
   "paddle_mean_conf": 0.994,
-  "text_clean": "J6899",
+  "text_clean": "J6989",
   "valid": true,
   "format": "HK",
   "lines": 5
@@ -2771,15 +2771,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "UF",
-   "6182"
+   "6182",
+   "UF"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.997,
   "paddle_mean_conf": 0.998,
-  "text_clean": "UF6182",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "6182UF",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -2943,14 +2943,14 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "9",
    "ZT",
+   "9",
    "2005"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.534,
   "paddle_mean_conf": 0.845,
-  "text_clean": "9ZT2005",
+  "text_clean": "ZT92005",
   "valid": false,
   "format": "",
   "lines": 3
@@ -3059,14 +3059,14 @@
   "double_line_merged": false,
   "paddle_raw": [
    "M",
-   "8",
    "5",
+   "8",
    "8"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.812,
   "paddle_mean_conf": 0.921,
-  "text_clean": "M858",
+  "text_clean": "M588",
   "valid": true,
   "format": "HK",
   "lines": 4
@@ -3440,9 +3440,9 @@
   "paddle_dropped": [],
   "paddle_confidence": 0.909,
   "paddle_mean_conf": 0.909,
-  "text_clean": "粵Z6009港",
+  "text_clean": "粤Z6009港",
   "valid": true,
-  "format": "粵Z",
+  "format": "粤Z",
   "lines": 1
  },
  {
@@ -3578,15 +3578,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "PP",
-   "907"
+   "907",
+   "PP"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.999,
   "paddle_mean_conf": 1.0,
-  "text_clean": "PP907",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "907PP",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -4096,14 +4096,14 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "T988",
-   "皖A·97"
+   "皖A·97",
+   "T988"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.92,
   "paddle_mean_conf": 0.96,
-  "text_clean": "T988皖A97",
-  "valid": false,
+  "text_clean": "皖A97T988",
+  "valid": true,
   "format": "MAINLAND",
   "lines": 2
  },
@@ -4966,9 +4966,9 @@
   "paddle_dropped": [],
   "paddle_confidence": 0.997,
   "paddle_mean_conf": 0.997,
-  "text_clean": "粵ZA223港",
+  "text_clean": "粤ZA223港",
   "valid": true,
-  "format": "粵Z",
+  "format": "粤Z",
   "lines": 1
  },
  {
@@ -4994,9 +4994,9 @@
   "paddle_dropped": [],
   "paddle_confidence": 0.98,
   "paddle_mean_conf": 0.98,
-  "text_clean": "粵ZN055港",
+  "text_clean": "粤ZN055港",
   "valid": true,
-  "format": "粵Z",
+  "format": "粤Z",
   "lines": 1
  },
  {
@@ -5024,7 +5024,7 @@
   "paddle_mean_conf": 0.779,
   "text_clean": "MJ081",
   "valid": false,
-  "format": "粵Z",
+  "format": "粤Z",
   "lines": 1
  },
  {
@@ -5073,13 +5073,13 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "HJ-B8-11",
-   "2M6540"
+   "2M6540",
+   "HJ-B8-11"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.734,
   "paddle_mean_conf": 0.737,
-  "text_clean": "HJB8112M6540",
+  "text_clean": "2M6540HJB811",
   "valid": false,
   "format": "",
   "lines": 2
@@ -5423,7 +5423,7 @@
   "paddle_mean_conf": 0.675,
   "text_clean": "0246",
   "valid": false,
-  "format": "粵Z",
+  "format": "粤Z",
   "lines": 1
  },
  {
@@ -5565,7 +5565,7 @@
   "paddle_mean_conf": 0.0,
   "text_clean": "",
   "valid": false,
-  "format": "粵Z",
+  "format": "粤Z",
   "lines": 0
  },
  {
@@ -5704,7 +5704,7 @@
   "paddle_mean_conf": 0.827,
   "text_clean": "0238U4",
   "valid": false,
-  "format": "粵Z",
+  "format": "粤Z",
   "lines": 1
  },
  {
@@ -5932,7 +5932,7 @@
   "paddle_mean_conf": 0.948,
   "text_clean": "B104澳粤",
   "valid": false,
-  "format": "粵Z",
+  "format": "粤Z",
   "lines": 2
  },
  {
@@ -6151,15 +6151,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "MS",
-   "98-12"
+   "98-12",
+   "MS"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.983,
   "paddle_mean_conf": 0.991,
-  "text_clean": "MS9812",
-  "valid": true,
-  "format": "MO",
+  "text_clean": "9812MS",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -6292,15 +6292,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "68",
-   "ML"
+   "ML",
+   "68"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "68ML",
-  "valid": false,
-  "format": "",
+  "text_clean": "ML68",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -6490,15 +6490,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "MP",
-   "67-21"
+   "67-21",
+   "MP"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "MP6721",
-  "valid": true,
-  "format": "MO",
+  "text_clean": "6721MP",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -6604,15 +6604,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "MR",
-   "49-03"
+   "49-03",
+   "MR"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.996,
   "paddle_mean_conf": 0.998,
-  "text_clean": "MR4903",
-  "valid": true,
-  "format": "MO",
+  "text_clean": "4903MR",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -6633,15 +6633,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "AA",
-   "53-25"
+   "53-25",
+   "AA"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.945,
   "paddle_mean_conf": 0.973,
-  "text_clean": "AA5325",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "5325AA",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -6662,15 +6662,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "MW",
-   "66-35"
+   "66-35",
+   "MW"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.859,
   "paddle_mean_conf": 0.929,
-  "text_clean": "MW6635",
-  "valid": true,
-  "format": "MO",
+  "text_clean": "6635MW",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -6953,15 +6953,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "MM",
-   "59-54"
+   "59-54",
+   "MM"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.955,
   "paddle_mean_conf": 0.977,
-  "text_clean": "MM5954",
-  "valid": true,
-  "format": "MO",
+  "text_clean": "5954MM",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -6982,15 +6982,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "MH",
-   "37-62"
+   "37-62",
+   "MH"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "MH3762",
-  "valid": true,
-  "format": "MO",
+  "text_clean": "3762MH",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -7011,13 +7011,13 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "CM",
-   "80450"
+   "80450",
+   "CM"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.98,
   "paddle_mean_conf": 0.99,
-  "text_clean": "CM80450",
+  "text_clean": "80450CM",
   "valid": false,
   "format": "",
   "lines": 2
@@ -7040,15 +7040,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "MN",
-   "40-59"
+   "40-59",
+   "MN"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "MN4059",
-  "valid": true,
-  "format": "MO",
+  "text_clean": "4059MN",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -7181,14 +7181,14 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "MY",
    "1.1-53",
+   "MY",
    "M200"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.968,
   "paddle_mean_conf": 0.989,
-  "text_clean": "MY1153M200",
+  "text_clean": "1153MYM200",
   "valid": false,
   "format": "",
   "lines": 3
@@ -7211,13 +7211,13 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "1.1-53",
-   "ZM2089"
+   "ZM2089",
+   "1.1-53"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.91,
   "paddle_mean_conf": 0.955,
-  "text_clean": "1153ZM2089",
+  "text_clean": "ZM20891153",
   "valid": false,
   "format": "",
   "lines": 2
@@ -7355,9 +7355,9 @@
   "paddle_dropped": [],
   "paddle_confidence": 0.999,
   "paddle_mean_conf": 0.999,
-  "text_clean": "粵ZC399澳",
+  "text_clean": "粤ZC399澳",
   "valid": true,
-  "format": "粵Z",
+  "format": "粤Z",
   "lines": 1
  },
  {
@@ -7434,15 +7434,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "MR",
-   "83-31"
+   "83-31",
+   "MR"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.977,
   "paddle_mean_conf": 0.988,
-  "text_clean": "MR8331",
-  "valid": true,
-  "format": "MO",
+  "text_clean": "8331MR",
+  "valid": false,
+  "format": "",
   "lines": 2
  }
 ]

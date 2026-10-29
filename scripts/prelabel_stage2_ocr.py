@@ -39,30 +39,38 @@ RE_HK_ZM = re.compile(r"^Z[MNL]\d{3,4}$")          # 澳門配額車的香港牌
 RE_HK_FV = re.compile(r"^F[VU]\d{3,4}$")           # 內地車入港的香港牌
 RE_MO = re.compile(r"^M[A-Z]\d{4}$")               # 澳門本地 M?-??-??
 RE_MO_HK = re.compile(r"^HK\d{4}$")                # 澳門發給香港配額車的號段
-RE_GANGAO = re.compile(r"^粵Z[A-Z0-9]{3,5}[港澳]$")
+RE_GANGAO = re.compile(r"^粤Z[A-Z0-9]{3,5}[港澳]$")   # 簡體「粤」，與 vocab 一致
 
 
 def strip_noise(s: str) -> str:
     """去掉空格、連字符、間隔符、全半角差異，統一為比對用形式。"""
-    s = s.replace("澳", "澳").replace("粵", "粵")
+    s = s.replace("粵", "粤")      # 原本是 replace("澳","澳") 這種自己換自己，無效
     s = re.sub(r"[\s\-·・．.．]", "", s)
     return s.upper()
 
 
 def normalize_gangao(s: str) -> str:
-    """粵Z 牌常見 OCR 問題：'Z·7366澳粤' 這種上下行顛倒。"""
-    if "粵Z" in s:
+    """
+    統一粵Z 前綴寫法（一律簡體「粤」），並修正上下行顛倒。
+
+    這裡原本寫的是 s.replace("粤", "粵") —— 把簡體轉成繁體，方向完全反了。
+    PaddleOCR 輸出的是簡體「粤」（U+7CA4），vocab.py 的字符表也是簡體，
+    CRNN 只認得簡體。結果 text_clean 變成「粵ZJM45港」（U+7CB5），
+    這個字模型永遠輸出不了，等於製造了一批無法學習的錯誤標註。
+
+    統一以簡體「粤」為準（與 rules.py 的 GANGAO_RE 一致）。
+    """
+    s = s.replace("粵", "粤")          # 繁 → 簡，向字符表看齊
+    if s.startswith("粤Z"):
         return s
-    if "粤Z" in s:
-        return s.replace("粤", "粵")
-    # 「Z7366澳粵」→「粵Z7366澳」
-    m = re.match(r"^Z([A-Z0-9]{3,5}[港澳])粵$", s)
+    # 「Z7366澳粤」→「粤Z7366澳」（上下行顛倒）
+    m = re.match(r"^Z([A-Z0-9]{3,5}[港澳])粤$", s)
     if m:
-        return "粵Z" + m.group(1)
-    # 「864D港粵Z」→「粵Z864D港」
-    m = re.match(r"^([A-Z0-9]{3,5}[港澳])粵Z$", s)
+        return "粤Z" + m.group(1)
+    # 「864D港粤Z」→「粤Z864D港」
+    m = re.match(r"^([A-Z0-9]{3,5}[港澳])粤Z$", s)
     if m:
-        return "粵Z" + m.group(1)
+        return "粤Z" + m.group(1)
     return s
 
 
@@ -225,12 +233,11 @@ def validate(text: str, region: str) -> tuple[bool, str]:
     t = text
     # 粵Z 才是兩地牌；粵B／粵A 等是內地牌，detector 偶爾誤判為 gangao
     if t.startswith(("粵Z", "粤Z")):
-        ok = bool(RE_GANGAO.match(t) or RE_GANGAO.match(t.replace("粤", "粵")))
-        return ok, "粵Z"
+        return bool(RE_GANGAO.match(t)), "粤Z"
     if RE_MAINLAND.match(t):
         return True, "MAINLAND"
     if region == "gangao":
-        return bool(RE_GANGAO.match(t)), "粵Z"
+        return bool(RE_GANGAO.match(t)), "粤Z"
     if region == "mainland":
         # detector 判內地但號碼不合規則：可能是省份讀漏或字符誤讀
         return False, "MAINLAND"
