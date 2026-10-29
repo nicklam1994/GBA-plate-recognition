@@ -191,6 +191,20 @@ class TestCrossBorderPrefixes:
         assert detect_region_from_text("HK1234", color="白") == Region.HK
         assert detect_region_from_text("HK8888", color="黃") == Region.HK
 
+    def test_hk_leading_zero_is_macau_quota(self):
+        """HK + 前導 0 必為澳門發的配額車 —— 香港本地牌禁止前導 0。"""
+        from gba_plate.postprocess.rules import validate
+        assert validate("HK0001", Region.MO)[0]
+        assert validate("HK0001", Region.HK)[0]
+        assert "澳門HK字頭" in validate("HK0099", Region.HK)[1]
+
+    def test_hk_quota_requires_four_digits(self):
+        """HK 字頭須為 4 位純數字，不含 I/O/Q。"""
+        from gba_plate.postprocess.rules import validate
+        assert not validate("HK99999", Region.MO)[0]     # 5 位
+        assert not validate("HKIOQ1", Region.MO)[0]      # 含禁用字母
+        assert validate("HK1393", Region.MO)[0]
+
     def test_macau_local_prefix(self):
         """M + 字母是澳門本地牌。"""
         assert detect_region_from_text("MA1234") == Region.MO

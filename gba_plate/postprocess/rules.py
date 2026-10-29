@@ -54,6 +54,12 @@ MO_RE = re.compile(r"^M[A-Z]-?\d{2}-?\d{2}$")
 #: 澳門雙行（OCR 後拼成一行）：MA12-34 或 MA1234
 MO_DOUBLE_RE = re.compile(r"^M[A-Z]\d{2}[-\s]?\d{2}$")
 
+#: 澳門發給「香港私家車往來港澳常規配額」的車牌：HK + 4 位純流水數字。
+#: 由 HK-00-01 起順序發放，所以前導 0 是正常現象（HK_RE 不允許前導 0，
+#: 那是香港本地牌自己的規則，兩者不能混用）。
+#: 流水號不含字母，自然排除了 I/O/Q。
+MO_HK_RE = re.compile(r"^HK\d{4}$")
+
 #: 香港車牌禁用字母（易與數字混淆）
 HK_FORBIDDEN_LETTERS = frozenset("IOQ")
 
@@ -180,6 +186,13 @@ def validate(text: str, region: Region) -> tuple[bool, str]:
     if region == Region.HK:
         if len(text) > 8:
             return False, f"長度 {len(text)} 超出香港車牌上限 8"
+        # HK + 4 位純數字有兩種可能，不能一概而論：
+        #   HK0001（前導 0）→ 必為澳門發的配額車，因為香港本地牌禁止前導 0
+        #   HK1393（無前導 0）→ 可能是香港本地牌（白/黃底），也可能是配額車（黑底）
+        # 後者要靠底色區分（detect_region_from_text 的 color 參數），
+        # validate 只拿到 text 與 region，不能擅自斷定來源。
+        if re.match(r"^HK0\d{3}$", text):
+            return True, "ok(澳門HK字頭)"
         if HK_RE.match(text):
             return True, "ok"
         bad = [c for c in text if c in HK_FORBIDDEN_LETTERS]
@@ -190,8 +203,14 @@ def validate(text: str, region: Region) -> tuple[bool, str]:
         return False, "不符合「1-2字母+1-4數字」格式"
 
     if region == Region.MO:
+        # 澳門發給香港配額車的 HK 字頭，要排在本地 M 字頭之前判斷，
+        # 否則 HK1393 會先被 Region.HK 的一般規則吃掉（見 validate 的 HK 分支）
+        if MO_HK_RE.match(text):
+            return True, "ok(澳門HK字頭)"
         if MO_RE.match(text) or MO_DOUBLE_RE.match(text):
             return True, "ok"
+        if text.startswith("HK"):
+            return False, "HK 字頭須為 4 位純數字（如 HK1393）"
         return False, "不符合「M+字母+2數字+2數字」格式"
 
     # UNKNOWN

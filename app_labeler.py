@@ -79,11 +79,15 @@ def detect_plate_color(img: np.ndarray) -> str:
         return "green"
     if min(b, g, r) > 115:
         return "white"
+    # 黑底白字：澳門車牌與「澳門發給香港配額車的 HK 牌」都是這個樣式
+    if max(b, g, r) < 75:
+        return "black"
     return "unknown"
 
 
 #: 底色 → 車型
 _COLOR_TYPE = {
+    "black": "黑底（澳門樣式）",
     "blue": "小型汽車（藍牌）",
     "yellow": "大型汽車（黃牌）",
     "green": "新能源汽車（綠牌）",
@@ -109,6 +113,14 @@ def classify_plate_type(text: str, region: str,
             return "粤Z 港澳入出內地車輛"
         return "港澳入出內地車輛"
 
+    # HK + 4 位純數字有兩種來源，靠底色區分：
+    #   黑底        → 澳門交通事務局發給香港私家車的常規配額牌
+    #   白底 / 黃底 → 香港本地牌（HK 只是碰巧的字母組合）
+    # 另外前導 0（HK0001）必為配額車 —— 香港本地牌禁止前導 0。
+    if re.fullmatch(r"HK\d{4}", t):
+        if color == "black" or re.match(r"HK0", t):
+            return "香港私家車往來港澳常規配額（澳門發 HK 牌）"
+
     if region == "hk":
         if t.startswith(("FV", "FU")):
             return "FV/FU 內地入出香港車輛"
@@ -117,6 +129,13 @@ def classify_plate_type(text: str, region: str,
         return "香港車牌"
 
     if region == "mo":
+        # detector 判 mo 是線索但不能獨斷：香港本地牌也可能被誤判成 mo。
+        # 只有黑底（澳門樣式）或前導 0（香港本地牌禁止）才算配額車；
+        # 白/黃底代表這是香港本地牌，detector 地區判錯了。
+        if re.fullmatch(r"HK\d{4}", t):
+            if color == "black" or t.startswith("HK0"):
+                return "香港私家車往來港澳常規配額（澳門發 HK 牌）"
+            return "香港車牌（檢測地區可能有誤）"
         return "澳門車牌"
 
     if region == "mainland":
@@ -183,7 +202,10 @@ def check_format(text: str, region: str | None = None) -> tuple[bool, str]:
             order.append(Region(region))
         except ValueError:
             pass
-    for r in (Region.GANGAO, Region.MAINLAND, Region.HK, Region.MO):
+    # MO 必須排在 HK 之前：HK+4位純數字是澳門發給香港配額車的號段，
+    # 若先試 HK，HK1393 會被當成香港本地牌（香港本地牌數字不以 0 開頭，
+    # 反而 HK0001 這種合規的配額號會被判違規）。
+    for r in (Region.GANGAO, Region.MAINLAND, Region.MO, Region.HK):
         if r not in order:
             order.append(r)
 
@@ -196,7 +218,11 @@ def check_format(text: str, region: str | None = None) -> tuple[bool, str]:
     }
 
     def _hit(r, fmt: str) -> tuple[bool, str]:
-        if fmt == "ok" or fmt.startswith("ok("):
+        # ok(澳門HK字頭) 這類帶說明的要保留括號內容 ——
+        # 直接換成地區名會把關鍵資訊蓋掉（HK1393 會被顯示成單純的「澳門」）
+        if fmt.startswith("ok(") and fmt.endswith(")"):
+            return True, fmt[3:-1]
+        if fmt == "ok":
             return True, label.get(r, fmt)
         return True, fmt
 

@@ -38,7 +38,9 @@ RE_HK = re.compile(r"^[A-Z]{1,2}\d{1,4}$")
 RE_HK_ZM = re.compile(r"^Z[MNL]\d{3,4}$")          # 澳門配額車的香港牌 ZM/ZN/ZL
 RE_HK_FV = re.compile(r"^F[VU]\d{3,4}$")           # 內地車入港的香港牌
 RE_MO = re.compile(r"^M[A-Z]\d{4}$")               # 澳門本地 M?-??-??
-RE_MO_HK = re.compile(r"^HK\d{4}$")                # 澳門發給香港配額車的號段
+# 澳門發給「香港私家車往來港澳常規配額」：HK + 4 位純流水數字，
+# 由 HK-00-01 起發放，可前導 0，不含 I/O/Q。
+RE_MO_HK = re.compile(r"^HK\d{4}$")
 RE_GANGAO = re.compile(r"^粤Z[A-Z0-9]{3,5}[港澳]$")   # 簡體「粤」，與 vocab 一致
 
 
