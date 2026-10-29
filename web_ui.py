@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """
-車牌識別 Web UI 服務器
-支持 WebCam 實時識別
+車牌識別 Web UI 服務器（gba_plate 版）
+
+與舊版的差別：不再自己實作 letterbox / NMS / 透視 / 識別，
+全部交給 gba_plate.ALPR。本檔案只負責 Flask 路由、WebSocket 收發、畫框。
 
 用法:
     python web_ui.py --host 0.0.0.0 --port 5000
-    
-然後在瀏覽器訪問: http://localhost:5000
+    瀏覽器訪問 http://localhost:5000
 """
+
+from __future__ import annotations
+
 import argparse
 import base64
 import sys
@@ -16,244 +20,199 @@ from pathlib import Path
 
 import cv2
 import numpy as np
-from flask import Flask, render_template, Response, jsonify, request
+from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
-import torch
 
-# 添加項目根目錄
-sys.path.insert(0, str(Path(__file__).parent))
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
 
-from models.experimental import attempt_load
-from utils.general import check_img_size, non_max_suppression_face, scale_coords
-from utils.datasets import letterbox
-from plate_recognition.plate_rec import get_plate_result, init_model
-from plate_recognition.double_plate_split_merge import get_split_merge
-
-# Flask 應用
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'plate-recognition-web'
+app.config["SECRET_KEY"] = "gba-plate-recognition-web"
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-# 全局模型
-detect_model = None
-rec_model = None
-device = None
-img_size = 640
+#: 全局 ALPR 實例（延遲初始化）
+alpr = None
+
+#: 地區 → 邊框顏色（BGR）
+REGION_COLORS = {
+    "mainland": (0, 200, 0),     # 綠
+    "gangao": (0, 165, 255),     # 橙（粵Z 兩地牌）
+    "hk": (255, 180, 0),         # 藍
+    "mo": (200, 0, 200),         # 紫
+    "unknown": (160, 160, 160),  # 灰
+}
 
 
-def load_models():
-    """加載檢測和識別模型"""
-    global detect_model, rec_model, device
-    
-    print("正在加載模型...")
-    
-    # 選擇設備
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f"使用設備: {device}")
-    
-    # 加載檢測模型
-    detect_model_path = 'weights/plate_detect.pt'
-    detect_model = attempt_load(detect_model_path, map_location=device)
-    detect_model.eval()
-    print(f"檢測模型已加載: {detect_model_path}")
-    
-    # 加載識別模型
-    rec_model_path = 'weights/plate_rec_color.pth'
-    rec_model = init_model(device, rec_model_path, is_color=True)
-    print(f"識別模型已加載: {rec_model_path}")
-    
-    print("模型加載完成！")
+def load_models(device: str | None = None, class_mode: str = "single_double") -> None:
+    """載入 ALPR 管線（冪等）"""
+    global alpr
+    if alpr is not None:
+        return
+
+    from gba_plate import ALPR
+
+    print("正在載入 gba_plate.ALPR ...")
+    alpr = ALPR(
+        detect_model=ROOT / "weights/plate_detect.pt",
+        rec_model=ROOT / "weights/plate_rec_color.pth",
+        device=device,
+        class_mode=class_mode,
+    )
+    print("模型載入完成")
 
 
-def detect_and_recognize(img_bgr):
-    """檢測並識別車牌"""
-    global detect_model, rec_model, device, img_size
-    
-    results = []
-    
+def draw_results(img: np.ndarray, results: list) -> np.ndarray:
+    """在影像上繪製檢測框、角點、標籤"""
+    out = img.copy()
+
+    for r in results:
+        d = r.to_dict()
+        x1, y1, x2, y2 = [int(v) for v in d["bbox"]]
+        region_color = REGION_COLORS.get(d["region"], REGION_COLORS["unknown"])
+        box_color = region_color if d["is_valid"] else (0, 0, 255)
+
+        cv2.rectangle(out, (x1, y1), (x2, y2), box_color, 2)
+        for cx, cy in d["corners"]:
+            cv2.circle(out, (int(cx), int(cy)), 3, (0, 255, 255), -1)
+
+        label = f"{d['text']} [{d['region']}] {d['confidence']:.2f}"
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        scale, thick = 0.55, 1
+        (tw, th), baseline = cv2.getTextSize(label, font, scale, thick)
+
+        ty = max(y1 - 6, th + 6)
+        cv2.rectangle(
+            out, (x1, ty - th - 4), (x1 + tw + 4, ty + baseline), box_color, -1
+        )
+        cv2.putText(
+            out, label, (x1 + 2, ty), font, scale, (255, 255, 255), thick, cv2.LINE_AA
+        )
+
+    return out
+
+
+def encode_jpeg_base64(img: np.ndarray, quality: int = 80) -> str:
+    ok, buf = cv2.imencode(".jpg", img, [cv2.IMWRITE_JPEG_QUALITY, quality])
+    if not ok:
+        raise RuntimeError("JPEG 編碼失敗")
+    return base64.b64encode(buf).decode("utf-8")
+
+
+def decode_base64_image(data: str) -> np.ndarray | None:
+    """base64 → BGR ndarray"""
     try:
-        # 預處理
-        img = letterbox(img_bgr, new_shape=img_size)[0]
-        img = img[:, :, ::-1].transpose(2, 0, 1)  # BGR to RGB, HWC to CHW
-        img = img.copy()  # 解決負步長問題
-        img = torch.from_numpy(img).to(device)
-        img = img.float() / 255.0
-        if img.ndimension() == 3:
-            img = img.unsqueeze(0)
-        
-        # 檢測
-        with torch.no_grad():
-            pred = detect_model(img)[0]
-        
-        # NMS
-        det = non_max_suppression_face(pred, conf_thres=0.3, iou_thres=0.5)[0]
-        
-        if det is not None and len(det):
-            # 縮放座標
-            det[:, :4] = scale_coords(img.shape[2:], det[:, :4], img_bgr.shape).round()
-            
-            for *xyxy, conf, landmarks, class_num in det:
-                # 獲取車牌區域
-                x1, y1, x2, y2 = int(xyxy[0]), int(xyxy[1]), int(xyxy[2]), int(xyxy[3])
-                
-                # 獲取車牌小圖（使用 bbox 而非 landmarks）
-                plate_img = img_bgr[y1:y2, x1:x2]
-                
-                if plate_img.size == 0:
-                    continue
-                
-                # 識別
-                plate_text, conf_val, color, color_conf = get_plate_result(
-                    plate_img, device, rec_model, is_color=True
-                )
-                
-                if plate_text:
-                    # 提取標量值（conf_val 是每個字符的置信度數組）
-                    import numpy as np
-                    conf_scalar = float(np.mean(conf_val)) if hasattr(conf_val, '__len__') else float(conf_val)
-                    color_conf_scalar = float(color_conf.item()) if hasattr(color_conf, 'item') else float(color_conf)
-                    
-                    results.append({
-                        'bbox': [x1, y1, x2, y2],
-                        'plate': plate_text,
-                        'confidence': conf_scalar,
-                        'color': color,
-                        'color_confidence': color_conf_scalar,
-                    })
-    
-    except Exception as e:
-        print(f"識別錯誤: {e}")
-        import traceback
-        traceback.print_exc()
-    
-    return results
+        raw = base64.b64decode(data)
+        arr = np.frombuffer(raw, np.uint8)
+        return cv2.imdecode(arr, cv2.IMREAD_COLOR)
+    except Exception:
+        return None
 
 
-@app.route('/')
+@app.route("/")
 def index():
-    """主頁面"""
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@socketio.on('connect')
+@socketio.on("connect")
 def handle_connect():
-    """WebSocket 連接"""
-    print('客戶端已連接')
-    emit('status', {'message': '已連接到服務器'})
+    print("客戶端已連接")
+    emit("status", {"message": "已連接到服務器"})
 
 
-@socketio.on('disconnect')
+@socketio.on("disconnect")
 def handle_disconnect():
-    """WebSocket 斷開"""
-    print('客戶端已斷開')
+    print("客戶端已斷開")
 
 
-@socketio.on('frame')
+@socketio.on("frame")
 def handle_frame(data):
-    """處理視頻幀"""
+    """WebCam 連續幀"""
+    if alpr is None:
+        emit("error", {"message": "模型未載入"})
+        return
+
+    img = decode_base64_image(data.get("image", ""))
+    if img is None:
+        return
+
+    t0 = time.perf_counter()
     try:
-        # 解碼 base64 圖片
-        img_data = base64.b64decode(data['image'])
-        nparr = np.frombuffer(img_data, np.uint8)
-        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-        
-        if img is None:
-            return
-        
-        # 檢測並識別
-        start_time = time.time()
-        results = detect_and_recognize(img)
-        process_time = (time.time() - start_time) * 1000
-        
-        # 在圖片上繪製結果
-        for result in results:
-            x1, y1, x2, y2 = result['bbox']
-            plate = result['plate']
-            conf = result['confidence']
-            
-            # 繪製邊框
-            cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            
-            # 繪製文字
-            text = f"{plate} ({conf:.2f})"
-            cv2.putText(img, text, (x1, y1 - 10),
-                       cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
-        
-        # 編碼為 JPEG
-        _, buffer = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 80])
-        img_base64 = base64.b64encode(buffer).decode('utf-8')
-        
-        # 返回結果
-        emit('result', {
-            'image': img_base64,
-            'plates': results,
-            'process_time': process_time,
-            'num_plates': len(results)
-        })
-    
-    except Exception as e:
-        print(f"處理幀錯誤: {e}")
-        emit('error', {'message': str(e)})
+        results = alpr.process(img)
+    except Exception as exc:  # noqa: BLE001
+        print(f"處理幀錯誤: {exc}")
+        emit("error", {"message": str(exc)})
+        return
+    process_ms = (time.perf_counter() - t0) * 1000
+
+    emit(
+        "result",
+        {
+            "image": encode_jpeg_base64(draw_results(img, results), 80),
+            "plates": [r.to_dict() for r in results],
+            "process_time": round(process_ms, 2),
+            "num_plates": len(results),
+        },
+    )
 
 
-@socketio.on('test_image')
+@socketio.on("test_image")
 def handle_test_image(data):
-    """處理單張測試圖片"""
+    """單張上傳圖片"""
+    if alpr is None:
+        emit("error", {"message": "模型未載入"})
+        return
+
+    img = decode_base64_image(data.get("image", ""))
+    if img is None:
+        emit("error", {"message": "無法解碼圖片"})
+        return
+
+    t0 = time.perf_counter()
     try:
-        img_data = base64.b64decode(data['image'])
-        nparr = np.frombuffer(img_data, np.uint8)
-        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-        
-        if img is None:
-            emit('error', {'message': '無法解碼圖片'})
-            return
-        
-        results = detect_and_recognize(img)
-        
-        # 繪製結果
-        for result in results:
-            x1, y1, x2, y2 = result['bbox']
-            plate = result['plate']
-            conf = result['confidence']
-            color = result['color']
-            
-            cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 3)
-            text = f"{plate} [{color}]"
-            cv2.putText(img, text, (x1, y1 - 10),
-                       cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-        
-        _, buffer = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 90])
-        img_base64 = base64.b64encode(buffer).decode('utf-8')
-        
-        emit('test_result', {
-            'image': img_base64,
-            'plates': results,
-            'num_plates': len(results)
-        })
-    
-    except Exception as e:
-        print(f"測試圖片錯誤: {e}")
-        emit('error', {'message': str(e)})
+        results = alpr.process(img)
+    except Exception as exc:  # noqa: BLE001
+        print(f"測試圖片錯誤: {exc}")
+        emit("error", {"message": str(exc)})
+        return
+    process_ms = (time.perf_counter() - t0) * 1000
+
+    emit(
+        "test_result",
+        {
+            "image": encode_jpeg_base64(draw_results(img, results), 90),
+            "plates": [r.to_dict() for r in results],
+            "process_time": round(process_ms, 2),
+            "num_plates": len(results),
+        },
+    )
 
 
-def main():
-    parser = argparse.ArgumentParser(description='車牌識別 Web UI')
-    parser.add_argument('--host', type=str, default='0.0.0.0', help='服務器地址')
-    parser.add_argument('--port', type=int, default=5000, help='服務器端口')
-    parser.add_argument('--debug', action='store_true', help='調試模式')
-    
+def main() -> None:
+    parser = argparse.ArgumentParser(description="GBA 車牌識別 Web UI")
+    parser.add_argument("--host", default="0.0.0.0", help="監聽地址")
+    parser.add_argument("--port", type=int, default=5000, help="監聽端口")
+    parser.add_argument("--device", default=None, help="torch 設備（cuda / cpu）")
+    parser.add_argument(
+        "--class-mode",
+        default="single_double",
+        choices=["single_double", "region"],
+        help="檢測模型類別語義：舊權重用 single_double，4 類別新權重用 region",
+    )
+    parser.add_argument("--debug", action="store_true", help="Flask 調試模式")
     args = parser.parse_args()
-    
-    # 加載模型
-    load_models()
-    
-    # 啟動服務器
-    print(f"\n啟動 Web UI 服務器...")
-    print(f"訪問地址: http://localhost:{args.port}")
-    print(f"按 Ctrl+C 停止服務器\n")
-    
-    socketio.run(app, host=args.host, port=args.port, debug=args.debug, allow_unsafe_werkzeug=True)
+
+    load_models(device=args.device, class_mode=args.class_mode)
+
+    print(f"\n啟動 Web UI: http://localhost:{args.port}")
+    print("按 Ctrl+C 停止\n")
+    socketio.run(
+        app,
+        host=args.host,
+        port=args.port,
+        debug=args.debug,
+        allow_unsafe_werkzeug=True,
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

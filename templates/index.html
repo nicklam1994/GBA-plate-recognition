@@ -443,19 +443,45 @@
                 list.innerHTML = '<p style="color: #666; text-align: center; font-size: 13px;">暫無識別結果</p>';
                 return;
             }
-            
-            list.innerHTML = plates.map(p => `
-                <div class="plate-item">
+
+            const regionColor = {
+                mainland: '#4caf50',
+                gangao: '#ff9800',
+                hk: '#2196f3',
+                mo: '#9c27b0',
+                unknown: '#888'
+            };
+            const regionName = {
+                mainland: '內地',
+                gangao: '粵Z',
+                hk: '香港',
+                mo: '澳門',
+                unknown: '未知'
+            };
+
+            list.innerHTML = plates.map(p => {
+                const rc = regionColor[p.region] || regionColor.unknown;
+                const rn = regionName[p.region] || p.region;
+                const valid = p.is_valid
+                    ? '<span style="color:#4caf50">✓</span>'
+                    : `<span style="color:#e94560" title="${p.validation_note || ''}">✗</span>`;
+                const dbl = p.is_double ? ' <span style="color:#ff9800;font-size:10px">雙行</span>' : '';
+                return `
+                <div class="plate-item" style="border-left: 3px solid ${rc}">
                     <div>
-                        <div class="plate-text">${p.plate}</div>
-                        <div style="font-size: 11px; color: #888;">${p.color || ''}</div>
+                        <div class="plate-text" style="color:${rc}">${p.text}</div>
+                        <div style="font-size: 11px; color: #888;">
+                            <span style="color:${rc}">${rn}</span> ${valid}${dbl}
+                            ${p.color ? '· ' + p.color : ''}
+                            ${p.correction_applied ? '· 已糾正' : ''}
+                        </div>
                     </div>
                     <div class="plate-meta">
-                        <div>置信度: ${(p.confidence * 100).toFixed(1)}%</div>
-                        <div>顏色: ${(p.color_confidence * 100).toFixed(0)}%</div>
+                        <div>辨識: ${(p.confidence * 100).toFixed(1)}%</div>
+                        <div>檢測: ${(p.detect_confidence * 100).toFixed(0)}%</div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         // 初始化

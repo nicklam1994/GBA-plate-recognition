@@ -1,0 +1,180 @@
+"""
+CRNN 車牌識別器（CTC）。
+
+網絡結構複用 plate_recognition/plateNet.py 的 myNet_ocr_color：
+    cfg 實際權重: [8, 8, 16, 16, 'M', 32, 32, 'M', 48, 48, 'M', 64, 128]
+    參數量: 180,435（0.69 MB fp32）—— 比 LPRNet 小 2.5 倍
+
+前處理（與原項目一致，勿改）：
+    resize 168×48 → (img/255 - 0.588) / 0.193 → CHW
+"""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import cv2
+import numpy as np
+import torch
+
+from gba_plate.base import BaseOCR, OcrResult, PlateColor
+from gba_plate.ocr.vocab import BASE_VOCAB_V78, VOCAB_V79
+
+#: 識別輸入尺寸（寬, 高）。168/48 = 3.5:1，略扁於車牌實際 3.14:1，但權重已適應此比例。
+INPUT_SIZE = (168, 48)
+#: 正規化參數（原項目實測值，勿改）
+MEAN_VALUE = 0.588
+STD_VALUE = 0.193
+
+#: 顏色索引 → PlateColor（順序與權重的顏色頭一致）
+_COLOR_MAP = [
+    PlateColor.BLACK,   # 0 黑（使領館 / 粵Z / 澳門）
+    PlateColor.BLUE,    # 1 藍（內地小型車）
+    PlateColor.GREEN,   # 2 綠（內地新能源）
+    PlateColor.WHITE,   # 3 白（內地軍警 / 香港前牌）
+    PlateColor.YELLOW,  # 4 黃（內地大型車 / 香港後牌）
+]
+
+
+def ctc_greedy_decode(
+    indices: np.ndarray,
+    probs: np.ndarray,
+    vocab: str,
+) -> tuple[str, list[float]]:
+    """
+    CTC 貪心解碼。
+
+    規則：跳過 blank（索引 0），折疊連續重複字符。
+
+    Args:
+        indices: 每帧 argmax 的類別索引
+        probs: 每帧對應的最大概率
+        vocab: 字符表（索引 0 必須是 blank）
+
+    Returns:
+        (解碼文字, 每字符置信度列表)
+    """
+    chars: list[str] = []
+    char_probs: list[float] = []
+    prev = -1
+
+    for idx, prob in zip(indices.tolist(), probs.tolist()):
+        if idx == 0:          # blank
+            prev = idx
+            continue
+        if idx == prev:       # 連續重複 → CTC 折疊
+            prev = idx
+            continue
+        if 0 < idx < len(vocab):
+            chars.append(vocab[idx])
+            char_probs.append(float(prob))
+        prev = idx
+
+    return "".join(chars), char_probs
+
+
+class CRNNPlateOCR(BaseOCR):
+    """CRNN + CTC 識別器，支持顏色分類。"""
+
+    def __init__(
+        self,
+        weights: str | Path = "weights/plate_rec_color.pth",
+        device: str | torch.device | None = None,
+        use_color: bool = True,
+    ) -> None:
+        """
+        Args:
+            weights: 權重路徑（.pth checkpoint，含 cfg 與 state_dict）
+            device: torch 設備，None 表示自動選擇
+            use_color: 是否同時做顏色分類
+        """
+        self.weights = Path(weights)
+        if not self.weights.exists():
+            raise FileNotFoundError(f"識別權重不存在: {self.weights}")
+
+        if device is None:
+            self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        else:
+            self.device = torch.device(device)
+
+        self.use_color = use_color
+        self.model = self._load_model()
+
+        # 依權重實際類別數選擇詞表（78 或 79）
+        n_cls = self._num_classes
+        self.vocab = VOCAB_V79 if n_cls == len(VOCAB_V79) else BASE_VOCAB_V78
+        if n_cls != len(self.vocab):
+            raise ValueError(
+                f"權重類別數 {n_cls} 與詞表 {len(self.vocab)} 不符"
+            )
+
+    # ------------------------------------------------------------------ 內部
+
+    def _load_model(self):
+        # 延遲導入，避免 gba_plate 在無 torch 環境下 import 失敗
+        from plate_recognition.plateNet import myNet_ocr_color
+
+        checkpoint = torch.load(
+            self.weights, map_location=self.device, weights_only=False
+        )
+        cfg = checkpoint["cfg"]
+        state_dict = checkpoint["state_dict"]
+        color_classes = 5 if self.use_color else 0
+
+        # 從 state_dict 推斷類別數（newCnn.weight 的 out_channels）
+        self._num_classes = state_dict["newCnn.weight"].shape[0]
+
+        model = myNet_ocr_color(
+            num_classes=self._num_classes,
+            export=True,
+            cfg=cfg,
+            color_num=color_classes,
+        )
+        model.load_state_dict(state_dict, strict=False)
+        model.to(self.device)
+        model.eval()
+        return model
+
+    def _preprocess(self, plate_crop: np.ndarray) -> torch.Tensor:
+        img = cv2.resize(plate_crop, INPUT_SIZE)
+        img = np.reshape(img, (INPUT_SIZE[1], INPUT_SIZE[0], 3)).astype(np.float32)
+        img = (img / 255.0 - MEAN_VALUE) / STD_VALUE
+        img = img.transpose(2, 0, 1)                  # HWC → CHW
+        tensor = torch.from_numpy(np.ascontiguousarray(img)).to(self.device)
+        return tensor.unsqueeze(0)                     # (1, 3, H, W)
+
+    # ------------------------------------------------------------------ 對外
+
+    def predict(self, plate_crop: np.ndarray) -> OcrResult | None:
+        if plate_crop is None or plate_crop.size == 0:
+            return None
+
+        tensor = self._preprocess(plate_crop)
+
+        with torch.no_grad():
+            if self.use_color:
+                char_logits, color_logits = self.model(tensor)
+                color_probs = torch.softmax(color_logits, dim=-1)
+                color_conf, color_idx = torch.max(color_probs, dim=-1)
+                color = _COLOR_MAP[int(color_idx.item())]
+                color_conf = float(color_conf.item())
+            else:
+                char_logits = self.model(tensor)
+                color, color_conf = None, None
+
+            probs = torch.softmax(char_logits, dim=-1)
+            max_probs, indices = probs.max(dim=-1)
+            indices = indices.view(-1).cpu().numpy()
+            max_probs = max_probs.view(-1).cpu().numpy()
+
+        text, char_probs = ctc_greedy_decode(indices, max_probs, self.vocab)
+        if not text:
+            return None
+
+        return OcrResult(
+            text=text,
+            confidence=float(np.mean(char_probs)) if char_probs else 0.0,
+            char_confidences=char_probs,
+            color=color,
+            color_confidence=color_conf,
+        )

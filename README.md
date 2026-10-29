@@ -42,9 +42,15 @@
 - [x] PyTorch 2.6+ 兼容性修復
 - [x] Web UI（WebCam 實時識別）
 
+**已完成（重構）**
+- [x] `gba_plate/` 分層架構（抽象層 + 檢測 + 前處理 + OCR + 後處理）
+- [x] 四地格式校驗規則引擎（開源空白區，本項目獨創）
+- [x] 76 個單元測試全綠
+- [x] Web UI 遷移至新架構（消除與 detect_plate.py 的重複推理）
+
 **暫緩**
 - ⏸️ 合成數據生成器 — 待真實數據充足、規格完全核實後再啟動
-- ⏸️ 模型微調 — 待真實測試集建立
+- ⏸️ 模型微調 — 待真實測試集建立（港澳數據已下載 6,311 張）
 
 **待收集**
 - [ ] 香港本地車牌實拍（目標 300+ 張）
@@ -113,25 +119,43 @@ tar xf CCPD2019.tar.xz
 
 ```
 GBA-plate-recognition/
-├── models/                  # YOLOv5 模型定義
-├── plate_recognition/       # CRNN 識別網絡
-│   ├── plateNet.py          # 網絡結構（78 類字符）
-│   ├── plate_rec.py         # 推理 + CTC 解碼
-│   └── double_plate_split_merge.py  # 雙行車牌分割
-├── weights/                 # 預訓練權重
-│   ├── plate_detect.pt      # 檢測 0.45M 參數
-│   └── plate_rec_color.pth  # 識別 0.18M 參數
-├── utils/                   # 通用工具
-├── scripts/                 # 數據處理腳本
-├── synthetic_data/          # 合成生成器（暫緩）
-├── templates/               # Web UI 前端
-├── web_ui.py                # WebCam 實時識別界面
-├── detect_plate.py          # 命令行推理入口
-├── train.py                 # 訓練腳本
-├── export.py                # ONNX / TensorRT 導出
-├── docs/                    # 報告與指引
-└── test_data/               # 真實數據（不入庫）
+├── gba_plate/                    # ★ 分層架構（新，推薦使用）
+│   ├── base.py                   #   ABC 抽象 + 結果 dataclass（Region/Detection/OcrResult/PlateResult）
+│   ├── alpr.py                   #   ALPR 組合類（唯一對外入口）
+│   ├── detectors/
+│   │   └── yolo_plate.py         #   YOLOv5 檢測器（支援 single_double / region 兩種類別語義）
+│   ├── preprocess/
+│   │   ├── perspective.py        #   4 角點排序 + 透視校正
+│   │   └── double_line.py        #   雙行 5/12 + 1/3 hstack 拼接
+│   ├── ocr/
+│   │   ├── vocab.py              #   78/79 類字符表（79 = 78 + 「-」）
+│   │   └── crnn.py               #   CRNN + CTC 識別（180K 參數）
+│   └── postprocess/
+│       └── rules.py              #   四地格式校驗 + 混淆字符糾正 + 地區推斷
+├── tests/                        # pytest（76 個測試）
+├── scripts/                      # 數據處理 / 驗證腳本
+├── models/                       # YOLOv5 網絡定義（底層依賴）
+├── plate_recognition/            # CRNN 網絡定義（底層依賴）
+├── weights/
+│   ├── plate_detect.pt           #   檢測 1.12 MB
+│   └── plate_rec_color.pth       #   識別 0.72 MB（180,435 參數）
+├── web_ui.py                     # WebCam 實時識別（218 行，只調 ALPR）
+├── templates/index.html          # Web UI 前端
+├── detect_plate.py               # 舊版單體腳本（保留對照，新代碼請用 gba_plate）
+└── test_data/                    # 真實數據（不入庫）
 ```
+
+### 分層設計理由
+
+| 層 | 來源 | 借鑒的關鍵點 |
+|----|------|-------------|
+| 抽象接口 | fast-alpr | 40 行 ABC 把擴展點定死；`OcrResult` 內建 region |
+| 檢測權重 | we0091234 | 唯一公開且可微調，輸出 4 角點 |
+| 雙行處理 | zhahoi-ncnn / pcb9382 | 5/12 + 1/3 疊加 8.3%，防字符跨行被切斷 |
+| 識別模型 | we0091234 | 180K 參數，比 LPRNet 小 2.5 倍 |
+| 字符集 | we0091234 + HuKai97 | 78 類含港澳 + 「-」= 79 類 |
+| 多類別語義 | 本項目獨創 | 開源項目全部只有 single/double，無地區分類 |
+| 後處理規則 | 本項目獨創 | 港澳格式校驗是開源空白區 |
 
 ### 字符集（78 類）
 
@@ -151,19 +175,69 @@ python3.11 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# 2. 權重（隨倉庫提供，或執行）
+# 2. 權重（隨倉庫提供）
 bash weights/download_weights.sh
 
-# 3. 命令行推理
-python detect_plate.py \
-    --detect_model weights/plate_detect.pt \
-    --rec_model weights/plate_rec_color.pth \
-    --image_path imgs \
-    --output result
+# 3. 新架構 API（推薦）
+python -c "
+from gba_plate import ALPR
+alpr = ALPR()
+for r in alpr.process_file('imgs/hongkang1.jpg'):
+    print(r.region.value, r.text, f'{r.confidence:.2f}', r.is_valid)
+"
 
 # 4. Web UI — WebCam 實時識別
-python web_ui.py --host 0.0.0.0 --port 5000
+python web_ui.py --port 5000
 # 瀏覽器打開 http://localhost:5000
+```
+
+### Python API
+
+```python
+from gba_plate import ALPR
+import cv2
+
+alpr = ALPR(
+    detect_model="weights/plate_detect.pt",
+    rec_model="weights/plate_rec_color.pth",
+    class_mode="single_double",   # 舊權重；4 類別新權重用 "region"
+)
+
+results = alpr.process(cv2.imread("test.jpg"))
+for r in results:
+    print(r.region.value)          # mainland / gangao / hk / mo
+    print(r.text)                  # 後處理後文字
+    print(r.raw_text)              # OCR 原始輸出
+    print(r.confidence)            # 識別置信度
+    print(r.is_valid, r.validation_note)   # 格式校驗結果
+    print(r.detection.corners)     # 4 角點
+    d = r.to_dict()                # 可直接餵給 JSON API
+```
+
+### 擴展方式
+
+想換檢測器或識別器，只需實作兩個方法：
+
+```python
+from gba_plate import BaseDetector, BaseOCR, Detection, OcrResult
+
+class MyDetector(BaseDetector):
+    class_mode = "region"
+    def predict(self, image):
+        return [Detection(bbox=(x1,y1,x2,y2), corners=..., confidence=0.9, region=Region.HK)]
+
+class MyOCR(BaseOCR):
+    def predict(self, plate_crop):
+        return OcrResult(text="AB1234", confidence=0.95)
+
+alpr = ALPR(detector=MyDetector(), ocr=MyOCR())
+```
+
+### 測試
+
+```bash
+python -m pytest tests/ -q          # 76 個測試，<1 秒
+python scripts/verify_refactor.py   # 端到端驗證（需模型）
 ```
 
 ### 已知兼容性修復
@@ -237,7 +311,8 @@ PyTorch 2.6+ 改變了 `torch.load` 的 `weights_only` 默認值，需顯式傳 
 | `docs/OPENSOURCE_RESEARCH.md` | 開源方案調研報告（數據集 / 代碼 / 論文）|
 | `docs/ARCHITECTURE_COMPARISON.md` | 架構對比與融合方案（第一輪，5 個 repo）|
 | `docs/OPENSOURCE_SEARCH_ROUND2.md` | 全量搜索與架構對比（第二輪，265 repo）|
-| `docs/OPENSOURCE_SEARCH_ROUND3.md` | **3 個待評估項目深挖（第三輪）** ← 以本份為準 |
+| `docs/OPENSOURCE_SEARCH_ROUND3.md` | 3 個待評估項目深挖（第三輪，最新調研）|
+| `docs/REFACTOR_NOTES.md` | **重構實作筆記（分層架構、79 類字符、校驗規則）** |
 | `docs/BASELINE_TEST_REPORT.md` | 三地牌基準測試（11 張實拍）|
 | `docs/TEST_REPORT.md` | CCPD 樣本測試 |
 | `docs/DOWNLOAD_GUIDE.md` | 數據集下載指引 |
