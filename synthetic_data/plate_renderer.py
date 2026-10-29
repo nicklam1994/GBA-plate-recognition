@@ -15,6 +15,9 @@ FONT_PATHS = {
     "droid_fallback": "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf",
 }
 
+#: 尾字需用紅色渲染的字符（警車「警」、使館「使」、領館「領」）
+_RED_SUFFIX_CHARS = frozenset({"警", "使", "領"})
+
 
 def get_font(size: int, font_name: str = "chinese_plate") -> ImageFont.FreeTypeFont:
     """獲取字體"""
@@ -22,6 +25,36 @@ def get_font(size: int, font_name: str = "chinese_plate") -> ImageFont.FreeTypeF
     if not os.path.exists(path):
         path = FONT_PATHS["droid_fallback"]
     return ImageFont.truetype(path, size)
+
+
+def _make_gradient(w: int, h: int,
+                   top: Tuple[int, int, int],
+                   bottom: Tuple[int, int, int]) -> Image.Image:
+    """
+    產生上→下線性漸變底色（新能源小型車的「漸變綠」）。
+
+    用 numpy 逐行插值再貼成整張圖，比逐像素 PIL 快兩個數量級。
+    """
+    rows = np.linspace(np.array(top, dtype=np.float32),
+                       np.array(bottom, dtype=np.float32),
+                       h).astype(np.uint8)              # (h, 3)
+    canvas = np.repeat(rows[:, None, :], w, axis=1)     # (h, w, 3)
+    return Image.fromarray(canvas, mode="RGB")
+
+
+def _make_split(w: int, h: int,
+                top: Tuple[int, int, int],
+                bottom: Tuple[int, int, int]) -> Image.Image:
+    """
+    產生上下雙色拼接底色（大型新能源車的「黃綠雙拼」）。
+
+    上半為黃、下半為綠，貼合 GA 36-2018 對大型新能源號牌的配色規定。
+    """
+    half = h // 2
+    canvas = np.zeros((h, w, 3), dtype=np.uint8)
+    canvas[:half] = np.array(top, dtype=np.uint8)
+    canvas[half:] = np.array(bottom, dtype=np.uint8)
+    return Image.fromarray(canvas, mode="RGB")
 
 
 def render_plate(
@@ -46,8 +79,15 @@ def render_plate(
     Returns:
         numpy array (H, W, 3) BGR 格式（OpenCV 兼容）
     """
-    # 創建圖像
-    img = Image.new('RGB', (spec.width, spec.height), spec.bg_color)
+    # 創建圖像（支持漸變 / 上下雙色 / 純色三種底色）
+    if spec.bg_gradient:
+        top, bottom = spec.bg_gradient
+        img = _make_gradient(spec.width, spec.height, top, bottom)
+    elif spec.bg_split:
+        top, bottom = spec.bg_split
+        img = _make_split(spec.width, spec.height, top, bottom)
+    else:
+        img = Image.new('RGB', (spec.width, spec.height), spec.bg_color)
     draw = ImageDraw.Draw(img)
 
     # 繪製邊框
@@ -114,7 +154,11 @@ def _render_single_plate(draw: ImageDraw.Draw, text: str, spec: PlateSpec):
         bbox = font.getbbox(ch)
         ch_h = bbox[3] - bbox[1]
         ch_y = y + (font_size - ch_h) // 2 - bbox[1]
-        draw.text((x, ch_y), ch, fill=spec.text_color, font=font)
+        # 尾字特殊顏色：警／使／領 為紅色
+        color = spec.text_color
+        if spec.suffix_color and i == len(text) - 1 and ch in _RED_SUFFIX_CHARS:
+            color = spec.suffix_color
+        draw.text((x, ch_y), ch, fill=color, font=font)
         x += char_widths[i] + spec.char_spacing
 
 

@@ -29,6 +29,12 @@ class PlateSpec:
     top_height: int = 0          # 雙層上半高度
     bottom_height: int = 0       # 雙層下半高度
     separator_color: Optional[Tuple[int, int, int]] = None  # 雙層分隔線顏色
+    #: 漸變底色（上, 下）。設定時忽略 bg_color，用於新能源漸變綠牌
+    bg_gradient: Optional[Tuple[Tuple[int, int, int], Tuple[int, int, int]]] = None
+    #: 尾字特殊顏色。用於「警」「使」「領」等紅色尾字
+    suffix_color: Optional[Tuple[int, int, int]] = None
+    #: 上下雙色拼接（上, 下）。用於大型新能源的黃綠雙拼
+    bg_split: Optional[Tuple[Tuple[int, int, int], Tuple[int, int, int]]] = None
 
 
 # ============================================================
@@ -62,24 +68,68 @@ MAINLAND_YELLOW = PlateSpec(
 )
 
 # 新能源車牌（綠牌）—— 外廓 480×140mm（GA36-2018），比普通牌長 40mm
+# 小型新能源為「漸變綠」：上淺下深
 MAINLAND_GREEN = PlateSpec(
     name="mainland_green",
     width=480, height=140,
-    bg_color=(40, 160, 80),       # 綠色
-    text_color=(255, 255, 255),   # 白色文字
+    bg_color=(60, 170, 95),          # 佔位，實際由 bg_gradient 覆蓋
+    text_color=(0, 0, 0),            # 黑字
     font_size=120,
     char_spacing=6,
     margin_x=30, margin_y=25,
     border_width=4,
-    border_color=(255, 255, 255),
+    border_color=(20, 20, 20),
+    bg_gradient=((208, 236, 198), (32, 126, 72)),   # 上淺綠 → 下深綠
 )
 
-# 白色警車牌
+# 大型新能源車牌 —— 黃綠雙拼（上半黃、下半綠）
+MAINLAND_GREEN_LARGE = PlateSpec(
+    name="mainland_green_large",
+    width=480, height=140,
+    bg_color=(200, 180, 60),
+    text_color=(0, 0, 0),
+    font_size=120,
+    char_spacing=6,
+    margin_x=30, margin_y=25,
+    border_width=4,
+    border_color=(20, 20, 20),
+    bg_split=((235, 200, 70), (45, 150, 90)),       # 黃 / 綠
+)
+
+# 白色警車牌 —— 白底黑字，尾字「警」為紅色
 MAINLAND_WHITE = PlateSpec(
     name="mainland_white",
     width=440, height=140,
     bg_color=(250, 250, 250),     # 白色
     text_color=(0, 0, 0),         # 黑色文字
+    font_size=120,
+    char_spacing=6,
+    margin_x=30, margin_y=25,
+    border_width=4,
+    border_color=(0, 0, 0),
+    suffix_color=(200, 30, 30),   # 「警」紅色
+)
+
+# 使領館車牌 —— 黑底白字，尾字「使」/「領」為紅色
+MAINLAND_BLACK = PlateSpec(
+    name="mainland_black",
+    width=440, height=140,
+    bg_color=(18, 18, 18),        # 黑色
+    text_color=(245, 245, 245),   # 白色文字
+    font_size=120,
+    char_spacing=6,
+    margin_x=30, margin_y=25,
+    border_width=4,
+    border_color=(245, 245, 245),
+    suffix_color=(200, 30, 30),   # 「使」「領」紅色
+)
+
+# 教練車（學牌）—— 黃底黑字，尾字「學」
+MAINLAND_COACH = PlateSpec(
+    name="mainland_coach",
+    width=440, height=140,
+    bg_color=(230, 190, 30),
+    text_color=(0, 0, 0),
     font_size=120,
     char_spacing=6,
     margin_x=30, margin_y=25,
