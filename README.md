@@ -236,7 +236,8 @@ PyTorch 2.6+ 改變了 `torch.load` 的 `weights_only` 默認值，需顯式傳 
 |------|------|
 | `docs/OPENSOURCE_RESEARCH.md` | 開源方案調研報告（數據集 / 代碼 / 論文）|
 | `docs/ARCHITECTURE_COMPARISON.md` | 架構對比與融合方案（第一輪，5 個 repo）|
-| `docs/OPENSOURCE_SEARCH_ROUND2.md` | **全量搜索與架構對比（第二輪，265 repo）** ← 以本份為準 |
+| `docs/OPENSOURCE_SEARCH_ROUND2.md` | 全量搜索與架構對比（第二輪，265 repo）|
+| `docs/OPENSOURCE_SEARCH_ROUND3.md` | **3 個待評估項目深挖（第三輪）** ← 以本份為準 |
 | `docs/BASELINE_TEST_REPORT.md` | 三地牌基準測試（11 張實拍）|
 | `docs/TEST_REPORT.md` | CCPD 樣本測試 |
 | `docs/DOWNLOAD_GUIDE.md` | 數據集下載指引 |
