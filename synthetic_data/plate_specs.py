@@ -222,6 +222,33 @@ MAINLAND_MOTO_LIGHT = PlateSpec(
     border_color=(255, 255, 255),
 )
 
+# 使館／領館摩托車號牌 —— 220×140，黑底白字，白框（GA36 表1 序號 13、14）
+MAINLAND_MOTO_BLACK = PlateSpec(
+    name="mainland_moto_black",
+    width=220, height=140,
+    bg_color=(18, 18, 18),
+    text_color=(245, 245, 245),
+    font_size=100,
+    char_spacing=10,
+    margin_x=12, margin_y=25,
+    border_width=3,
+    border_color=(245, 245, 245),
+)
+
+# 警用摩托車號牌 —— 220×140，白底黑字，紅「警」字，黑框（GA36 表1 序號 16）
+MAINLAND_MOTO_WHITE = PlateSpec(
+    name="mainland_moto_white",
+    width=220, height=140,
+    bg_color=(250, 250, 250),
+    text_color=(0, 0, 0),
+    font_size=100,
+    char_spacing=10,
+    margin_x=12, margin_y=25,
+    border_width=3,
+    border_color=(0, 0, 0),
+    suffix_color=(200, 30, 30),
+)
+
 # 低速車號牌 —— 300×165，黃底黑字，黑框（GA36 表1 序號 17）
 MAINLAND_LOWSPEED = PlateSpec(
     name="mainland_lowspeed",
