@@ -17,15 +17,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "8534",
-   "RU"
+   "RU",
+   "8534"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.999,
   "paddle_mean_conf": 1.0,
-  "text_clean": "8534RU",
-  "valid": false,
-  "format": "",
+  "text_clean": "RU8534",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -392,15 +392,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "7164",
-   "YR"
+   "YR",
+   "7164"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.99,
   "paddle_mean_conf": 0.995,
-  "text_clean": "7164YR",
-  "valid": false,
-  "format": "",
+  "text_clean": "YR7164",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -450,15 +450,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "8696",
-   "YS"
+   "YS",
+   "8696"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "8696YS",
-  "valid": false,
-  "format": "",
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -479,15 +479,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "8696",
-   "YS"
+   "YS",
+   "8696"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "8696YS",
-  "valid": false,
-  "format": "",
+  "text_clean": "YS8696",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -692,13 +692,13 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "8",
-   "8499"
+   "8499",
+   "8"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.785,
   "paddle_mean_conf": 0.889,
-  "text_clean": "88499",
+  "text_clean": "84998",
   "valid": false,
   "format": "",
   "lines": 2
@@ -1204,14 +1204,14 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "2969",
    "XM",
+   "2969",
    "1OYOTA"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.736,
   "paddle_mean_conf": 0.912,
-  "text_clean": "2969XM1OYOTA",
+  "text_clean": "XM29691OYOTA",
   "valid": false,
   "format": "",
   "lines": 3
@@ -1234,15 +1234,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "2475",
-   "SZ"
+   "SZ",
+   "2475"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.998,
   "paddle_mean_conf": 0.999,
-  "text_clean": "2475SZ",
-  "valid": false,
-  "format": "",
+  "text_clean": "SZ2475",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -1583,15 +1583,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "5276",
-   "NV"
+   "NV",
+   "5276"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "5276NV",
-  "valid": false,
-  "format": "",
+  "text_clean": "NV5276",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -1729,13 +1729,13 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "855",
-   "EAC"
+   "EAC",
+   "855"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.75,
   "paddle_mean_conf": 0.875,
-  "text_clean": "855EAC",
+  "text_clean": "EAC855",
   "valid": false,
   "format": "",
   "lines": 2
@@ -2301,13 +2301,13 @@
   "double_line_merged": true,
   "paddle_raw": [
    "WZ",
+   "Crowen Molors d",
    "TOYOTA",
-   "2612",
-   "Crowen Molors d"
+   "2612"
   ],
   "paddle_dropped": [
-   "TOYOTA",
-   "Crowen Molors d"
+   "Crowen Molors d",
+   "TOYOTA"
   ],
   "paddle_confidence": 0.651,
   "paddle_mean_conf": 0.887,
@@ -2449,15 +2449,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "4958",
-   "WN"
+   "WN",
+   "4958"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "4958WN",
-  "valid": false,
-  "format": "",
+  "text_clean": "WN4958",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -2771,15 +2771,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "6182",
-   "UF"
+   "UF",
+   "6182"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.997,
   "paddle_mean_conf": 0.998,
-  "text_clean": "6182UF",
-  "valid": false,
-  "format": "",
+  "text_clean": "UF6182",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -3578,15 +3578,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "907",
-   "PP"
+   "PP",
+   "907"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.999,
   "paddle_mean_conf": 1.0,
-  "text_clean": "907PP",
-  "valid": false,
-  "format": "",
+  "text_clean": "PP907",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -5073,13 +5073,13 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "2M6540",
-   "HJ-B8-11"
+   "HJ-B8-11",
+   "2M6540"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.734,
   "paddle_mean_conf": 0.737,
-  "text_clean": "2M6540HJB811",
+  "text_clean": "HJB8112M6540",
   "valid": false,
   "format": "",
   "lines": 2
@@ -6151,15 +6151,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "98-12",
-   "MS"
+   "MS",
+   "98-12"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.983,
   "paddle_mean_conf": 0.991,
-  "text_clean": "9812MS",
-  "valid": false,
-  "format": "",
+  "text_clean": "MS9812",
+  "valid": true,
+  "format": "MO",
   "lines": 2
  },
  {
@@ -6292,15 +6292,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "ML",
-   "68"
+   "68",
+   "ML"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "ML68",
-  "valid": true,
-  "format": "HK",
+  "text_clean": "68ML",
+  "valid": false,
+  "format": "",
   "lines": 2
  },
  {
@@ -6490,15 +6490,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "67-21",
-   "MP"
+   "MP",
+   "67-21"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "6721MP",
-  "valid": false,
-  "format": "",
+  "text_clean": "MP6721",
+  "valid": true,
+  "format": "MO",
   "lines": 2
  },
  {
@@ -6604,15 +6604,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "49-03",
-   "MR"
+   "MR",
+   "49-03"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.996,
   "paddle_mean_conf": 0.998,
-  "text_clean": "4903MR",
-  "valid": false,
-  "format": "",
+  "text_clean": "MR4903",
+  "valid": true,
+  "format": "MO",
   "lines": 2
  },
  {
@@ -6633,15 +6633,15 @@
   ],
   "double_line_merged": false,
   "paddle_raw": [
-   "53-25",
-   "AA"
+   "AA",
+   "53-25"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.945,
   "paddle_mean_conf": 0.973,
-  "text_clean": "5325AA",
-  "valid": false,
-  "format": "",
+  "text_clean": "AA5325",
+  "valid": true,
+  "format": "HK",
   "lines": 2
  },
  {
@@ -6662,15 +6662,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "66-35",
-   "MW"
+   "MW",
+   "66-35"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.859,
   "paddle_mean_conf": 0.929,
-  "text_clean": "6635MW",
-  "valid": false,
-  "format": "",
+  "text_clean": "MW6635",
+  "valid": true,
+  "format": "MO",
   "lines": 2
  },
  {
@@ -6953,15 +6953,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "59-54",
-   "MM"
+   "MM",
+   "59-54"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.955,
   "paddle_mean_conf": 0.977,
-  "text_clean": "5954MM",
-  "valid": false,
-  "format": "",
+  "text_clean": "MM5954",
+  "valid": true,
+  "format": "MO",
   "lines": 2
  },
  {
@@ -6982,15 +6982,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "37-62",
-   "MH"
+   "MH",
+   "37-62"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "3762MH",
-  "valid": false,
-  "format": "",
+  "text_clean": "MH3762",
+  "valid": true,
+  "format": "MO",
   "lines": 2
  },
  {
@@ -7011,13 +7011,13 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "80450",
-   "CM"
+   "CM",
+   "80450"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.98,
   "paddle_mean_conf": 0.99,
-  "text_clean": "80450CM",
+  "text_clean": "CM80450",
   "valid": false,
   "format": "",
   "lines": 2
@@ -7040,15 +7040,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "40-59",
-   "MN"
+   "MN",
+   "40-59"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 1.0,
   "paddle_mean_conf": 1.0,
-  "text_clean": "4059MN",
-  "valid": false,
-  "format": "",
+  "text_clean": "MN4059",
+  "valid": true,
+  "format": "MO",
   "lines": 2
  },
  {
@@ -7181,14 +7181,14 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "1.1-53",
    "MY",
+   "1.1-53",
    "M200"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.968,
   "paddle_mean_conf": 0.989,
-  "text_clean": "1153MYM200",
+  "text_clean": "MY1153M200",
   "valid": false,
   "format": "",
   "lines": 3
@@ -7434,15 +7434,15 @@
   ],
   "double_line_merged": true,
   "paddle_raw": [
-   "83-31",
-   "MR"
+   "MR",
+   "83-31"
   ],
   "paddle_dropped": [],
   "paddle_confidence": 0.977,
   "paddle_mean_conf": 0.988,
-  "text_clean": "8331MR",
-  "valid": false,
-  "format": "",
+  "text_clean": "MR8331",
+  "valid": true,
+  "format": "MO",
   "lines": 2
  }
 ]

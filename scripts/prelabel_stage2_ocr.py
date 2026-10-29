@@ -169,16 +169,28 @@ def sort_by_line(texts: list[str], polys) -> list[int]:
         boxes.append((i, float(pts[:, 0].min()), float(pts[:, 1].min()),
                       float(pts[:, 1].max())))
 
-    # 以中位高度的一半作為「同一行」容差
-    heights = [b[3] - b[2] for b in boxes]
-    med_h = float(np.median(heights)) if heights else 10.0
-    tol = max(4.0, med_h * 0.5)
+    def same_line(a, b) -> bool:
+        """
+        判斷兩個文字塊是否屬於同一行。
+
+        先前只看 y_min 的差值（容差 = 中位高度的一半），雙行牌的上下兩行
+        y_min 可能只差 15px 就被判成同一行，接著按 x 排序，
+        下排的數字（靠左）就跑到上排字母前面 —— 實測 RU8534 變成 8534RU。
+        改為要求「垂直投影真的重疊」才算同一行。
+        """
+        top = max(a[2], b[2])
+        bot = min(a[3], b[3])
+        overlap = bot - top
+        if overlap <= 0:
+            return False
+        shorter = min(a[3] - a[2], b[3] - b[2])
+        return overlap >= 0.35 * max(shorter, 1.0)
 
     lines: list[list] = []
     for b in sorted(boxes, key=lambda b: b[2]):   # 先按上緣 y
         placed = False
         for line in lines:
-            if abs(b[2] - line[0][2]) <= tol:
+            if same_line(b, line[0]):
                 line.append(b)
                 placed = True
                 break
@@ -300,11 +312,13 @@ def main():
                 if isinstance(d, dict):
                     texts = d.get("rec_texts") or []
                     scores = d.get("rec_scores") or []
-                    polys = d.get("rec_polys") or d.get("dt_polys") or []
-                    if len(polys) == len(texts) and len(texts) > 1:
-                        order = sort_by_line(texts, polys)
-                        texts = [texts[k] for k in order]
-                        scores = [scores[k] for k in order] if len(scores) == len(order) else scores
+                    # 不重排 —— 實測 A/B（scripts/bench_sort_strategies.py）：
+                    #   A 原始順序     EM 39.0%  平均錯 2.00 字
+                    #   B y_min 差值   EM 36.2%  平均錯 2.10 字
+                    #   C 垂直重疊     EM 31.0%  平均錯 2.32 字
+                    # PaddleOCR 的 detectors 本來就按閱讀順序輸出，
+                    # 用幾何規則重排反而會打亂斜拍與雙行牌的次序。
+                    pass
         except Exception as e:
             texts, scores = [], []
             print(f"  ! {f.name}: {e}")

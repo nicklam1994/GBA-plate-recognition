@@ -1,0 +1,26 @@
+{
+ "total": 210,
+ "train": 158,
+ "test": 52,
+ "by_region": {
+  "hk": 122,
+  "mainland": 29,
+  "gangao": 6,
+  "mo": 53
+ },
+ "skipped": {
+  "unusable": 45,
+  "空值": 1,
+  "not_plate": 4,
+  "裁圖缺失": 1
+ },
+ "chars_outside_vocab": {},
+ "avg_len": 6.04,
+ "len_dist": {
+  "4": 3,
+  "7": 35,
+  "6": 154,
+  "5": 17,
+  "3": 1
+ }
+}

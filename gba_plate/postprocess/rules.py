@@ -26,7 +26,12 @@ from gba_plate.ocr.vocab import is_province
 # --------------------------------------------------------------------- 格式
 
 #: 內地普通牌：省 + 字母 + 5 位英數
-MAINLAND_RE = re.compile(r"^[\u4e00-\u9fa5][A-Z][A-Z0-9]{5}$")
+#: 字母池排除 I 與 O —— GA36-2018 明訂序號編碼不使用這兩個字母
+#: （I/1、O/0 肉眼與電子檢控都易混淆）。四地規定一致，港澳另加 Q/V。
+ALNUM_NO_IO = "A-HJ-NP-Z0-9"
+ALPHA_NO_IO = "A-HJ-NP-Z"
+
+MAINLAND_RE = re.compile(rf"^[\u4e00-\u9fa5][{ALPHA_NO_IO}][{ALNUM_NO_IO}]{{5}}$")
 
 #: 內地新能源小型車：省 + 字母 + D/F + 5 位（D/F 在第 3 位）
 MAINLAND_NE_SMALL_RE = re.compile(r"^[\u4e00-\u9fa5][A-Z][DF][A-Z0-9]{5}$")
@@ -46,13 +51,20 @@ GANGAO_RE = re.compile(r"^粤Z[A-Z0-9]{4}[港澳]$")
 GANGAO_LOOSE_RE = re.compile(r"^粤Z[A-Z0-9]{2,5}[港澳]$")
 
 #: 香港：1-2 字母 + 1-4 數字；字母不含 I/O/Q；數字首位非 0
-HK_RE = re.compile(r"^[A-HJ-NP-Z]{1,2}[1-9]\d{0,3}$")
+# 香港字母池剔除 I、O、Q（不禁 V）—— 寫成 A-HJ-NPR-Z，
+# 不能用 P-Z，否則 Q 會被範圍包含進去
+HK_ALPHA = "A-HJ-NPR-Z"
+HK_RE = re.compile(rf"^[{HK_ALPHA}]{{1,2}}[1-9]\d{{0,3}}$")
 
 #: 澳門單行：M + 字母 + 2 數字 + 2 數字（連字符可有可無）
-MO_RE = re.compile(r"^M[A-Z]-?\d{2}-?\d{2}$")
+#: 澳門車牌 M 後面的字母池剔除 I、O、Q、V
+#: （DSAT 為避免與 1/0 混淆而移除）。實務上 MH 發完直接跳 MJ，MN 之後跳 MP。
+# 注意 P-R 是範圍會把 Q 也包進來，必須寫成 P,R-T 才真的排除 Q
+MO_ALPHA = "A-HJ-NPR-TUW-Z"
+MO_RE = re.compile(rf"^M[{MO_ALPHA}]-?\d{{2}}-?\d{{2}}$")
 
 #: 澳門雙行（OCR 後拼成一行）：MA12-34 或 MA1234
-MO_DOUBLE_RE = re.compile(r"^M[A-Z]\d{2}[-\s]?\d{2}$")
+MO_DOUBLE_RE = re.compile(rf"^M[{MO_ALPHA}]\d{{2}}[-\s]?\d{{2}}$")
 
 #: 澳門發給「香港私家車往來港澳常規配額」的車牌：HK + 4 位純流水數字。
 #: 由 HK-00-01 起順序發放，所以前導 0 是正常現象（HK_RE 不允許前導 0，
